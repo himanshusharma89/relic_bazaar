@@ -1,4 +1,4 @@
-# retro_shopping
+# Retro Shopping
 
 A new Flutter project for #Hack20.
 
