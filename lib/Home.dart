@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:retro_shopping/icons/my_flutter_app_icons.dart';
+import 'package:retro_shopping/retro_button.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -18,68 +18,40 @@ class Home extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  SizedBox(height: 8,),
+                  SizedBox(height: height*0.01,),
                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Stack(
-                          children: [
-                            Transform.translate(
-                              offset: Offset(4.0, 4.0),
-                              child: Container(
-                                width: 35.0,
-                                height: 35.0,
-                                decoration: BoxDecoration(
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 35.0,
-                              height: 35.0,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                              ),
-                              child: Icon(
-                                Icons.menu
-                              ),
-                            ),
-                          ],
+                        RetroButton(
+                          child: Icon(
+                            Icons.menu
+                          ),
+                          upperColor: Colors.white,
+                          lowerColor: Colors.black,
+                          width: 35,
+                          height: 35,
+                          borderColor: Colors.white,
                         ),
-                        Stack(
-                          children: [
-                            Transform.translate(
-                              offset: Offset(4.0, 4.0),
-                              child: Container(
-                                width: 35.0,
-                                height: 35.0,
-                                decoration: BoxDecoration(
-                                  color: Colors.black,
-                                ),
-                              ),
+                        RetroButton(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top:7,left: 6),
+                            child: Icon(
+                              MyFlutterApp.cart,
+                              size: 32,
                             ),
-                            Container(
-                              width: 35.0,
-                              height: 35.0,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.only(top:7,left: 6),
-                                child: Icon(
-                                  MyFlutterApp.cart,
-                                  size: 32,
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
+                          upperColor: Colors.white,
+                          lowerColor: Colors.black,
+                          width: 35,
+                          height: 35,
+                          borderColor: Colors.white,
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 50,),
+                  SizedBox(height: height*0.03,),
                   Text.rich(
                     TextSpan(
                       style: TextStyle(
@@ -109,9 +81,9 @@ class Home extends StatelessWidget {
                     ),
                     textAlign: TextAlign.left,
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(height: height*0.02,),
                   searchBar(context),
-                  SizedBox(height: 20,),
+                  SizedBox(height: height*0.02,),
                   Container(
                     height: height,
                     width: width,
@@ -128,7 +100,7 @@ class Home extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 6,left: 6),
                           child: Container(
                             width: width*0.9,
-                            height: 722.0,
+                            height: 729.0,
                             decoration: BoxDecoration(
                               color: const Color(0xffffffff),
                             ),
@@ -154,18 +126,7 @@ class Home extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                      width: 24.5,
-                      height: 24.6,
-                      decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(17.0),
-                  // image: DecorationImage(
-                  //   image: const AssetImage(''),
-                  //   fit: BoxFit.fill,
-                  // ),
-                      ),
-                    ),
-                  
+                  SizedBox(height: height*0.02,),
                 ],
               ),
             ),
@@ -190,7 +151,7 @@ class Home extends StatelessWidget {
         Container(
           height: height*0.06,
           width: width*0.9,
-          color: Colors.white,
+          color: Color(0xff38d0d0),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(
@@ -226,8 +187,7 @@ class Home extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
         color: const Color(0xff38d0d0),
-        border:
-            Border.all(width: 1.0, color: const Color(0xff181818)),
+        border: Border.all(width: 1.0, color: const Color(0xff181818)),
         boxShadow: [
           BoxShadow(
             color: const Color(0x29000000),
@@ -247,7 +207,7 @@ class Home extends StatelessWidget {
                 fontFamily: 'Poppins',
                 fontSize: 18,
                 color: const Color(0xffffffff),
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.bold,
                 height: 1,
               ),
               textAlign: TextAlign.left,
@@ -256,20 +216,21 @@ class Home extends StatelessWidget {
               'by Lloyd Duran',
               style: TextStyle(
                 fontFamily: 'Poppins',
-                fontSize: 10,
+                fontSize: 11,
                 color: const Color(0xfffafafa),
-                fontWeight: FontWeight.w300,
+                fontWeight: FontWeight.w500,
                 height: 1.5,
               ),
               textAlign: TextAlign.left,
             ),
+            SizedBox(height: 20,),
             Text(
-              '\$435',
+              '₹ 435',
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 18,
                 color: const Color(0xffffffff),
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w700,
                 height: 1,
               ),
               textAlign: TextAlign.left,
@@ -280,6 +241,3 @@ class Home extends StatelessWidget {
     );
   }
 }
-
-const String _svg_41sp59 =
-    '<svg viewBox="4.5 9.0 27.0 18.0" ><path  d="M 4.5 18 L 31.5 18" fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path  d="M 4.5 9 L 31.5 9" fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /><path  d="M 4.5 27 L 31.5 27" fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg>';

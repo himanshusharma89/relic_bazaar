@@ -25,45 +25,21 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Container(
-      height: height*0.094,
-      width: width*0.95,
-      child: Stack(
+      width: width,
+      height: height*0.08,
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        border: Border.all(
+          color: Colors.black
+        )
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Container(
-              width: width*0.94,
-              height: height*0.08,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                border: Border.all(
-                  color: Colors.black
-                )
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              width: width*0.94,
-              height: height*0.08,
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                border: Border.all(
-                  color: Colors.black
-                )
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  floatingNavBarItem(MyFlutterApp.home,0),
-                  floatingNavBarItem(MyFlutterApp.search,1),
-                  floatingNavBarItem(MyFlutterApp.cart,2),
-                  floatingNavBarItem(MyFlutterApp.profile,3),
-                ],
-              ),
-            ),
-          ),
+          floatingNavBarItem(MyFlutterApp.home,0),
+          floatingNavBarItem(MyFlutterApp.search,1),
+          floatingNavBarItem(MyFlutterApp.cart,2),
+          floatingNavBarItem(MyFlutterApp.profile,3),
         ],
       ),
     );
