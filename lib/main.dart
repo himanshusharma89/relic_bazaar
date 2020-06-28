@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/Cart.dart';
-import 'package:retro_shopping/Home.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:retro_shopping/cart.dart';
+import 'package:retro_shopping/home.dart';
 import 'bottom_nav_bar.dart';
 
 void main() {
@@ -11,10 +12,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Retro Shopping',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: GoogleFonts.poppinsTextTheme(
+          Theme.of(context).textTheme
+        )
       ),
       home: Dashboard(),
     );
@@ -79,15 +84,12 @@ class _DashboardState extends State<Dashboard> {
                 )
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom:5.0),
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: FloatingNavBar(
-                  _currentIndex,
-                  _pageController
-                )
-              ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: FloatingNavBar(
+                _currentIndex,
+                _pageController
+              )
             ),
           ],
         ),
