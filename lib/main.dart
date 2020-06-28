@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:retro_shopping/Cart.dart';
+import 'package:retro_shopping/Home.dart';
 import 'bottom_nav_bar.dart';
 
 void main() {
@@ -14,17 +16,17 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Home(),
+      home: Dashboard(),
     );
   }
 }
 
-class Home extends StatefulWidget {
+class Dashboard extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _DashboardState createState() => _DashboardState();
 }
 
-class _HomeState extends State<Home> {
+class _DashboardState extends State<Dashboard> {
   PageController _pageController;
   int _currentIndex=0;
 
@@ -57,14 +59,7 @@ class _HomeState extends State<Home> {
                 });
               },
               children: [
-                Container(
-                  color: Colors.red,
-                  child: Center(
-                    child: Text(
-                      'Home'
-                    ),
-                  ),
-                ),
+                Home(),
                 Container(
                   color: Colors.teal,
                   child: Center(
@@ -73,14 +68,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                Container(
-                  color: Colors.deepOrangeAccent,
-                  child: Center(
-                    child: Text(
-                      'Cart'
-                    ),
-                  ),
-                ),
+                Cart(),
                 Container(
                   color: Colors.orangeAccent,
                   child: Center(
@@ -92,7 +80,7 @@ class _HomeState extends State<Home> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom:8.0),
+              padding: const EdgeInsets.only(bottom:5.0),
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: FloatingNavBar(
