@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:retro_shopping/cart.dart';
 import 'package:retro_shopping/home.dart';
+import 'ProfilePage.dart';
 import 'bottom_nav_bar.dart';
 
 void main() {
@@ -15,12 +16,9 @@ class MyApp extends StatelessWidget {
       title: 'Retro Shopping',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        textTheme: GoogleFonts.poppinsTextTheme(
-          Theme.of(context).textTheme
-        )
-      ),
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
       home: Dashboard(),
     );
   }
@@ -33,12 +31,12 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   PageController _pageController;
-  int _currentIndex=0;
+  int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _pageController=PageController();
+    _pageController = PageController();
   }
 
   @override
@@ -58,7 +56,7 @@ class _DashboardState extends State<Dashboard> {
           children: <Widget>[
             PageView(
               controller: _pageController,
-              onPageChanged: (int index){
+              onPageChanged: (int index) {
                 setState(() {
                   _currentIndex = index;
                 });
@@ -68,29 +66,16 @@ class _DashboardState extends State<Dashboard> {
                 Container(
                   color: Colors.teal,
                   child: Center(
-                    child: Text(
-                      'Search'
-                    ),
+                    child: Text('Search'),
                   ),
                 ),
                 Cart(),
-                Container(
-                  color: Colors.orangeAccent,
-                  child: Center(
-                    child: Text(
-                      'Profile'
-                    ),
-                  ),
-                )
+                ProfilePage(),
               ],
             ),
             Align(
-              alignment: Alignment.bottomCenter,
-              child: FloatingNavBar(
-                _currentIndex,
-                _pageController
-              )
-            ),
+                alignment: Alignment.bottomCenter,
+                child: FloatingNavBar(_currentIndex, _pageController)),
           ],
         ),
       ),

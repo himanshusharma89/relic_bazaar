@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/icons/my_flutter_app_icons.dart';
 
+// ignore: must_be_immutable
 class FloatingNavBar extends StatefulWidget {
   int index;
   final PageController _controller;
