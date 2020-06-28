@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'bottom_nav_bar.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,31 +14,92 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      home: Home(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class Home extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomeState createState() => _HomeState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomeState extends State<Home> {
+  PageController _pageController;
+  int _currentIndex=0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController=PageController();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _pageController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Stack(
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+            PageView(
+              controller: _pageController,
+              onPageChanged: (int index){
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
+              children: [
+                Container(
+                  color: Colors.red,
+                  child: Center(
+                    child: Text(
+                      'Home'
+                    ),
+                  ),
+                ),
+                Container(
+                  color: Colors.teal,
+                  child: Center(
+                    child: Text(
+                      'Search'
+                    ),
+                  ),
+                ),
+                Container(
+                  color: Colors.deepOrangeAccent,
+                  child: Center(
+                    child: Text(
+                      'Cart'
+                    ),
+                  ),
+                ),
+                Container(
+                  color: Colors.orangeAccent,
+                  child: Center(
+                    child: Text(
+                      'Profile'
+                    ),
+                  ),
+                )
+              ],
             ),
-            Text(
-              '_counter',
-              style: Theme.of(context).textTheme.headline4,
+            Padding(
+              padding: const EdgeInsets.only(bottom:8.0),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: FloatingNavBar(
+                  _currentIndex,
+                  _pageController
+                )
+              ),
             ),
           ],
         ),
