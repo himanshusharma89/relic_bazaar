@@ -1,4 +1,4 @@
-# Retro Shopping
+<h1 align= "center"><b>Relic Bazaar</b></h1>
 
 A new Flutter project for #Hack20.
 
