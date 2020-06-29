@@ -20,8 +20,6 @@ __The Vintage Products__...Yes those items of immense cultural significance or h
 
 <h2 align= "left"><b>The Geeks behind this 🤓</b></h2>
 
-<h1 align= "center"><b>Built for fun 🤣 and no serious reason yet by:  </b></h1>
-
 <p align="center">
 <img width=20% src="https://avatars2.githubusercontent.com/u/44980497?v=4">&ensp;&ensp;&ensp;
 <img width=20% src="https://avatars2.githubusercontent.com/u/46641503?v=4">&ensp;&ensp;&ensp;
