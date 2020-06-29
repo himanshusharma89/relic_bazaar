@@ -2,7 +2,7 @@
  
  
 
-<h2 align= "left"><b>Motivation</b></h2>
+<h1 align= "left"><b>Motivation💭💭 </b></h1>
 
 With the boons of internet🌐 spreading worlwide over the last two decades, e-commerce has evolved to be one of the largest industries💹!.
 <p align= "center"><img width=50% src="https://media.giphy.com/media/xT0xePyGsKplOK5dHG/giphy.gif"></p>
@@ -20,7 +20,11 @@ __The Vintage Products__...Yes those items of immense cultural significance or h
 
 <p align= "center"><img width=40% src="https://media.giphy.com/media/ZEHaLUz9yCSWMwKbsi/giphy.gif"></p>
 
-<h2 align= "left"><b>The Geeks behind this 🤓</b></h2>
+<h1 align= "left"><b>Our Solution </b></h1>
+
+We propose an app with the vision to put back the traditional market of vintage on the tides of the ecommerce boom!. The UI is speficially made to provide a retro feel. We are using a blockchain based system for payments behind the scenes to enure privacy and encryption. 
+
+<h1 align= "left"><b>The Geeks behind this 🤓</b></h1>
 
 <p align="center">
 <img width=20% src="https://avatars2.githubusercontent.com/u/44980497?v=4">&ensp;&ensp;&ensp;
