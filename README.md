@@ -26,7 +26,7 @@ __The Vintage Products__...Yes those items of immense cultural significance or h
 
 We propose an app with the vision to put back the traditional market of vintage on the tides of the ecommerce boom!. The UI is speficially made to provide a retro feel. We are using a blockchain based system for payments behind the scenes to enure privacy and encryption. The registration is simple and can be done using one's Google Account as well. Using some beautiful yet consise forms we eliminate the paperwork for sellers. The recommendation engine tends to learn over time about one's taste and suggests similar items to buy. Computer Vision based techiniques are used for quality assessment.
 
-<h2 align= "left"><b>Here's Some Sneak Peek🧐</b></h2>
+<h2 align= "left"><b>Here's some Sneak Peek🧐</b></h2>
 
 <p align= "center"><img width=30% height=30% src="images/splash.gif">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img width=30% height=30% src="images/transition.gif"></p>
 <p align= "center"></p>
