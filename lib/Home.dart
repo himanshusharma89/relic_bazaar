@@ -213,15 +213,30 @@ class Home extends StatelessWidget {
                 Icon(
                   MyFlutterApp.search
                 ),
-                Text(
-                  'search for categories, items and more...',
-                  style: TextStyle(
-                    fontFamily: 'pix M 8pt',
-                    fontSize: 15,
-                    color: const Color(0xff181818),
-                  ),
-                  textAlign: TextAlign.left,
+                Expanded(
+                  child: TextFormField(
+                    style: TextStyle(
+                      fontFamily: 'pix M 8pt',
+                      fontSize: 16,
+                      color: const Color(0xff181818),
+                    ),
+                    decoration: InputDecoration(
+                      hintText: 'search for categories, items and more...',
+                      border: InputBorder.none,
+                      isDense: true,
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 10,)
+                    ),
+                  )
                 ),
+                // Text(
+                //   'search for categories, items and more...',
+                //   style: TextStyle(
+                //     fontFamily: 'pix M 8pt',
+                //     fontSize: 15,
+                //     color: const Color(0xff181818),
+                //   ),
+                //   textAlign: TextAlign.left,
+                // ),
                 Icon(
                   MyFlutterApp.search
                 ),
