@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:retro_shopping/cart.dart';
 import 'package:retro_shopping/screens/home.dart';
+import 'package:retro_shopping/screens/search.dart';
 import 'package:retro_shopping/splash.dart';
 import 'screens/ProfilePage.dart';
 import 'bottom_nav_bar.dart';
@@ -71,12 +72,7 @@ class _DashboardState extends State<Dashboard> {
               },
               children: [
                 Home(),
-                Container(
-                  // color: Colors.teal,
-                  child: Center(
-                    child: Text('Search'),
-                  ),
-                ),
+                Search(),
                 Cart(),
                 ProfilePage(),
               ],
