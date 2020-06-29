@@ -8,11 +8,10 @@ class Home extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: const Color(0xff009d9d),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            width: MediaQuery.of(context).size.width,
+            width: width,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: Column(

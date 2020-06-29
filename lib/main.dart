@@ -16,9 +16,13 @@ class MyApp extends StatelessWidget {
       title: 'Retro Shopping',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
+        // primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: const Color(0xff009d9d),
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: GoogleFonts.poppinsTextTheme(
+          Theme.of(context).textTheme
+        )
+      ),
       home: Dashboard(),
     );
   }
@@ -41,7 +45,6 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _pageController.dispose();
   }
@@ -64,13 +67,24 @@ class _DashboardState extends State<Dashboard> {
               children: [
                 Home(),
                 Container(
-                  color: Colors.teal,
+                  // color: Colors.teal,
                   child: Center(
                     child: Text('Search'),
                   ),
                 ),
                 Cart(),
+<<<<<<< HEAD
                 ProfilePage(),
+=======
+                Container(
+                  // color: Colors.orangeAccent,
+                  child: Center(
+                    child: Text(
+                      'Profile'
+                    ),
+                  ),
+                )
+>>>>>>> ece39b4... fixes
               ],
             ),
             Align(

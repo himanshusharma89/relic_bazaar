@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:retro_shopping/retro_button.dart';
 
-import 'icons/my_flutter_app_icons.dart';
-
 class Cart extends StatelessWidget {
-  Cart({
-    Key key,
-  }) : super(key: key);
+  Cart({ Key key,}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: const Color(0xff009d9d),
       body: SafeArea(
         child: Container(
           height: height*0.86,
@@ -114,7 +108,6 @@ class Cart extends StatelessWidget {
   }
   Widget cartItem(BuildContext context){
     final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.only(bottom:10.0),
       child: Row(
