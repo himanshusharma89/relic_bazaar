@@ -10,13 +10,29 @@ class Cart extends StatefulWidget {
 
 class _CartState extends State<Cart> {
   int cnt1,cnt2;
+  TextEditingController controller;
 
   @override
   void initState() {
     super.initState();
+    controller = TextEditingController();
+    controller.text='1';
     cnt1=0;
     cnt2=0;
   }
+
+  void subQuantity() {
+    if (int.parse(controller.text) > 1) {
+      controller.text = (int.parse(controller.text) - 1).toString();
+    }
+  }
+
+  void addQuantity() {
+    if (int.parse(controller.text) < 50) {
+      controller.text = (int.parse(controller.text) + 1).toString();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -187,18 +203,33 @@ class _CartState extends State<Cart> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(
-                          Icons.add
-                        ),
-                        Text(
-                          '5',
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold
+                        GestureDetector(
+                          onTap: addQuantity,
+                          child: Icon(
+                            Icons.add
                           ),
                         ),
-                        Icon(
-                          Icons.remove
+                        Expanded(
+                          child: TextField(
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            readOnly: true,
+                            controller: controller,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              isDense: true,
+                              contentPadding: const EdgeInsets.all(0)
+                            ),
+                          )
+                        ),
+                        GestureDetector(
+                          onTap: subQuantity,
+                          child: Icon(
+                            Icons.remove
+                          ),
                         ),
                       ],
                     ),
