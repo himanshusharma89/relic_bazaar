@@ -24,6 +24,13 @@ class _ProductPageState extends State<ProductPage> {
         child: SingleChildScrollView(
           child: Container(
             width: width,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  'assets/background.png'
+                )
+              )
+            ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: Column(
@@ -72,39 +79,39 @@ class _ProductPageState extends State<ProductPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text.rich(
-                        TextSpan(
-                          style: TextStyle(
-                            fontFamily: 'pix M 8pt',
-                            fontSize: 14,
-                            color: const Color(0xffffffff),
-                            height: 1.3829787234042554,
-                            shadows: [
-                              Shadow(
-                                color: const Color(0x29000000),
-                                offset: Offset(0, 3),
-                                blurRadius: 6,
-                              )
-                            ],
-                          ),
-                          children: [
-                            TextSpan(
-                              text: widget.text,
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          for (var s in widget.text.split(' '))
+                            Text(
+                              s,
                               style: TextStyle(
-                                fontSize: 47,
+                                fontSize: 30,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold
                               ),
-                            ),
-                          ],
-                        ),
-                        textAlign: TextAlign.left,
+                            )
+                        ],
                       ),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            'YEAR'
+                            'YEAR',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold
+                            ),
                           ),
                           Text(
-                            'YEAR'
+                            '1561',
+                            style: TextStyle(
+                              fontSize: 22,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold
+                            ),
                           )
                         ],
                       )
@@ -119,7 +126,7 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                   SizedBox(height: height*0.01,),
                   Container(
-                    width: width*0.35,
+                    width: width*0.32,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -130,7 +137,7 @@ class _ProductPageState extends State<ProductPage> {
                               style: TextStyle(
                                 // fontWeight: FontWeight.bold,
                                 color: Colors.white,
-                                fontSize: 13
+                                fontSize: 11
                               ),
                             ),
                             Text(
@@ -150,7 +157,7 @@ class _ProductPageState extends State<ProductPage> {
                               style: TextStyle(
                                 // fontWeight: FontWeight.bold,
                                 color: Colors.white,
-                                fontSize: 13
+                                fontSize: 11
                               ),
                             ),
                             Text(
@@ -174,17 +181,17 @@ class _ProductPageState extends State<ProductPage> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Color(0xff38d0d0),
-                          fontSize: 23
+                          fontSize: 22
                         ),
                       ),
                     ),
                     upperColor: Colors.white,
                     lowerColor: Colors.black,
-                    width: width*0.35,
+                    width: width*0.32,
                     height: 35,
                     borderColor: Colors.white,
                   ),
-                  SizedBox(height: height*0.05,),
+                  SizedBox(height: height*0.025,),
                   discription()
                 ],
               ),
