@@ -1,4 +1,4 @@
-<p align= "center"><img width=70% src="https://github.com/himanshusharma89/relic_bazaar/blob/master/images/logo.png"></p>
+<p align= "center"><img width=70% src="https://github.com/himanshusharma89/relic_bazaar/blob/master/images/promo.png"></p>
  
 
 <h1 align= "left"><b>Motivation💭💭 </b></h1>
@@ -25,8 +25,8 @@ We propose an app with the vision to put back the traditional market of vintage 
 
 <h2 align= "left"><b>Here's Some Sneak Peek🧐</b></h2>
 
-<p align= "center"><img width=40% src="images/demo%201.mp4"></p>
-
+<p align= "center"><img width=50% src="images/splash.gif"></p>
+<p align= "center"><img width=50% src="images/transition.gif"></p>
 
 <h2 align= "left"><b>Tech Stack🧐</b></h2>
 
