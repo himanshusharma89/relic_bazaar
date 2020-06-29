@@ -79,20 +79,16 @@ class _ProductPageState extends State<ProductPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          for (var s in widget.text.split(' '))
-                            Text(
-                              s,
-                              style: TextStyle(
-                                fontSize: 30,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold
-                              ),
-                            )
-                        ],
+                      Container(
+                        width: width*0.45,
+                        child: Text(
+                          widget.text,
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
