@@ -84,22 +84,22 @@ class Home extends StatelessWidget {
                   searchBar(context),
                   SizedBox(height: height*0.02,),
                   Container(
-                    height: height,
+                    height: height*1.08,
                     width: width,
                     child: Stack(
                       children: <Widget>[
                         Container(
                           width: width*0.9,
-                          height: 729.0,
+                          // height: 729.0,
                           decoration: BoxDecoration(
                             color: const Color(0xff181818),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 6,left: 6),
+                        Transform.translate(
+                          offset: Offset(10, 10),
                           child: Container(
                             width: width*0.9,
-                            height: 729.0,
+                            // height: 729.0,
                             decoration: BoxDecoration(
                               color: const Color(0xffffffff),
                             ),
@@ -112,8 +112,54 @@ class Home extends StatelessWidget {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        productCard(),
-                                        productCard(),
+                                        productCard(
+                                          'ANTIQUE VASE',
+                                          'by Lloyd Duran',
+                                          '₹ 4035',
+                                          'assets/items/3.png'
+                                        ),
+                                        productCard(
+                                          'EDI TURNTABLE',
+                                          'by Tony Stark',
+                                          '₹ 5035',
+                                          'assets/items/4.png'
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: height*0.025,),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        productCard(
+                                          'TATUNG EINSTEIN',
+                                          'by Lloyd Duran',
+                                          '₹ 435',
+                                          'assets/items/1.png'
+                                        ),
+                                        productCard(
+                                          'ANTIQUE VASE',
+                                          'by Lloyd Duran',
+                                          '₹ 435',
+                                          'assets/items/4.png'
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: height*0.025,),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        productCard(
+                                          'ANTIQUE VASE',
+                                          'by Lloyd Duran',
+                                          '₹ 435',
+                                          'assets/items/4.png'
+                                        ),
+                                        productCard(
+                                          'ANTIQUE VASE',
+                                          'by Lloyd Duran',
+                                          '₹ 435',
+                                          'assets/items/4.png'
+                                        ),
                                       ],
                                     ),
                                   ],
@@ -125,7 +171,7 @@ class Home extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: height*0.02,),
+                  SizedBox(height: height*0.2,),
                 ],
               ),
             ),
@@ -179,7 +225,7 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget productCard(){
+  Widget productCard(String text, String owner, String amount, String image){
     return Container(
       width: 155.0,
       height: 257.0,
@@ -196,12 +242,12 @@ class Home extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(5.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'ANTIQUE VASE',
+              text,
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 18,
@@ -212,7 +258,7 @@ class Home extends StatelessWidget {
               textAlign: TextAlign.left,
             ),
             Text(
-              'by Lloyd Duran',
+              owner,
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 11,
@@ -224,7 +270,7 @@ class Home extends StatelessWidget {
             ),
             SizedBox(height: 20,),
             Text(
-              '₹ 435',
+              amount,
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 18,
@@ -234,6 +280,14 @@ class Home extends StatelessWidget {
               ),
               textAlign: TextAlign.left,
             ),
+            Transform.translate(
+              offset: Offset(16, 10),
+              child: Image.asset(
+                image,
+                height: 150,
+                width: 150,
+              ),
+            )
           ],
         ),
       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:retro_shopping/cart.dart';
 import 'package:retro_shopping/home.dart';
+import 'package:retro_shopping/splash.dart';
 import 'ProfilePage.dart';
 import 'bottom_nav_bar.dart';
 
@@ -23,7 +24,11 @@ class MyApp extends StatelessWidget {
           Theme.of(context).textTheme
         )
       ),
-      home: Dashboard(),
+      routes: <String, WidgetBuilder>{
+        '/dashboard': (BuildContext context) => Dashboard(),
+        // '/SignUp': (BuildContext context) => SignUpScreen(),
+      },
+      home: Splash(),
     );
   }
 }
@@ -73,18 +78,7 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
                 Cart(),
-<<<<<<< HEAD
                 ProfilePage(),
-=======
-                Container(
-                  // color: Colors.orangeAccent,
-                  child: Center(
-                    child: Text(
-                      'Profile'
-                    ),
-                  ),
-                )
->>>>>>> ece39b4... fixes
               ],
             ),
             Align(
