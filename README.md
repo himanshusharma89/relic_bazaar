@@ -29,13 +29,10 @@ We propose an app with the vision to put back the traditional market of vintage 
 
 
 <h2 align= "left"><b>Tech Stack🧐</b></h2>
-
 - Flutter
 - Firebase
 - Matic API
 - TensorFlow + TensorFlow Lite
-
-<p align= "center"><img width=40% src="images/hack20.png"></p>
 
 
 <h1 align= "left"><b>The Geeks behind this 🤓</b></h1>
