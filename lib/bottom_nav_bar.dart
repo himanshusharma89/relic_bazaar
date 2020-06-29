@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:retro_shopping/icons/my_flutter_app_icons.dart';
 
+// ignore: must_be_immutable
 class FloatingNavBar extends StatefulWidget {
   int index;
   final PageController _controller;
@@ -24,45 +26,21 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Container(
-      height: height*0.095,
-      width: width*0.925,
-      child: Stack(
+      width: width,
+      height: height*0.08,
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        border: Border.all(
+          color: Colors.black
+        )
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Container(
-              width: width*0.91,
-              height: height*0.08,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                border: Border.all(
-                  color: Colors.black
-                )
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              width: width*0.91,
-              height: height*0.08,
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                border: Border.all(
-                  color: Colors.black
-                )
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  floatingNavBarItem(Icons.home,0),
-                  floatingNavBarItem(Icons.search,1),
-                  floatingNavBarItem(Icons.shopping_cart,2),
-                  floatingNavBarItem(Icons.person,3),
-                ],
-              ),
-            ),
-          ),
+          floatingNavBarItem(MyFlutterApp.home,0),
+          floatingNavBarItem(MyFlutterApp.search,1),
+          floatingNavBarItem(MyFlutterApp.cart,2),
+          floatingNavBarItem(MyFlutterApp.profile,3),
         ],
       ),
     );
@@ -97,9 +75,13 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
             bottom: blackBorder()
           )
         ),
-        child: Icon(
-          icon,
-          color: widget.index==index? Colors.white : Colors.black,
+        child: Padding(
+          padding: const EdgeInsets.only(top:8,left: 8,right: 8,bottom: 8),
+          child: Icon(
+            icon,
+            color: widget.index==index? Colors.white : Colors.black,
+            size: 30,
+          ),
         ),
       ),
     );

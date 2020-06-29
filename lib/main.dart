@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:retro_shopping/cart.dart';
+import 'package:retro_shopping/home.dart';
+import 'package:retro_shopping/splash.dart';
+import 'ProfilePage.dart';
 import 'bottom_nav_bar.dart';
 
 void main() {
@@ -9,34 +14,42 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Retro Shopping',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        // primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: const Color(0xff009d9d),
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: GoogleFonts.poppinsTextTheme(
+          Theme.of(context).textTheme
+        )
       ),
-      home: Home(),
+      routes: <String, WidgetBuilder>{
+        '/dashboard': (BuildContext context) => Dashboard(),
+        // '/SignUp': (BuildContext context) => SignUpScreen(),
+      },
+      home: Splash(),
     );
   }
 }
 
-class Home extends StatefulWidget {
+class Dashboard extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _DashboardState createState() => _DashboardState();
 }
 
-class _HomeState extends State<Home> {
+class _DashboardState extends State<Dashboard> {
   PageController _pageController;
-  int _currentIndex=0;
+  int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _pageController=PageController();
+    _pageController = PageController();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _pageController.dispose();
   }
@@ -51,56 +64,26 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             PageView(
               controller: _pageController,
-              onPageChanged: (int index){
+              onPageChanged: (int index) {
                 setState(() {
                   _currentIndex = index;
                 });
               },
               children: [
+                Home(),
                 Container(
-                  color: Colors.red,
+                  // color: Colors.teal,
                   child: Center(
-                    child: Text(
-                      'Home'
-                    ),
+                    child: Text('Search'),
                   ),
                 ),
-                Container(
-                  color: Colors.teal,
-                  child: Center(
-                    child: Text(
-                      'Search'
-                    ),
-                  ),
-                ),
-                Container(
-                  color: Colors.deepOrangeAccent,
-                  child: Center(
-                    child: Text(
-                      'Cart'
-                    ),
-                  ),
-                ),
-                Container(
-                  color: Colors.orangeAccent,
-                  child: Center(
-                    child: Text(
-                      'Profile'
-                    ),
-                  ),
-                )
+                Cart(),
+                ProfilePage(),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom:8.0),
-              child: Align(
+            Align(
                 alignment: Alignment.bottomCenter,
-                child: FloatingNavBar(
-                  _currentIndex,
-                  _pageController
-                )
-              ),
-            ),
+                child: FloatingNavBar(_currentIndex, _pageController)),
           ],
         ),
       ),

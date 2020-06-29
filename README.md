@@ -1,6 +1,6 @@
-# retro_shopping
+# Retro Shopping
 
-A new Flutter project.
+A new Flutter project for #Hack20.
 
 ## Getting Started
 
