@@ -29,7 +29,10 @@ We propose an app with the vision to put back the traditional market of vintage 
 <h2 align= "left"><b>Here's some Sneak Peek🧐</b></h2>
 
 <p align= "center"><img width=30% height=30% src="images/splash.gif">&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<img width=30% height=30% src="images/transition.gif"></p>
-<p align= "center"></p>
+
+<h2 align= "left"><b>Our Mockup🎨</b></h2>
+
+<p align= "center"><img width=70% height=50% src="images/Mockup01.png"></p>
 
 <h2 align= "left"><b>Tech Stack🧐</b></h2>
 
