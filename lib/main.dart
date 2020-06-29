@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:retro_shopping/cart.dart';
-import 'package:retro_shopping/home.dart';
+import 'package:retro_shopping/screens/home.dart';
 import 'package:retro_shopping/splash.dart';
-import 'ProfilePage.dart';
+import 'screens/ProfilePage.dart';
 import 'bottom_nav_bar.dart';
 
 void main() {
@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
       ),
       routes: <String, WidgetBuilder>{
         '/dashboard': (BuildContext context) => Dashboard(),
-        // '/SignUp': (BuildContext context) => SignUpScreen(),
       },
       home: Splash(),
     );
