@@ -49,7 +49,7 @@ We propose an app with the vision to put back the traditional market of vintage 
 
 <h4 align="center">
 <a href="https://github.com/himanshusharma89">
-<b>Himanshu Sharma</b></a>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+<b>Himanshu Sharma</b></a>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
 <a href="https://github.com/smaranjitghose">
 <b>Smaranjit Ghose</b>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
 <a href="https://github.com/ishandeveloper">
