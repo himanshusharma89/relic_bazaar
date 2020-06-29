@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/icons/my_flutter_app_icons.dart';
+import 'package:retro_shopping/icons/product_page.dart';
 import 'package:retro_shopping/retro_button.dart';
 
 class Home extends StatelessWidget {
@@ -113,13 +114,15 @@ class Home extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         productCard(
+                                          context,
                                           'ANTIQUE VASE',
                                           'by Lloyd Duran',
                                           '₹ 4035',
                                           'assets/items/3.png'
                                         ),
                                         productCard(
-                                          'EDI TURNTABLE',
+                                          context,
+                                          'EDISON TURNTABLE',
                                           'by Tony Stark',
                                           '₹ 5035',
                                           'assets/items/4.png'
@@ -131,16 +134,18 @@ class Home extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         productCard(
+                                          context,
                                           'TATUNG EINSTEIN',
                                           'by Lloyd Duran',
                                           '₹ 435',
                                           'assets/items/1.png'
                                         ),
                                         productCard(
-                                          'ANTIQUE VASE',
+                                          context,
+                                          'MYRON DISC THROWER',
                                           'by Lloyd Duran',
                                           '₹ 435',
-                                          'assets/items/4.png'
+                                          'assets/items/2.png'
                                         ),
                                       ],
                                     ),
@@ -149,12 +154,14 @@ class Home extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         productCard(
+                                          context,
                                           'ANTIQUE VASE',
                                           'by Lloyd Duran',
                                           '₹ 435',
                                           'assets/items/4.png'
                                         ),
                                         productCard(
+                                          context,
                                           'ANTIQUE VASE',
                                           'by Lloyd Duran',
                                           '₹ 435',
@@ -225,70 +232,80 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget productCard(String text, String owner, String amount, String image){
-    return Container(
-      width: 155.0,
-      height: 257.0,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5.0),
-        color: const Color(0xff38d0d0),
-        border: Border.all(width: 1.0, color: const Color(0xff181818)),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0x29000000),
-            offset: Offset(0, 3),
-            blurRadius: 6,
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              text,
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 18,
-                color: const Color(0xffffffff),
-                fontWeight: FontWeight.bold,
-                height: 1,
-              ),
-              textAlign: TextAlign.left,
+  Widget productCard(BuildContext context,String text, String owner, String amount, String image){
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => ProductPage(
+          text: text,
+          owner: owner,
+          image: image,
+          amount: amount,
+        ),));
+      },
+      child: Container(
+        width: 155.0,
+        height: 257.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5.0),
+          color: const Color(0xff38d0d0),
+          border: Border.all(width: 1.0, color: const Color(0xff181818)),
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0x29000000),
+              offset: Offset(0, 3),
+              blurRadius: 6,
             ),
-            Text(
-              owner,
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 11,
-                color: const Color(0xfffafafa),
-                fontWeight: FontWeight.w500,
-                height: 1.5,
-              ),
-              textAlign: TextAlign.left,
-            ),
-            SizedBox(height: 20,),
-            Text(
-              amount,
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 18,
-                color: const Color(0xffffffff),
-                fontWeight: FontWeight.w700,
-                height: 1,
-              ),
-              textAlign: TextAlign.left,
-            ),
-            Transform.translate(
-              offset: Offset(16, 10),
-              child: Image.asset(
-                image,
-                height: 150,
-                width: 150,
-              ),
-            )
           ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                text,
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 18,
+                  color: const Color(0xffffffff),
+                  fontWeight: FontWeight.bold,
+                  height: 1,
+                ),
+                textAlign: TextAlign.left,
+              ),
+              Text(
+                owner,
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 11,
+                  color: const Color(0xfffafafa),
+                  fontWeight: FontWeight.w500,
+                  height: 1.5,
+                ),
+                textAlign: TextAlign.left,
+              ),
+              SizedBox(height: 20,),
+              Text(
+                amount,
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 18,
+                  color: const Color(0xffffffff),
+                  fontWeight: FontWeight.w700,
+                  height: 1,
+                ),
+                textAlign: TextAlign.left,
+              ),
+              Transform.translate(
+                offset: Offset(16, 10),
+                child: Image.asset(
+                  image,
+                  height: 154,
+                  width: 154,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
