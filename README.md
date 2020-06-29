@@ -1,4 +1,4 @@
-<h1 align= "center"><b>Relic Bazaar</b></h1>
+<p align= "center"><img width=50% src="./images/logo.png></p>
 
 <h2 align= "left"><b>Motivation</b></h2>
 
