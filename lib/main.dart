@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:retro_shopping/cart.dart';
+import 'package:retro_shopping/screens/cart.dart';
 import 'package:retro_shopping/screens/home.dart';
 import 'package:retro_shopping/screens/search.dart';
 import 'package:retro_shopping/splash.dart';
