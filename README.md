@@ -1,4 +1,4 @@
-<p align= "center"><img width=50% src="https://github.com/himanshusharma89/relic_bazaar/blob/master/images/logo.png"></p>
+<p align= "center"><img width=70% src="https://github.com/himanshusharma89/relic_bazaar/blob/master/images/logo.png"></p>
  
 
 <h1 align= "left"><b>Motivation💭💭 </b></h1>
