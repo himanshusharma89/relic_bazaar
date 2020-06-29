@@ -14,4 +14,6 @@ From our fashioable clothes👗, shoes👟,grocery🥒,items of daily needs to m
 However, we found there's something that is left behind on the ecommerce wave.
 <p align= "center"><img width=40% src="https://media.giphy.com/media/2AN7gVc1Az7pmdnFc3/giphy.gif"></p>
 
+__The Vintage Products__...Yes those items of immense cultural significance or historical importance. Maybe those coins from pre-independent India, that chair from the royal family or perhaps the autograph or soveniur your family members might have got from Mother Teresa. Trading with such items is a big hassle. Sometimes people are afraid to do so becasue of the notion that it is illegal. At times, they are fooled by middlemen who buy them in some hundreds of dollars and sell it in thousands. Additionaly, there are issues of authenticy as well delivery!
+
 
