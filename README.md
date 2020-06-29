@@ -18,4 +18,25 @@ __The Vintage Products__...Yes those items of immense cultural significance or h
 
 <p align= "center"><img width=40% src="https://media.giphy.com/media/ZEHaLUz9yCSWMwKbsi/giphy.gif"></p>
 
+<h2 align= "left"><b>The Geeks behind this 🤓</b></h2>
+
+<h1 align= "center"><b>Built for fun 🤣 and no serious reason yet by:  </b></h1>
+
+<p align="center">
+<img width=20% src="https://avatars2.githubusercontent.com/u/44980497?v=4">&ensp;&ensp;&ensp;
+<img width=20% src="https://avatars2.githubusercontent.com/u/46641503?v=4">&ensp;&ensp;&ensp;
+<img width=20% src="https://avatars3.githubusercontent.com/u/54989142?v=4">&ensp;&ensp;&ensp;
+<img width=20% src="https://avatars3.githubusercontent.com/u/40017559?v=4">
+</p>
+
+<h4 align="center">
+<a href="https://github.com/himanshusharma89">
+<b>Himanshu Sharma</b></a>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+<a href="https://github.com/smaranjitghose">
+<b>Smaranjit Ghose</b>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+<a href="https://github.com/ishandeveloper">
+<b>Ishan  Sharma</b>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+<a href="https://github.com/anushbhatia">
+<b>Anush Bhatia</b></h4>
+ 
 
