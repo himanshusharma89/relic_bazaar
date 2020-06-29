@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../retro_button.dart';
-import 'my_flutter_app_icons.dart';
+import 'retro_button.dart';
+import 'icons/my_flutter_app_icons.dart';
 
 class ProductPage extends StatefulWidget {
   String text;
