@@ -20,9 +20,19 @@ __The Vintage Products__...Yes those items of immense cultural significance or h
 
 <p align= "center"><img width=40% src="https://media.giphy.com/media/ZEHaLUz9yCSWMwKbsi/giphy.gif"></p>
 
-<h1 align= "left"><b>Our Solution </b></h1>
+<h1 align= "left"><b>Our Solution🏗 </b></h1>
 
-We propose an app with the vision to put back the traditional market of vintage on the tides of the ecommerce boom!. The UI is speficially made to provide a retro feel. We are using a blockchain based system for payments behind the scenes to enure privacy and encryption. The registration is simple and can be done using one's Google Account as well. Using some beautiful yet consise forms we eliminate the paperwork for sellers. The recommendation engine tends to learn over time about one's taste and suggests similar items to buy. Computer Vision based techiniques are used for quality assessment
+We propose an app with the vision to put back the traditional market of vintage on the tides of the ecommerce boom!. The UI is speficially made to provide a retro feel. We are using a blockchain based system for payments behind the scenes to enure privacy and encryption. The registration is simple and can be done using one's Google Account as well. Using some beautiful yet consise forms we eliminate the paperwork for sellers. The recommendation engine tends to learn over time about one's taste and suggests similar items to buy. Computer Vision based techiniques are used for quality assessment.
+
+<h2 align= "left"><b>Here's Some Sneak Peek🧐</b></h2>
+
+
+<h2 align= "left"><b>Tech Stack🧐</b></h2>
+- Flutter
+- Firebase
+- Matic API
+- TensorFlow + TensorFlow Lite
+
 
 <h1 align= "left"><b>The Geeks behind this 🤓</b></h1>
 
