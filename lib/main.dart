@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:retro_shopping/screens/cart.dart';
+import 'package:retro_shopping/screens/Cart.dart';
 import 'package:retro_shopping/screens/home.dart';
 import 'package:retro_shopping/screens/search.dart';
 import 'package:retro_shopping/splash.dart';
@@ -18,13 +18,10 @@ class MyApp extends StatelessWidget {
       title: 'Retro Shopping',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: const Color(0xff009d9d),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        textTheme: GoogleFonts.poppinsTextTheme(
-          Theme.of(context).textTheme
-        )
-      ),
+          // primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: const Color(0xff009d9d),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
       routes: <String, WidgetBuilder>{
         '/dashboard': (BuildContext context) => Dashboard(),
       },
