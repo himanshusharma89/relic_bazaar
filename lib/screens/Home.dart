@@ -93,7 +93,7 @@ class Home extends StatelessWidget {
                     height: height * 0.02,
                   ),
                   Container(
-                    height: height * 1.05,
+                    height: height * 1.08,
                     width: width,
                     child: Stack(
                       children: <Widget>[
