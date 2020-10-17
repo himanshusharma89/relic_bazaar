@@ -1,0 +1,15 @@
+name: Delete Merged Branches
+on:
+  pull_request:
+    types:
+      - closed
+jobs:
+  delete_branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close Pull and Delete Branch
+        uses: peter-evans/close-pull@v1
+        with:
+          pull-request-number: 1
+          comment: Closing pull request and deleting it's branch
+          delete-branch: true
