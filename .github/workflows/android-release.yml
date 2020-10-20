@@ -1,4 +1,4 @@
-name: Android Release
+name: App Release
 
 on:
   push:
@@ -49,7 +49,7 @@ jobs:
         with:
           path: version.txt
       - run: flutter pub get
-      - run: flutter test
+#       - run: flutter test
       # We can only build for android becuase we are on linux :D
       - run: flutter build apk --release --split-per-abi
       - run: flutter build appbundle
