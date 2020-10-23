@@ -4,7 +4,7 @@ import 'package:retro_shopping/screens/Cart.dart';
 import 'package:retro_shopping/screens/home.dart';
 import 'package:retro_shopping/screens/search.dart';
 import 'package:retro_shopping/splash.dart';
-import 'screens/ProfilePage.dart';
+import 'screens/profile.dart';
 import 'bottom_nav_bar.dart';
 
 void main() {
