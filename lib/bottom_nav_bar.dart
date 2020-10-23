@@ -50,10 +50,8 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
       onTap: (){
         setState(() {
           widget.index=index;
-          widget._controller.animateToPage(
+          widget._controller.jumpToPage(
             index,
-            duration:Duration(milliseconds: 200),
-            curve: Curves.easeIn,
           );
         });
       },

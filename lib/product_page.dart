@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'retro_button.dart';
 import 'icons/my_flutter_app_icons.dart';
 
+// ignore: must_be_immutable
 class ProductPage extends StatefulWidget {
   String text;
   String image;
