@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/icons/my_flutter_app_icons.dart';
+import 'package:retro_shopping/helpers/app_icons.dart';
+import 'package:retro_shopping/helpers/constants.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -30,21 +31,21 @@ class _SearchState extends State<Search> {
                 Container(
                   height: height*0.06,
                   width: width*0.9,
-                  color: Color(0xffffffff),
+                  color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(
-                          MyFlutterApp.search
+                          RelicIcons.search
                         ),
                         Expanded(
                           child: TextFormField(
                             style: TextStyle(
                               fontFamily: 'pix M 8pt',
                               fontSize: 16,
-                              color: const Color(0xff181818),
+                              color: RelicColors.primaryBlack,
                             ),
                             decoration: InputDecoration(
                               hintText: 'search for categories, items and more...',
@@ -59,12 +60,12 @@ class _SearchState extends State<Search> {
                         //   style: TextStyle(
                         //     fontFamily: 'pix M 8pt',
                         //     fontSize: 15,
-                        //     color: const Color(0xff181818),
+                        //     color: RelicColors.primaryBlack,
                         //   ),
                         //   textAlign: TextAlign.left,
                         // ),
                         // Icon(
-                        //   MyFlutterApp.search
+                        //   RelicIcons.search
                         // ),
                       ],
                     ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:retro_shopping/helpers/constants.dart';
 
-import 'retro_button.dart';
-import 'icons/my_flutter_app_icons.dart';
+import '../retro_button.dart';
+import '../../helpers/app_icons.dart';
 
 // ignore: must_be_immutable
 class ProductPage extends StatefulWidget {
@@ -66,7 +67,7 @@ class _ProductPageState extends State<ProductPage> {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 7, left: 6),
                             child: Icon(
-                              MyFlutterApp.cart,
+                              RelicIcons.cart,
                               size: 32,
                             ),
                           ),
@@ -182,7 +183,7 @@ class _ProductPageState extends State<ProductPage> {
                         widget.amount,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Color(0xff38d0d0),
+                            color: RelicColors.primaryColor,
                             fontSize: 22),
                       ),
                     ),
@@ -219,7 +220,7 @@ class _ProductPageState extends State<ProductPage> {
               width: width * 0.9,
               height: height * 0.54,
               decoration: BoxDecoration(
-                color: const Color(0xff181818),
+                color: RelicColors.primaryBlack,
               ),
             ),
           ),
@@ -227,7 +228,7 @@ class _ProductPageState extends State<ProductPage> {
               width: width * 0.9,
               height: height * 0.54,
               decoration: BoxDecoration(
-                color: const Color(0xff38d0d0),
+                color: RelicColors.primaryColor,
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -299,12 +300,12 @@ class _ProductPageState extends State<ProductPage> {
                       children: [
                         Icon(
                           Icons.add,
-                          color: Color(0xff38d0d0),
+                          color: RelicColors.primaryColor,
                         ),
                         Text(
                           'ADD TO CART',
                           style: TextStyle(
-                              color: Color(0xff38d0d0),
+                              color: RelicColors.primaryColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 15),
                         ),
@@ -328,7 +329,7 @@ class _ProductPageState extends State<ProductPage> {
                   child: Center(
                     child: Icon(
                       Icons.favorite,
-                      color: Color(0xff38d0d0),
+                      color: RelicColors.primaryColor,
                     ),
                   ),
                   upperColor: Colors.white,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:retro_shopping/helpers/constants.dart';
 
 class PaymentSuccessful extends StatelessWidget {
   PaymentSuccessful({
@@ -8,7 +9,6 @@ class PaymentSuccessful extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff009d9d),
       body: Stack(
         children: <Widget>[
           Transform.translate(
@@ -18,7 +18,7 @@ class PaymentSuccessful extends StatelessWidget {
               height: 327.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(21.0),
-                color: const Color(0xffffffff),
+                color: Colors.white,
                 border: Border.all(width: 3.0, color: const Color(0x94000000)),
               ),
             ),
@@ -52,9 +52,8 @@ class PaymentSuccessful extends StatelessWidget {
             child: Text(
               'Shopping Successful',
               style: TextStyle(
-                fontFamily: 'Poppins',
                 fontSize: 24,
-                color: const Color(0xff38d0d0),
+                color: RelicColors.primaryColor,
                 fontWeight: FontWeight.w700,
                 height: 1.5,
               ),
@@ -68,7 +67,6 @@ class PaymentSuccessful extends StatelessWidget {
               child: Text(
                 'Your Order has been \nsuccessfully placed',
                 style: TextStyle(
-                  fontFamily: 'Poppins',
                   fontSize: 18,
                   color: const Color(0xff060707),
                   height: 1.5,
@@ -84,7 +82,7 @@ class PaymentSuccessful extends StatelessWidget {
               height: 35.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7.0),
-                color: const Color(0xff000000),
+                color: Colors.black,
               ),
             ),
           ),
@@ -95,8 +93,8 @@ class PaymentSuccessful extends StatelessWidget {
               height: 37.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7.0),
-                color: const Color(0xffffffff),
-                border: Border.all(width: 2.0, color: const Color(0xff000000)),
+                color: Colors.white,
+                border: Border.all(width: 2.0, color: Colors.black),
               ),
             ),
           ),
@@ -105,9 +103,8 @@ class PaymentSuccessful extends StatelessWidget {
             child: Text(
               'Continue Shopping!',
               style: TextStyle(
-                fontFamily: 'Poppins',
                 fontSize: 14,
-                color: const Color(0xff000000),
+                color: Colors.black,
                 fontWeight: FontWeight.w600,
                 height: 1.5,
               ),
