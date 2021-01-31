@@ -46,21 +46,8 @@ We propose an app with the vision to put back the traditional market of vintage 
 
 <h1 align= "left"><b>The Geeks behind this 🤓</b></h1>
 
-<p align="center">
-<img width=20% src="https://avatars2.githubusercontent.com/u/44980497?v=4">&ensp;&ensp;&ensp;
-<img width=20% src="https://avatars2.githubusercontent.com/u/46641503?v=4">&ensp;&ensp;&ensp;
-<img width=20% src="https://avatars3.githubusercontent.com/u/54989142?v=4">&ensp;&ensp;&ensp;
-<img width=20% src="https://avatars3.githubusercontent.com/u/40017559?v=4">
-</p>
-
-<h4 align="center">
-<a href="https://github.com/himanshusharma89">
-<b>Himanshu Sharma</b></a>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-<a href="https://github.com/smaranjitghose">
-<b>Smaranjit Ghose</b>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-<a href="https://github.com/ishandeveloper">
-<b>Ishan  Sharma</b>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-<a href="https://github.com/anushbhatia">
-<b>Anush Bhatia</b></h4>
+|<img src="https://avatars2.githubusercontent.com/u/44980497?v=4">|<img src="https://avatars2.githubusercontent.com/u/46641503?v=4">|<img src="https://avatars3.githubusercontent.com/u/54989142?v=4">|<img src="https://avatars3.githubusercontent.com/u/40017559?v=4">|
+|----------------------------|--------|----------------------------|--------|
+|<p align="center">[Himanshu Sharma](https://github.com/himanshusharma89)</p>|<p align="center">[Smaranjit Ghose](https://github.com/smaranjitghose)</p>|<p align="center">[Ishan Sharma](https://github.com/ishandeveloper)</p>|<p align="center">[Anush Bhatia](https://github.com/anushbhatia)</p>|
  
 
