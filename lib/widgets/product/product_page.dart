@@ -131,14 +131,17 @@ class _ProductPageState extends State<ProductPage> {
                     height: height * 0.01,
                   ),
                   Container(
-                    width: width * 0.32,
+                    width: width * 0.40,
+                    // width: 100,
+                    // height: 40,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Column(
                           children: [
                             Text(
                               'height'.toUpperCase(),
+                              overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                   // fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -146,6 +149,7 @@ class _ProductPageState extends State<ProductPage> {
                             ),
                             Text(
                               widget.prodHeight.toString(),
+                              overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -153,23 +157,27 @@ class _ProductPageState extends State<ProductPage> {
                             )
                           ],
                         ),
-                        Column(
-                          children: [
-                            Text(
-                              'sold by'.toUpperCase(),
-                              style: TextStyle(
-                                  // fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 11),
-                            ),
-                            Text(
-                              widget.seller,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 16),
-                            )
-                          ],
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Text(
+                                'sold by'.toUpperCase(),
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    // fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 11),
+                              ),
+                              Text(
+                                widget.seller,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 16),
+                              )
+                            ],
+                          ),
                         )
                       ],
                     ),
