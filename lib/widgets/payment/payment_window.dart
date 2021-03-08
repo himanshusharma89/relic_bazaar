@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
+import 'package:retro_shopping/widgets/payment/payment_successful.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class PaymentWindow extends StatefulWidget {
   @override
@@ -9,12 +12,56 @@ class PaymentWindow extends StatefulWidget {
 
 class _PaymentWindowState extends State<PaymentWindow> {
   int cnt1, cnt2;
-
+  Razorpay _razorpay = Razorpay();
   @override
   void initState() {
     super.initState();
     cnt1 = 0;
     cnt2 = 0;
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+  }
+
+  @override
+  void dispose() {
+    _razorpay.clear();
+    super.dispose();
+  }
+
+  void _openCheckout() async {
+    var options = {
+      // Add valid key and other relevant options
+      'key': 'rzp_test_1DP5mmOlF5G5ag',
+      'external': {
+        'wallets': ['paytm', 'gpay', 'bhim']
+      }
+    };
+
+    try {
+      _razorpay.open(options);
+    } catch (e) {
+      debugPrint(e);
+    }
+  }
+
+  void refresh() {
+    setState(() {});
+  }
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
+    Fluttertoast.showToast(msg: "SUCCESS: " + response.paymentId);
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (BuildContext context) => PaymentSuccessful()));
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    Fluttertoast.showToast(
+        msg: "ERROR: " + response.code.toString() + " - " + response.message);
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    Fluttertoast.showToast(msg: "EXTERNAL_WALLET: " + response.walletName);
   }
 
   @override
@@ -239,31 +286,36 @@ class _PaymentWindowState extends State<PaymentWindow> {
               height: height * 0.01,
             ),
             Center(
-              child: RetroButton(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Payment & Address',
-                        style: TextStyle(
-                          fontFamily: 'pix M 8pt',
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: RelicColors.primaryBlack,
+              child: InkWell(
+                onTap: () {
+                  _openCheckout();
+                },
+                child: RetroButton(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Payment & Address',
+                          style: TextStyle(
+                            fontFamily: 'pix M 8pt',
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: RelicColors.primaryBlack,
+                          ),
+                          textAlign: TextAlign.left,
                         ),
-                        textAlign: TextAlign.left,
-                      ),
-                      Icon(Icons.arrow_forward),
-                    ],
+                        Icon(Icons.arrow_forward),
+                      ],
+                    ),
                   ),
+                  upperColor: Colors.white,
+                  lowerColor: Colors.black,
+                  height: height * 0.052,
+                  width: width * 0.8,
+                  borderColor: Colors.black,
                 ),
-                upperColor: Colors.white,
-                lowerColor: Colors.black,
-                height: height * 0.052,
-                width: width * 0.8,
-                borderColor: Colors.black,
               ),
             ),
           ],
