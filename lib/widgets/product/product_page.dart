@@ -345,7 +345,20 @@ class _ProductPageState extends State<ProductPage> {
                   width: width * 0.12,
                   height: height * 0.05,
                   borderColor: Colors.white,
-                )
+                ),
+                RetroButton(
+                  child: Center(
+                    child: Icon(
+                      Icons.share,
+                      color: RelicColors.primaryColor,
+                    ),
+                  ),
+                  upperColor: Colors.white,
+                  lowerColor: Colors.black,
+                  width: width * 0.12,
+                  height: height * 0.05,
+                  borderColor: Colors.white,
+                ),
               ],
             ),
           ),

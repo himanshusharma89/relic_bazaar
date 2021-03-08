@@ -31,6 +31,9 @@ dependencies:
   google_fonts: ^1.1.0
   razorpay_flutter: 1.1.0
   fluttertoast: ^7.1.8
+  firebase_dynamic_links: ^0.6.3
+  esys_flutter_share: ^1.0.2
+
 dependency_overrides: 
   flutter_svg: 0.19.0
 dev_dependencies:

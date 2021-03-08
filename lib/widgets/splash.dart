@@ -1,7 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:retro_shopping/helpers/slide_route.dart';
+import 'package:retro_shopping/widgets/product/product_page.dart';
 
 class Splash extends StatefulWidget {
+  final bool initLink;
+  Splash({this.initLink});
   @override
   _SplashState createState() => _SplashState();
 }
@@ -11,6 +16,57 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
     startTime();
+    _initLink();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  Future initDynamicLinks() async {
+    final PendingDynamicLinkData data =
+        await FirebaseDynamicLinks.instance.getInitialLink();
+
+    await _handleDeepLink(data);
+
+    // Register a link callback to fire if the app is opened up from the background
+    // using a dynamic link.
+    FirebaseDynamicLinks.instance.onLink(
+        onSuccess: (PendingDynamicLinkData dynamicLink) async {
+      // handle link that has been retrieved
+      await _handleDeepLink(dynamicLink);
+    }, onError: (OnLinkErrorException e) async {
+      print('Link Failed: ${e.message}');
+    });
+  }
+
+  Future<void> _handleDeepLink(PendingDynamicLinkData data) async {
+    final Uri deepLink = data?.link;
+    if (deepLink != null) {
+      if (deepLink.queryParameters['isProduct'] == 'true') {
+        Navigator.push(
+            context,
+            SlideBottomRoute(
+                page: ProductPage(
+              text: deepLink.queryParameters['text'],
+              owner: deepLink.queryParameters['owner'],
+              image: deepLink.queryParameters['image'],
+              prodHeight: int.tryParse(deepLink.queryParameters['height']),
+              seller: deepLink.queryParameters['seller'],
+              amount: deepLink.queryParameters['amount'],
+            )));
+      }
+    }
+  }
+
+  _initLink() {
+    Future.delayed(
+      Duration(milliseconds: 300),
+      () async {
+        if (widget.initLink) await initDynamicLinks();
+      },
+    );
   }
 
   startTime() async {
