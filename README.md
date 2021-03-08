@@ -43,6 +43,17 @@ We propose an app with the vision to put back the traditional market of vintage 
 
 <p align= "center"><img width=35% src="images/hack20.png"></p>
 
+<h2 align= "left"><b>Contributing Guidelines</b></h2>
+
+Contributions are always welcomed but make sure to go through our  [contributing guidelines](https://github.com/himanshusharma89/relic_bazaar/blob/master/CONTRIBUTING.md) beforing making any contributions. 
+
+<h2 align= "left"><b>Code of Conduct</b></h2>
+
+We follow certain guidelines in order to maintain this repository. Please find our [code of conduct](https://github.com/himanshusharma89/relic_bazaar/blob/master/CODE_OF_CONDUCT.md) and read it carefully.
+
+<h2 align= "left"><b>License</b></h2>
+
+Distributed under the CC0-1.0 License. See [LICENSE](https://github.com/himanshusharma89/relic_bazaar/blob/master/LICENSE) for more information.
 
 <h1 align= "left"><b>The Geeks behind this 🤓</b></h1>
 
