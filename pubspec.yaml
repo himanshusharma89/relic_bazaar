@@ -31,8 +31,10 @@ dependencies:
   google_fonts: ^1.1.0
   razorpay_flutter: 1.1.0
   fluttertoast: ^7.1.8
+  
 dependency_overrides: 
-  flutter_svg: 0.19.0
+  flutter_svg: ^0.20.0-nullsafety.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
