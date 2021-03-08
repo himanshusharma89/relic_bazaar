@@ -4,137 +4,150 @@ import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 
 class Home extends StatelessWidget {
+
+  final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+
+  void _openDrawer () {
+    _drawerKey.currentState.openDrawer();
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    return SingleChildScrollView(
-      primary: true,
-      child: Container(
-        width: width,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: height * 0.01,
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    RetroButton(
-                      child: Icon(Icons.menu),
-                      upperColor: Colors.white,
-                      lowerColor: Colors.black,
-                      width: 35,
-                      height: 35,
-                      borderColor: Colors.white,
-                    ),
-                    RetroButton(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 7, left: 6),
-                        child: Icon(
-                          RelicIcons.cart,
-                          size: 32,
-                        ),
-                      ),
-                      upperColor: Colors.white,
-                      lowerColor: Colors.black,
-                      width: 35,
-                      height: 35,
-                      borderColor: Colors.white,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: height * 0.03,
-              ),
-              Text.rich(
-                TextSpan(
-                  style: TextStyle(
-                    fontFamily: 'pixer',
-                    fontSize: 16,
-                    color: Colors.white,
-                    height: 1.3829787234042554,
-                    shadows: [
-                      Shadow(
-                        color: RelicColors.secondaryBlack,
-                        offset: Offset(0, 3),
-                        blurRadius: 6,
-                      )
-                    ],
+    return Scaffold(
+      key: _drawerKey,
+      drawer: Drawer(),
+      body:SingleChildScrollView(
+          primary: true,
+          child: Container(
+            width: width,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    height: height * 0.01,
                   ),
-                  children: [
-                    TextSpan(
-                      text: 'GOOD EVENING,\n',
-                    ),
-                    TextSpan(
-                      text: 'LINUS!',
-                      style: TextStyle(
-                        fontFamily: 'Pixer',
-                        fontSize: 47,
-                      ),
-                    ),
-                  ],
-                ),
-                textAlign: TextAlign.left,
-              ),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              searchBar(context),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              Container(
-                height: height * 1.08,
-                width: width,
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                      width: width * 0.9,
-                      // height: 729.0,
-                      decoration: BoxDecoration(
-                        color: RelicColors.primaryBlack,
-                      ),
-                    ),
-                    Transform.translate(
-                      offset: Offset(10, 10),
-                      child: Container(
-                        width: width * 0.9,
-                        // height: 729.0,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          child: RetroButton(
+                            child: Icon(Icons.menu),
+                            upperColor: Colors.white,
+                            lowerColor: Colors.black,
+                            width: 35,
+                            height: 35,
+                            borderColor: Colors.white,
+                          ),
+                          onTap: (){_openDrawer();},
                         ),
-                        child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: GridView.builder(
-                              primary: false,
-                              physics: NeverScrollableScrollPhysics(),
-                                gridDelegate:
+                        RetroButton(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 7, left: 6),
+                            child: Icon(
+                              RelicIcons.cart,
+                              size: 32,
+                            ),
+                          ),
+                          upperColor: Colors.white,
+                          lowerColor: Colors.black,
+                          width: 35,
+                          height: 35,
+                          borderColor: Colors.white,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: height * 0.03,
+                  ),
+                  Text.rich(
+                    TextSpan(
+                      style: TextStyle(
+                        fontFamily: 'pixer',
+                        fontSize: 16,
+                        color: Colors.white,
+                        height: 1.3829787234042554,
+                        shadows: [
+                          Shadow(
+                            color: RelicColors.secondaryBlack,
+                            offset: Offset(0, 3),
+                            blurRadius: 6,
+                          )
+                        ],
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'GOOD EVENING,\n',
+                        ),
+                        TextSpan(
+                          text: 'LINUS!',
+                          style: TextStyle(
+                            fontFamily: 'Pixer',
+                            fontSize: 47,
+                          ),
+                        ),
+                      ],
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
+                  searchBar(context),
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
+                  Container(
+                    height: height * 1.08,
+                    width: width,
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          width: width * 0.9,
+                          // height: 729.0,
+                          decoration: BoxDecoration(
+                            color: RelicColors.primaryBlack,
+                          ),
+                        ),
+                        Transform.translate(
+                          offset: Offset(10, 10),
+                          child: Container(
+                            width: width * 0.9,
+                            // height: 729.0,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                            ),
+                            child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: GridView.builder(
+                                    primary: false,
+                                    gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
                                         crossAxisSpacing: 8,
                                         mainAxisSpacing: 8,
                                         childAspectRatio: 1/1.6),
-                                itemCount: productsList.length,
-                                itemBuilder: (_, index) =>
+                                    itemCount: productsList.length,
+                                    itemBuilder: (_, index) =>
                                     productsList[index])),
-                      ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: height * 0.1,
+                  ),
+                ],
               ),
-              SizedBox(
-                height: height * 0.1,
-              ),
-            ],
-          ),
-        ),
+            ),
+          )
       ),
     );
   }
@@ -164,19 +177,19 @@ class Home extends StatelessWidget {
                 Icon(RelicIcons.search),
                 Expanded(
                     child: TextFormField(
-                  style: TextStyle(
-                    fontFamily: 'pix M 8pt',
-                    fontSize: 16,
-                    color: RelicColors.primaryBlack,
-                  ),
-                  decoration: InputDecoration(
-                      hintText: 'search for categories, items and more...',
-                      border: InputBorder.none,
-                      isDense: true,
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                      )),
-                )),
+                      style: TextStyle(
+                        fontFamily: 'pix M 8pt',
+                        fontSize: 16,
+                        color: RelicColors.primaryBlack,
+                      ),
+                      decoration: InputDecoration(
+                          hintText: 'search for categories, items and more...',
+                          border: InputBorder.none,
+                          isDense: true,
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                          )),
+                    )),
                 // Text(
                 //   'search for categories, items and more...',
                 //   style: TextStyle(
