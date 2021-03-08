@@ -23,7 +23,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
     final width = MediaQuery.of(context).size.width;
     return Container(
       width: width,
-      height: height * 0.36,
+      height: height * 0.38,
       margin: const EdgeInsets.only(bottom: kBottomNavigationBarHeight),
       decoration: BoxDecoration(
           color: Colors.white, border: Border.all(color: Colors.black)),
