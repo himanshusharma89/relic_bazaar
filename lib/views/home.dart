@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       key: _drawerKey,
-      drawer: Drawer(),
+      drawer: DrawerWidget(),
       body:SingleChildScrollView(
           primary: true,
           child: Container(
@@ -207,4 +207,90 @@ class Home extends StatelessWidget {
       ],
     );
   }
+}
+
+class DrawerWidget extends StatelessWidget {
+  const DrawerWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.only(top: 20.0),
+        children: <Widget>[
+          _createDrawerItem(
+            icon: Icons.person,
+            title: 'ABOUT',
+            onTap: () {}
+          ),
+          _createDrawerItem(
+            icon: Icons.shopping_cart,
+            title: 'CART',
+            onTap: () {},
+          ),
+          _createDrawerItem(
+            icon: Icons.list,
+            title: 'WISHLIST',
+            onTap: () {},
+          ),
+          _createDrawerItem(
+            icon: Icons.category,
+            title: 'PRODUCTS',
+            onTap: () {},
+          ),
+          _createDrawerItem(
+            icon: Icons.logout,
+            title: 'LOG OUT',
+            onTap: () {},
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+Widget _createDrawerItem(
+    {IconData icon,
+      String title,
+      GestureTapCallback onTap}) {
+  return ListTile(
+    title: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Icon(
+          icon,
+          color: RelicColors.backgroundColor,
+          size: 40.0,
+        ),
+        Expanded(
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 12.0,
+              vertical: 30.0,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontFamily: 'Pixer',
+                    color: RelicColors.backgroundColor,
+                    fontSize: 18.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        )
+      ],
+    ),
+    onTap: onTap,
+  );
 }
