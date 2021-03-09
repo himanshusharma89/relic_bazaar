@@ -4,13 +4,6 @@ import 'package:retro_shopping/helpers/slide_route.dart';
 import 'package:retro_shopping/widgets/product/product_page.dart';
 
 class ProductCard extends StatelessWidget {
-  final String text;
-  final String owner;
-  final String amount;
-  final String image;
-  final String seller;
-  final int height;
-
   const ProductCard(
       {Key key,
       this.text,
@@ -20,6 +13,13 @@ class ProductCard extends StatelessWidget {
       this.seller,
       this.height})
       : super(key: key);
+  final String text;
+  final String owner;
+  final String amount;
+  final String image;
+  final String seller;
+  final int height;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -42,8 +42,8 @@ class ProductCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5.0),
           color: RelicColors.primaryColor,
-          border: Border.all(width: 1.0, color: RelicColors.primaryBlack),
-          boxShadow: [
+          border: Border.all(color: RelicColors.primaryBlack),
+          boxShadow: const <BoxShadow>[
             BoxShadow(
               color: RelicColors.secondaryBlack,
               offset: Offset(0, 3),
@@ -55,10 +55,10 @@ class ProductCard extends StatelessWidget {
           padding: const EdgeInsets.all(5.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: <Widget>[
               Text(
                 text,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -68,7 +68,7 @@ class ProductCard extends StatelessWidget {
               ),
               Text(
                 owner,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 11,
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
@@ -76,12 +76,12 @@ class ProductCard extends StatelessWidget {
                 ),
                 textAlign: TextAlign.left,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
                 amount,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.w700,
@@ -90,7 +90,7 @@ class ProductCard extends StatelessWidget {
                 textAlign: TextAlign.left,
               ),
               Transform.translate(
-                offset: Offset(16, 10),
+                offset: const Offset(16, 10),
                 child: Image.asset(
                   image,
                   height: 154,
