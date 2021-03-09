@@ -45,7 +45,14 @@ We propose an app with the vision to put back the traditional market of vintage 
 
 <h2 align= "left"><b>Contributing Guidelines</b></h2>
 
-Contributions are always welcomed but make sure to go through our  [contributing guidelines](https://github.com/himanshusharma89/relic_bazaar/blob/master/CONTRIBUTING.md) beforing making any contributions. 
+1. Make sure to keep the UI consistent while adding a new feature.
+2. When adding new packages, use the package version which is compatible with the new flutter 2 update.
+3. Make sure that your code is well documented, especially in the tougher areas.
+4. Mainatin a uniform naming convention throughout the codebase.
+5. If your code is being repetitive then refactor it to create a new widget for future use.
+6. Make the code as modular as possible, seperating the UI from the logic.
+
+Contributions are always welcomed. You can also visit our [contributing guidelines](https://github.com/himanshusharma89/relic_bazaar/blob/master/CONTRIBUTING.md) beforing making any contributions. 
 
 <h2 align= "left"><b>Code of Conduct</b></h2>
 
