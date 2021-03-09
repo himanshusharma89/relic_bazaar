@@ -72,7 +72,7 @@ class ProductCard extends StatelessWidget {
                   fontSize: 11,
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
-                  height: 1.5,
+                  height: 1.3,
                 ),
                 textAlign: TextAlign.left,
               ),
@@ -85,7 +85,7 @@ class ProductCard extends StatelessWidget {
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.w700,
-                  height: 1,
+                  height: 0.2,
                 ),
                 textAlign: TextAlign.left,
               ),
@@ -93,7 +93,7 @@ class ProductCard extends StatelessWidget {
                 offset: const Offset(16, 10),
                 child: Image.asset(
                   image,
-                  height: 154,
+                  height: 148,
                   width: 154,
                 ),
               )
