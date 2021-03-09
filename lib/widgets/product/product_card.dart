@@ -77,7 +77,7 @@ class ProductCard extends StatelessWidget {
                 textAlign: TextAlign.left,
               ),
               SizedBox(
-                height: 20,
+                height: 15,
               ),
               Text(
                 amount,
@@ -85,15 +85,15 @@ class ProductCard extends StatelessWidget {
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.w700,
-                  height: 1,
+                  height: 0.5,
                 ),
                 textAlign: TextAlign.left,
               ),
               Transform.translate(
-                offset: Offset(16, 10),
+                offset: Offset(16, 5),
                 child: Image.asset(
                   image,
-                  height: 154,
+                  height: 148,
                   width: 154,
                 ),
               )
