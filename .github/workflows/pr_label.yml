@@ -1,6 +1,6 @@
-name: Labeling new issue with GSSOC21
+name: Labeling new pull request with GSSOC21
 on:
-  issues:
+  pull_request:
       types: ['opened']
 jobs:
   build:
