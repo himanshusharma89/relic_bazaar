@@ -32,27 +32,35 @@ class _DashboardState extends State<Dashboard> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            PageView(
-              controller: _pageController,
-              onPageChanged: (int index) {
-                setState(() {
-                  _currentIndex = index;
-                });
-              },
-              children: <Widget>[
-                Home(),
-                Search(),
-                const Cart(),
-                ProfilePage(),
-              ],
-            ),
-            Align(
-                alignment: Alignment.bottomCenter,
-                child: FloatingNavBar(_currentIndex, _pageController)),
-          ],
+        child: GestureDetector(
+          onTap: (){
+            final FocusScopeNode currentFocus = FocusScope.of(context);
+            if(!currentFocus.hasPrimaryFocus){
+              currentFocus.unfocus();
+            }
+          },
+          child: Stack(
+            fit: StackFit.expand,
+            children: <Widget>[
+              PageView(
+                controller: _pageController,
+                onPageChanged: (int index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+                children: <Widget>[
+                  Home(),
+                  Search(),
+                  const Cart(),
+                  ProfilePage(),
+                ],
+              ),
+              Align(
+                  alignment: Alignment.bottomCenter,
+                  child: FloatingNavBar(_currentIndex, _pageController)),
+            ],
+          ),
         ),
       ),
     );
