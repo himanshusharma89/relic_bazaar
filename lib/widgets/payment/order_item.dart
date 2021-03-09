@@ -2,73 +2,73 @@ import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 
 class OrderItem extends StatelessWidget {
-  final String title;
-  final String image;
-  final String ordered;
-  final String status;
-  final bool delivered;
-  OrderItem(
+  const OrderItem(
       {this.title,
       this.image,
       this.ordered,
       this.status,
       this.delivered = false});
+  final String title;
+  final String image;
+  final String ordered;
+  final String status;
+  final bool delivered;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         Expanded(
           child: Stack(
-            children: [
+            children: <Widget>[
               Container(
                 width: 140,
                 height: 170,
-                decoration: BoxDecoration(color: Colors.black),
+                decoration: const BoxDecoration(color: Colors.black),
               ),
               Container(
                 width: 135,
                 height: 165,
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                     color: Colors.white,
                     image: DecorationImage(
-                        image: AssetImage(this.image), fit: BoxFit.scaleDown)),
+                        image: AssetImage(image), fit: BoxFit.scaleDown)),
               ),
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 10,
         ),
         Expanded(
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: <Widget>[
               Text(
-                this.title,
+                title,
                 overflow: TextOverflow.fade,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.w700),
                 maxLines: 1,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 3,
               ),
               Text(
-                this.ordered,
-                style: TextStyle(
+                ordered,
+                style: const TextStyle(
                     color: Colors.white,
                     fontSize: 13,
                     fontWeight: FontWeight.w700),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Stack(
-                children: [
+                children: <Widget>[
                   Container(
                     width: MediaQuery.of(context).size.width * 0.36 + 3,
                     height: 38,
@@ -80,45 +80,51 @@ class OrderItem extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.36,
                     height: 35,
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black, width: 1),
+                        border: Border.all(),
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.white),
                     child: Center(
                         child: Text(
-                      this.status,
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                      status,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
                     )),
                   ),
                 ],
               ),
-              SizedBox(height: 10),
+              const SizedBox(
+                height: 10,
+              ),
               Row(
-                children: [
+                children: <Widget>[
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                     decoration: BoxDecoration(
-                        border: Border.all(width: 1.0, color: Colors.white),
+                        border: Border.all(color: Colors.white),
                         borderRadius: BorderRadius.circular(8),
                         color: RelicColors.backgroundColor),
-                    child: Text("DETAILS",
+                    child: const Text('DETAILS',
                         style: TextStyle(fontSize: 13, color: Colors.white)),
                   ),
-                  SizedBox(width: 10),
-                  delivered
-                      ? Container()
-                      : Container(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-                          decoration: BoxDecoration(
-                              border:
-                                  Border.all(width: 1.0, color: Colors.white),
-                              borderRadius: BorderRadius.circular(8),
-                              color: RelicColors.warningColor),
-                          child: Text("CANCEL",
-                              style:
-                                  TextStyle(fontSize: 13, color: Colors.white)),
-                        ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  if (delivered)
+                    Container()
+                  else
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 5, horizontal: 8),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.circular(8),
+                          color: RelicColors.warningColor),
+                      child: const Text('CANCEL',
+                          style: TextStyle(fontSize: 13, color: Colors.white)),
+                    ),
                 ],
               )
             ],
