@@ -10,4 +10,4 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           ignore-comments: true
-          default-labels: "['GSSOC'21']"
+          default-labels: '["GSSOC''21"]'

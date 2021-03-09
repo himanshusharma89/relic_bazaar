@@ -366,7 +366,7 @@ class _ProductPageState extends State<ProductPage> {
             ),
           ),
           Transform.translate(
-            offset: Offset(145, 375),
+            offset: Offset(80, 375),
             child: Row(
               children: [
                 RetroButton(
@@ -382,6 +382,13 @@ class _ProductPageState extends State<ProductPage> {
                   height: height * 0.05,
                   borderColor: Colors.white,
                 ),
+              ],
+            ),
+          ),
+          Transform.translate(
+            offset: Offset(145, 375),
+            child: Row(
+              children: [
                 InkWell(
                   onTap: _shareWithImage,
                   child: RetroButton(
