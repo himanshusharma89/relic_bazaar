@@ -14,14 +14,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
-    return GestureDetector(
-      onTap: (){
-        final FocusScopeNode currentFocus = FocusScope.of(context);
-        if(!currentFocus.hasPrimaryFocus){
-          currentFocus.unfocus();
-        }
-      },
-      child: Scaffold(
+    return Scaffold(
         key: _drawerKey,
         drawer: const DrawerWidget(),
         body: SingleChildScrollView(
@@ -158,7 +151,7 @@ class Home extends StatelessWidget {
                 ),
               ),
             )),
-      ),
+
     );
   }
 

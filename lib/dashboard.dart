@@ -32,14 +32,7 @@ class _DashboardState extends State<Dashboard> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: GestureDetector(
-          onTap: (){
-            final FocusScopeNode currentFocus = FocusScope.of(context);
-            if(!currentFocus.hasPrimaryFocus){
-              currentFocus.unfocus();
-            }
-          },
-          child: Stack(
+        child: Stack(
             fit: StackFit.expand,
             children: <Widget>[
               PageView(
@@ -61,7 +54,6 @@ class _DashboardState extends State<Dashboard> {
                   child: FloatingNavBar(_currentIndex, _pageController)),
             ],
           ),
-        ),
       ),
     );
   }
