@@ -8,7 +8,7 @@ class Home extends StatelessWidget {
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
   void _openDrawer () {
-    _drawerKey.currentState.openDrawer();
+    _drawerKey.currentState!.openDrawer();
   }
 
   @override
@@ -211,7 +211,7 @@ class Home extends StatelessWidget {
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -254,9 +254,9 @@ class DrawerWidget extends StatelessWidget {
 
 
 Widget _createDrawerItem(
-    {IconData icon,
-      String title,
-      GestureTapCallback onTap}) {
+    {IconData? icon,
+      required String title,
+      GestureTapCallback? onTap}) {
   return ListTile(
     title: Row(
       crossAxisAlignment: CrossAxisAlignment.center,

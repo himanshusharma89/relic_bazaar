@@ -8,10 +8,10 @@ class OrderItem extends StatelessWidget {
   final String status;
   final bool delivered;
   OrderItem(
-      {this.title,
-      this.image,
-      this.ordered,
-      this.status,
+      {required this.title,
+      required this.image,
+      required this.ordered,
+      required this.status,
       this.delivered = false});
 
   @override

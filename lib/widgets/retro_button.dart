@@ -8,7 +8,7 @@ class RetroButton extends StatefulWidget {
   double width;
   double height;
   Color borderColor;
-  RetroButton({this.child,this.upperColor,this.lowerColor,this.width,this.height,this.borderColor});
+  RetroButton({required this.child,required this.upperColor,required this.lowerColor,required this.width,required this.height,required this.borderColor});
   @override
   _RetroButtonState createState() => _RetroButtonState();
 }

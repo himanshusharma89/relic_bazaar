@@ -12,7 +12,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  PageController _pageController;
+  PageController _pageController = new PageController();
   int _currentIndex = 0;
 
   @override

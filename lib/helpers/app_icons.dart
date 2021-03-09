@@ -19,7 +19,7 @@ class RelicIcons {
   RelicIcons._();
 
   static const _kFontFam = 'RelicIcons';
-  static const _kFontPkg = null;
+  static const dynamic _kFontPkg = null;
 
   static const IconData search = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData cart = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);

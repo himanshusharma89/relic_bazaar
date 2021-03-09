@@ -13,12 +13,12 @@ class ProductPage extends StatefulWidget {
   int prodHeight;
   String amount;
   ProductPage(
-      {this.text,
-      this.prodHeight,
-      this.seller,
-      this.owner,
-      this.amount,
-      this.image});
+      {required this.text,
+      required this.prodHeight,
+      required this.seller,
+      required this.owner,
+      required this.amount,
+      required this.image});
 
   @override
   _ProductPageState createState() => _ProductPageState();

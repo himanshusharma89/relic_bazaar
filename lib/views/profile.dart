@@ -37,7 +37,7 @@ class ProfilePage extends StatelessWidget {
 
 class WishlistSection extends StatelessWidget {
   const WishlistSection({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -104,7 +104,7 @@ class WishlistSection extends StatelessWidget {
 
 class OrdersSection extends StatelessWidget {
   const OrdersSection({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -196,7 +196,7 @@ class OrdersSection extends StatelessWidget {
 
 class TopSection extends StatelessWidget {
   const TopSection({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

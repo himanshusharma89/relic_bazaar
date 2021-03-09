@@ -14,7 +14,7 @@ class FloatingNavBar extends StatefulWidget {
 }
 
 class _FloatingNavBarState extends State<FloatingNavBar> {
-  PageController controller;
+  late PageController controller;
 
   @override
   void initState() {
