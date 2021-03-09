@@ -32,7 +32,8 @@ class _PaymentWindowState extends State<PaymentWindow> {
   void _openCheckout() async {
     var options = {
       // Add valid key and other relevant options
-      'key': 'rzp_test_1DP5mmOlF5G5ag',
+      //test secret: cDNVLmTdSU8A0u9iQKzZKbAv
+      'key': 'rzp_test_DmAGSfEISx8yQv',
       'external': {
         'wallets': ['paytm', 'gpay', 'bhim']
       }

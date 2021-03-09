@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "284562138050",
+    "project_id": "relic-bazaar",
+    "storage_bucket": "relic-bazaar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284562138050:android:6169fadfe936aaab432c5b",
+        "android_client_info": {
+          "package_name": "com.example.retro_shopping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284562138050-jd4sm4hg7cs3qc34h5ud2b9gq6hua8cf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOr5OgT_NBoA0_v14PdgI0A8dmPZYpiBM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284562138050-jd4sm4hg7cs3qc34h5ud2b9gq6hua8cf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

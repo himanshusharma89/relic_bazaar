@@ -30,7 +30,7 @@ class DynamicLinkService {
     Uri url;
     final ShortDynamicLink shortLink = await parameters.buildShortLink();
     url = shortLink.shortUrl;
-
+    print(url);
     return url;
   }
 }

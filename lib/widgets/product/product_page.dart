@@ -1,8 +1,14 @@
+import 'dart:io';
+
+import 'package:esys_flutter_share/esys_flutter_share.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 
 import '../retro_button.dart';
 import '../../helpers/app_icons.dart';
+import 'package:retro_shopping/services/dynamicLink.dart';
 
 // ignore: must_be_immutable
 class ProductPage extends StatefulWidget {
@@ -25,6 +31,36 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
+  Uri uri;
+  @override
+  void initState() {
+    super.initState();
+    _getUrl();
+  }
+
+  Future<void> _getUrl() async {
+    uri = await DynamicLinkService.createDynamicLink(
+        isProduct: true,
+        text: widget.text,
+        image: widget.image,
+        owner: widget.owner,
+        seller: widget.seller,
+        height: widget.prodHeight,
+        amount: widget.amount);
+  }
+
+  Future<void> _shareWithImage() async {
+    try {
+      var bytes = await rootBundle.load(widget.image);
+      await Share.file('${widget.text}', '${widget.text}.png',
+          bytes.buffer.asUint8List(), 'image/png',
+          text:
+              'Checkout this amazing product ${widget.text} on ${uri.toString()}');
+    } catch (err) {
+      print(err);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -346,18 +382,21 @@ class _ProductPageState extends State<ProductPage> {
                   height: height * 0.05,
                   borderColor: Colors.white,
                 ),
-                RetroButton(
-                  child: Center(
-                    child: Icon(
-                      Icons.share,
-                      color: RelicColors.primaryColor,
+                InkWell(
+                  onTap: _shareWithImage,
+                  child: RetroButton(
+                    child: Center(
+                      child: Icon(
+                        Icons.share,
+                        color: RelicColors.primaryColor,
+                      ),
                     ),
+                    upperColor: Colors.white,
+                    lowerColor: Colors.black,
+                    width: width * 0.12,
+                    height: height * 0.05,
+                    borderColor: Colors.white,
                   ),
-                  upperColor: Colors.white,
-                  lowerColor: Colors.black,
-                  width: width * 0.12,
-                  height: height * 0.05,
-                  borderColor: Colors.white,
                 ),
               ],
             ),

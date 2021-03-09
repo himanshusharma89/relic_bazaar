@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:retro_shopping/helpers/slide_route.dart';
 import 'package:retro_shopping/widgets/product/product_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class Splash extends StatefulWidget {
   final bool initLink;
@@ -15,7 +16,6 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    startTime();
     _initLink();
   }
 
@@ -27,6 +27,9 @@ class _SplashState extends State<Splash> {
   Future initDynamicLinks() async {
     final PendingDynamicLinkData data =
         await FirebaseDynamicLinks.instance.getInitialLink();
+    if (data == null) {
+      Navigator.of(context).pushReplacementNamed('/dashboard');
+    }
 
     await _handleDeepLink(data);
 
@@ -45,37 +48,34 @@ class _SplashState extends State<Splash> {
     final Uri deepLink = data?.link;
     if (deepLink != null) {
       if (deepLink.queryParameters['isProduct'] == 'true') {
+        Navigator.of(context).pushReplacementNamed('/dashboard');
         Navigator.push(
             context,
-            SlideBottomRoute(
-                page: ProductPage(
-              text: deepLink.queryParameters['text'],
-              owner: deepLink.queryParameters['owner'],
-              image: deepLink.queryParameters['image'],
-              prodHeight: int.tryParse(deepLink.queryParameters['height']),
-              seller: deepLink.queryParameters['seller'],
-              amount: deepLink.queryParameters['amount'],
-            )));
+            MaterialPageRoute(
+                builder: (BuildContext context) => ProductPage(
+                      text: deepLink.queryParameters['text'],
+                      owner: deepLink.queryParameters['owner'],
+                      image: deepLink.queryParameters['image'],
+                      prodHeight:
+                          int.tryParse(deepLink.queryParameters['height']),
+                      seller: deepLink.queryParameters['seller'],
+                      amount: deepLink.queryParameters['amount'],
+                    )));
       }
     }
   }
 
-  _initLink() {
+  _initLink() async {
     Future.delayed(
       Duration(milliseconds: 300),
       () async {
-        if (widget.initLink) await initDynamicLinks();
+        if (widget.initLink)
+          await initDynamicLinks();
+        else {
+          Navigator.of(context).pushReplacementNamed('/dashboard');
+        }
       },
     );
-  }
-
-  startTime() async {
-    var _duration = new Duration(seconds: 3);
-    return new Timer(_duration, navigationPage);
-  }
-
-  void navigationPage() {
-    Navigator.of(context).pushReplacementNamed('/dashboard');
   }
 
   @override
