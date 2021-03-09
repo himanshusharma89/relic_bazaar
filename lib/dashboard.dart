@@ -12,7 +12,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  PageController _pageController = new PageController();
+  PageController _pageController = PageController();
   int _currentIndex = 0;
 
   @override
@@ -42,10 +42,10 @@ class _DashboardState extends State<Dashboard> {
                   _currentIndex = index;
                 });
               },
-              children: [
+              children: <Widget>[
                 Home(),
                 Search(),
-                Cart(),
+                const Cart(),
                 ProfilePage(),
               ],
             ),

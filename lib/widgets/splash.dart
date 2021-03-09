@@ -13,9 +13,9 @@ class _SplashState extends State<Splash> {
     startTime();
   }
 
-  startTime() async {
-    var _duration = new Duration(seconds: 3);
-    return new Timer(_duration, navigationPage);
+  Future<Timer> startTime() async {
+    const Duration _duration = Duration(seconds: 3);
+    return Timer(_duration, navigationPage);
   }
 
   void navigationPage() {
@@ -29,22 +29,22 @@ class _SplashState extends State<Splash> {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               image: DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage(
                     'assets/splash.png',
                   ))),
           child: Stack(
-            children: [
+            children: <Widget>[
               Positioned(
                 top: MediaQuery.of(context).size.height * 0.85,
                 left: MediaQuery.of(context).size.width * 0.47,
-                child: Container(
+                child: const SizedBox(
                   height: 35,
                   width: 35,
                   child: CircularProgressIndicator(
-                    valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                   ),
                 ),
               ),

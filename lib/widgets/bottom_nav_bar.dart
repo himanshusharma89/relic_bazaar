@@ -4,10 +4,9 @@ import 'package:retro_shopping/helpers/constants.dart';
 
 // ignore: must_be_immutable
 class FloatingNavBar extends StatefulWidget {
+  FloatingNavBar(this.index, this._controller);
   int index;
   final PageController _controller;
-
-  FloatingNavBar(this.index, this._controller);
 
   @override
   _FloatingNavBarState createState() => _FloatingNavBarState();
@@ -27,11 +26,10 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
     return Container(
       width: double.infinity,
       height: kBottomNavigationBarHeight,
-      decoration: BoxDecoration(
-          color: Colors.grey[200], border: Border.all(color: Colors.black)),
+      decoration: BoxDecoration(color: Colors.grey[200], border: Border.all()),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
+        children: <Widget>[
           floatingNavBarItem(RelicIcons.home, 0),
           floatingNavBarItem(RelicIcons.search, 1),
           floatingNavBarItem(RelicIcons.cart, 2),
@@ -83,10 +81,10 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
   }
 
   BorderSide blackBorder() {
-    return BorderSide(color: Colors.black, width: 2, style: BorderStyle.solid);
+    return const BorderSide(width: 2);
   }
 
   BorderSide whiteBorder() {
-    return BorderSide(color: Colors.white, width: 1, style: BorderStyle.solid);
+    return const BorderSide(color: Colors.white);
   }
 }
