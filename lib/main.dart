@@ -3,8 +3,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/widgets/splash.dart';
 import 'dashboard.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  //firebase Initialization
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
