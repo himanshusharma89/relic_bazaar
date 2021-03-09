@@ -16,18 +16,26 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Retro Shopping',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          // primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: RelicColors.backgroundColor,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
-      routes: <String, WidgetBuilder>{
-        '/dashboard': (BuildContext context) => Dashboard(),
+    return GestureDetector(
+      onTap: (){
+        final FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus.unfocus();
+        }
       },
-      home: Splash(),
+      child: MaterialApp(
+        title: 'Retro Shopping',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            // primarySwatch: Colors.blue,
+            scaffoldBackgroundColor: RelicColors.backgroundColor,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
+        routes: <String, WidgetBuilder>{
+          '/dashboard': (BuildContext context) => Dashboard(),
+        },
+        home: Splash(),
+      ),
     );
   }
 }
