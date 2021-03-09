@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/dashboard': (BuildContext context) => Dashboard(),
       },
-      home: Splash(),
+      home: Splash(initLink: true),
     );
   }
 }

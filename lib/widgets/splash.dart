@@ -1,7 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:retro_shopping/helpers/slide_route.dart';
+import 'package:retro_shopping/widgets/product/product_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class Splash extends StatefulWidget {
+  final bool initLink;
+  Splash({this.initLink});
   @override
   _SplashState createState() => _SplashState();
 }
@@ -10,16 +16,66 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    startTime();
+    _initLink();
   }
 
-  Future<Timer> startTime() async {
-    const Duration _duration = Duration(seconds: 3);
-    return Timer(_duration, navigationPage);
+  @override
+  void dispose() {
+    super.dispose();
   }
 
-  void navigationPage() {
-    Navigator.of(context).pushReplacementNamed('/dashboard');
+  Future initDynamicLinks() async {
+    final PendingDynamicLinkData data =
+        await FirebaseDynamicLinks.instance.getInitialLink();
+    if (data == null) {
+      Navigator.of(context).pushReplacementNamed('/dashboard');
+    }
+
+    await _handleDeepLink(data);
+
+    // Register a link callback to fire if the app is opened up from the background
+    // using a dynamic link.
+    FirebaseDynamicLinks.instance.onLink(
+        onSuccess: (PendingDynamicLinkData dynamicLink) async {
+      // handle link that has been retrieved
+      await _handleDeepLink(dynamicLink);
+    }, onError: (OnLinkErrorException e) async {
+      print('Link Failed: ${e.message}');
+    });
+  }
+
+  Future<void> _handleDeepLink(PendingDynamicLinkData data) async {
+    final Uri deepLink = data?.link;
+    if (deepLink != null) {
+      if (deepLink.queryParameters['isProduct'] == 'true') {
+        Navigator.of(context).pushReplacementNamed('/dashboard');
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => ProductPage(
+                      text: deepLink.queryParameters['text'],
+                      owner: deepLink.queryParameters['owner'],
+                      image: deepLink.queryParameters['image'],
+                      prodHeight:
+                          int.tryParse(deepLink.queryParameters['height']),
+                      seller: deepLink.queryParameters['seller'],
+                      amount: deepLink.queryParameters['amount'],
+                    )));
+      }
+    }
+  }
+
+  _initLink() async {
+    Future.delayed(
+      Duration(milliseconds: 300),
+      () async {
+        if (widget.initLink)
+          await initDynamicLinks();
+        else {
+          Navigator.of(context).pushReplacementNamed('/dashboard');
+        }
+      },
+    );
   }
 
   @override
