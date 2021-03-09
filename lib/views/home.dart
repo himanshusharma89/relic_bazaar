@@ -176,7 +176,7 @@ class Home extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                const Icon(RelicIcons.search),
+                // const Icon(RelicIcons.search),
                 Expanded(
                     child: TextFormField(
                   style: const TextStyle(
