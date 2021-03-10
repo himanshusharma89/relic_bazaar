@@ -3,10 +3,10 @@ import 'package:retro_shopping/helpers/constants.dart';
 
 class OrderItem extends StatelessWidget {
   const OrderItem(
-      {this.title,
-      this.image,
-      this.ordered,
-      this.status,
+      {required this.title,
+      required this.image,
+      required this.ordered,
+      required this.status,
       this.delivered = false});
   final String title;
   final String image;

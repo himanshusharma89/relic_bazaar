@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/widgets/payment/payment_successful.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -11,7 +12,7 @@ class PaymentWindow extends StatefulWidget {
 }
 
 class _PaymentWindowState extends State<PaymentWindow> {
-  int cnt1, cnt2;
+  int? cnt1, cnt2;
   final Razorpay _razorpay = Razorpay();
   @override
   void initState() {
@@ -42,7 +43,8 @@ class _PaymentWindowState extends State<PaymentWindow> {
     try {
       _razorpay.open(options);
     } catch (e) {
-      debugPrint(e.toString());
+      // ignore: avoid_print
+      print(e);
     }
   }
 
@@ -122,7 +124,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
                         GestureDetector(
                           onTap: () {
                             setState(() {
-                              cnt2 = cnt2 + 1;
+                              cnt2 = cnt2! + 1;
                               cnt1 = 0;
                             });
                             if (cnt2 == 2) {
@@ -199,7 +201,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
                         GestureDetector(
                           onTap: () {
                             setState(() {
-                              cnt1 = cnt1 + 1;
+                              cnt1 = cnt1! + 1;
                               cnt2 = 0;
                             });
                             if (cnt1 == 2) {

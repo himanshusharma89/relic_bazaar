@@ -7,12 +7,12 @@ import '../retro_button.dart';
 // ignore: must_be_immutable
 class ProductPage extends StatefulWidget {
   ProductPage(
-      {this.text,
-      this.prodHeight,
-      this.seller,
-      this.owner,
-      this.amount,
-      this.image});
+      {required this.text,
+      required this.prodHeight,
+      required this.seller,
+      required this.owner,
+      required this.amount,
+      required this.image});
   String text;
   String image;
   String owner;
@@ -63,13 +63,13 @@ class _ProductPageState extends State<ProductPage> {
                             child: const Icon(Icons.arrow_back),
                           ),
                         ),
-                        RetroButton(
+                        const RetroButton(
                           upperColor: Colors.white,
                           lowerColor: Colors.black,
                           width: 35,
                           height: 35,
                           borderColor: Colors.white,
-                          child: const Padding(
+                          child: Padding(
                             padding: EdgeInsets.only(top: 7, left: 6),
                             child: Icon(
                               RelicIcons.cart,

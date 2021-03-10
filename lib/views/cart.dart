@@ -6,7 +6,7 @@ import 'package:retro_shopping/widgets/retro_button.dart';
 
 class Cart extends StatefulWidget {
   const Cart({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

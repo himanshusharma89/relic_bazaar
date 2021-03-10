@@ -5,14 +5,12 @@ import 'package:retro_shopping/widgets/product/product_page.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard(
-      {Key key,
-      this.text,
-      this.owner,
-      this.amount,
-      this.image,
-      this.seller,
-      this.height})
-      : super(key: key);
+      {required this.text,
+      required this.owner,
+      required this.amount,
+      required this.image,
+      required this.seller,
+      required this.height});
   final String text;
   final String owner;
   final String amount;

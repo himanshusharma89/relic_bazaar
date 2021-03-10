@@ -7,7 +7,7 @@ class Home extends StatelessWidget {
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
   void _openDrawer() {
-    _drawerKey.currentState.openDrawer();
+    _drawerKey.currentState!.openDrawer();
   }
 
   @override
@@ -38,22 +38,22 @@ class Home extends StatelessWidget {
                           onTap: () {
                             _openDrawer();
                           },
-                          child: RetroButton(
+                          child: const RetroButton(
                             upperColor: Colors.white,
                             lowerColor: Colors.black,
                             width: 35,
                             height: 35,
                             borderColor: Colors.white,
-                            child: const Icon(Icons.menu),
+                            child: Icon(Icons.menu),
                           ),
                         ),
-                        RetroButton(
+                        const RetroButton(
                           upperColor: Colors.white,
                           lowerColor: Colors.black,
                           width: 35,
                           height: 35,
                           borderColor: Colors.white,
-                          child: const Padding(
+                          child: Padding(
                             padding: EdgeInsets.only(top: 7, left: 6),
                             child: Icon(
                               RelicIcons.cart,
@@ -213,7 +213,7 @@ class Home extends StatelessWidget {
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -250,7 +250,7 @@ class DrawerWidget extends StatelessWidget {
 }
 
 Widget _createDrawerItem(
-    {IconData icon, String title, GestureTapCallback onTap}) {
+    {required String title, IconData? icon, GestureTapCallback? onTap}) {
   return ListTile(
     title: Row(
       children: <Widget>[

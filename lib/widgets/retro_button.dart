@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
 class RetroButton extends StatefulWidget {
-  RetroButton(
-      {this.child,
-      this.upperColor,
-      this.lowerColor,
-      this.width,
-      this.height,
-      this.borderColor});
-  Widget child;
-  Color upperColor;
-  Color lowerColor;
-  double width;
-  double height;
-  Color borderColor;
+  const RetroButton(
+      {required this.child,
+      required this.upperColor,
+      required this.lowerColor,
+      required this.width,
+      required this.height,
+      required this.borderColor});
+  final Widget child;
+  final Color upperColor;
+  final Color lowerColor;
+  final double width;
+  final double height;
+  final Color borderColor;
+
   @override
   _RetroButtonState createState() => _RetroButtonState();
 }

@@ -4,7 +4,7 @@ import 'package:retro_shopping/helpers/constants.dart';
 
 class PaymentSuccessful extends StatelessWidget {
   const PaymentSuccessful({
-    Key key,
+    Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {

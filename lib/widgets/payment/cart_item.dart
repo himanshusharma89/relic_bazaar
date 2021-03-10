@@ -6,7 +6,7 @@ class CartItem extends StatefulWidget {
 }
 
 class _CartItemState extends State<CartItem> {
-  TextEditingController controller;
+  TextEditingController controller = TextEditingController();
 
   @override
   void initState() {
