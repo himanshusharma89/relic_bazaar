@@ -101,7 +101,7 @@ class OrderItem extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     padding:
-                        const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.white),
                         borderRadius: BorderRadius.circular(8),
@@ -117,7 +117,7 @@ class OrderItem extends StatelessWidget {
                   else
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 5, horizontal: 8),
+                          vertical: 5, horizontal: 5),
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.white),
                           borderRadius: BorderRadius.circular(8),
