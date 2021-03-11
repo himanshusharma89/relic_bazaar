@@ -99,32 +99,37 @@ class OrderItem extends StatelessWidget {
               ),
               Row(
                 children: <Widget>[
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(8),
-                        color: RelicColors.backgroundColor),
-                    child: const Text('DETAILS',
-                        style: TextStyle(fontSize: 13, color: Colors.white)),
+                  Flexible(
+                    child: Container(
+                      padding:
+                          const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.circular(8),
+                          color: RelicColors.backgroundColor),
+                      child: const Text('DETAILS',
+                          style: TextStyle(fontSize: 12, color: Colors.white)),
+                    ),
                   ),
                   const SizedBox(
-                    width: 10,
+                    width: 9,
                   ),
                   if (delivered)
                     Container()
                   else
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 5, horizontal: 5),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white),
-                          borderRadius: BorderRadius.circular(8),
-                          color: RelicColors.warningColor),
-                      child: const Text('CANCEL',
-                          style: TextStyle(fontSize: 13, color: Colors.white)),
-                    ),
+                    Flexible(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 7),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(8),
+                              color: RelicColors.warningColor),
+                          child: const Text('CANCEL',
+                              style: TextStyle(fontSize: 12, color: Colors.white)),
+                        ),
+                    )
+
                 ],
               )
             ],
