@@ -106,24 +106,24 @@ class Home extends StatelessWidget {
                       offset: Offset(10, 10),
                       child: Container(
                         width: width * 0.9,
-                        // height: 729.0,
                         decoration: BoxDecoration(
                           color: Colors.white,
                         ),
                         child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: GridView.builder(
-                              primary: false,
-                              physics: NeverScrollableScrollPhysics(),
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 8,
-                                        mainAxisSpacing: 8,
-                                        childAspectRatio: 1/1.6),
-                                itemCount: productsList.length,
-                                itemBuilder: (_, index) =>
-                                    productsList[index])),
+                          padding: const EdgeInsets.all(8.0),
+                          child: GridView.builder(
+                            primary: false,
+                            physics: NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 8,
+                                    mainAxisSpacing: 8,
+                                    childAspectRatio: 1 / 1.6),
+                            itemCount: productsList.length,
+                            itemBuilder: (_, index) => productsList[index],
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -163,20 +163,22 @@ class Home extends StatelessWidget {
               children: [
                 Icon(RelicIcons.search),
                 Expanded(
-                    child: TextFormField(
-                  style: TextStyle(
-                    fontFamily: 'pix M 8pt',
-                    fontSize: 16,
-                    color: RelicColors.primaryBlack,
-                  ),
-                  decoration: InputDecoration(
+                  child: TextFormField(
+                    style: TextStyle(
+                      fontFamily: 'pix M 8pt',
+                      fontSize: 16,
+                      color: RelicColors.primaryBlack,
+                    ),
+                    decoration: InputDecoration(
                       hintText: 'search for categories, items and more...',
                       border: InputBorder.none,
                       isDense: true,
                       contentPadding: const EdgeInsets.symmetric(
                         horizontal: 10,
-                      )),
-                )),
+                      ),
+                    ),
+                  ),
+                ),
                 // Text(
                 //   'search for categories, items and more...',
                 //   style: TextStyle(

@@ -8,12 +8,24 @@ class RetroButton extends StatefulWidget {
   double width;
   double height;
   Color borderColor;
-  RetroButton({this.child,this.upperColor,this.lowerColor,this.width,this.height,this.borderColor});
+
+  RetroButton({
+    this.child,
+    this.upperColor,
+    this.lowerColor,
+    this.width,
+    this.height,
+    this.borderColor,
+  });
   @override
   _RetroButtonState createState() => _RetroButtonState();
 }
 
 class _RetroButtonState extends State<RetroButton> {
+  void navigateToPage(String routeName) {
+    Navigator.of(context).pushNamed(routeName);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -34,8 +46,8 @@ class _RetroButtonState extends State<RetroButton> {
           decoration: BoxDecoration(
             color: widget.upperColor,
             border: Border.all(
-              color: widget.borderColor
-            )
+              color: widget.borderColor,
+            ),
           ),
           child: widget.child,
         ),

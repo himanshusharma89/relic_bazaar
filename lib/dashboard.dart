@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:retro_shopping/views/cart.dart';
 import 'package:retro_shopping/views/home.dart';
 import 'package:retro_shopping/views/search.dart';
@@ -50,8 +49,12 @@ class _DashboardState extends State<Dashboard> {
               ],
             ),
             Align(
-                alignment: Alignment.bottomCenter,
-                child: FloatingNavBar(_currentIndex, _pageController)),
+              alignment: Alignment.bottomCenter,
+              child: FloatingNavBar(
+                _currentIndex,
+                _pageController,
+              ),
+            ),
           ],
         ),
       ),

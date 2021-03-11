@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 
 class SlideRightRoute extends PageRouteBuilder {
   final Widget page;
-  SlideRightRoute({this.page})
-      : super(
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) =>
+  final RouteSettings settings;
+
+  SlideRightRoute({
+    this.page,
+    this.settings,
+  }) : super(
+          pageBuilder: (BuildContext context, Animation<double> animation,
+                  Animation<double> secondaryAnimation) =>
               page,
           transitionsBuilder: (
             BuildContext context,
@@ -17,19 +18,23 @@ class SlideRightRoute extends PageRouteBuilder {
             Widget child,
           ) =>
               SlideTransition(
-                position: Tween<Offset>(
-                  begin: const Offset(-1, 0),
-                  end: Offset.zero,
-                ).animate(animation),
-                child: child,
-              ),
+            position: Tween<Offset>(
+              begin: const Offset(-1, 0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          ),
+          settings: settings,
         );
 }
 
 class SlideLeftRoute extends PageRouteBuilder {
   final Widget page;
-  SlideLeftRoute({this.page})
-      : super(
+  final RouteSettings settings;
+  SlideLeftRoute({
+    this.page,
+    this.settings,
+  }) : super(
           pageBuilder: (
             BuildContext context,
             Animation<double> animation,
@@ -43,44 +48,48 @@ class SlideLeftRoute extends PageRouteBuilder {
             Widget child,
           ) =>
               SlideTransition(
-                position: Tween<Offset>(
-                  begin: const Offset(1, 0),
-                  end: Offset.zero,
-                ).animate(animation),
-                child: child,
-              ),
+            position: Tween<Offset>(
+              begin: const Offset(1, 0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          ),
+          settings: settings,
         );
 }
 
 class SlideTopRoute extends PageRouteBuilder {
   final Widget page;
-  SlideTopRoute({this.page})
+  final RouteSettings settings;
+
+  SlideTopRoute({this.page, this.settings})
       : super(
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) =>
-              page,
-          transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
-          ) =>
-              SlideTransition(
-                position: Tween<Offset>(
-                  begin: const Offset(0, 1),
-                  end: Offset.zero,
-                ).animate(animation),
-                child: child,
-              ),
-        );
+            pageBuilder: (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+            ) =>
+                page,
+            transitionsBuilder: (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+              Widget child,
+            ) =>
+                SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0, 1),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: child,
+                ),
+            settings: settings);
 }
 
 class SlideBottomRoute extends PageRouteBuilder {
   final Widget page;
-  SlideBottomRoute({this.page})
+  final RouteSettings settings;
+  SlideBottomRoute({this.page, this.settings})
       : super(
           pageBuilder: (
             BuildContext context,
@@ -95,11 +104,12 @@ class SlideBottomRoute extends PageRouteBuilder {
             Widget child,
           ) =>
               SlideTransition(
-                position: Tween<Offset>(
-                  begin: const Offset(0, -1),
-                  end: Offset.zero,
-                ).animate(animation),
-                child: child,
-              ),
+            position: Tween<Offset>(
+              begin: const Offset(0, -1),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          ),
+          settings: settings,
         );
 }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/helpers/slide_route.dart';
-import 'package:retro_shopping/widgets/product/product_page.dart';
 
 class ProductCard extends StatelessWidget {
   final String text;
@@ -11,30 +9,28 @@ class ProductCard extends StatelessWidget {
   final String seller;
   final int height;
 
-  const ProductCard(
-      {Key key,
-      this.text,
+  ProductCard(
+      {this.height,
       this.owner,
-      this.amount,
-      this.image,
+      this.text,
       this.seller,
-      this.height})
-      : super(key: key);
+      this.image,
+      this.amount});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            SlideBottomRoute(
-                page: ProductPage(
-              text: text,
-              owner: owner,
-              image: image,
-              prodHeight: height,
-              seller: seller,
-              amount: amount,
-            )));
+        Navigator.of(context).pushNamed(
+          RouteConstant.PRODUCTS_SCREEN,
+          arguments: ProductCard(
+            amount: amount,
+            image: image,
+            seller: seller,
+            text: text,
+            owner: owner,
+            height: height,
+          ),
+        );
       },
       child: Container(
         width: 155.0,

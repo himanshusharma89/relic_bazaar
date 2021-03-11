@@ -7,12 +7,13 @@ class OrderItem extends StatelessWidget {
   final String ordered;
   final String status;
   final bool delivered;
-  OrderItem(
-      {this.title,
-      this.image,
-      this.ordered,
-      this.status,
-      this.delivered = false});
+  OrderItem({
+    this.title,
+    this.image,
+    this.ordered,
+    this.status,
+    this.delivered = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +33,12 @@ class OrderItem extends StatelessWidget {
                 height: 165,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    image: DecorationImage(
-                        image: AssetImage(this.image), fit: BoxFit.scaleDown)),
+                  color: Colors.white,
+                  image: DecorationImage(
+                    image: AssetImage(this.image),
+                    fit: BoxFit.scaleDown,
+                  ),
+                ),
               ),
             ],
           ),
@@ -98,11 +102,14 @@ class OrderItem extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                     decoration: BoxDecoration(
-                        border: Border.all(width: 1.0, color: Colors.white),
-                        borderRadius: BorderRadius.circular(8),
-                        color: RelicColors.backgroundColor),
-                    child: Text("DETAILS",
-                        style: TextStyle(fontSize: 13, color: Colors.white)),
+                      border: Border.all(width: 1.0, color: Colors.white),
+                      borderRadius: BorderRadius.circular(8),
+                      color: RelicColors.backgroundColor,
+                    ),
+                    child: Text(
+                      "DETAILS",
+                      style: TextStyle(fontSize: 13, color: Colors.white),
+                    ),
                   ),
                   SizedBox(width: 10),
                   delivered
@@ -115,15 +122,16 @@ class OrderItem extends StatelessWidget {
                                   Border.all(width: 1.0, color: Colors.white),
                               borderRadius: BorderRadius.circular(8),
                               color: RelicColors.warningColor),
-                          child: Text("CANCEL",
-                              style:
-                                  TextStyle(fontSize: 13, color: Colors.white)),
+                          child: Text(
+                            "CANCEL",
+                            style: TextStyle(fontSize: 13, color: Colors.white),
+                          ),
                         ),
                 ],
-              )
+              ),
             ],
           ),
-        )
+        ),
       ],
     );
   }
