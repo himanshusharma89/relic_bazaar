@@ -4,23 +4,22 @@ import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 
 class Home extends StatelessWidget {
-
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
-  void _openDrawer () {
+  void _openDrawer() {
     _drawerKey.currentState.openDrawer();
   }
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       key: _drawerKey,
-      drawer: DrawerWidget(),
-      body:SingleChildScrollView(
+      drawer: const DrawerWidget(),
+      body: SingleChildScrollView(
           primary: true,
-          child: Container(
+          child: SizedBox(
             width: width,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -30,35 +29,37 @@ class Home extends StatelessWidget {
                   SizedBox(
                     height: height * 0.01,
                   ),
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+                      children: <Widget>[
                         GestureDetector(
+                          onTap: () {
+                            _openDrawer();
+                          },
                           child: RetroButton(
-                            child: Icon(Icons.menu),
                             upperColor: Colors.white,
                             lowerColor: Colors.black,
                             width: 35,
                             height: 35,
                             borderColor: Colors.white,
+                            child: const Icon(Icons.menu),
                           ),
-                          onTap: (){_openDrawer();},
                         ),
                         RetroButton(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 7, left: 6),
-                            child: Icon(
-                              RelicIcons.cart,
-                              size: 32,
-                            ),
-                          ),
                           upperColor: Colors.white,
                           lowerColor: Colors.black,
                           width: 35,
                           height: 35,
                           borderColor: Colors.white,
+                          child: const Padding(
+                            padding: EdgeInsets.only(top: 7, left: 6),
+                            child: Icon(
+                              RelicIcons.cart,
+                              size: 32,
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -66,14 +67,14 @@ class Home extends StatelessWidget {
                   SizedBox(
                     height: height * 0.03,
                   ),
-                  Text.rich(
+                  const Text.rich(
                     TextSpan(
                       style: TextStyle(
                         fontFamily: 'pixer',
                         fontSize: 16,
                         color: Colors.white,
                         height: 1.3829787234042554,
-                        shadows: [
+                        shadows: <Shadow>[
                           Shadow(
                             color: RelicColors.secondaryBlack,
                             offset: Offset(0, 3),
@@ -81,7 +82,7 @@ class Home extends StatelessWidget {
                           )
                         ],
                       ),
-                      children: [
+                      children: <TextSpan>[
                         TextSpan(
                           text: 'GOOD EVENING,\n',
                         ),
@@ -103,7 +104,7 @@ class Home extends StatelessWidget {
                   SizedBox(
                     height: height * 0.02,
                   ),
-                  Container(
+                  SizedBox(
                     height: height * 1.08,
                     width: width,
                     child: Stack(
@@ -111,31 +112,33 @@ class Home extends StatelessWidget {
                         Container(
                           width: width * 0.9,
                           // height: 729.0,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: RelicColors.primaryBlack,
                           ),
                         ),
                         Transform.translate(
-                          offset: Offset(10, 10),
+                          offset: const Offset(10, 10),
                           child: Container(
                             width: width * 0.9,
                             // height: 729.0,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Colors.white,
                             ),
                             child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: GridView.builder(
-                                    primary: false,
-                                    gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
+                              padding: const EdgeInsets.all(8.0),
+                              child: GridView.builder(
+                                primary: false,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
                                         crossAxisSpacing: 8,
                                         mainAxisSpacing: 8,
-                                        childAspectRatio: 1/1.6),
-                                    itemCount: productsList.length,
-                                    itemBuilder: (_, index) =>
-                                    productsList[index])),
+                                        childAspectRatio: 1 / 1.6),
+                                itemCount: productsList.length,
+                                itemBuilder: (_, int index) =>
+                                    productsList[index],
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -147,18 +150,17 @@ class Home extends StatelessWidget {
                 ],
               ),
             ),
-          )
-      ),
+          )),
     );
   }
 
   Widget searchBar(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Stack(
-      children: [
+      children: <Widget>[
         Transform.translate(
-          offset: Offset(5, 5),
+          offset: const Offset(5, 5),
           child: Container(
             height: height * 0.06,
             width: width * 0.9,
@@ -173,23 +175,23 @@ class Home extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Icon(RelicIcons.search),
+              children: <Widget>[
+                // const Icon(RelicIcons.search),
                 Expanded(
                     child: TextFormField(
-                      style: TextStyle(
-                        fontFamily: 'pix M 8pt',
-                        fontSize: 16,
-                        color: RelicColors.primaryBlack,
-                      ),
-                      decoration: InputDecoration(
-                          hintText: 'search for categories, items and more...',
-                          border: InputBorder.none,
-                          isDense: true,
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 10,
-                          )),
-                    )),
+                  style: const TextStyle(
+                    fontFamily: 'pix M 8pt',
+                    fontSize: 16,
+                    color: RelicColors.primaryBlack,
+                  ),
+                  decoration: const InputDecoration(
+                      hintText: 'search for categories, items and more...',
+                      border: InputBorder.none,
+                      isDense: true,
+                      contentPadding: EdgeInsets.symmetric(
+                        horizontal: 10,
+                      )),
+                )),
                 // Text(
                 //   'search for categories, items and more...',
                 //   style: TextStyle(
@@ -199,7 +201,7 @@ class Home extends StatelessWidget {
                 //   ),
                 //   textAlign: TextAlign.left,
                 // ),
-                Icon(RelicIcons.search),
+                const Icon(RelicIcons.search),
               ],
             ),
           ),
@@ -218,13 +220,9 @@ class DrawerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-        padding: EdgeInsets.only(top: 20.0),
+        padding: const EdgeInsets.only(top: 20.0),
         children: <Widget>[
-          _createDrawerItem(
-            icon: Icons.person,
-            title: 'ABOUT',
-            onTap: () {}
-          ),
+          _createDrawerItem(icon: Icons.person, title: 'ABOUT', onTap: () {}),
           _createDrawerItem(
             icon: Icons.shopping_cart,
             title: 'CART',
@@ -251,16 +249,10 @@ class DrawerWidget extends StatelessWidget {
   }
 }
 
-
-
 Widget _createDrawerItem(
-    {IconData icon,
-      String title,
-      GestureTapCallback onTap}) {
+    {IconData icon, String title, GestureTapCallback onTap}) {
   return ListTile(
     title: Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Icon(
           icon,
@@ -269,7 +261,7 @@ Widget _createDrawerItem(
         ),
         Expanded(
           child: Container(
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               horizontal: 12.0,
               vertical: 30.0,
             ),
@@ -279,7 +271,7 @@ Widget _createDrawerItem(
               children: <Widget>[
                 Text(
                   title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: 'Pixer',
                     color: RelicColors.backgroundColor,
                     fontSize: 18.0,

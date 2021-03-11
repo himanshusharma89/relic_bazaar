@@ -9,43 +9,43 @@ class RelicColors {
   static const Color warningColor = Color(0xffE04A3A);
 }
 
-List productsList = [
-  ProductCard(
+List<ProductCard> productsList = <ProductCard>[
+  const ProductCard(
       text: 'ANTIQUE VASE',
       owner: 'by Lloyd Duran',
       amount: '₹ 4035',
       image: 'assets/items/3.png',
       seller: 'Monzart',
       height: 51),
-  ProductCard(
+  const ProductCard(
       text: 'EDISON TURNTABLE',
       owner: 'by Tony Stark',
       amount: '₹ 5035',
       image: 'assets/items/4.png',
       seller: 'SciPedia',
       height: 43),
-  ProductCard(
+  const ProductCard(
       text: 'TATUNG EINSTEIN',
       owner: 'by Lloyd Duran',
       amount: '₹ 4035',
       image: 'assets/items/1.png',
       seller: 'Diz Arts',
       height: 48),
-  ProductCard(
+  const ProductCard(
       text: 'MYRON DISC THROWER',
       owner: 'by Lloyd Duran',
       amount: '₹ 4035',
       image: 'assets/items/2.png',
       seller: 'AB Retial',
       height: 32),
-  ProductCard(
+  const ProductCard(
       text: 'GUARDIAN CLOCK',
       owner: 'by Claudia Davies',
       amount: '₹ 4035',
       image: 'assets/items/5.png',
       seller: 'Electrica',
       height: 19),
-  ProductCard(
+  const ProductCard(
       text: 'ROTATORY DIALER',
       owner: 'by Lloyd Duran',
       amount: '₹ 4035',

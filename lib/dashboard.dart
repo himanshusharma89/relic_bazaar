@@ -42,10 +42,10 @@ class _DashboardState extends State<Dashboard> {
                   _currentIndex = index;
                 });
               },
-              children: [
+              children: <Widget>[
                 Home(),
                 Search(),
-                Cart(),
+                const Cart(),
                 ProfilePage(),
               ],
             ),
