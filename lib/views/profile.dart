@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/widgets/payment/order_item.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
+import 'package:retro_shopping/views/settings.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -193,24 +194,7 @@ class OrdersSection extends StatelessWidget {
     );
   }
 }
-class Settings extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Settings"),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
-      ),
-    );
-  }
-}
+
 class TopSection extends StatelessWidget {
   const TopSection({
     Key key,
