@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/app_icons.dart';
 import 'package:retro_shopping/helpers/constants.dart';
+import 'package:retro_shopping/views/drawer_widget.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 
 class Home extends StatelessWidget {
@@ -209,80 +210,4 @@ class Home extends StatelessWidget {
       ],
     );
   }
-}
-
-class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        padding: const EdgeInsets.only(top: 20.0),
-        children: <Widget>[
-          _createDrawerItem(icon: Icons.person, title: 'ABOUT', onTap: () {}),
-          _createDrawerItem(
-            icon: Icons.shopping_cart,
-            title: 'CART',
-            onTap: () {},
-          ),
-          _createDrawerItem(
-            icon: Icons.list,
-            title: 'WISHLIST',
-            onTap: () {},
-          ),
-          _createDrawerItem(
-            icon: Icons.category,
-            title: 'PRODUCTS',
-            onTap: () {},
-          ),
-          _createDrawerItem(
-            icon: Icons.logout,
-            title: 'LOG OUT',
-            onTap: () {},
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-Widget _createDrawerItem(
-    {IconData icon, String title, GestureTapCallback onTap}) {
-  return ListTile(
-    title: Row(
-      children: <Widget>[
-        Icon(
-          icon,
-          color: RelicColors.backgroundColor,
-          size: 40.0,
-        ),
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12.0,
-              vertical: 30.0,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontFamily: 'Pixer',
-                    color: RelicColors.backgroundColor,
-                    fontSize: 18.0,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        )
-      ],
-    ),
-    onTap: onTap,
-  );
 }
