@@ -193,7 +193,24 @@ class OrdersSection extends StatelessWidget {
     );
   }
 }
-
+class Settings extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Settings"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Go back!'),
+        ),
+      ),
+    );
+  }
+}
 class TopSection extends StatelessWidget {
   const TopSection({
     Key key,
@@ -236,7 +253,20 @@ class TopSection extends StatelessWidget {
                     color: Colors.white),
               ),
             ],
+            
           ),
+          Positioned(
+          top: 0,
+          right: 0,
+          child: IconButton(
+            onPressed: () {
+              Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Settings()),
+  );},
+            icon: Icon(Icons.menu),
+          ),
+        ),
         )
       ],
     );
