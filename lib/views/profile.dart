@@ -231,7 +231,10 @@ class TopSection extends StatelessWidget {
             Text(
               'Torvalds',
               style: TextStyle(
-                  fontSize: 36, fontFamily: 'Pixer', color: Colors.white),
+                fontSize: 36,
+                fontFamily: 'Pixer',
+                color: Colors.white,
+              ),
             ),
             SizedBox(
               height: 10,
