@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:retro_shopping/views/profile.dart';
+
 class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -8,10 +11,10 @@ class Settings extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-             Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => ProfilePage()),
-  );
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfilePage()),
+            );
           },
           child: Text('Go back!'),
         ),
