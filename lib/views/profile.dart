@@ -2,29 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/widgets/payment/order_item.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
+import 'package:retro_shopping/views/settings.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
+    final double height = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: <Widget>[
             SizedBox(
               height: height * 0.02,
             ),
-            TopSection(),
+            const TopSection(),
             SizedBox(
               height: height * 0.02,
             ),
-            OrdersSection(),
+            const OrdersSection(),
             SizedBox(
               height: height * 0.02,
             ),
-            WishlistSection(),
+            const WishlistSection(),
             SizedBox(
               height: height * 0.1,
             ),
@@ -42,13 +43,18 @@ class WishlistSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         RetroButton(
-          child: Center(
+          upperColor: Colors.white,
+          lowerColor: Colors.black,
+          height: height * 0.046,
+          width: width * 0.35,
+          borderColor: Colors.white,
+          child: const Center(
             child: Text(
               '♥ WISHLIST',
               style: TextStyle(
@@ -60,35 +66,31 @@ class WishlistSection extends StatelessWidget {
               // textAlign: TextAlign.left,
             ),
           ),
-          upperColor: Colors.white,
-          lowerColor: Colors.black,
-          height: height * 0.046,
-          width: width * 0.35,
-          borderColor: Colors.white,
         ),
         // SectionHeader(title: "♥ WISHLIST"),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Center(
           child: Stack(
-            alignment: AlignmentDirectional.topStart,
-            children: [
+            children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width * 0.88 + 5,
                 height: 216,
-                decoration: BoxDecoration(color: Colors.black),
+                decoration: const BoxDecoration(color: Colors.black),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
                 width: MediaQuery.of(context).size.width * 0.87,
                 height: 210,
-                decoration: BoxDecoration(color: RelicColors.primaryColor),
+                decoration:
+                    const BoxDecoration(color: RelicColors.primaryColor),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const <Widget>[
                     OrderItem(
-                        title: "EDI TURNTABLE",
-                        ordered: "by Tony Stark",
-                        status: "OUT OF STOCK",
+                        title: 'EDI TURNTABLE',
+                        ordered: 'by Tony Stark',
+                        status: 'OUT OF STOCK',
                         image: 'assets/items/4.png'),
                     // Divider(color: Clors.w,),
                   ],
@@ -109,13 +111,18 @@ class OrdersSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         RetroButton(
-          child: Center(
+          upperColor: Colors.white,
+          lowerColor: Colors.black,
+          height: height * 0.046,
+          width: width * 0.35,
+          borderColor: Colors.white,
+          child: const Center(
             child: Text(
               'ORDERS',
               style: TextStyle(
@@ -127,42 +134,38 @@ class OrdersSection extends StatelessWidget {
               // textAlign: TextAlign.left,
             ),
           ),
-          upperColor: Colors.white,
-          lowerColor: Colors.black,
-          height: height * 0.046,
-          width: width * 0.35,
-          borderColor: Colors.white,
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Center(
           child: Stack(
-            alignment: AlignmentDirectional.topStart,
-            children: [
+            children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width * 0.88 + 5,
                 height: 395,
-                decoration: BoxDecoration(color: Colors.black),
+                decoration: const BoxDecoration(color: Colors.black),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
                 width: MediaQuery.of(context).size.width * 0.87,
-                decoration: BoxDecoration(color: RelicColors.primaryColor),
+                decoration:
+                    const BoxDecoration(color: RelicColors.primaryColor),
                 child: ListView(
                   shrinkWrap: true,
                   primary: false,
-                  children: [
+                  children: const <Widget>[
                     OrderItem(
-                        title: "ANTIQUE VASE",
-                        ordered: "ORDERED 3 DAYS AGO",
-                        status: "STATUS : ON THE WAY",
+                        title: 'ANTIQUE VASE',
+                        ordered: 'ORDERED 3 DAYS AGO',
+                        status: 'STATUS : ON THE WAY',
                         image: 'assets/items/3.png'),
                     Divider(
                       color: Colors.white,
                     ),
                     OrderItem(
-                        title: "TATUNG EINSTEIN",
-                        ordered: "ORDERED 3 WEEKS AGO",
-                        status: "ANTIQUE DELIVERED",
+                        title: 'TATUNG EINSTEIN',
+                        ordered: 'ORDERED 3 WEEKS AGO',
+                        status: 'ANTIQUE DELIVERED',
                         image: 'assets/items/1.png',
                         delivered: true),
                   ],
@@ -203,42 +206,56 @@ class TopSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
+      children: <Widget>[
         Container(
           height: 140,
           width: 140,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('assets/person.png'), fit: BoxFit.cover)),
         ),
-        Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Linus",
-                style: TextStyle(
-                    fontSize: 48, fontFamily: 'Pixer', color: Colors.white),
-              ),
-              Text(
-                "Torvalds",
-                style: TextStyle(
-                    fontSize: 36, fontFamily: 'Pixer', color: Colors.white),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "SHOPPER SINCE MAY 2020",
-                style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white),
-              ),
-            ],
+
+        
+          Positioned(
+          top: 0,
+          right: 0,
+          child: IconButton(
+            onPressed: () {
+              Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Settings()),
+  );},
+            icon: Icon(Icons.menu),
           ),
-        )
-      ],
+        ),
+        ),
+
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const <Widget>[
+            Text(
+              'Linus',
+              style: TextStyle(
+                  fontSize: 48, fontFamily: 'Pixer', color: Colors.white),
+            ),
+            Text(
+              'Torvalds',
+              style: TextStyle(
+                  fontSize: 36, fontFamily: 'Pixer', color: Colors.white),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              'SHOPPER SINCE MAY 2020',
+              style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white),
+            ),
+          ],
+        ),
+ ],
     );
   }
 }
