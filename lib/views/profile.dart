@@ -214,22 +214,19 @@ class TopSection extends StatelessWidget {
               image: DecorationImage(
                   image: AssetImage('assets/person.png'), fit: BoxFit.cover)),
         ),
-
-        
-          Positioned(
+        Positioned(
           top: 0,
           right: 0,
           child: IconButton(
             onPressed: () {
               Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => Settings()),
-  );},
+                context,
+                MaterialPageRoute(builder: (context) => Settings()),
+              );
+            },
             icon: Icon(Icons.menu),
           ),
         ),
-        ),
-
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const <Widget>[
@@ -255,7 +252,7 @@ class TopSection extends StatelessWidget {
             ),
           ],
         ),
- ],
+      ],
     );
   }
 }
