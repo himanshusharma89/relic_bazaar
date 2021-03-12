@@ -12,6 +12,8 @@ import 'package:retro_shopping/helpers/constants.dart';
 
 import 'package:retro_shopping/main.dart';
 import 'package:retro_shopping/widgets/bottom_nav_bar.dart';
+import 'package:retro_shopping/widgets/payment/cart_item.dart';
+import 'package:retro_shopping/widgets/payment/order_item.dart';
 import 'package:retro_shopping/widgets/product/product_card.dart';
 import 'package:retro_shopping/widgets/product/product_page.dart';
 
@@ -108,6 +110,103 @@ void main() {
 
       await tester.tap(find.byIcon(RelicIcons.search));
       expect(index, 1);
+    },
+  );
+
+  //test for cart_item
+  testWidgets(
+    "cartItem widget works correctly",
+    (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MediaQuery(
+          data: new MediaQueryData(),
+          child: Directionality(
+            textDirection: TextDirection.ltr,
+            child: Scaffold(
+              body: MaterialApp(
+                home: CartItem(),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      final productName = find.text('Product Name');
+      final name = find.text('Name');
+      final addIcon = find.byIcon(Icons.add);
+      final removeIcon = find.byIcon(Icons.remove);
+
+      expect(productName, findsOneWidget);
+      expect(name, findsOneWidget);
+
+      expect(find.text('1'), findsOneWidget);
+
+      await tester.tap(addIcon);
+      expect(find.text('2'), findsOneWidget);
+      await tester.tap(removeIcon);
+      expect(find.text('1'), findsOneWidget);
+    },
+  );
+
+  //test for OrderItem widget when order isn't delivered
+  testWidgets(
+    "OrderItem widget works correctly (order confirmed)",
+    (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MediaQuery(
+          data: new MediaQueryData(),
+          child: Directionality(
+            textDirection: TextDirection.ltr,
+            child: OrderItem(
+              title: 'title',
+              image: 'assets/items/3.png',
+              ordered: 'ordered',
+              status: 'status',
+              delivered: true,
+            ),
+          ),
+        ),
+      );
+
+      final titleText = find.text('title');
+      final orderedText = find.text('ordered');
+      final statusText = find.text('status');
+
+      expect(titleText, findsOneWidget);
+      expect(orderedText, findsOneWidget);
+      expect(statusText, findsOneWidget);
+      expect(find.text("CANCEL"), findsNothing);
+    },
+  );
+
+  //test for OrderItem widget when order has been delivered
+  testWidgets(
+    "OrderItem widget works correctly (order not confirmed yet)",
+    (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MediaQuery(
+          data: new MediaQueryData(),
+          child: Directionality(
+            textDirection: TextDirection.ltr,
+            child: OrderItem(
+              title: 'title',
+              image: 'assets/items/3.png',
+              ordered: 'ordered',
+              status: 'status',
+              delivered: false,
+            ),
+          ),
+        ),
+      );
+
+      final titleText = find.text('title');
+      final orderedText = find.text('ordered');
+      final statusText = find.text('status');
+
+      expect(titleText, findsOneWidget);
+      expect(orderedText, findsOneWidget);
+      expect(statusText, findsOneWidget);
+      expect(find.text("CANCEL"), findsOneWidget);
     },
   );
 }
