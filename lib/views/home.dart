@@ -179,20 +179,22 @@ class Home extends StatelessWidget {
               children: <Widget>[
                 // const Icon(RelicIcons.search),
                 Expanded(
-                    child: TextFormField(
-                  style: const TextStyle(
-                    fontFamily: 'pix M 8pt',
-                    fontSize: 16,
-                    color: RelicColors.primaryBlack,
-                  ),
-                  decoration: const InputDecoration(
+                  child: TextFormField(
+                    style: const TextStyle(
+                      fontFamily: 'pix M 8pt',
+                      fontSize: 16,
+                      color: RelicColors.primaryBlack,
+                    ),
+                    decoration: const InputDecoration(
                       hintText: 'search for categories, items and more...',
                       border: InputBorder.none,
                       isDense: true,
                       contentPadding: EdgeInsets.symmetric(
                         horizontal: 10,
-                      )),
-                )),
+                      ),
+                    ),
+                  ),
+                ),
                 // Text(
                 //   'search for categories, items and more...',
                 //   style: TextStyle(

@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:retro_shopping/helpers/constants.dart';
+import 'package:retro_shopping/views/profile.dart';
+import 'package:retro_shopping/views/settings.dart';
 import 'package:retro_shopping/widgets/splash.dart';
 
 import 'dashboard.dart';
@@ -17,9 +19,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         final FocusScopeNode currentFocus = FocusScope.of(context);
-        if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
           FocusManager.instance.primaryFocus.unfocus();
         }
       },
@@ -30,9 +33,12 @@ class MyApp extends StatelessWidget {
             // primarySwatch: Colors.blue,
             scaffoldBackgroundColor: RelicColors.backgroundColor,
             visualDensity: VisualDensity.adaptivePlatformDensity,
-            textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
+            textTheme:
+                GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
         routes: <String, WidgetBuilder>{
           '/dashboard': (BuildContext context) => Dashboard(),
+          '/profile': (_) => ProfilePage(),
+          '/settings': (_) => Settings(),
         },
         home: Splash(),
       ),

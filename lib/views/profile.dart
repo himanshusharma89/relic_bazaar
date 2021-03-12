@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/widgets/payment/order_item.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
-import 'package:retro_shopping/views/settings.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -211,25 +210,16 @@ class TopSection extends StatelessWidget {
           height: 140,
           width: 140,
           decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/person.png'), fit: BoxFit.cover)),
-        ),
-
-        
-          Positioned(
-          top: 0,
-          right: 0,
-          child: IconButton(
-            onPressed: () {
-              Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => Settings()),
-  );},
-            icon: Icon(Icons.menu),
+            image: DecorationImage(
+                image: AssetImage('assets/person.png'), fit: BoxFit.cover),
           ),
         ),
+        IconButton(
+          onPressed: () {
+            Navigator.of(context).pushNamed('/settings');
+          },
+          icon: const Icon(Icons.menu),
         ),
-
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const <Widget>[
@@ -255,7 +245,7 @@ class TopSection extends StatelessWidget {
             ),
           ],
         ),
- ],
+      ],
     );
   }
 }
