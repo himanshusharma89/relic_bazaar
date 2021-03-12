@@ -52,7 +52,7 @@ We propose an app with the vision to put back the traditional market of vintage 
 5. If your code is being repetitive then refactor it to create a new widget for future use.
 6. Make the code as modular as possible, seperating the UI from the logic.
 
-Contributions are always welcomed. You can also visit our [contributing guidelines](https://github.com/himanshusharma89/relic_bazaar/blob/master/CONTRIBUTING.md) beforing making any contributions. 
+Contributions are always welcome! You can also visit our [contributing guidelines](https://github.com/himanshusharma89/relic_bazaar/blob/master/CONTRIBUTING.md) beforing making any contributions. 
 
 <h2 align= "left"><b>Steps</b></h2>
 
@@ -121,7 +121,7 @@ We follow certain guidelines in order to maintain this repository. Please find o
 
 Distributed under the CC0-1.0 License. See [LICENSE](https://github.com/himanshusharma89/relic_bazaar/blob/master/LICENSE) for more information.
 
-<h1 align= "left"><b>The Geeks behind this 🤓</b></h1>
+<h1 align= "left"><b>The Geeks behind RELIC_BAZAAR 🤓</b></h1>
 
 |<img src="https://avatars2.githubusercontent.com/u/44980497?v=4">|<img src="https://avatars2.githubusercontent.com/u/46641503?v=4">|<img src="https://avatars3.githubusercontent.com/u/54989142?v=4">|<img src="https://avatars3.githubusercontent.com/u/40017559?v=4">|
 |----------------------------|--------|----------------------------|--------|
