@@ -131,7 +131,7 @@ Distributed under the CC0-1.0 License. See [LICENSE](https://github.com/himanshu
 
 <p align="center">
  <a>
- <img  width="400" height="120" src=https://gssoc.girlscript.tech/images/type-logo.png">
+ <img  width="400" height="120" src="https://gssoc.girlscript.tech/images/type-logo.png">
 
  
 </p>
