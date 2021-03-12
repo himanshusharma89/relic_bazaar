@@ -239,9 +239,10 @@ class TopSection extends StatelessWidget {
             Text(
               'SHOPPER SINCE MAY 2020',
               style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white),
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
             ),
           ],
         ),
