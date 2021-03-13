@@ -1,4 +1,4 @@
-name: Labeling new issue with Hacktoberfest
+name: Labeling new issue with GSSOC21
 on:
   issues:
       types: ['opened']
