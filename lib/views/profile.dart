@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/widgets/payment/order_item.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
+import 'package:retro_shopping/views/settings.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -203,40 +204,70 @@ class TopSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        Container(
-          height: 140,
-          width: 140,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/person.png'), fit: BoxFit.cover)),
+    return Stack(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Container(
+              height: 140,
+              width: 140,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/person.png'), fit: BoxFit.cover)),
+            ),
+
+
+
+
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const <Widget>[
+
+                Text(
+                  'Linus',
+                  style: TextStyle(
+                      fontSize: 48, fontFamily: 'Pixer', color: Colors.white),
+                ),
+                Text(
+                  'Torvalds',
+                  style: TextStyle(
+                      fontSize: 36, fontFamily: 'Pixer', color: Colors.white),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'SHOPPER SINCE MAY 2020',
+                  style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white),
+                ),
+              ],
+            ),
+ ],
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const <Widget>[
-            Text(
-              'Linus',
-              style: TextStyle(
-                  fontSize: 48, fontFamily: 'Pixer', color: Colors.white),
+        Positioned(
+          top: 0,
+          right: 0,
+          child: GestureDetector(
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Settings()),
+              );
+            },
+            child: RetroButton(
+              upperColor: Colors.white,
+              lowerColor: Colors.black,
+              width: 35,
+              height: 35,
+              borderColor: Colors.white,
+              child: const Icon(Icons.menu,color: Colors.black,),
+
             ),
-            Text(
-              'Torvalds',
-              style: TextStyle(
-                  fontSize: 36, fontFamily: 'Pixer', color: Colors.white),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              'SHOPPER SINCE MAY 2020',
-              style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white),
-            ),
-          ],
+          ),
         ),
       ],
     );
