@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil_init.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/widgets/splash.dart';
@@ -23,18 +24,24 @@ class MyApp extends StatelessWidget {
           FocusManager.instance.primaryFocus.unfocus();
         }
       },
-      child: MaterialApp(
-        title: 'Retro Shopping',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            // primarySwatch: Colors.blue,
-            scaffoldBackgroundColor: RelicColors.backgroundColor,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
-        routes: <String, WidgetBuilder>{
-          '/dashboard': (BuildContext context) => Dashboard(),
-        },
-        home: Splash(),
+
+      child: ScreenUtilInit(
+        designSize: const Size(325,672),
+        builder:() =>MaterialApp(
+            title: 'Retro Shopping',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              // primarySwatch: Colors.blue,
+                scaffoldBackgroundColor: RelicColors.backgroundColor,
+                visualDensity: VisualDensity.adaptivePlatformDensity,
+                textTheme: GoogleFonts.poppinsTextTheme(Theme
+                    .of(context)
+                    .textTheme)),
+            routes: <String, WidgetBuilder>{
+              '/dashboard': (BuildContext context) => Dashboard(),
+            },
+            home: Splash(),
+          ),
       ),
     );
   }

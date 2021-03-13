@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:retro_shopping/helpers/Styles.dart';
 
 class CartItem extends StatefulWidget {
   @override
@@ -20,100 +21,103 @@ class _CartItemState extends State<CartItem> {
     final double height = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
-      child: Row(
-        children: <Widget>[
-          Stack(
-            children: <Widget>[
-              Transform.translate(
-                offset: const Offset(3.5, 4),
-                child: Container(
-                  height: 75,
-                  width: 75,
-                  decoration: const BoxDecoration(
-                    color: Colors.black,
-                    // image: DecorationImage(image: null)
-                  ),
-                ),
-              ),
-              Container(
-                height: 75,
-                width: 75,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  // image: DecorationImage(image: null)
-                ),
-              ),
-            ],
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const Text(
-                    'Product Name',
-                    style: TextStyle(
-                        fontSize: 21,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                  const Text(
-                    'Name',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  SizedBox(
-                    height: height * 0.005,
-                  ),
-                  Container(
-                    width: 75,
-                    height: 25,
-                    decoration: const BoxDecoration(
+      child: SingleChildScrollView(
+        child: Column(
+          // ignore: always_specify_types
+          children: [
+            Row(
+              children: <Widget>[
+                Stack(
+                  children: <Widget>[
+                    Transform.translate(
+                      offset: const Offset(3.5, 4),
+                      child: Container(
+                        height: 75,
+                        width: 75,
+                        decoration: const BoxDecoration(
+                          color: Colors.black,
+                          // image: DecorationImage(image: null)
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 75,
+                      width: 75,
+                      decoration: const BoxDecoration(
                         color: Colors.white,
-                        boxShadow: <BoxShadow>[
-                          BoxShadow(
-                              offset: Offset(0, 4),
-                              blurRadius: 8,
-                              color: Colors.black26)
-                        ]),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        // image: DecorationImage(image: null)
+                      ),
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        GestureDetector(
-                          onTap: addQuantity,
-                          child: const Icon(Icons.add),
+                         Text(
+                          'Product Name',
+                          style: Styles.productName(),
                         ),
-                        Expanded(
-                            child: TextField(
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
+                        const Text(
+                          'Name',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        SizedBox(
+                          height: height * 0.005,
+                        ),
+                        Container(
+                          width: 75,
+                          height: 25,
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: <BoxShadow>[
+                                BoxShadow(
+                                    offset: Offset(0, 4),
+                                    blurRadius: 8,
+                                    color: Colors.black26)
+                              ]),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              GestureDetector(
+                                onTap: addQuantity,
+                                child: const Icon(Icons.add),
+                              ),
+                              Expanded(
+                                  child: TextField(
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                readOnly: true,
+                                controller: controller,
+                                decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    isDense: true,
+                                    contentPadding: EdgeInsets.all(0)),
+                              )),
+                              GestureDetector(
+                                onTap: subQuantity,
+                                child: const Icon(Icons.remove),
+                              ),
+                            ],
                           ),
-                          readOnly: true,
-                          controller: controller,
-                          decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              isDense: true,
-                              contentPadding: EdgeInsets.all(0)),
-                        )),
-                        GestureDetector(
-                          onTap: subQuantity,
-                          child: const Icon(Icons.remove),
-                        ),
+                        )
                       ],
                     ),
-                  )
-                ],
-              ),
+                  ),
+                ),
+                Text(
+                  '₹65654',
+                  style: Styles.price(),
+                )
+              ],
             ),
-          ),
-          const Text(
-            '₹65654',
-            style: TextStyle(
-                fontWeight: FontWeight.bold, color: Colors.white, fontSize: 17),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }

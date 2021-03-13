@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/helpers/constants.dart';
+import 'package:retro_shopping/helpers/Styles.dart';
 import 'package:retro_shopping/widgets/payment/cart_item.dart';
 import 'package:retro_shopping/widgets/payment/payment_window.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
@@ -28,15 +28,11 @@ class _CartState extends State<Cart> {
               SizedBox(
                 height: height * 0.01,
               ),
-              const Text(
-                'Your Cart',
-                style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                ),
-                textAlign: TextAlign.left,
-              ),
+            Text(
+              'Your Cart',
+              style: Styles.headLine(),
+              textAlign: TextAlign.left,
+            ),
               SizedBox(
                 height: height * 0.01,
               ),
@@ -51,19 +47,14 @@ class _CartState extends State<Cart> {
                     borderColor: Colors.white,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const <Widget>[
-                        Icon(
+                      children: <Widget>[
+                        const Icon(
                           Icons.arrow_back,
                           size: 20,
                         ),
                         Text(
                           ' back to shop',
-                          style: TextStyle(
-                            fontFamily: 'pix M 8pt',
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: RelicColors.primaryBlack,
-                          ),
+                         style: Styles.button_Text(),
                           // textAlign: TextAlign.left,
                         ),
                       ],
@@ -75,14 +66,10 @@ class _CartState extends State<Cart> {
                     height: height * 0.045,
                     width: width * 0.22,
                     borderColor: Colors.black,
-                    child: const Center(
+                    child:  Center(
                       child: Text(
                         '5 items',
-                        style: TextStyle(
-                          fontFamily: 'pix M 8pt',
-                          fontSize: 15,
-                          color: Colors.white,
-                        ),
+                        style: Styles.btnText1(),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -103,8 +90,7 @@ class _CartState extends State<Cart> {
                 height: height * 0.335,
                 child: ListView.builder(
                   itemCount: 5,
-                  itemBuilder: (BuildContext context, int index) {
-                    return CartItem();
+                  itemBuilder: (BuildContext context, int index) {return CartItem();
                   },
                 ),
               )
