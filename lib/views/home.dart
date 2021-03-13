@@ -30,74 +30,11 @@ class Home extends StatelessWidget {
                   SizedBox(
                     height: height * 0.01,
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        GestureDetector(
-                          onTap: () {
-                            _openDrawer();
-                          },
-                          child: RetroButton(
-                            upperColor: Colors.white,
-                            lowerColor: Colors.black,
-                            width: 35,
-                            height: 35,
-                            borderColor: Colors.white,
-                            child: const Icon(Icons.menu),
-                          ),
-                        ),
-                        RetroButton(
-                          upperColor: Colors.white,
-                          lowerColor: Colors.black,
-                          width: 35,
-                          height: 35,
-                          borderColor: Colors.white,
-                          child: const Padding(
-                            padding: EdgeInsets.only(top: 7, left: 6),
-                            child: Icon(
-                              RelicIcons.cart,
-                              size: 32,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  sizedBox(context),
                   SizedBox(
                     height: height * 0.03,
                   ),
-                  const Text.rich(
-                    TextSpan(
-                      style: TextStyle(
-                        fontFamily: 'pixer',
-                        fontSize: 16,
-                        color: Colors.white,
-                        height: 1.3829787234042554,
-                        shadows: <Shadow>[
-                          Shadow(
-                            color: RelicColors.secondaryBlack,
-                            offset: Offset(0, 3),
-                            blurRadius: 6,
-                          )
-                        ],
-                      ),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: 'GOOD EVENING,\n',
-                        ),
-                        TextSpan(
-                          text: 'LINUS!',
-                          style: TextStyle(
-                            fontFamily: 'Pixer',
-                            fontSize: 47,
-                          ),
-                        ),
-                      ],
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
+                  textRead(),
                   SizedBox(
                     height: height * 0.02,
                   ),
@@ -105,46 +42,7 @@ class Home extends StatelessWidget {
                   SizedBox(
                     height: height * 0.02,
                   ),
-                  SizedBox(
-                    height: height * 1.08,
-                    width: width,
-                    child: Stack(
-                      children: <Widget>[
-                        Container(
-                          width: width * 0.9,
-                          // height: 729.0,
-                          decoration: const BoxDecoration(
-                            color: RelicColors.primaryBlack,
-                          ),
-                        ),
-                        Transform.translate(
-                          offset: const Offset(10, 10),
-                          child: Container(
-                            width: width * 0.9,
-                            // height: 729.0,
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: GridView.builder(
-                                primary: false,
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 8,
-                                        mainAxisSpacing: 8,
-                                        childAspectRatio: 1 / 1.6),
-                                itemCount: productsList.length,
-                                itemBuilder: (_, int index) =>
-                                    productsList[index],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  sized(height, width),
                   SizedBox(
                     height: height * 0.1,
                   ),
@@ -152,6 +50,119 @@ class Home extends StatelessWidget {
               ),
             ),
           )),
+    );
+  }
+
+  Widget sized(double height, double width) {
+    return SizedBox(
+      height: height * 1.08,
+      width: width,
+      child: Stack(
+        children: <Widget>[
+          Container(
+            width: width * 0.9,
+            // height: 729.0,
+            decoration: const BoxDecoration(
+              color: RelicColors.primaryBlack,
+            ),
+          ),
+          Transform.translate(
+            offset: const Offset(10, 10),
+            child: Container(
+              width: width * 0.9,
+              // height: 729.0,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  primary: false,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
+                      childAspectRatio: 1 / 1.6),
+                  itemCount: productsList.length,
+                  itemBuilder: (_, int index) => productsList[index],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget sizedBox(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          GestureDetector(
+            onTap: () {
+              _openDrawer();
+            },
+            child: RetroButton(
+              upperColor: Colors.white,
+              lowerColor: Colors.black,
+              width: 35,
+              height: 35,
+              borderColor: Colors.white,
+              child: const Icon(Icons.menu),
+            ),
+          ),
+          RetroButton(
+            upperColor: Colors.white,
+            lowerColor: Colors.black,
+            width: 35,
+            height: 35,
+            borderColor: Colors.white,
+            child: const Padding(
+              padding: EdgeInsets.only(top: 7, left: 6),
+              child: Icon(
+                RelicIcons.cart,
+                size: 32,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget textRead() {
+    return const Text.rich(
+      TextSpan(
+        style: TextStyle(
+          fontFamily: 'pixer',
+          fontSize: 16,
+          color: Colors.white,
+          height: 1.3829787234042554,
+          shadows: <Shadow>[
+            Shadow(
+              color: RelicColors.secondaryBlack,
+              offset: Offset(0, 3),
+              blurRadius: 6,
+            )
+          ],
+        ),
+        children: <TextSpan>[
+          TextSpan(
+            text: 'GOOD EVENING,\n',
+          ),
+          TextSpan(
+            text: 'LINUS!',
+            style: TextStyle(
+              fontFamily: 'Pixer',
+              fontSize: 47,
+            ),
+          ),
+        ],
+      ),
+      textAlign: TextAlign.left,
     );
   }
 
