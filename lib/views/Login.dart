@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
+import 'package:retro_shopping/dashboard.dart';
 
 class LoginScreen extends StatefulWidget{
   @override
@@ -166,6 +167,10 @@ class LoginScreenState extends State<LoginScreen>{
                               ),
                               onTap: (){
                                 debugPrint('Login!');
+                                Navigator.push(context, MaterialPageRoute(
+                                    builder: (context){
+                                      return Dashboard();
+                                    }));
                               },
                             ),
                           ),
