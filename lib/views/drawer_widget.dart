@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+//import 'package:retro_shopping/views/profile.dart';
 import '../widgets/drawer_item.dart';
+import './Wishlist.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({
@@ -21,7 +23,12 @@ class DrawerWidget extends StatelessWidget {
           DrawerItem(
             icon: Icons.list,
             title: 'WISHLIST',
-            onTap: () {},
+            onTap: () {
+               Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Wishlistscreen()),
+              );
+            },
           ),
           DrawerItem(
             icon: Icons.category,
