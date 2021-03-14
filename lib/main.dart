@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/widgets/splash.dart';
-
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'dashboard.dart';
 
 Future<void> main() async {
   //firebase Initialization
   WidgetsFlutterBinding.ensureInitialized();
+  //AdMob Initialization
+  MobileAds.instance.initialize();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
