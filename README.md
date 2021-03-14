@@ -91,7 +91,7 @@ git checkout -b <your_branch_name>
 
 **6.** Commit your changes.
 ```terminal
-git checkout -b <your_branch_name>
+git commit -m "Message"
 ```
 
 **7.** Push your local branch to the remote repository.
