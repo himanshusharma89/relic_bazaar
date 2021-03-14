@@ -5,7 +5,7 @@ import 'package:retro_shopping/widgets/payment/payment_window.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 
 class Cart extends StatefulWidget {
-  Cart({
+  const Cart({
     Key key,
   }) : super(key: key);
 
@@ -16,10 +16,10 @@ class Cart extends StatefulWidget {
 class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Stack(
-      children: [
+      children: <Widget>[
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18),
           child: Column(
@@ -28,7 +28,7 @@ class _CartState extends State<Cart> {
               SizedBox(
                 height: height * 0.01,
               ),
-              Text(
+              const Text(
                 'Your Cart',
                 style: TextStyle(
                   fontSize: 30,
@@ -42,12 +42,16 @@ class _CartState extends State<Cart> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: <Widget>[
                   RetroButton(
+                    upperColor: Colors.white,
+                    lowerColor: Colors.black,
+                    height: height * 0.045,
+                    width: width * 0.4,
+                    borderColor: Colors.white,
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const <Widget>[
                         Icon(
                           Icons.arrow_back,
                           size: 20,
@@ -64,14 +68,14 @@ class _CartState extends State<Cart> {
                         ),
                       ],
                     ),
-                    upperColor: Colors.white,
-                    lowerColor: Colors.black,
-                    height: height * 0.045,
-                    width: width * 0.34,
-                    borderColor: Colors.white,
                   ),
                   RetroButton(
-                    child: Center(
+                    upperColor: Colors.black,
+                    lowerColor: Colors.white,
+                    height: height * 0.045,
+                    width: width * 0.22,
+                    borderColor: Colors.black,
+                    child: const Center(
                       child: Text(
                         '5 items',
                         style: TextStyle(
@@ -82,29 +86,24 @@ class _CartState extends State<Cart> {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    upperColor: Colors.black,
-                    lowerColor: Colors.white,
-                    height: height * 0.045,
-                    width: width * 0.22,
-                    borderColor: Colors.black,
                   ),
                 ],
               ),
               SizedBox(
                 height: height * 0.01,
               ),
-              Divider(
+              const Divider(
                 thickness: 0.9,
                 color: Colors.white,
               ),
               SizedBox(
                 height: height * 0.01,
               ),
-              Container(
+              SizedBox(
                 height: height * 0.335,
                 child: ListView.builder(
                   itemCount: 5,
-                  itemBuilder: (context, index) {
+                  itemBuilder: (BuildContext context, int index) {
                     return CartItem();
                   },
                 ),

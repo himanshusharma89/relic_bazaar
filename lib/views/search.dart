@@ -10,51 +10,50 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
-          children: [
-            SizedBox(height: height*0.01),
+          children: <Widget>[
+            SizedBox(height: height * 0.01),
             Stack(
-              children: [
+              children: <Widget>[
                 Transform.translate(
-                  offset: Offset(5, 5),
+                  offset: const Offset(5, 5),
                   child: Container(
-                    height: height*0.06,
-                    width: width*0.9,
+                    height: height * 0.06,
+                    width: width * 0.9,
                     color: Colors.black,
                   ),
                 ),
                 Container(
-                  height: height*0.06,
-                  width: width*0.9,
+                  height: height * 0.06,
+                  width: width * 0.9,
                   color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          RelicIcons.search
-                        ),
+                      children: <Widget>[
+                        const Icon(RelicIcons.search),
                         Expanded(
-                          child: TextFormField(
-                            style: TextStyle(
-                              fontFamily: 'pix M 8pt',
-                              fontSize: 16,
-                              color: RelicColors.primaryBlack,
-                            ),
-                            decoration: InputDecoration(
-                              hintText: 'search for categories, items and more...',
+                            child: TextFormField(
+                          style: const TextStyle(
+                            fontFamily: 'pix M 8pt',
+                            fontSize: 16,
+                            color: RelicColors.primaryBlack,
+                          ),
+                          decoration: const InputDecoration(
+                              hintText:
+                                  'search for categories, items and more...',
                               border: InputBorder.none,
                               isDense: true,
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 10,)
-                            ),
-                          )
-                        ),
+                              contentPadding: EdgeInsets.symmetric(
+                                horizontal: 10,
+                              )),
+                        )),
                         // Text(
                         //   'search for categories, items and more...',
                         //   style: TextStyle(
