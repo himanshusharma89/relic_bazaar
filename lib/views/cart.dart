@@ -47,7 +47,7 @@ class _CartState extends State<Cart> {
                     upperColor: Colors.white,
                     lowerColor: Colors.black,
                     height: height * 0.045,
-                    width: width * 0.34,
+                    width: width * 0.4,
                     borderColor: Colors.white,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

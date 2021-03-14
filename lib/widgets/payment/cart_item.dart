@@ -18,6 +18,7 @@ class _CartItemState extends State<CartItem> {
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
       child: Row(
@@ -27,8 +28,10 @@ class _CartItemState extends State<CartItem> {
               Transform.translate(
                 offset: const Offset(3.5, 4),
                 child: Container(
-                  height: 75,
-                  width: 75,
+                  height: height*0.18,
+                  width: width*0.3,
+                  // height: 75,
+                  // width: 75,
                   decoration: const BoxDecoration(
                     color: Colors.black,
                     // image: DecorationImage(image: null)
@@ -36,8 +39,10 @@ class _CartItemState extends State<CartItem> {
                 ),
               ),
               Container(
-                height: 75,
-                width: 75,
+                height: height*0.18,
+                width: width*0.3,
+                // height: 75,
+                // width: 75,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   // image: DecorationImage(image: null)
@@ -66,8 +71,10 @@ class _CartItemState extends State<CartItem> {
                     height: height * 0.005,
                   ),
                   Container(
-                    width: 75,
-                    height: 25,
+                    // width: 75,
+                    // height: 25,
+                    height: height*0.04,
+                    width: width*0.25,
                     decoration: const BoxDecoration(
                         color: Colors.white,
                         boxShadow: <BoxShadow>[
