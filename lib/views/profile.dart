@@ -138,53 +138,61 @@ class OrdersSection extends StatelessWidget {
           child: Stack(
             alignment: AlignmentDirectional.topStart,
             children: [
-              Container(
-                width: MediaQuery.of(context).size.width * 0.88 + 5,
-                height: 395,
-                decoration: BoxDecoration(color: Colors.black),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                width: MediaQuery.of(context).size.width * 0.87,
-                decoration: BoxDecoration(color: RelicColors.primaryColor),
-                child: ListView(
-                  shrinkWrap: true,
-                  primary: false,
-                  children: [
-                    OrderItem(
-                        title: "ANTIQUE VASE",
-                        ordered: "ORDERED 3 DAYS AGO",
-                        status: "STATUS : ON THE WAY",
-                        image: 'assets/items/3.png'),
-                    Divider(
-                      color: Colors.white,
-                    ),
-                    OrderItem(
-                        title: "TATUNG EINSTEIN",
-                        ordered: "ORDERED 3 WEEKS AGO",
-                        status: "ANTIQUE DELIVERED",
-                        image: 'assets/items/1.png',
-                        delivered: true),
-                  ],
+              Positioned(
+                top: 75,
+                right: 75,
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.88 + 5,
+                  height: 395,
+                  decoration: BoxDecoration(color: Colors.black),
                 ),
-                // child: Column(
-                //   children: [
-                //     OrderItem(
-                //         title: "ANTIQUE VASE",
-                //         ordered: "ORDERED 3 DAYS AGO",
-                //         status: "STATUS : ON THE WAY",
-                //         image: 'assets/items/3.png'),
-                //     Divider(
-                //       color: Colors.white,
-                //     ),
-                //     OrderItem(
-                //         title: "TATUNG EINSTEIN",
-                //         ordered: "ORDERED 3 WEEKS AGO",
-                //         status: "ANTIQUE DELIVERED",
-                //         image: 'assets/items/1.png',
-                //         delivered: true),
-                //   ],
-                // ),
+              ),
+              Positioned(
+                top: 75,
+                right: 75,
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                  width: MediaQuery.of(context).size.width * 0.87,
+                  decoration: BoxDecoration(color: RelicColors.primaryColor),
+                  child: ListView(
+                    shrinkWrap: true,
+                    primary: false,
+                    children: [
+                      OrderItem(
+                          title: "ANTIQUE VASE",
+                          ordered: "ORDERED 3 DAYS AGO",
+                          status: "STATUS : ON THE WAY",
+                          image: 'assets/items/3.png'),
+                      Divider(
+                        color: Colors.white,
+                      ),
+                      OrderItem(
+                          title: "TATUNG EINSTEIN",
+                          ordered: "ORDERED 3 WEEKS AGO",
+                          status: "ANTIQUE DELIVERED",
+                          image: 'assets/items/1.png',
+                          delivered: true),
+                    ],
+                  ),
+                  // child: Column(
+                  //   children: [
+                  //     OrderItem(
+                  //         title: "ANTIQUE VASE",
+                  //         ordered: "ORDERED 3 DAYS AGO",
+                  //         status: "STATUS : ON THE WAY",
+                  //         image: 'assets/items/3.png'),
+                  //     Divider(
+                  //       color: Colors.white,
+                  //     ),
+                  //     OrderItem(
+                  //         title: "TATUNG EINSTEIN",
+                  //         ordered: "ORDERED 3 WEEKS AGO",
+                  //         status: "ANTIQUE DELIVERED",
+                  //         image: 'assets/items/1.png',
+                  //         delivered: true),
+                  //   ],
+                  // ),
+                ),
               ),
             ],
           ),

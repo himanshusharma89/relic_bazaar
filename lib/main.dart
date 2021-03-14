@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:retro_shopping/helpers/constants.dart';
+import 'package:retro_shopping/views/profile.dart';
 import 'package:retro_shopping/widgets/splash.dart';
 import 'dashboard.dart';
+
+import 'package:retro_shopping/views/Login.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
       routes: <String, WidgetBuilder>{
-        '/dashboard': (BuildContext context) => Dashboard(),
+        '/login': (BuildContext context) => LoginScreen(),
       },
       home: Splash(),
     );

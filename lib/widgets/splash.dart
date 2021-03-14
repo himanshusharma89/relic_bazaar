@@ -19,7 +19,7 @@ class _SplashState extends State<Splash> {
   }
 
   void navigationPage() {
-    Navigator.of(context).pushReplacementNamed('/dashboard');
+    Navigator.of(context).pushReplacementNamed('/login');
   }
 
   @override
