@@ -1,4 +1,4 @@
-name: Labeling new issue with Hacktoberfest
+name: Labeling new issue with GSSOC21
 on:
   issues:
       types: ['opened']
@@ -10,4 +10,4 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           ignore-comments: true
-          default-labels: '["GSSOC"]'
+          default-labels: '["GSSOC21"]'

@@ -17,28 +17,33 @@ class _CartItemState extends State<CartItem> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
       child: Row(
-        children: [
+        children: <Widget>[
           Stack(
-            children: [
+            children: <Widget>[
               Transform.translate(
-                offset: Offset(3.5, 4),
+                offset: const Offset(3.5, 4),
                 child: Container(
-                  height: 75,
-                  width: 75,
-                  decoration: BoxDecoration(
+                  height: height*0.18,
+                  width: width*0.3,
+                  // height: 75,
+                  // width: 75,
+                  decoration: const BoxDecoration(
                     color: Colors.black,
                     // image: DecorationImage(image: null)
                   ),
                 ),
               ),
               Container(
-                height: 75,
-                width: 75,
-                decoration: BoxDecoration(
+                height: height*0.18,
+                width: width*0.3,
+                // height: 75,
+                // width: 75,
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   // image: DecorationImage(image: null)
                 ),
@@ -50,15 +55,15 @@ class _CartItemState extends State<CartItem> {
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
+                children: <Widget>[
+                  const Text(
                     'Product Name',
                     style: TextStyle(
                         fontSize: 21,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                  Text(
+                  const Text(
                     'Name',
                     style: TextStyle(color: Colors.white),
                   ),
@@ -66,38 +71,42 @@ class _CartItemState extends State<CartItem> {
                     height: height * 0.005,
                   ),
                   Container(
-                    width: 75,
-                    height: 25,
-                    decoration: BoxDecoration(color: Colors.white, boxShadow: [
-                      BoxShadow(
-                          offset: Offset(0, 4),
-                          blurRadius: 8,
-                          color: Colors.black26)
-                    ]),
+                    // width: 75,
+                    // height: 25,
+                    height: height*0.04,
+                    width: width*0.25,
+                    decoration: const BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: <BoxShadow>[
+                          BoxShadow(
+                              offset: Offset(0, 4),
+                              blurRadius: 8,
+                              color: Colors.black26)
+                        ]),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
+                      children: <Widget>[
                         GestureDetector(
                           onTap: addQuantity,
-                          child: Icon(Icons.add),
+                          child: const Icon(Icons.add),
                         ),
                         Expanded(
                             child: TextField(
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
                           ),
                           readOnly: true,
                           controller: controller,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               border: InputBorder.none,
                               isDense: true,
-                              contentPadding: const EdgeInsets.all(0)),
+                              contentPadding: EdgeInsets.all(0)),
                         )),
                         GestureDetector(
                           onTap: subQuantity,
-                          child: Icon(Icons.remove),
+                          child: const Icon(Icons.remove),
                         ),
                       ],
                     ),
@@ -106,7 +115,7 @@ class _CartItemState extends State<CartItem> {
               ),
             ),
           ),
-          Text(
+          const Text(
             '₹65654',
             style: TextStyle(
                 fontWeight: FontWeight.bold, color: Colors.white, fontSize: 17),
