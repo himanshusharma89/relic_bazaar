@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
+import 'package:retro_shopping/widgets/payment/payment_successful.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class PaymentWindow extends StatefulWidget {
   @override
@@ -9,32 +12,76 @@ class PaymentWindow extends StatefulWidget {
 
 class _PaymentWindowState extends State<PaymentWindow> {
   int cnt1, cnt2;
-
+  final Razorpay _razorpay = Razorpay();
   @override
   void initState() {
     super.initState();
     cnt1 = 0;
     cnt2 = 0;
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+  }
+
+  @override
+  void dispose() {
+    _razorpay.clear();
+    super.dispose();
+  }
+
+  Future<void> _openCheckout() async {
+    final Map<String, Object> options = <String, Object>{
+      // Add valid key and other relevant options
+      //test secret: cDNVLmTdSU8A0u9iQKzZKbAv
+      'key': 'rzp_test_DmAGSfEISx8yQv',
+      'external': <String, List<String>>{
+        'wallets': <String>['paytm', 'gpay', 'bhim']
+      }
+    };
+
+    try {
+      _razorpay.open(options);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  void refresh() {
+    setState(() {});
+  }
+
+  Future<void> _handlePaymentSuccess(PaymentSuccessResponse response) async {
+    Fluttertoast.showToast(msg: 'SUCCESS: ${response.paymentId}');
+    Navigator.of(context).push(MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) => const PaymentSuccessful()));
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    Fluttertoast.showToast(
+        msg: 'ERROR: ${response.code} - ${response.message}');
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    Fluttertoast.showToast(msg: 'EXTERNAL_WALLET: ${response.walletName}');
   }
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Container(
       width: width,
       height: height * 0.36,
       margin: const EdgeInsets.only(bottom: kBottomNavigationBarHeight),
-      decoration: BoxDecoration(
-          color: Colors.white, border: Border.all(color: Colors.black)),
+      decoration: BoxDecoration(color: Colors.white, border: Border.all()),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const <Text>[
                 Text(
                   'CART TOTAL',
                   style: TextStyle(fontSize: 17),
@@ -48,14 +95,14 @@ class _PaymentWindowState extends State<PaymentWindow> {
             SizedBox(
               height: height * 0.002,
             ),
-            Divider(
+            const Divider(
               color: Colors.black,
               thickness: 1,
             ),
             SizedBox(
               height: height * 0.002,
             ),
-            Text(
+            const Text(
               'SHIPPING',
               style: TextStyle(fontSize: 17),
             ),
@@ -65,13 +112,13 @@ class _PaymentWindowState extends State<PaymentWindow> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
               child: Column(
-                children: [
-                  Container(
+                children: <Widget>[
+                  SizedBox(
                     height: height * 0.04,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      children: <Widget>[
                         GestureDetector(
                           onTap: () {
                             setState(() {
@@ -85,7 +132,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
                             }
                           },
                           child: Stack(
-                            children: [
+                            children: <Widget>[
                               Container(
                                 height: 30,
                                 width: 30,
@@ -95,16 +142,17 @@ class _PaymentWindowState extends State<PaymentWindow> {
                                         : Colors.transparent,
                                     border: Border.all(color: Colors.grey)),
                               ),
-                              cnt2 == 1
-                                  ? Transform.translate(
-                                      offset: Offset(2, -10),
-                                      child: Icon(
-                                        Icons.check,
-                                        color: Colors.black,
-                                        size: 45,
-                                      ),
-                                    )
-                                  : SizedBox()
+                              if (cnt2 == 1)
+                                Transform.translate(
+                                  offset: const Offset(2, -10),
+                                  child: const Icon(
+                                    Icons.check,
+                                    color: Colors.black,
+                                    size: 45,
+                                  ),
+                                )
+                              else
+                                const SizedBox()
                             ],
                           ),
                         ),
@@ -115,7 +163,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
                             padding: const EdgeInsets.all(4.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
+                              children: <Widget>[
                                 Text(
                                   'Premium Next Day Shipping ',
                                   style: TextStyle(
@@ -142,12 +190,12 @@ class _PaymentWindowState extends State<PaymentWindow> {
                   SizedBox(
                     height: height * 0.01,
                   ),
-                  Container(
+                  SizedBox(
                     height: height * 0.04,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      children: <Widget>[
                         GestureDetector(
                           onTap: () {
                             setState(() {
@@ -161,7 +209,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
                             }
                           },
                           child: Stack(
-                            children: [
+                            children: <Widget>[
                               Container(
                                 height: 30,
                                 width: 30,
@@ -171,16 +219,17 @@ class _PaymentWindowState extends State<PaymentWindow> {
                                         : Colors.transparent,
                                     border: Border.all(color: Colors.grey)),
                               ),
-                              cnt1 == 1
-                                  ? Transform.translate(
-                                      offset: Offset(2, -10),
-                                      child: Icon(
-                                        Icons.check,
-                                        color: Colors.black,
-                                        size: 45,
-                                      ),
-                                    )
-                                  : SizedBox()
+                              if (cnt1 == 1)
+                                Transform.translate(
+                                  offset: const Offset(2, -10),
+                                  child: const Icon(
+                                    Icons.check,
+                                    color: Colors.black,
+                                    size: 45,
+                                  ),
+                                )
+                              else
+                                const SizedBox()
                             ],
                           ),
                         ),
@@ -191,7 +240,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
                             padding: const EdgeInsets.all(4.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
+                              children: <Widget>[
                                 Text(
                                   'Basic Shipping',
                                   style: TextStyle(
@@ -218,13 +267,13 @@ class _PaymentWindowState extends State<PaymentWindow> {
                 ],
               ),
             ),
-            Divider(
+            const Divider(
               color: Colors.black,
               thickness: 0.9,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const <Text>[
                 Text(
                   'TOTAL',
                   style: TextStyle(fontSize: 17),
@@ -239,31 +288,36 @@ class _PaymentWindowState extends State<PaymentWindow> {
               height: height * 0.01,
             ),
             Center(
-              child: RetroButton(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Payment & Address',
-                        style: TextStyle(
-                          fontFamily: 'pix M 8pt',
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: RelicColors.primaryBlack,
+              child: InkWell(
+                onTap: () {
+                  _openCheckout();
+                },
+                child: RetroButton(
+                  upperColor: Colors.white,
+                  lowerColor: Colors.black,
+                  height: height * 0.052,
+                  width: width * 0.8,
+                  borderColor: Colors.black,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const <Widget>[
+                        Text(
+                          'Payment & Address',
+                          style: TextStyle(
+                            fontFamily: 'pix M 8pt',
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: RelicColors.primaryBlack,
+                          ),
+                          textAlign: TextAlign.left,
                         ),
-                        textAlign: TextAlign.left,
-                      ),
-                      Icon(Icons.arrow_forward),
-                    ],
+                        Icon(Icons.arrow_forward),
+                      ],
+                    ),
                   ),
                 ),
-                upperColor: Colors.white,
-                lowerColor: Colors.black,
-                height: height * 0.052,
-                width: width * 0.8,
-                borderColor: Colors.black,
               ),
             ),
           ],
