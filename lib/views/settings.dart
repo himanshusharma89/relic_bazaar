@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/views/profile.dart';
+import 'package:retro_shopping/views/orders.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 
 class Settings extends StatefulWidget {
-
   @override
   _SettingsState createState() => _SettingsState();
 }
@@ -12,11 +11,9 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   bool Switched_On = false;
 
-  Widget _setting_Buttons(String text, IconData ic){
+  Widget _setting_Buttons(String text, IconData ic) {
     return InkWell(
-      onTap: (){
-
-      },
+      //onTap: () {},
       child: Row(
         children: <Widget>[
           const SizedBox(
@@ -28,14 +25,17 @@ class _SettingsState extends State<Settings> {
                 const SizedBox(
                   width: 5,
                 ),
-                Icon(ic,
+                Icon(
+                  ic,
                   size: 30,
                   color: Colors.white,
                 ),
                 const SizedBox(
                   width: 5,
                 ),
-                Text(text,style: TextStyle(fontWeight: FontWeight.normal, fontSize: 20))
+                Text(text,
+                    style:
+                        TextStyle(fontWeight: FontWeight.normal, fontSize: 20))
               ],
             ),
           ),
@@ -63,7 +63,7 @@ class _SettingsState extends State<Settings> {
           leading: Padding(
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
-              onTap: (){
+              onTap: () {
                 Navigator.pop(context);
               },
               child: RetroButton(
@@ -72,8 +72,10 @@ class _SettingsState extends State<Settings> {
                 width: 35,
                 height: 35,
                 borderColor: Colors.white,
-                child: const Icon(Icons.arrow_back,color: Colors.black,),
-
+                child: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.black,
+                ),
               ),
             ),
           ),
@@ -83,7 +85,7 @@ class _SettingsState extends State<Settings> {
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Padding(
-            padding: const EdgeInsets.only(left:14.0,right: 10.0),
+            padding: const EdgeInsets.only(left: 14.0, right: 10.0),
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Stack(
@@ -94,40 +96,57 @@ class _SettingsState extends State<Settings> {
                     decoration: const BoxDecoration(color: Colors.black),
                   ),
                   Container(
-                    padding:
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16, horizontal: 12),
                     width: MediaQuery.of(context).size.width * 0.92 - 3,
                     height: MediaQuery.of(context).size.height * 0.85 + 5,
                     decoration:
-                    const BoxDecoration(color: RelicColors.primaryColor),
+                        const BoxDecoration(color: RelicColors.primaryColor),
                     child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children:  <Widget>[
-                          _setting_Buttons("Your Orders",Icons.bookmark_border_sharp),
+                        children: <Widget>[
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => OrderPage()),
+                              );
+                            },
+                            child: _setting_Buttons(
+                                "Your Orders", Icons.bookmark_border_sharp),
+                          ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                            padding:
+                                const EdgeInsets.only(left: 16.0, right: 16.0),
                             child: divider(),
                           ),
-                          _setting_Buttons("Change Username/\nPassword",Icons.person),
+                          _setting_Buttons(
+                              "Change Username/\nPassword", Icons.person),
                           Padding(
-                            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                            padding:
+                                const EdgeInsets.only(left: 16.0, right: 16.0),
                             child: divider(),
                           ),
-                          _setting_Buttons("FAQs",Icons.question_answer),
+                          _setting_Buttons("FAQs", Icons.question_answer),
                           Padding(
-                            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                            padding:
+                                const EdgeInsets.only(left: 16.0, right: 16.0),
                             child: divider(),
                           ),
-                          _setting_Buttons("Manage Address",Icons.location_pin),
+                          _setting_Buttons(
+                              "Manage Address", Icons.location_pin),
                           Padding(
-                            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                            padding:
+                                const EdgeInsets.only(left: 16.0, right: 16.0),
                             child: divider(),
                           ),
-                          _setting_Buttons("T&C",Icons.quick_contacts_dialer),
+                          _setting_Buttons("T&C", Icons.quick_contacts_dialer),
                           Padding(
-                            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                            padding:
+                                const EdgeInsets.only(left: 16.0, right: 16.0),
                             child: divider(),
                           ),
                           Row(
@@ -141,14 +160,18 @@ class _SettingsState extends State<Settings> {
                                     const SizedBox(
                                       width: 5,
                                     ),
-                                    const Icon(Icons.notifications_active,
+                                    const Icon(
+                                      Icons.notifications_active,
                                       size: 30,
                                       color: Colors.white,
                                     ),
                                     const SizedBox(
                                       width: 5,
                                     ),
-                                    Text("Notifications(on/off)",style: TextStyle(fontWeight: FontWeight.normal, fontSize: 20))
+                                    Text("Notifications(on/off)",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 20))
                                   ],
                                 ),
                               ),
@@ -165,20 +188,23 @@ class _SettingsState extends State<Settings> {
                             ],
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                            padding:
+                                const EdgeInsets.only(left: 16.0, right: 16.0),
                             child: divider(),
                           ),
-                          _setting_Buttons("LogOut",Icons.logout),
+                          _setting_Buttons("LogOut", Icons.logout),
                           Padding(
-                            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                            padding:
+                                const EdgeInsets.only(left: 16.0, right: 16.0),
                             child: divider(),
                           ),
-                          _setting_Buttons("GitHub Repo Link",Icons.verified_user_outlined),
+                          _setting_Buttons(
+                              "GitHub Repo Link", Icons.verified_user_outlined),
                           Padding(
-                            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                            padding:
+                                const EdgeInsets.only(left: 16.0, right: 16.0),
                             child: divider(),
                           ),
-
                         ],
                       ),
                     ),
@@ -187,7 +213,6 @@ class _SettingsState extends State<Settings> {
               ),
             ),
           ),
-        )
-    );
+        ));
   }
 }
