@@ -1,24 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/helpers/slide_route.dart';
+import 'package:retro_shopping/model/product.dart';
 import 'package:retro_shopping/widgets/product/product_page.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard(
       {Key key,
-      this.text,
-      this.owner,
-      this.amount,
-      this.image,
-      this.seller,
-      this.height})
+      this.product})
       : super(key: key);
-  final String text;
-  final String owner;
-  final String amount;
-  final String image;
-  final String seller;
-  final int height;
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +19,12 @@ class ProductCard extends StatelessWidget {
             context,
             SlideBottomRoute(
                 page: ProductPage(
-              text: text,
-              owner: owner,
-              image: image,
-              prodHeight: height,
-              seller: seller,
-              amount: amount,
+              text: product.text,
+              owner: product.owner,
+              image: product.image,
+              prodHeight: product.height,
+              seller: product.seller,
+              amount: product.amount,
             )));
       },
       child: Container(
@@ -57,7 +48,7 @@ class ProductCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                text,
+                product.text,
                 style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
@@ -67,7 +58,7 @@ class ProductCard extends StatelessWidget {
                 textAlign: TextAlign.left,
               ),
               Text(
-                owner,
+                product.owner,
                 style: const TextStyle(
                   fontSize: 11,
                   color: Colors.white,
@@ -80,7 +71,7 @@ class ProductCard extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                amount,
+                product.amount,
                 style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
@@ -92,7 +83,7 @@ class ProductCard extends StatelessWidget {
               Transform.translate(
                 offset: const Offset(16, 10),
                 child: Image.asset(
-                  image,
+                  product.image,
                   height: 148,
                   width: 154,
                 ),
