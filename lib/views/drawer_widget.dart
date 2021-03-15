@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:retro_shopping/views/orders.dart';
 //import 'package:retro_shopping/views/profile.dart';
 import '../widgets/drawer_item.dart';
 import './Wishlist.dart';
@@ -21,10 +22,20 @@ class DrawerWidget extends StatelessWidget {
             onTap: () {},
           ),
           DrawerItem(
+            icon: Icons.inbox,
+            title: 'ORDERS',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => OrderPage()),
+              );
+            },
+          ),
+          DrawerItem(
             icon: Icons.list,
             title: 'WISHLIST',
             onTap: () {
-               Navigator.push(
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => Wishlistscreen()),
               );
