@@ -32,6 +32,8 @@ dependencies:
   firebase_core: ^1.0.0
   google_fonts: ^1.1.0
   razorpay_flutter: 1.1.0
+  google_mobile_ads: ^0.11.0+3
+
   
   
 dependency_overrides: 
