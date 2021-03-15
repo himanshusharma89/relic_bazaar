@@ -33,11 +33,7 @@ dependencies:
   google_fonts: ^1.1.0
   razorpay_flutter: 1.1.0
   google_mobile_ads: ^0.11.0+3
-
-  
-  
-dependency_overrides: 
-  flutter_svg: ^0.20.0-nullsafety.3
+  flutter_svg: ^0.20.0-nullsafety.3  
 
 dev_dependencies:
   flutter_test:
