@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
+import 'package:retro_shopping/views/manage_address.dart';
 import 'package:retro_shopping/views/orders.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 
@@ -11,9 +12,13 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   bool Switched_On = false;
 
-  Widget _setting_Buttons(String text, IconData ic) {
+  Widget _setting_Buttons(String text, IconData ic, {var tags}) {
     return InkWell(
-      //onTap: () {},
+      onTap: () {
+        if (tags != null){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => tags));
+        }
+      },
       child: Row(
         children: <Widget>[
           const SizedBox(
@@ -107,17 +112,8 @@ class _SettingsState extends State<Settings> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => OrderPage()),
-                              );
-                            },
-                            child: _setting_Buttons(
-                                "Your Orders", Icons.bookmark_border_sharp),
-                          ),
+                          _setting_Buttons(
+                                "Your Orders", Icons.bookmark_border_sharp, tags: OrderPage()),
                           Padding(
                             padding:
                                 const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -137,7 +133,7 @@ class _SettingsState extends State<Settings> {
                             child: divider(),
                           ),
                           _setting_Buttons(
-                              "Manage Address", Icons.location_pin),
+                              "Manage Address", Icons.location_pin, tags: ManageAddress()),
                           Padding(
                             padding:
                                 const EdgeInsets.only(left: 16.0, right: 16.0),
