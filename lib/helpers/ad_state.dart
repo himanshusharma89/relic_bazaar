@@ -9,10 +9,10 @@ class AdState {
 
   AdListener get adListener => _adListener;
 
-  AdListener _adListener = AdListener(
-    onAdLoaded: (ad) => print('Ad loaded: ${ad.adUnitId}'),
-    onAdClosed: (ad) => print('Ad closed: ${ad.adUnitId}'),
-    onAdFailedToLoad: (ad, error) => print('Ad failed: ${ad.adUnitId}, $error'),
-    onAdOpened: (ad) => print('Ad opener: ${ad.adUnitId}'),
+  final AdListener _adListener = AdListener(
+    onAdLoaded: (Ad ad) => print('Ad loaded: ${ad.adUnitId}'),
+    onAdClosed: (Ad ad) => print('Ad closed: ${ad.adUnitId}'),
+    onAdFailedToLoad: (Ad ad, LoadAdError error) => print('Ad failed: ${ad.adUnitId}, $error'),
+    onAdOpened: (Ad ad) => print('Ad opener: ${ad.adUnitId}'),
   );
 }

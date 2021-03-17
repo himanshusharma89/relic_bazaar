@@ -14,7 +14,7 @@ class RoutePage {
     switch (settings.name) {
       case RouteConstant.CART_SCREEN:
         return SlideLeftRoute(
-          page: Cart(),
+          page: const Cart(),
         );
 
       case RouteConstant.HOME_SCREEN:
@@ -23,7 +23,7 @@ class RoutePage {
         );
       case RouteConstant.LOGIN_SCREEN:
         return SlideLeftRoute(
-          page: Container(
+          page: const SizedBox(
             child: Text('Login Screen'),
           ),
         );
@@ -37,7 +37,7 @@ class RoutePage {
         );
       case RouteConstant.ABOUT_SCREEN:
         return SlideLeftRoute(
-          page: Container(
+          page: const SizedBox(
             child: Text('About'),
           ),
         );
@@ -51,26 +51,26 @@ class RoutePage {
         );
       case RouteConstant.WISHLIST_SCREEN:
         return SlideLeftRoute(
-          page: Container(
+          page: const SizedBox(
             child: Text('Wishlist Screen'),
           ),
         );
       case RouteConstant.ORDERS_SCREEN:
         return SlideLeftRoute(
-          page: Container(
+          page: const SizedBox(
             child: Text('Orders Screen'),
           ),
         );
       case RouteConstant.SETTINGS_SCREEN:
         return SlideLeftRoute(
-          page: Container(
+          page: const SizedBox(
             child: Text('Settings Screen'),
           ),
         );
-
+      //TODO: Needs to have a separate screen for this
       default:
-        return PageRouteBuilder(
-          pageBuilder: (_, firstAni, secondAni) => Container(
+        return PageRouteBuilder<dynamic>(
+          pageBuilder: (_, Animation<double> firstAni, Animation<double> secondAni) => const SizedBox(
             child: Text('Nothing'),
           ),
         );

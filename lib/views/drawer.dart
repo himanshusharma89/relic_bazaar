@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:retro_shopping/views/orders.dart';
 //import 'package:retro_shopping/views/profile.dart';
 import '../widgets/drawer_item.dart';
-import './Wishlist.dart';
+import 'wishlist.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({
@@ -27,7 +27,7 @@ class DrawerWidget extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => OrderPage()),
+                MaterialPageRoute<dynamic>(builder: (BuildContext context) => Order()),
               );
             },
           ),
@@ -37,7 +37,7 @@ class DrawerWidget extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Wishlistscreen()),
+                MaterialPageRoute<dynamic>(builder: (BuildContext context) => const Wishlist()),
               );
             },
           ),

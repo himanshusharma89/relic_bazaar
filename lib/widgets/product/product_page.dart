@@ -54,7 +54,7 @@ class _ProductPageState extends State<ProductPage> {
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
-        children: [
+        children: <Widget>[
           SafeArea(
             child: SingleChildScrollView(
               child: Container(
@@ -239,7 +239,7 @@ class _ProductPageState extends State<ProductPage> {
           if (bannerAd != null)
             Positioned(
               bottom: 0,
-              child: Container(
+              child: SizedBox(
                 width: width,
                 height: 50,
                 child: AdWidget(ad: bannerAd),

@@ -5,18 +5,18 @@ import 'package:retro_shopping/widgets/product/product_card.dart';
 // Route Names
 
 class RouteConstant {
-  static const SPLASH_SCREEN = '/';
-  static const DASHBOARD_SCREEN = '/dashboard';
-  static const HOME_SCREEN = '/home';
-  static const LOGIN_SCREEN = '/auth';
-  static const PROFILE_SCREEN = '/profile';
-  static const PRODUCTS_SCREEN = '/products';
-  static const SEARCH_SCREEN = '/search';
-  static const WISHLIST_SCREEN = '/wishlist';
-  static const CART_SCREEN = '/cart';
-  static const ORDERS_SCREEN = '/orders';
-  static const SETTINGS_SCREEN = '/settings';
-  static const ABOUT_SCREEN = 'about';
+  static const String SPLASH_SCREEN = '/';
+  static const String DASHBOARD_SCREEN = '/dashboard';
+  static const String HOME_SCREEN = '/home';
+  static const String LOGIN_SCREEN = '/auth';
+  static const String PROFILE_SCREEN = '/profile';
+  static const String PRODUCTS_SCREEN = '/products';
+  static const String SEARCH_SCREEN = '/search';
+  static const String WISHLIST_SCREEN = '/wishlist';
+  static const String CART_SCREEN = '/cart';
+  static const String ORDERS_SCREEN = '/orders';
+  static const String SETTINGS_SCREEN = '/settings';
+  static const String ABOUT_SCREEN = 'about';
 }
 
 class RelicColors {

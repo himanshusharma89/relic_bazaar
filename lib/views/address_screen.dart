@@ -22,13 +22,11 @@ class _AddressScreenState extends State<AddressScreen> {
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
             onTap: () {
-              Navigator.pushAndRemoveUntil(context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Settings();
-                    },
-                  ), (route) => false);
-
+              Navigator.pushAndRemoveUntil(context, MaterialPageRoute<dynamic>(
+                builder: (BuildContext context) {
+                  return Settings();
+                },
+              ), (Route<dynamic> route) => false);
             },
             child: RetroButton(
               upperColor: Colors.white,
@@ -43,17 +41,15 @@ class _AddressScreenState extends State<AddressScreen> {
             ),
           ),
         ),
-        title: Text("Manage Address"),
+        title: const Text('Manage Address'),
         elevation: 0.0,
       ),
       body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+              children: <Widget>[
                 Stack(
                   children: <Widget>[
                     Container(
@@ -64,59 +60,62 @@ class _AddressScreenState extends State<AddressScreen> {
                     Container(
                       padding: const EdgeInsets.symmetric(
                           vertical: 16, horizontal: 12),
-                      width: MediaQuery.of(context).size.width * 0.90- 2,
+                      width: MediaQuery.of(context).size.width * 0.90 - 2,
                       height: MediaQuery.of(context).size.height * 0.45 + 5,
                       decoration:
-                      const BoxDecoration(color: RelicColors.primaryColor),
-                      child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              SizedBox(height: 10,),
-                              Stack(
-                                children: <Widget>[
-                                  Container(
-                                    width: MediaQuery.of(context).size.width * 0.65 + 3,
-                                    height: 220,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Colors.black),
-                                  ),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width * 0.65,
-                                    height: 220,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(),
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Colors.white),
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.vertical,
-                                      child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              address.toString(),
-                                              style: const TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          )),
-                                    ),
-                                  ),
-                                ],
+                          const BoxDecoration(color: RelicColors.primaryColor),
+                      child: Column(
+                        children: <Widget>[
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Stack(
+                        children: <Widget>[
+                          Container(
+                            width:
+                                MediaQuery.of(context).size.width * 0.65 +
+                                    3,
+                            height: 220,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.black),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.65,
+                            height: 220,
+                            decoration: BoxDecoration(
+                                border: Border.all(),
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white),
+                            child: Center(
+                                child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                address.toString(),
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ],
-                          )
+                            )),
+                          ),
+                        ],
+                      ),
+                        ],
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 GestureDetector(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ManageAddress()));
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute<dynamic>(
+                            builder: (BuildContext context) =>
+                                ManageAddress()));
                   },
                   child: RetroButton(
                     upperColor: Colors.white,
@@ -127,8 +126,11 @@ class _AddressScreenState extends State<AddressScreen> {
                     child: Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.add,color: Colors.black,),
+                        children: const <Widget>[
+                          Icon(
+                            Icons.add,
+                            color: Colors.black,
+                          ),
                           Text(
                             'Add Address',
                             style: TextStyle(

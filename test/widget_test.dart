@@ -8,11 +8,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:retro_shopping/helpers/app_icons.dart';
-import 'package:retro_shopping/helpers/constants.dart';
 
-import 'package:retro_shopping/main.dart';
 import 'package:retro_shopping/model/product.dart';
-import 'package:retro_shopping/widgets/bottom_nav_bar.dart';
 import 'package:retro_shopping/widgets/payment/cart_item.dart';
 import 'package:retro_shopping/widgets/payment/order_item.dart';
 import 'package:retro_shopping/widgets/product/product_card.dart';
@@ -21,7 +18,7 @@ import 'package:retro_shopping/widgets/product/product_page.dart';
 void main() {
   //test for ProductCard widget
   testWidgets(
-    "ProductCard displays text and image correctly",
+    'ProductCard displays text and image correctly',
     (WidgetTester tester) async {
       await tester.pumpWidget(Directionality(
           textDirection: TextDirection.ltr,
@@ -46,10 +43,10 @@ void main() {
 
   //test for ProductPage widget
   testWidgets(
-    "ProductPage displays text and image correctly",
+    'ProductPage displays text and image correctly',
     (WidgetTester tester) async {
       await tester.pumpWidget(MediaQuery(
-        data: new MediaQueryData(),
+        data: const MediaQueryData(),
         child: Directionality(
           textDirection: TextDirection.ltr,
           child: ProductPage(
@@ -72,18 +69,17 @@ void main() {
 
   //test for bottomNavigationBar widget
   testWidgets(
-    "BottomNavigationBar works correctly",
+    'BottomNavigationBar works correctly',
     (WidgetTester tester) async {
       int index;
-      final PageController _controller = new PageController();
 
       await tester.pumpWidget(
         MediaQuery(
-          data: new MediaQueryData(),
+          data: const MediaQueryData(),
           child: MaterialApp(
             home: Scaffold(
               bottomNavigationBar: BottomNavigationBar(
-                items: [
+                items: const <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
                     icon: Icon(RelicIcons.home),
                     label: 'home',
@@ -101,7 +97,7 @@ void main() {
                     label: 'profile',
                   ),
                 ],
-                onTap: (value) {
+                onTap: (int value) {
                   index = value;
                 },
               ),
@@ -117,11 +113,11 @@ void main() {
 
   //test for cart_item
   testWidgets(
-    "cartItem widget works correctly",
+    'cartItem widget works correctly',
     (WidgetTester tester) async {
       await tester.pumpWidget(
         MediaQuery(
-          data: new MediaQueryData(),
+          data: const MediaQueryData(),
           child: Directionality(
             textDirection: TextDirection.ltr,
             child: Scaffold(
@@ -133,10 +129,10 @@ void main() {
         ),
       );
 
-      final productName = find.text('Product Name');
-      final name = find.text('Name');
-      final addIcon = find.byIcon(Icons.add);
-      final removeIcon = find.byIcon(Icons.remove);
+      final Finder productName = find.text('Product Name');
+      final Finder name = find.text('Name');
+      final Finder addIcon = find.byIcon(Icons.add);
+      final Finder removeIcon = find.byIcon(Icons.remove);
 
       expect(productName, findsOneWidget);
       expect(name, findsOneWidget);
@@ -152,11 +148,11 @@ void main() {
 
   //test for OrderItem widget when order isn't delivered
   testWidgets(
-    "OrderItem widget works correctly (order confirmed)",
+    'OrderItem widget works correctly (order confirmed)',
     (WidgetTester tester) async {
       await tester.pumpWidget(
-        MediaQuery(
-          data: new MediaQueryData(),
+        const MediaQuery(
+          data: MediaQueryData(),
           child: Directionality(
             textDirection: TextDirection.ltr,
             child: OrderItem(
@@ -170,24 +166,24 @@ void main() {
         ),
       );
 
-      final titleText = find.text('title');
-      final orderedText = find.text('ordered');
-      final statusText = find.text('status');
+      final Finder titleText = find.text('title');
+      final Finder orderedText = find.text('ordered');
+      final Finder statusText = find.text('status');
 
       expect(titleText, findsOneWidget);
       expect(orderedText, findsOneWidget);
       expect(statusText, findsOneWidget);
-      expect(find.text("CANCEL"), findsNothing);
+      expect(find.text('CANCEL'), findsNothing);
     },
   );
 
   //test for OrderItem widget when order has been delivered
   testWidgets(
-    "OrderItem widget works correctly (order not confirmed yet)",
+    'OrderItem widget works correctly (order not confirmed yet)',
     (WidgetTester tester) async {
       await tester.pumpWidget(
-        MediaQuery(
-          data: new MediaQueryData(),
+        const MediaQuery(
+          data: MediaQueryData(),
           child: Directionality(
             textDirection: TextDirection.ltr,
             child: OrderItem(
@@ -195,20 +191,19 @@ void main() {
               image: 'assets/items/3.png',
               ordered: 'ordered',
               status: 'status',
-              delivered: false,
             ),
           ),
         ),
       );
 
-      final titleText = find.text('title');
-      final orderedText = find.text('ordered');
-      final statusText = find.text('status');
+      final Finder titleText = find.text('title');
+      final Finder orderedText = find.text('ordered');
+      final Finder statusText = find.text('status');
 
       expect(titleText, findsOneWidget);
       expect(orderedText, findsOneWidget);
       expect(statusText, findsOneWidget);
-      expect(find.text("CANCEL"), findsOneWidget);
+      expect(find.text('CANCEL'), findsOneWidget);
     },
   );
 }

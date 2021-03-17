@@ -76,9 +76,9 @@ class _DashboardState extends State<Dashboard> {
               alignment: Alignment.bottomCenter,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: [
+                children: <Widget>[
                   if (bannerAd != null)
-                    Container(
+                    SizedBox(
                       height: 50,
                       child: AdWidget(ad: bannerAd),
                     ),

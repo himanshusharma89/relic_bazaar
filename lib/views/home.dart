@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/app_icons.dart';
 import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/views/drawer_widget.dart';
+import 'package:retro_shopping/views/drawer.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 
 class Home extends StatelessWidget {

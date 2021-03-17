@@ -205,7 +205,7 @@ class TopSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: [
+      children: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -255,7 +255,7 @@ class TopSection extends StatelessWidget {
             onTap: (){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Settings()),
+                MaterialPageRoute<dynamic>(builder: (BuildContext context) => Settings()),
               );
             },
             child: RetroButton(
