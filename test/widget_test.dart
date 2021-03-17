@@ -11,6 +11,7 @@ import 'package:retro_shopping/helpers/app_icons.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 
 import 'package:retro_shopping/main.dart';
+import 'package:retro_shopping/model/product.dart';
 import 'package:retro_shopping/widgets/bottom_nav_bar.dart';
 import 'package:retro_shopping/widgets/payment/cart_item.dart';
 import 'package:retro_shopping/widgets/payment/order_item.dart';
@@ -23,16 +24,17 @@ void main() {
     "ProductCard displays text and image correctly",
     (WidgetTester tester) async {
       await tester.pumpWidget(Directionality(
-        textDirection: TextDirection.ltr,
-        child: ProductCard(
-          text: 'lorem',
-          owner: 'ipsum',
-          amount: 'dolor',
-          image: 'assets/items/3.png',
-          seller: 'seller',
-          height: 10,
-        ),
-      ));
+          textDirection: TextDirection.ltr,
+          child: ProductCard(
+            product: Product(
+              text: 'lorem',
+              owner: 'ipsum',
+              amount: 'dolor',
+              image: 'assets/items/3.png',
+              seller: 'seller',
+              height: 10,
+            ),
+          )));
 
       expect(find.text('lorem'), findsOneWidget);
       expect(find.text('ipsum'), findsOneWidget);

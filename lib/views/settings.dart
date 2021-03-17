@@ -13,11 +13,12 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   bool Switched_On = false;
 
-  Widget _setting_Buttons(String text, IconData ic, {var tags}) {
+  Widget _setting_Buttons(String text, IconData ic, {Widget tags}) {
     return InkWell(
       onTap: () {
-        if (tags != null){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => tags));
+        if (tags != null) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (BuildContext context) => tags));
         }
       },
       child: Row(
@@ -114,7 +115,8 @@ class _SettingsState extends State<Settings> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           _setting_Buttons(
-                                "Your Orders", Icons.bookmark_border_sharp, tags: OrderPage()),
+                              "Your Orders", Icons.bookmark_border_sharp,
+                              tags: OrderPage()),
                           Padding(
                             padding:
                                 const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -133,8 +135,8 @@ class _SettingsState extends State<Settings> {
                                 const EdgeInsets.only(left: 16.0, right: 16.0),
                             child: divider(),
                           ),
-                          _setting_Buttons(
-                              "Manage Address", Icons.location_pin, tags: AddressScreen()),
+                          _setting_Buttons("Manage Address", Icons.location_pin,
+                              tags: AddressScreen()),
                           Padding(
                             padding:
                                 const EdgeInsets.only(left: 16.0, right: 16.0),
