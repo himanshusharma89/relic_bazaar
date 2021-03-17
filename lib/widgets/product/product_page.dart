@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
+import 'package:retro_shopping/helpers/ad_state.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 
 import '../../helpers/app_icons.dart';
@@ -25,190 +28,224 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
+  BannerAd bannerAd;
+
+  @override
+  void didChangeDependencies() {
+    final AdState adState = Provider.of<AdState>(context);
+
+    adState.initialization.then(
+      (InitializationStatus status) => setState(
+        () => bannerAd = BannerAd(
+          // adUnitId: adState.bannerAdUnitId,
+          adUnitId: BannerAd.testAdUnitId,
+          size: AdSize.banner,
+          request: const AdRequest(),
+          listener: adState.adListener,
+        )..load(),
+      ),
+    );
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            width: width,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/background.png'))),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(
-                    height: height * 0.01,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        RetroButton(
-                          upperColor: Colors.white,
-                          lowerColor: Colors.black,
-                          width: 35,
-                          height: 35,
-                          borderColor: Colors.white,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Icon(Icons.arrow_back),
-                          ),
-                        ),
-                        RetroButton(
-                          upperColor: Colors.white,
-                          lowerColor: Colors.black,
-                          width: 35,
-                          height: 35,
-                          borderColor: Colors.white,
-                          child: const Padding(
-                            padding: EdgeInsets.only(top: 7, left: 6),
-                            child: Icon(
-                              RelicIcons.cart,
-                              size: 32,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: height * 0.03,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Stack(
+        children: [
+          SafeArea(
+            child: SingleChildScrollView(
+              child: Container(
+                width: width,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/background.png'))),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            RetroButton(
+                              upperColor: Colors.white,
+                              lowerColor: Colors.black,
+                              width: 35,
+                              height: 35,
+                              borderColor: Colors.white,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Icon(Icons.arrow_back),
+                              ),
+                            ),
+                            RetroButton(
+                              upperColor: Colors.white,
+                              lowerColor: Colors.black,
+                              width: 35,
+                              height: 35,
+                              borderColor: Colors.white,
+                              child: const Padding(
+                                padding: EdgeInsets.only(top: 7, left: 6),
+                                child: Icon(
+                                  RelicIcons.cart,
+                                  size: 32,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: height * 0.03,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          for (String s in widget.text.split(' '))
-                            Text(
-                              s,
-                              style: const TextStyle(
-                                  fontSize: 30,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                            )
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: const <Widget>[
-                          Text(
-                            'YEAR',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              for (String s in widget.text.split(' '))
+                                Text(
+                                  s,
+                                  style: const TextStyle(
+                                      fontSize: 30,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                )
+                            ],
                           ),
-                          Text(
-                            '1561',
-                            style: TextStyle(
-                                fontSize: 22,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: const <Widget>[
+                              Text(
+                                'YEAR',
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                '1561',
+                                style: TextStyle(
+                                    fontSize: 22,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ],
                           )
                         ],
-                      )
-                    ],
-                  ),
-                  Text(
-                    widget.owner,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
-                  SizedBox(
-                    height: height * 0.01,
-                  ),
-                  SizedBox(
-                    width: width * 0.40,
-                    // width: 100,
-                    // height: 40,
-                    child: Row(
-                      children: <Widget>[
-                        Column(
+                      ),
+                      Text(
+                        widget.owner,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
+                      SizedBox(
+                        width: width * 0.40,
+                        // width: 100,
+                        // height: 40,
+                        child: Row(
                           children: <Widget>[
-                            Text(
-                              'height'.toUpperCase(),
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                  // fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 11),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  'height'.toUpperCase(),
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                      // fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      fontSize: 11),
+                                ),
+                                Text(
+                                  widget.prodHeight.toString(),
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      fontSize: 16),
+                                )
+                              ],
                             ),
-                            Text(
-                              widget.prodHeight.toString(),
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  fontSize: 16),
+                            Expanded(
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                    'sold by'.toUpperCase(),
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                        // fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        fontSize: 11),
+                                  ),
+                                  Text(
+                                    widget.seller,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        fontSize: 16),
+                                  )
+                                ],
+                              ),
                             )
                           ],
                         ),
-                        Expanded(
-                          child: Column(
-                            children: <Widget>[
-                              Text(
-                                'sold by'.toUpperCase(),
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    // fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    fontSize: 11),
-                              ),
-                              Text(
-                                widget.seller,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    fontSize: 16),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  RetroButton(
-                    upperColor: Colors.white,
-                    lowerColor: Colors.black,
-                    width: width * 0.32,
-                    height: 35,
-                    borderColor: Colors.white,
-                    child: Center(
-                      child: Text(
-                        widget.amount,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: RelicColors.primaryColor,
-                            fontSize: 22),
                       ),
-                    ),
+                      SizedBox(
+                        height: height * 0.02,
+                      ),
+                      RetroButton(
+                        upperColor: Colors.white,
+                        lowerColor: Colors.black,
+                        width: width * 0.32,
+                        height: 35,
+                        borderColor: Colors.white,
+                        child: Center(
+                          child: Text(
+                            widget.amount,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: RelicColors.primaryColor,
+                                fontSize: 22),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: height * 0.025,
+                      ),
+                      discription(),
+                    const  SizedBox(height: 60),
+                    ],
                   ),
-                  SizedBox(
-                    height: height * 0.025,
-                  ),
-                  discription()
-                ],
+                ),
               ),
             ),
           ),
-        ),
+          if (bannerAd != null)
+            Positioned(
+              bottom: 0,
+              child: Container(
+                width: width,
+                height: 50,
+                child: AdWidget(ad: bannerAd),
+              ),
+            ),
+        ],
       ),
     );
   }

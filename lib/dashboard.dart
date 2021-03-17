@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
 
 import 'package:retro_shopping/views/cart.dart';
 import 'package:retro_shopping/views/home.dart';
 import 'package:retro_shopping/views/search.dart';
+import 'helpers/ad_state.dart';
 import 'views/profile.dart';
 import 'widgets/bottom_nav_bar.dart';
 
@@ -14,6 +17,26 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   PageController _pageController;
   int _currentIndex = 0;
+
+  BannerAd bannerAd;
+
+  @override
+  void didChangeDependencies() {
+    final AdState adState = Provider.of<AdState>(context);
+
+    adState.initialization.then(
+      (InitializationStatus status) => setState(
+        () => bannerAd = BannerAd(
+          // adUnitId: adState.bannerAdUnitId,
+          adUnitId: BannerAd.testAdUnitId,
+          size: AdSize.banner,
+          request: const AdRequest(),
+          listener: adState.adListener,
+        )..load(),
+      ),
+    );
+    super.didChangeDependencies();
+  }
 
   @override
   void initState() {
@@ -50,8 +73,19 @@ class _DashboardState extends State<Dashboard> {
               ],
             ),
             Align(
-                alignment: Alignment.bottomCenter,
-                child: FloatingNavBar(_currentIndex, _pageController)),
+              alignment: Alignment.bottomCenter,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (bannerAd != null)
+                    Container(
+                      height: 50,
+                      child: AdWidget(ad: bannerAd),
+                    ),
+                  FloatingNavBar(_currentIndex, _pageController),
+                ],
+              ),
+            ),
           ],
         ),
       ),
