@@ -8,16 +8,10 @@ import 'package:retro_shopping/views/home.dart';
 import 'package:retro_shopping/views/profile.dart';
 import 'package:retro_shopping/views/search.dart';
 import 'package:retro_shopping/widgets/product/product_page.dart';
-import 'package:retro_shopping/widgets/splash.dart';
 
 class RoutePage {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case '/':
-        return PageRouteBuilder(
-          pageBuilder: (_, firstAni, secondAni) => Splash(),
-        );
-
       case RouteConstant.CART_SCREEN:
         return SlideLeftRoute(
           page: Cart(),
