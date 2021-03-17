@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
+import 'package:retro_shopping/views/address_screen.dart';
 import 'package:retro_shopping/views/manage_address.dart';
 import 'package:retro_shopping/views/orders.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
@@ -133,7 +134,7 @@ class _SettingsState extends State<Settings> {
                             child: divider(),
                           ),
                           _setting_Buttons(
-                              "Manage Address", Icons.location_pin, tags: ManageAddress()),
+                              "Manage Address", Icons.location_pin, tags: AddressScreen()),
                           Padding(
                             padding:
                                 const EdgeInsets.only(left: 16.0, right: 16.0),

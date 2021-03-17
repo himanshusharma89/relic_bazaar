@@ -3,6 +3,8 @@ import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:retro_shopping/helpers/app_icons.dart';
 import 'package:retro_shopping/helpers/constants.dart';
+import 'package:retro_shopping/model/address.dart';
+import 'package:retro_shopping/views/address_screen.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 
 class ManageAddress extends StatefulWidget {
@@ -333,26 +335,6 @@ class _ManageAddressState extends State<ManageAddress> {
         ),
         title: Text("Manage Address"),
         elevation: 0.0,
-        actions: [
-          IconButton(
-              icon: Icon(Icons.home, color: Colors.white),
-              onPressed:(){
-                showDialog(
-                  context: context,
-                  builder: (context) =>  SimpleDialog(
-                    backgroundColor: Colors.white,
-                    titlePadding: EdgeInsets.symmetric(horizontal: 30, vertical: 16),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 30, vertical: 16),
-                    title: Text("Address", style: TextStyle(fontSize: 20)),
-                    children: [
-                      Text(finalAddress, style: TextStyle(fontSize: 15)),
-                    ],
-                  ),
-                );
-
-              }
-              )
-        ],
       ),
       body: Stepper(
         steps: steps,
@@ -406,7 +388,13 @@ class _ManageAddressState extends State<ManageAddress> {
                             finalAddress=name.text+"\n"+phone.text+"\n"+line1.text+",\n"+line2.text+",\n"+city.text+", "+state.text+"-"+pincode.text+",\n"+"India";
                           });
                         }
-                        Navigator.of(context).pop();
+                        address=finalAddress;
+                        Navigator.pushAndRemoveUntil(context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return AddressScreen();
+                              },
+                            ), (route) => false);
 
                       },
                     ),
