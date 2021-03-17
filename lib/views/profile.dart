@@ -264,7 +264,7 @@ class TopSection extends StatelessWidget {
               width: 35,
               height: 35,
               borderColor: Colors.white,
-              child: const Icon(Icons.menu,color: Colors.black,),
+              child: const Icon(Icons.settings,color: Colors.black,),
 
             ),
           ),
