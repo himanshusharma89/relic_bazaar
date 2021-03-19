@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/views/address_screen.dart';
-import 'package:retro_shopping/views/faqs_Screen.dart';
+import 'package:retro_shopping/views/faqs_screen.dart';
 import 'package:retro_shopping/views/orders.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 import 'package:retro_shopping/widgets/settings_item.dart';
@@ -65,9 +65,7 @@ class _SettingsState extends State<Settings> {
                   height: MediaQuery.of(context).size.height * 0.85 + 5,
                   decoration:
                       const BoxDecoration(color: RelicColors.primaryColor),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Column(
+                  child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         settingsItem(context, 'Your Orders',
@@ -164,7 +162,6 @@ class _SettingsState extends State<Settings> {
                         ),
                       ],
                     ),
-                  ),
                 ),
               ],
             ),
