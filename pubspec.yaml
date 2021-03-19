@@ -37,6 +37,7 @@ dependencies:
   geocoder: 0.2.1
   flutter_svg: ^0.20.0-nullsafety.3
   provider: ^5.0.0
+  advance_pdf_viewer: ^1.2.2
 
 dev_dependencies:
   flutter_test:
