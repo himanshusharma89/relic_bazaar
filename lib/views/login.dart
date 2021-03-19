@@ -17,15 +17,16 @@ TextEditingController _passwordController = TextEditingController();
 class LoginScreenState extends State<LoginScreen>{
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Scaffold(
 
     body: Stack(
+      // ignore: always_specify_types
       children: [
       Center(
       child: Stack(
-      alignment: AlignmentDirectional.topStart,
+      // ignore: always_specify_types
       children: [
         Transform.translate(
           offset: const Offset(5,5),
@@ -42,12 +43,15 @@ class LoginScreenState extends State<LoginScreen>{
             decoration: const BoxDecoration(color: RelicColors.primaryColor),
             child: Center(
               child: ListView(
+                // ignore: always_specify_types
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                     child: Row(
+                      // ignore: always_specify_types, prefer_const_literals_to_create_immutables
                       children: [
-                        const Text('Login',
+                        // ignore: prefer_const_literals_to_create_immutables,
+                         const Text('Login',
                           style: TextStyle(
                               fontSize: 40,
                               color: Colors.white,
@@ -74,6 +78,7 @@ class LoginScreenState extends State<LoginScreen>{
                     height: height*0.020,
                   ),
                   Stack(
+                      // ignore: always_specify_types
                       children:[
                         Transform.translate(
                           offset: const Offset(25,10),
@@ -112,6 +117,7 @@ class LoginScreenState extends State<LoginScreen>{
                     height: height*0.030,
                   ),
                   Stack(
+                      // ignore: always_specify_types
                       children:[
                         Transform.translate(
                           offset: const Offset(25,10),
@@ -184,6 +190,7 @@ class LoginScreenState extends State<LoginScreen>{
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 115),
                     child: Row(
+                        // ignore: always_specify_types
                         children:[
                           InkWell(
                             onTap: (){
