@@ -6,6 +6,7 @@ import 'package:retro_shopping/helpers/ad_state.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:retro_shopping/views/auth/login_view.dart';
+import 'dashboard.dart';
 
 Future<void> main() async {
   //firebase Initialization
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
                 GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
         routes: <String, WidgetBuilder>{
           '/login': (BuildContext context) => LoginScreen(),
+          '/dashboard': (BuildContext context) => Dashboard(),
         },
         home: LoginScreen(),
       ),
