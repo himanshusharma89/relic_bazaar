@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 import 'package:retro_shopping/dashboard.dart';
+import 'package:retro_shopping/services/google_auth.dart';
 
 class LoginScreen extends StatefulWidget{
   @override
@@ -195,6 +196,19 @@ class LoginScreenState extends State<LoginScreen>{
                           InkWell(
                             onTap: (){
                               debugPrint('Navigate to google!');
+                              signInWithGoogle().then(
+                                    (result) {
+                                  if (result != null) {
+                                    Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return Dashboard();
+                                        },
+                                      ),
+                                    );
+                                  };
+                                },
+                              );
                             },
                             // ignore: sized_box_for_whitespace
                             child: Container(

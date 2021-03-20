@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:retro_shopping/services/google_auth.dart';
 import 'package:retro_shopping/views/orders.dart';
 //import 'package:retro_shopping/views/profile.dart';
 import '../widgets/drawer_item.dart';
-import 'wishlist.dart';
+import 'Wishlist.dart';
+import 'package:retro_shopping/views/login.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({
@@ -49,7 +51,15 @@ class DrawerWidget extends StatelessWidget {
           DrawerItem(
             icon: Icons.logout,
             title: 'LOG OUT',
-            onTap: () {},
+            onTap: () {
+              signOutGoogle().then(
+                    (res) {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (BuildContext context) => LoginScreen()),);
+                },
+              );
+            },
           ),
         ],
       ),
