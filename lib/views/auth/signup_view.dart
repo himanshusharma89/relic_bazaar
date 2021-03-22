@@ -4,7 +4,13 @@ import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/views/auth/login_view.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 import 'package:retro_shopping/dashboard.dart';
+<<<<<<< HEAD:lib/views/auth/signup_view.dart
 import 'package:retro_shopping/services/auth_service.dart';
+=======
+import 'package:retro_shopping/services/google_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:retro_shopping/widgets/custom_alertdialog.dart';
+>>>>>>> 1d0cb92 (Added Email Auth):lib/views/login.dart
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -16,7 +22,19 @@ class SignUpScreen extends StatefulWidget {
 TextEditingController _emailController = TextEditingController();
 TextEditingController _passwordController = TextEditingController();
 
+<<<<<<< HEAD:lib/views/auth/signup_view.dart
 class SignUpScreenState extends State<SignUpScreen> {
+=======
+class LoginScreenState extends State<LoginScreen> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  String email;
+  String password;
+  String errorMessage;
+
+  AlertBox alertBox = AlertBox();
+
+>>>>>>> 1d0cb92 (Added Email Auth):lib/views/login.dart
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -108,7 +126,12 @@ class SignUpScreenState extends State<SignUpScreen> {
                                     child: Container(
                                       height: height * 0.07,
                                       child: TextField(
+                                          onChanged: (value) {
+                                            email = value;
+                                          },
                                           controller: _emailController,
+                                          keyboardType:
+                                              TextInputType.emailAddress,
                                           decoration: const InputDecoration(
                                               labelText: 'Email Address',
                                               labelStyle: TextStyle(
@@ -143,7 +166,13 @@ class SignUpScreenState extends State<SignUpScreen> {
                                     child: Container(
                                       height: height * 0.07,
                                       child: TextField(
+                                          onChanged: (value) {
+                                            password = value;
+                                          },
                                           controller: _passwordController,
+                                          keyboardType:
+                                              TextInputType.visiblePassword,
+                                          obscureText: true,
                                           decoration: const InputDecoration(
                                               labelText: 'Password',
                                               labelStyle: TextStyle(
@@ -202,6 +231,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                                   padding: const EdgeInsets.only(
                                       left: 20.0, right: 20.0),
                                   child: InkWell(
+<<<<<<< HEAD:lib/views/auth/signup_view.dart
                                     onTap: () {
                                       debugPrint('SignUp!!');
                                       // ignore: always_specify_types
@@ -209,6 +239,41 @@ class SignUpScreenState extends State<SignUpScreen> {
                                           builder: (BuildContext context) {
                                         return LoginScreen();
                                       }));
+=======
+                                    onTap: () async {
+                                      try {
+                                        final existingUser = await _auth
+                                            .signInWithEmailAndPassword(
+                                                email: email,
+                                                password: password);
+                                        if (existingUser != null) {
+                                          Navigator.pushReplacementNamed(
+                                              context, '/dashboard');
+                                          _emailController.clear();
+                                          _passwordController.clear();
+                                        }
+                                      } catch (e) {
+                                        if (e
+                                            .toString()
+                                            .contains('invalid-email')) {
+                                          errorMessage = 'Invalid Email';
+                                        } else if (e
+                                            .toString()
+                                            .contains('user-not-found')) {
+                                          errorMessage = 'User Not Found';
+                                        } else if (e
+                                            .toString()
+                                            .contains('wrong-password')) {
+                                          errorMessage = 'Incorrect Password';
+                                        } else {
+                                          errorMessage = 'Invalid Request';
+                                        }
+                                        await alertBox.getAlertBox(
+                                            context, errorMessage);
+                                      }
+                                      debugPrint('Login!');
+                                      // ignore: always_specify_types
+>>>>>>> 1d0cb92 (Added Email Auth):lib/views/login.dart
                                     },
                                     child: RetroButton(
                                       upperColor: Colors.black,

@@ -7,9 +7,11 @@ import 'package:retro_shopping/views/profile/wishlist.dart';
 import '../widgets/drawer_item.dart';
 
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({
+  DrawerWidget({
     Key key,
   }) : super(key: key);
+
+  // final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {

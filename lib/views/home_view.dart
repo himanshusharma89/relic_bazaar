@@ -18,7 +18,7 @@ class Home extends StatelessWidget {
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       key: _drawerKey,
-      drawer: const DrawerWidget(),
+      drawer: DrawerWidget(),
       body: SingleChildScrollView(
           primary: true,
           child: SizedBox(
