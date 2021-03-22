@@ -3,6 +3,7 @@ import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/views/address_screen.dart';
 import 'package:retro_shopping/views/faqs_screen.dart';
 import 'package:retro_shopping/views/orders.dart';
+import 'package:retro_shopping/views/change_username_password.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 import 'package:retro_shopping/widgets/settings_item.dart';
 
@@ -77,7 +78,8 @@ class _SettingsState extends State<Settings> {
                           child: divider(),
                         ),
                         settingsItem(context, 'Change Username/\nPassword',
-                            Icons.person),
+                            Icons.person,
+                        tags: ChangeUsername()),
                         Padding(
                           padding:
                               const EdgeInsets.only(left: 16.0, right: 16.0),
