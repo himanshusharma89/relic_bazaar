@@ -5,11 +5,14 @@ import 'package:retro_shopping/views/orders.dart';
 import '../widgets/drawer_item.dart';
 import 'Wishlist.dart';
 import 'package:retro_shopping/views/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({
+  DrawerWidget({
     Key key,
   }) : super(key: key);
+
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,8 @@ class DrawerWidget extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute<dynamic>(builder: (BuildContext context) => Order()),
+                MaterialPageRoute<dynamic>(
+                    builder: (BuildContext context) => Order()),
               );
             },
           ),
@@ -39,7 +43,8 @@ class DrawerWidget extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute<dynamic>(builder: (BuildContext context) => const Wishlist()),
+                MaterialPageRoute<dynamic>(
+                    builder: (BuildContext context) => const Wishlist()),
               );
             },
           ),
@@ -51,12 +56,19 @@ class DrawerWidget extends StatelessWidget {
           DrawerItem(
             icon: Icons.logout,
             title: 'LOG OUT',
-            onTap: () {
+            onTap: () async {
+              final user = _auth.currentUser;
+              if (user != null) {
+                await _auth.signOut();
+                Navigator.pushReplacementNamed(context, '/login');
+              }
               signOutGoogle().then(
-                    (res) {
+                (res) {
                   Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (BuildContext context) => LoginScreen()),);
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => LoginScreen()),
+                  );
                 },
               );
             },

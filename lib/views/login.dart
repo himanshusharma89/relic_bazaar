@@ -6,6 +6,7 @@ import 'package:retro_shopping/widgets/retro_button.dart';
 import 'package:retro_shopping/dashboard.dart';
 import 'package:retro_shopping/services/google_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:retro_shopping/widgets/custom_alertdialog.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -22,6 +23,9 @@ class LoginScreenState extends State<LoginScreen> {
 
   String email;
   String password;
+  String errorMessage;
+
+  AlertBox alertBox = AlertBox();
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +118,12 @@ class LoginScreenState extends State<LoginScreen> {
                                     child: Container(
                                       height: height * 0.07,
                                       child: TextField(
+                                          onChanged: (value) {
+                                            email = value;
+                                          },
                                           controller: _emailController,
+                                          keyboardType:
+                                              TextInputType.emailAddress,
                                           decoration: const InputDecoration(
                                               labelText: 'Email Address',
                                               labelStyle: TextStyle(
@@ -149,7 +158,13 @@ class LoginScreenState extends State<LoginScreen> {
                                     child: Container(
                                       height: height * 0.07,
                                       child: TextField(
+                                          onChanged: (value) {
+                                            password = value;
+                                          },
                                           controller: _passwordController,
+                                          keyboardType:
+                                              TextInputType.visiblePassword,
+                                          obscureText: true,
                                           decoration: const InputDecoration(
                                               labelText: 'Password',
                                               labelStyle: TextStyle(
@@ -173,13 +188,39 @@ class LoginScreenState extends State<LoginScreen> {
                                   padding: const EdgeInsets.only(
                                       left: 20.0, right: 20.0),
                                   child: InkWell(
-                                    onTap: () {
+                                    onTap: () async {
+                                      try {
+                                        final existingUser = await _auth
+                                            .signInWithEmailAndPassword(
+                                                email: email,
+                                                password: password);
+                                        if (existingUser != null) {
+                                          Navigator.pushReplacementNamed(
+                                              context, '/dashboard');
+                                          _emailController.clear();
+                                          _passwordController.clear();
+                                        }
+                                      } catch (e) {
+                                        if (e
+                                            .toString()
+                                            .contains('invalid-email')) {
+                                          errorMessage = 'Invalid Email';
+                                        } else if (e
+                                            .toString()
+                                            .contains('user-not-found')) {
+                                          errorMessage = 'User Not Found';
+                                        } else if (e
+                                            .toString()
+                                            .contains('wrong-password')) {
+                                          errorMessage = 'Incorrect Password';
+                                        } else {
+                                          errorMessage = 'Invalid Request';
+                                        }
+                                        await alertBox.getAlertBox(
+                                            context, errorMessage);
+                                      }
                                       debugPrint('Login!');
                                       // ignore: always_specify_types
-                                      Navigator.push(context, MaterialPageRoute(
-                                          builder: (BuildContext context) {
-                                        return Dashboard();
-                                      }));
                                     },
                                     child: RetroButton(
                                       upperColor: Colors.black,
