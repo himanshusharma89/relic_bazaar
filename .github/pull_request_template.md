@@ -13,6 +13,7 @@
 - [ ] No Conflicts
 - [ ] Change In Code
 - [ ] Change In Documentation
+- [ ] Follows linting rules
 
 ### Screenshots
 Before this PR            | After this PR
