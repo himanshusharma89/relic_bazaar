@@ -29,6 +29,7 @@ class LoginScreenState extends State<LoginScreen> {
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
+        // ignore: always_specify_types
         children: [
           Center(
             child: Stack(
