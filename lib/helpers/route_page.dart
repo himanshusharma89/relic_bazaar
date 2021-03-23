@@ -5,7 +5,7 @@ import 'package:retro_shopping/helpers/slide_route.dart';
 
 import 'package:retro_shopping/views/cart.dart';
 import 'package:retro_shopping/views/home.dart';
-import 'package:retro_shopping/views/profile.dart';
+import 'package:retro_shopping/views/profile/profile.dart';
 import 'package:retro_shopping/views/search.dart';
 import 'package:retro_shopping/widgets/product/product_page.dart';
 

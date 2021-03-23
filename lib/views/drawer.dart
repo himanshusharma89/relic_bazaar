@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/services/google_auth.dart';
-import 'package:retro_shopping/views/orders.dart';
-//import 'package:retro_shopping/views/profile.dart';
+import 'package:retro_shopping/services/auth_service.dart';
+import 'package:retro_shopping/views/profile/settings/about.dart';
+import 'package:retro_shopping/views/auth/login.dart';
+import 'package:retro_shopping/views/profile/orders.dart';
 import '../widgets/drawer_item.dart';
 import 'Wishlist.dart';
-import 'package:retro_shopping/views/login.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({
@@ -17,7 +17,16 @@ class DrawerWidget extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.only(top: 20.0),
         children: <Widget>[
-          DrawerItem(icon: Icons.person, title: 'ABOUT', onTap: () {}),
+          DrawerItem(
+              icon: Icons.person,
+              title: 'ABOUT',
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<dynamic>(
+                      builder: (BuildContext context) => AboutScreen()),
+                );
+              }),
           DrawerItem(
             icon: Icons.shopping_cart,
             title: 'CART',
@@ -29,7 +38,8 @@ class DrawerWidget extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute<dynamic>(builder: (BuildContext context) => Order()),
+                MaterialPageRoute<dynamic>(
+                    builder: (BuildContext context) => Order()),
               );
             },
           ),
@@ -39,7 +49,8 @@ class DrawerWidget extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute<dynamic>(builder: (BuildContext context) => const Wishlist()),
+                MaterialPageRoute<dynamic>(
+                    builder: (BuildContext context) => const Wishlist()),
               );
             },
           ),
@@ -52,11 +63,13 @@ class DrawerWidget extends StatelessWidget {
             icon: Icons.logout,
             title: 'LOG OUT',
             onTap: () {
-              signOutGoogle().then(
-                    (res) {
+              AuthenticationService.signOutGoogle().then(
+                (void res) {
                   Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (BuildContext context) => LoginScreen()),);
+                    context,
+                    MaterialPageRoute<dynamic>(
+                        builder: (BuildContext context) => LoginScreen()),
+                  );
                 },
               );
             },

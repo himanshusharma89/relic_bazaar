@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/views/address_screen.dart';
-import 'package:retro_shopping/views/faqs_screen.dart';
-import 'package:retro_shopping/views/orders.dart';
+import 'package:retro_shopping/views/profile/settings/address_screen.dart';
+import 'package:retro_shopping/views/profile/settings/faqs_screen.dart';
+import 'package:retro_shopping/views/profile/orders.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 import 'package:retro_shopping/widgets/settings_item.dart';
 

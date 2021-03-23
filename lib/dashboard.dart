@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
-import 'package:retro_shopping/views/login.dart';
 import 'package:retro_shopping/views/cart.dart';
 import 'package:retro_shopping/views/home.dart';
 import 'package:retro_shopping/views/search.dart';
 import 'helpers/ad_state.dart';
-import 'views/profile.dart';
+import 'views/profile/profile.dart';
 import 'widgets/bottom_nav_bar.dart';
 
 class Dashboard extends StatefulWidget {
