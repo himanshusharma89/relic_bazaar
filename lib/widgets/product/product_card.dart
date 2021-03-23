@@ -24,17 +24,26 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            SlideBottomRoute(
-                page: ProductPage(
-              text: text,
-              owner: owner,
-              image: image,
-              prodHeight: height,
-              seller: seller,
+        // Navigator.push(
+        //     context,
+        //     SlideBottomRoute(
+        //         page: ProductPage(
+        //       text: text,
+        //       owner: owner,
+        //       image: image,
+        //       prodHeight: height,
+        //       seller: seller,
+        //       amount: amount,
+        //     )));
+        Navigator.of(context).pushNamed(RouteConstant.PRODUCTS_SCREEN,
+            arguments: ProductCard(
               amount: amount,
-            )));
+              height: height,
+              image: image,
+              owner: owner,
+              seller: seller,
+              text: text,
+            ));
       },
       child: Container(
         width: 155.0,

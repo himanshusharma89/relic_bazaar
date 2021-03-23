@@ -4,7 +4,15 @@ import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/views/drawer_widget.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  final PageController pageController;
+
+  const Home({this.pageController});
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
   void _openDrawer() {
@@ -17,7 +25,9 @@ class Home extends StatelessWidget {
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       key: _drawerKey,
-      drawer: const DrawerWidget(),
+      drawer: DrawerWidget(
+        pageController: widget.pageController,
+      ),
       body: SingleChildScrollView(
           primary: true,
           child: SizedBox(
@@ -48,17 +58,24 @@ class Home extends StatelessWidget {
                             child: const Icon(Icons.menu),
                           ),
                         ),
-                        RetroButton(
-                          upperColor: Colors.white,
-                          lowerColor: Colors.black,
-                          width: 35,
-                          height: 35,
-                          borderColor: Colors.white,
-                          child: const Padding(
-                            padding: EdgeInsets.only(top: 7, left: 6),
-                            child: Icon(
-                              RelicIcons.cart,
-                              size: 32,
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              widget.pageController.jumpToPage(2);
+                            });
+                          },
+                          child: RetroButton(
+                            upperColor: Colors.white,
+                            lowerColor: Colors.black,
+                            width: 35,
+                            height: 35,
+                            borderColor: Colors.white,
+                            child: const Padding(
+                              padding: EdgeInsets.only(top: 7, left: 6),
+                              child: Icon(
+                                RelicIcons.cart,
+                                size: 32,
+                              ),
                             ),
                           ),
                         ),

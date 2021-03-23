@@ -7,6 +7,7 @@ import 'package:retro_shopping/views/cart.dart';
 import 'package:retro_shopping/views/home.dart';
 import 'package:retro_shopping/views/profile.dart';
 import 'package:retro_shopping/views/search.dart';
+import 'package:retro_shopping/views/settings.dart';
 import 'package:retro_shopping/widgets/product/product_page.dart';
 import 'package:retro_shopping/widgets/splash.dart';
 
@@ -53,6 +54,7 @@ class RoutePage {
         );
       case RouteConstant.PRODUCTS_SCREEN:
         return SlideBottomRoute(
+          settings: settings,
           page: ProductPage(),
         );
       case RouteConstant.WISHLIST_SCREEN:
@@ -69,9 +71,7 @@ class RoutePage {
         );
       case RouteConstant.SETTINGS_SCREEN:
         return SlideLeftRoute(
-          page: Container(
-            child: Text('Settings Screen'),
-          ),
+          page: Settings(),
         );
 
       default:

@@ -43,7 +43,7 @@ class _DashboardState extends State<Dashboard> {
                 });
               },
               children: <Widget>[
-                Home(),
+                Home(pageController: _pageController),
                 Search(),
                 const Cart(),
                 ProfilePage(),
