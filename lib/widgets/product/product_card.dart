@@ -1,31 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/helpers/slide_route.dart';
-import 'package:retro_shopping/model/product_model.dart';
 import 'package:retro_shopping/widgets/product/product_page.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard(
       {Key key,
-      this.product})
+      this.text,
+      this.owner,
+      this.amount,
+      this.image,
+      this.seller,
+      this.height})
       : super(key: key);
-  final Product product;
+  final String text;
+  final String owner;
+  final String amount;
+  final String image;
+  final String seller;
+  final int height;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            SlideBottomRoute(
-                page: ProductPage(
-              text: product.text,
-              owner: product.owner,
-              image: product.image,
-              prodHeight: product.height,
-              seller: product.seller,
-              amount: product.amount,
-            )));
+        // Navigator.push(
+        //     context,
+        //     SlideBottomRoute(
+        //         page: ProductPage(
+        //       text: text,
+        //       owner: owner,
+        //       image: image,
+        //       prodHeight: height,
+        //       seller: seller,
+        //       amount: amount,
+        //     )));
+        Navigator.of(context).pushNamed(RouteConstant.PRODUCTS_SCREEN,
+            arguments: ProductCard(
+              amount: amount,
+              height: height,
+              image: image,
+              owner: owner,
+              seller: seller,
+              text: text,
+            ));
       },
       child: Container(
         width: 155.0,
@@ -48,7 +66,7 @@ class ProductCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                product.text,
+                text,
                 style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
@@ -58,7 +76,7 @@ class ProductCard extends StatelessWidget {
                 textAlign: TextAlign.left,
               ),
               Text(
-                product.owner,
+                owner,
                 style: const TextStyle(
                   fontSize: 11,
                   color: Colors.white,
@@ -71,7 +89,7 @@ class ProductCard extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                product.amount,
+                amount,
                 style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
@@ -83,7 +101,7 @@ class ProductCard extends StatelessWidget {
               Transform.translate(
                 offset: const Offset(16, 10),
                 child: Image.asset(
-                  product.image,
+                  image,
                   height: 148,
                   width: 154,
                 ),

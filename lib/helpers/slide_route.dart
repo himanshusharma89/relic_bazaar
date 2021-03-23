@@ -79,7 +79,7 @@ class SlideTopRoute extends PageRouteBuilder<SlideTopRoute> {
 }
 
 class SlideBottomRoute extends PageRouteBuilder<SlideBottomRoute> {
-  SlideBottomRoute({this.page})
+  SlideBottomRoute({this.page, this.settings})
       : super(
           pageBuilder: (
             BuildContext context,
@@ -100,6 +100,10 @@ class SlideBottomRoute extends PageRouteBuilder<SlideBottomRoute> {
             ).animate(animation),
             child: child,
           ),
+          settings: settings,
         );
   final Widget page;
+
+  @override
+  final RouteSettings settings;
 }

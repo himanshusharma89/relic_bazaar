@@ -7,7 +7,8 @@ import 'package:retro_shopping/widgets/stacked_container.dart';
 
 class Home extends StatelessWidget {
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
-
+  final PageController pageController;
+  Home({this.pageController});
   void _openDrawer() {
     _drawerKey.currentState.openDrawer();
   }

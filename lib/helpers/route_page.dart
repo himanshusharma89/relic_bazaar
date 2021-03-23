@@ -6,7 +6,9 @@ import 'package:retro_shopping/helpers/slide_route.dart';
 import 'package:retro_shopping/views/cart_view.dart';
 import 'package:retro_shopping/views/home_view.dart';
 import 'package:retro_shopping/views/profile/profile_view.dart';
+import 'package:retro_shopping/views/profile/settings/settings_view.dart';
 import 'package:retro_shopping/views/search_view.dart';
+
 import 'package:retro_shopping/widgets/product/product_page.dart';
 
 class RoutePage {
@@ -52,6 +54,7 @@ class RoutePage {
         );
       case RouteConstant.PRODUCTS_SCREEN:
         return SlideBottomRoute(
+          settings: settings,
           page: ProductPage(),
         );
 
@@ -68,17 +71,17 @@ class RoutePage {
             child: Text('Orders Screen'),
           ),
         );
-        
+
       case RouteConstant.SETTINGS_SCREEN:
         return SlideLeftRoute(
-          page: const SizedBox(
-            child: Text('Settings Screen'),
-          ),
+          page: Settings(),
         );
       //TODO: Needs to have a separate screen for this
       default:
         return PageRouteBuilder<dynamic>(
-          pageBuilder: (_, Animation<double> firstAni, Animation<double> secondAni) => const SizedBox(
+          pageBuilder:
+              (_, Animation<double> firstAni, Animation<double> secondAni) =>
+                  const SizedBox(
             child: Text('Nothing'),
           ),
         );
