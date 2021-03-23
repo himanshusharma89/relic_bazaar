@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:retro_shopping/helpers/ad_state.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:retro_shopping/views/auth/login.dart';
+import 'package:retro_shopping/views/auth/login_view.dart';
 
 Future<void> main() async {
   //firebase Initialization

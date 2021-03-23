@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:retro_shopping/helpers/app_icons.dart';
 
-import 'package:retro_shopping/model/product.dart';
+import 'package:retro_shopping/model/product_model.dart';
 import 'package:retro_shopping/widgets/payment/cart_item.dart';
 import 'package:retro_shopping/widgets/payment/order_item.dart';
 import 'package:retro_shopping/widgets/product/product_card.dart';

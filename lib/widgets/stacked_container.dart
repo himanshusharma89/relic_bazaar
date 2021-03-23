@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 
 class StackedContainer extends StatelessWidget {
-  const StackedContainer({Key key, this.height, this.width, this.child})
+  const StackedContainer({@required this.child, Key key, this.height, this.width, this.color})
       : super(key: key);
 
   final double height;
   final double width;
   final Widget child;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class StackedContainer extends StatelessWidget {
           Container(
               height: height,
               width: width,
-              decoration: const BoxDecoration(color: RelicColors.primaryColor),
+              decoration: BoxDecoration(color: color ?? RelicColors.primaryColor),
               child: child),
         ],
       ),

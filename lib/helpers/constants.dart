@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/model/product.dart';
+import 'package:retro_shopping/model/product_model.dart';
 import 'package:retro_shopping/widgets/product/product_card.dart';
 
 // Route Names
 
 class RouteConstant {
-  static const String SPLASH_SCREEN = '/';
   static const String DASHBOARD_SCREEN = '/dashboard';
   static const String HOME_SCREEN = '/home';
   static const String LOGIN_SCREEN = '/auth';
@@ -16,7 +15,7 @@ class RouteConstant {
   static const String CART_SCREEN = '/cart';
   static const String ORDERS_SCREEN = '/orders';
   static const String SETTINGS_SCREEN = '/settings';
-  static const String ABOUT_SCREEN = 'about';
+  static const String ABOUT_SCREEN = '/about';
 }
 
 class RelicColors {

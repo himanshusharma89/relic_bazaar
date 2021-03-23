@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/services/auth_service.dart';
 import 'package:retro_shopping/views/profile/settings/about.dart';
-import 'package:retro_shopping/views/auth/login.dart';
+import 'package:retro_shopping/views/auth/login_view.dart';
 import 'package:retro_shopping/views/profile/orders.dart';
+import 'package:retro_shopping/views/profile/wishlist.dart';
 import '../widgets/drawer_item.dart';
-import 'Wishlist.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({

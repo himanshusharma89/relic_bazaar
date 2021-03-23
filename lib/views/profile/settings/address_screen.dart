@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/model/address.dart';
+import 'package:retro_shopping/model/address_model.dart';
 import 'package:retro_shopping/views/profile/settings/manage_address.dart';
-import 'package:retro_shopping/views/profile/settings/settings.dart';
+import 'package:retro_shopping/views/profile/settings/settings_view.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 
 class AddressScreen extends StatefulWidget {

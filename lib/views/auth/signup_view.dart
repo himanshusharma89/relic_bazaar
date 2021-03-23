@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/views/auth/login.dart';
+import 'package:retro_shopping/views/auth/login_view.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 import 'package:retro_shopping/dashboard.dart';
 import 'package:retro_shopping/services/auth_service.dart';

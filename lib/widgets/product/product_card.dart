@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/helpers/slide_route.dart';
-import 'package:retro_shopping/model/product.dart';
+import 'package:retro_shopping/model/product_model.dart';
 import 'package:retro_shopping/widgets/product/product_page.dart';
 
 class ProductCard extends StatelessWidget {

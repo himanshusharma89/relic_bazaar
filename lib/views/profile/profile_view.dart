@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/widgets/payment/order_item.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
-import 'package:retro_shopping/views/profile/settings/settings.dart';
+import 'package:retro_shopping/views/profile/settings/settings_view.dart';
 
 class ProfilePage extends StatelessWidget {
   @override

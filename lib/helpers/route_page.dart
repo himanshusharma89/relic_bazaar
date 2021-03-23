@@ -3,10 +3,10 @@ import 'package:retro_shopping/dashboard.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/helpers/slide_route.dart';
 
-import 'package:retro_shopping/views/cart.dart';
-import 'package:retro_shopping/views/home.dart';
-import 'package:retro_shopping/views/profile/profile.dart';
-import 'package:retro_shopping/views/search.dart';
+import 'package:retro_shopping/views/cart_view.dart';
+import 'package:retro_shopping/views/home_view.dart';
+import 'package:retro_shopping/views/profile/profile_view.dart';
+import 'package:retro_shopping/views/search_view.dart';
 import 'package:retro_shopping/widgets/product/product_page.dart';
 
 class RoutePage {
@@ -21,26 +21,31 @@ class RoutePage {
         return SlideLeftRoute(
           page: Home(),
         );
+
       case RouteConstant.LOGIN_SCREEN:
         return SlideLeftRoute(
           page: const SizedBox(
             child: Text('Login Screen'),
           ),
         );
+
       case RouteConstant.PROFILE_SCREEN:
         return SlideLeftRoute(
           page: ProfilePage(),
         );
+
       case RouteConstant.SEARCH_SCREEN:
         return SlideLeftRoute(
           page: Search(),
         );
+
       case RouteConstant.ABOUT_SCREEN:
         return SlideLeftRoute(
           page: const SizedBox(
             child: Text('About'),
           ),
         );
+
       case RouteConstant.DASHBOARD_SCREEN:
         return SlideLeftRoute(
           page: Dashboard(),
@@ -49,18 +54,21 @@ class RoutePage {
         return SlideBottomRoute(
           page: ProductPage(),
         );
+
       case RouteConstant.WISHLIST_SCREEN:
         return SlideLeftRoute(
           page: const SizedBox(
             child: Text('Wishlist Screen'),
           ),
         );
+
       case RouteConstant.ORDERS_SCREEN:
         return SlideLeftRoute(
           page: const SizedBox(
             child: Text('Orders Screen'),
           ),
         );
+        
       case RouteConstant.SETTINGS_SCREEN:
         return SlideLeftRoute(
           page: const SizedBox(

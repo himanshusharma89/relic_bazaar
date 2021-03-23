@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/model/address.dart';
+import 'package:retro_shopping/model/address_model.dart';
 import 'package:retro_shopping/views/profile/settings/address_screen.dart';
 import 'package:retro_shopping/widgets/address_text_field.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
