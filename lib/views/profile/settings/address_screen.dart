@@ -20,10 +20,7 @@ class _AddressScreenState extends State<AddressScreen> {
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
             onTap: () {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                RouteConstant.SETTINGS_SCREEN,
-                (Route<dynamic> route) => false,
-              );
+              Navigator.of(context).pop();
             },
             child: RetroButton(
               upperColor: Colors.white,

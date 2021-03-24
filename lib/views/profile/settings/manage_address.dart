@@ -353,10 +353,7 @@ class _ManageAddressState extends State<ManageAddress> {
                           });
                         }
                         address = finalAddress;
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          RouteConstant.ADDRESS_SCREEN,
-                          (Route<dynamic> route) => false,
-                        );
+                        Navigator.of(context).pop();
                       },
                       child: const Text(
                         'Yes',

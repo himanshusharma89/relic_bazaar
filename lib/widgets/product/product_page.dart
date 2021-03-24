@@ -9,6 +9,10 @@ import '../retro_button.dart';
 
 // ignore: must_be_immutable
 class ProductPage extends StatefulWidget {
+  final Product product;
+
+const  ProductPage({this.product});
+
   @override
   _ProductPageState createState() => _ProductPageState();
 }
@@ -36,7 +40,7 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
-    final Product args = ModalRoute.of(context).settings.arguments as Product;
+  
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -103,7 +107,7 @@ class _ProductPageState extends State<ProductPage> {
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              for (String s in args.text.split(' '))
+                              for (String s in widget.product.text.split(' '))
                                 Text(
                                   s,
                                   style: const TextStyle(
@@ -135,7 +139,7 @@ class _ProductPageState extends State<ProductPage> {
                         ],
                       ),
                       Text(
-                        args.owner,
+                        widget.product.owner,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.white),
                       ),
@@ -159,7 +163,7 @@ class _ProductPageState extends State<ProductPage> {
                                       fontSize: 11),
                                 ),
                                 Text(
-                                  args.height.toString(),
+                                  widget.product.height.toString(),
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -180,7 +184,7 @@ class _ProductPageState extends State<ProductPage> {
                                         fontSize: 11),
                                   ),
                                   Text(
-                                    args.seller,
+                                    widget.product.seller,
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -204,7 +208,7 @@ class _ProductPageState extends State<ProductPage> {
                         borderColor: Colors.white,
                         child: Center(
                           child: Text(
-                            args.amount,
+                            widget.product.amount,
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: RelicColors.primaryColor,
@@ -292,7 +296,7 @@ class _ProductPageState extends State<ProductPage> {
                             Transform.translate(
                               offset: const Offset(120, -180),
                               child: Image.asset(
-                                args.image,
+                                widget.product.image,
                                 width: 300,
                                 height: 300,
                               ),

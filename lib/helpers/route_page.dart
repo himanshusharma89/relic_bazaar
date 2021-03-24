@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:retro_shopping/dashboard.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/helpers/slide_route.dart';
+import 'package:retro_shopping/model/product_model.dart';
 import 'package:retro_shopping/views/auth/signup_view.dart';
 import 'package:retro_shopping/views/profile/orders.dart';
 
@@ -26,10 +27,6 @@ class RoutePage {
       case RouteConstant.CART_SCREEN:
         return SlideLeftRoute(
           page: Cart(),
-        );
-      case '/':
-        return PageRouteBuilder(
-          pageBuilder: (ctx, firstAni, secondAni) => LoginScreen(),
         );
       case RouteConstant.HOME_SCREEN:
         return SlideLeftRoute(
@@ -61,9 +58,11 @@ class RoutePage {
           page: Dashboard(),
         );
       case RouteConstant.PRODUCTS_SCREEN:
+        Product product = settings.arguments as Product;
         return SlideBottomRoute(
-          settings: settings,
-          page: ProductPage(),
+          page: ProductPage(
+            product: product,
+          ),
         );
 
       case RouteConstant.WISHLIST_SCREEN:
