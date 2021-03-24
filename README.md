@@ -1,3 +1,10 @@
+![Forks](https://img.shields.io/github/forks/himanshusharma89/relic_bazaar)
+![Stars](https://img.shields.io/github/stars/himanshusharma89/relic_bazaar)
+![Issues](https://img.shields.io/github/issues/himanshusharma89/relic_bazaar)
+![Pull Requests](https://img.shields.io/github/issues-pr/himanshusharma89/relic_bazaar?)
+
+<hr>
+
 <p align= "center"><img width=70% src="https://github.com/himanshusharma89/relic_bazaar/blob/master/images/promo.png"></p>
  
 
