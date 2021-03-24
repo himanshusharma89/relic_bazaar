@@ -214,16 +214,12 @@ class TopSection extends StatelessWidget {
               width: 140,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/person.png'), fit: BoxFit.cover)),
+                      image: AssetImage('assets/person.png'),
+                      fit: BoxFit.cover)),
             ),
-
-
-
-
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const <Widget>[
-
                 Text(
                   'Linus',
                   style: TextStyle(
@@ -246,17 +242,14 @@ class TopSection extends StatelessWidget {
                 ),
               ],
             ),
- ],
+          ],
         ),
         Positioned(
           top: 0,
           right: 0,
           child: GestureDetector(
-            onTap: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute<dynamic>(builder: (BuildContext context) => Settings()),
-              );
+            onTap: () {
+              Navigator.of(context).pushNamed(RouteConstant.SETTINGS_SCREEN);
             },
             child: RetroButton(
               upperColor: Colors.white,
@@ -264,8 +257,10 @@ class TopSection extends StatelessWidget {
               width: 35,
               height: 35,
               borderColor: Colors.white,
-              child: const Icon(Icons.settings,color: Colors.black,),
-
+              child: const Icon(
+                Icons.settings,
+                color: Colors.black,
+              ),
             ),
           ),
         ),

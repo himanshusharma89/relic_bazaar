@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/widgets/payment/payment_successful.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -52,8 +51,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
 
   Future<void> _handlePaymentSuccess(PaymentSuccessResponse response) async {
     Fluttertoast.showToast(msg: 'SUCCESS: ${response.paymentId}');
-    Navigator.of(context).push(MaterialPageRoute<dynamic>(
-        builder: (BuildContext context) => const PaymentSuccessful()));
+    Navigator.of(context).pushNamed(RouteConstant.PAYMENT_SUCCESSFULL);
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
@@ -111,7 +109,8 @@ class _PaymentWindowState extends State<PaymentWindow> {
                 height: height * 0.005,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                 child: Column(
                   children: <Widget>[
                     SizedBox(
@@ -137,7 +136,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
                                 children: <Widget>[
                                   Container(
                                     height: height * 0.4,
-                                    width: width*0.08,
+                                    width: width * 0.08,
                                     // height: 30,
                                     // width: 30,
                                     decoration: BoxDecoration(
@@ -167,15 +166,17 @@ class _PaymentWindowState extends State<PaymentWindow> {
                             child: Padding(
                               padding: const EdgeInsets.all(4.0),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   FittedBox(
                                     child: Text(
                                       'Premium Next Day Shipping ',
                                       style: TextStyle(
                                         fontSize: 16,
-                                        color:
-                                        cnt2 == 1 ? Colors.white : Colors.black,
+                                        color: cnt2 == 1
+                                            ? Colors.white
+                                            : Colors.black,
                                       ),
                                     ),
                                   ),
@@ -184,8 +185,9 @@ class _PaymentWindowState extends State<PaymentWindow> {
                                       '₹31',
                                       style: TextStyle(
                                         fontSize: 16,
-                                        color:
-                                            cnt2 == 1 ? Colors.white : Colors.black,
+                                        color: cnt2 == 1
+                                            ? Colors.white
+                                            : Colors.black,
                                       ),
                                     ),
                                   ),
@@ -222,7 +224,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
                                 children: <Widget>[
                                   Container(
                                     height: height * 0.4,
-                                    width: width*0.08,
+                                    width: width * 0.08,
                                     // height: 30,
                                     // width: 30,
                                     decoration: BoxDecoration(
@@ -247,34 +249,37 @@ class _PaymentWindowState extends State<PaymentWindow> {
                             ),
                           ),
                           Container(
-                            width: width*0.7,
+                            width: width * 0.7,
                             //width: width * 0.7,
                             color: cnt1 == 1 ? Colors.black : Colors.grey[300],
                             child: Padding(
                               padding: const EdgeInsets.all(4.0),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   FittedBox(
                                     child: Text(
                                       'Basic Shipping',
                                       style: TextStyle(
                                         fontSize: 16,
-                                        color:
-                                            cnt1 == 1 ? Colors.white : Colors.black,
+                                        color: cnt1 == 1
+                                            ? Colors.white
+                                            : Colors.black,
                                       ),
                                     ),
                                   ),
                                   FittedBox(
-                                  child: Text(
-                                    '₹31',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color:
-                                          cnt1 == 1 ? Colors.white : Colors.black,
+                                    child: Text(
+                                      '₹31',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: cnt1 == 1
+                                            ? Colors.white
+                                            : Colors.black,
+                                      ),
                                     ),
                                   ),
-                          ),
                                 ],
                               ),
                             ),

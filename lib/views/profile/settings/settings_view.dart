@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/views/profile/settings/address_screen.dart';
-import 'package:retro_shopping/views/profile/settings/faqs_screen.dart';
-import 'package:retro_shopping/views/profile/orders.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 import 'package:retro_shopping/widgets/settings_item.dart';
 
@@ -59,109 +56,123 @@ class _SettingsState extends State<Settings> {
                   decoration: const BoxDecoration(color: Colors.black),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 16, horizontal: 12),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
                   width: MediaQuery.of(context).size.width * 0.92 - 3,
                   height: MediaQuery.of(context).size.height * 0.85 + 5,
                   decoration:
                       const BoxDecoration(color: RelicColors.primaryColor),
                   child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        settingsItem(context, 'Your Orders',
-                            Icons.bookmark_border_sharp,
-                            tags: Order()),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 16.0, right: 16.0),
-                          child: divider(),
-                        ),
-                        settingsItem(context, 'Change Username/\nPassword',
-                            Icons.person),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 16.0, right: 16.0),
-                          child: divider(),
-                        ),
-                        settingsItem(context, 'FAQs', Icons.question_answer,tags: FaqsScreen()),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 16.0, right: 16.0),
-                          child: divider(),
-                        ),
-                        settingsItem(
-                            context, 'Manage Address', Icons.location_pin,
-                            tags: AddressScreen()),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 16.0, right: 16.0),
-                          child: divider(),
-                        ),
-                        settingsItem(
-                            context, 'T&C', Icons.quick_contacts_dialer),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 16.0, right: 16.0),
-                          child: divider(),
-                        ),
-                        Row(
-                          children: <Widget>[
-                            const SizedBox(
-                              height: 70,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      settingsItem(
+                        context,
+                        'Your Orders',
+                        Icons.bookmark_border_sharp,
+                        routeName: RouteConstant.ORDERS_SCREEN,
+                        push: true,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                        child: divider(),
+                      ),
+                      settingsItem(
+                        context,
+                        'Change Username/\nPassword',
+                        Icons.person,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                        child: divider(),
+                      ),
+                      settingsItem(
+                        context,
+                        'FAQs',
+                        Icons.question_answer,
+                        routeName: RouteConstant.FAQs_SCREEN,
+                        push: true,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                        child: divider(),
+                      ),
+                      settingsItem(
+                        context,
+                        'Manage Address',
+                        Icons.location_pin,
+                        routeName: RouteConstant.ADDRESS_SCREEN,
+                        push: true,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                        child: divider(),
+                      ),
+                      settingsItem(context, 'T&C', Icons.quick_contacts_dialer),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                        child: divider(),
+                      ),
+                      Row(
+                        children: <Widget>[
+                          const SizedBox(
+                            height: 70,
+                          ),
+                          Expanded(
+                            child: Row(
+                              children: const <Widget>[
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Icon(
+                                  Icons.notifications_active,
+                                  size: 30,
+                                  color: Colors.white,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text('Notifications(on/off)',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: 20))
+                              ],
                             ),
-                            Expanded(
-                              child: Row(
-                                children: const <Widget>[
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Icon(
-                                    Icons.notifications_active,
-                                    size: 30,
-                                    color: Colors.white,
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text('Notifications(on/off)',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 20))
-                                ],
-                              ),
-                            ),
-                            Switch(
-                              value: switchedOn,
-                              onChanged: (bool value) {
-                                setState(() {
-                                  switchedOn = value;
-                                });
-                              },
-                              activeColor: Colors.white,
-                              activeTrackColor: Colors.black,
-                            )
-                          ],
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 16.0, right: 16.0),
-                          child: divider(),
-                        ),
-                        settingsItem(context, 'LogOut', Icons.logout),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 16.0, right: 16.0),
-                          child: divider(),
-                        ),
-                        settingsItem(context, 'GitHub Repo Link',
-                            Icons.verified_user_outlined),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 16.0, right: 16.0),
-                          child: divider(),
-                        ),
-                      ],
-                    ),
+                          ),
+                          Switch(
+                            value: switchedOn,
+                            onChanged: (bool value) {
+                              setState(() {
+                                switchedOn = value;
+                              });
+                            },
+                            activeColor: Colors.white,
+                            activeTrackColor: Colors.black,
+                          )
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                        child: divider(),
+                      ),
+                      settingsItem(
+                        context,
+                        'LogOut',
+                        Icons.logout,
+                        routeName: RouteConstant.LOGIN_SCREEN,
+                        push: false,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                        child: divider(),
+                      ),
+                      settingsItem(context, 'GitHub Repo Link',
+                          Icons.verified_user_outlined),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                        child: divider(),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

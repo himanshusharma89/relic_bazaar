@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 Widget settingsItem(BuildContext context, String text, IconData ic,
-    {Widget tags}) {
+    {String routeName, bool push}) {
   return InkWell(
     onTap: () {
-      if (tags != null) {
-        Navigator.push(
-            context,
-            MaterialPageRoute<dynamic>(
-                builder: (BuildContext context) => tags));
+      if (routeName != null) {
+        if (push) {
+          Navigator.of(context).pushNamed(routeName);
+        } else {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              routeName, (Route<dynamic> route) => false);
+        }
       }
     },
     child: Row(

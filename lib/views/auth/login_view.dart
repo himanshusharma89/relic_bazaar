@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/services/auth_service.dart';
-import 'package:retro_shopping/views/auth/signup_view.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
-import 'package:retro_shopping/dashboard.dart';
 import 'package:retro_shopping/widgets/stacked_container.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -76,37 +75,38 @@ class LoginScreenState extends State<LoginScreen> {
                           height: height * 0.020,
                         ),
                         Stack(
-                            // ignore: always_specify_types
-                            children: [
-                              Transform.translate(
-                                offset: const Offset(25, 10),
-                                child: Container(
-                                  color: Colors.black,
-                                  width: width * 0.77,
-                                  height: height * 0.065,
+                          // ignore: always_specify_types
+                          children: [
+                            Transform.translate(
+                              offset: const Offset(25, 10),
+                              child: Container(
+                                color: Colors.black,
+                                width: width * 0.77,
+                                height: height * 0.065,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20.0, right: 20.0),
+                              // ignore: sized_box_for_whitespace
+                              child: Container(
+                                height: height * 0.07,
+                                child: TextField(
+                                  controller: _emailController,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Email Address',
+                                    labelStyle: TextStyle(
+                                        fontSize: 20.0, color: Colors.black),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.zero),
+                                  ),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 20.0, right: 20.0),
-                                // ignore: sized_box_for_whitespace
-                                child: Container(
-                                  height: height * 0.07,
-                                  child: TextField(
-                                      controller: _emailController,
-                                      decoration: const InputDecoration(
-                                          labelText: 'Email Address',
-                                          labelStyle: TextStyle(
-                                              fontSize: 20.0,
-                                              color: Colors.black),
-                                          filled: true,
-                                          fillColor: Colors.white,
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.zero))),
-                                ),
-                              ),
-                            ]),
+                            ),
+                          ],
+                        ),
                         SizedBox(
                           height: height * 0.030,
                         ),
@@ -155,10 +155,9 @@ class LoginScreenState extends State<LoginScreen> {
                                 onTap: () {
                                   debugPrint('Login!');
                                   // ignore: always_specify_types
-                                  Navigator.push(context, MaterialPageRoute(
-                                      builder: (BuildContext context) {
-                                    return Dashboard();
-                                  }));
+                                  Navigator.of(context).pushNamed(
+                                    RouteConstant.DASHBOARD_SCREEN,
+                                  );
                                 },
                                 child: RetroButton(
                                   upperColor: Colors.black,
@@ -196,13 +195,9 @@ class LoginScreenState extends State<LoginScreen> {
                                         .then(
                                       (String result) {
                                         if (result != null) {
-                                          Navigator.of(context).pushReplacement(
-                                            // ignore: always_specify_types
-                                            MaterialPageRoute(
-                                              builder: (BuildContext context) {
-                                                return Dashboard();
-                                              },
-                                            ),
+                                          Navigator.of(context)
+                                              .pushReplacementNamed(
+                                            RouteConstant.DASHBOARD_SCREEN,
                                           );
                                         }
                                       },
@@ -242,12 +237,8 @@ class LoginScreenState extends State<LoginScreen> {
                             InkWell(
                               onTap: () {
                                 // ignore: always_specify_types
-                                Navigator.pushReplacement(context,
-                                    MaterialPageRoute<dynamic>(
-                                        builder: (BuildContext context) {
-                                  debugPrint('Navigate to sign up page');
-                                  return SignUpScreen();
-                                }));
+                                Navigator.of(context)
+                                    .pushNamed(RouteConstant.SIGN_UP_SCREEN);
                               },
                               child: const Text(
                                 'SignUp',
