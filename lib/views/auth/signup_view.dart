@@ -1,16 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
+<<<<<<< HEAD:lib/views/auth/signup_view.dart
 import 'package:retro_shopping/views/auth/login_view.dart';
+=======
+>>>>>>> 1d0cb9254b16a1692b524a394a0a3ab31af31de6:lib/views/signup.dart
 import 'package:retro_shopping/widgets/retro_button.dart';
 import 'package:retro_shopping/dashboard.dart';
 <<<<<<< HEAD:lib/views/auth/signup_view.dart
 import 'package:retro_shopping/services/auth_service.dart';
 =======
 import 'package:retro_shopping/services/google_auth.dart';
+<<<<<<< HEAD:lib/views/auth/signup_view.dart
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:retro_shopping/widgets/custom_alertdialog.dart';
 >>>>>>> 1d0cb92 (Added Email Auth):lib/views/login.dart
+=======
+import 'package:retro_shopping/widgets/custom_alertdialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+>>>>>>> 1d0cb9254b16a1692b524a394a0a3ab31af31de6:lib/views/signup.dart
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -23,9 +31,13 @@ TextEditingController _emailController = TextEditingController();
 TextEditingController _passwordController = TextEditingController();
 
 <<<<<<< HEAD:lib/views/auth/signup_view.dart
+<<<<<<< HEAD:lib/views/auth/signup_view.dart
 class SignUpScreenState extends State<SignUpScreen> {
 =======
 class LoginScreenState extends State<LoginScreen> {
+=======
+class SignUpScreenState extends State<SignUpScreen> {
+>>>>>>> 1d0cb9254b16a1692b524a394a0a3ab31af31de6:lib/views/signup.dart
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   String email;
@@ -34,7 +46,10 @@ class LoginScreenState extends State<LoginScreen> {
 
   AlertBox alertBox = AlertBox();
 
+<<<<<<< HEAD:lib/views/auth/signup_view.dart
 >>>>>>> 1d0cb92 (Added Email Auth):lib/views/login.dart
+=======
+>>>>>>> 1d0cb9254b16a1692b524a394a0a3ab31af31de6:lib/views/signup.dart
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -208,6 +223,7 @@ class LoginScreenState extends State<LoginScreen> {
                                       height: height * 0.07,
                                       child: TextField(
                                           controller: _passwordController,
+                                          obscureText: true,
                                           decoration: const InputDecoration(
                                               labelText: 'Confirm Password',
                                               labelStyle: TextStyle(
@@ -231,6 +247,7 @@ class LoginScreenState extends State<LoginScreen> {
                                   padding: const EdgeInsets.only(
                                       left: 20.0, right: 20.0),
                                   child: InkWell(
+<<<<<<< HEAD:lib/views/auth/signup_view.dart
 <<<<<<< HEAD:lib/views/auth/signup_view.dart
                                     onTap: () {
                                       debugPrint('SignUp!!');
@@ -274,6 +291,41 @@ class LoginScreenState extends State<LoginScreen> {
                                       debugPrint('Login!');
                                       // ignore: always_specify_types
 >>>>>>> 1d0cb92 (Added Email Auth):lib/views/login.dart
+=======
+                                    onTap: () async {
+                                      try {
+                                        final newUser = await _auth
+                                            .createUserWithEmailAndPassword(
+                                                email: email,
+                                                password: password);
+                                        if (newUser != null) {
+                                          Navigator.pushReplacementNamed(
+                                              context, '/dashboard');
+                                          _emailController.clear();
+                                          _passwordController.clear();
+                                        }
+                                      } catch (e) {
+                                        if (e
+                                            .toString()
+                                            .contains('invalid-email')) {
+                                          errorMessage = 'Invalid Email';
+                                        } else if (e
+                                            .toString()
+                                            .contains('email-already-in-use')) {
+                                          errorMessage = 'User Already Exists';
+                                        } else if (e
+                                            .toString()
+                                            .contains('weak-password')) {
+                                          errorMessage = 'Password Too Short';
+                                        } else {
+                                          errorMessage = 'Invalid Request';
+                                        }
+                                        await alertBox.getAlertBox(
+                                            context, errorMessage);
+                                      }
+                                      debugPrint('SignUp!!');
+                                      // ignore: always_specify_types
+>>>>>>> 1d0cb9254b16a1692b524a394a0a3ab31af31de6:lib/views/signup.dart
                                     },
                                     child: RetroButton(
                                       upperColor: Colors.black,
@@ -308,8 +360,12 @@ class LoginScreenState extends State<LoginScreen> {
                                     InkWell(
                                       onTap: () {
                                         debugPrint('Navigate to google!');
+<<<<<<< HEAD:lib/views/auth/signup_view.dart
                                         AuthenticationService.signInWithGoogle()
                                             .then(
+=======
+                                        signInWithGoogle().then(
+>>>>>>> 1d0cb9254b16a1692b524a394a0a3ab31af31de6:lib/views/signup.dart
                                           (String result) {
                                             if (result != null) {
                                               Navigator.of(context)
