@@ -69,7 +69,9 @@ class _DashboardState extends State<Dashboard> {
                   pageController: _pageController,
                 ),
                 Search(),
-                const Cart(),
+                Cart(
+                  pageController: _pageController,
+                ),
                 ProfilePage(),
               ],
             ),

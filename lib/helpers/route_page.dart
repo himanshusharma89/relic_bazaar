@@ -25,7 +25,7 @@ class RoutePage {
     switch (settings.name) {
       case RouteConstant.CART_SCREEN:
         return SlideLeftRoute(
-          page: const Cart(),
+          page: Cart(),
         );
       case '/':
         return PageRouteBuilder(
