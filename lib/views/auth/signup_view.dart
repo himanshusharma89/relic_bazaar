@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/views/auth/login_view.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
-import 'package:retro_shopping/dashboard.dart';
 import 'package:retro_shopping/services/auth_service.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -205,10 +203,8 @@ class SignUpScreenState extends State<SignUpScreen> {
                                     onTap: () {
                                       debugPrint('SignUp!!');
                                       // ignore: always_specify_types
-                                      Navigator.push(context, MaterialPageRoute(
-                                          builder: (BuildContext context) {
-                                        return LoginScreen();
-                                      }));
+                                      Navigator.of(context).pushNamed(
+                                          RouteConstant.LOGIN_SCREEN);
                                     },
                                     child: RetroButton(
                                       upperColor: Colors.black,
@@ -248,14 +244,9 @@ class SignUpScreenState extends State<SignUpScreen> {
                                           (String result) {
                                             if (result != null) {
                                               Navigator.of(context)
-                                                  .pushReplacement(
-                                                // ignore: always_specify_types
-                                                MaterialPageRoute(
-                                                  builder:
-                                                      (BuildContext context) {
-                                                    return Dashboard();
-                                                  },
-                                                ),
+                                                  .pushNamedAndRemoveUntil(
+                                                RouteConstant.DASHBOARD_SCREEN,
+                                                (Route<dynamic> route) => false,
                                               );
                                             }
                                           },

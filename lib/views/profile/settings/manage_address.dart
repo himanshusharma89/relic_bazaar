@@ -153,58 +153,58 @@ class _ManageAddressState extends State<ManageAddress> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                        const Text('Add Address',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 18)),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        const Text('Line1:',
-                            style: TextStyle(fontSize: 15)),
-                        addressTextField(context,
-                            icon: Icons.house,
-                            hint: 'House No, Building Name',
-                            text: line1,
-                            type: TextInputType.streetAddress),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        const Text('Line2:',
-                            style: TextStyle(fontSize: 15)),
-                        addressTextField(context,
-                            icon: Icons.house,
-                            hint: 'Road name, Area Colony',
-                            text: line2,
-                            type: TextInputType.streetAddress),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        const Text('City:', style: TextStyle(fontSize: 15)),
-                        addressTextField(context,
-                            icon: Icons.location_city,
-                            hint: 'City',
-                            text: city,
-                            type: TextInputType.streetAddress),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        const Text('State:',
-                            style: TextStyle(fontSize: 15)),
-                        addressTextField(context,
-                            icon: Icons.location_pin,
-                            hint: 'State',
-                            text: state,
-                            type: TextInputType.streetAddress),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        const Text('Pincode:',
-                            style: TextStyle(fontSize: 15)),
-                        addressTextField(context,
-                            icon: Icons.location_pin,
-                            hint: 'Pincode',
-                            text: pincode,
-                            type: TextInputType.number),
+                            const Text('Add Address',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 18)),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            const Text('Line1:',
+                                style: TextStyle(fontSize: 15)),
+                            addressTextField(context,
+                                icon: Icons.house,
+                                hint: 'House No, Building Name',
+                                text: line1,
+                                type: TextInputType.streetAddress),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            const Text('Line2:',
+                                style: TextStyle(fontSize: 15)),
+                            addressTextField(context,
+                                icon: Icons.house,
+                                hint: 'Road name, Area Colony',
+                                text: line2,
+                                type: TextInputType.streetAddress),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            const Text('City:', style: TextStyle(fontSize: 15)),
+                            addressTextField(context,
+                                icon: Icons.location_city,
+                                hint: 'City',
+                                text: city,
+                                type: TextInputType.streetAddress),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            const Text('State:',
+                                style: TextStyle(fontSize: 15)),
+                            addressTextField(context,
+                                icon: Icons.location_pin,
+                                hint: 'State',
+                                text: state,
+                                type: TextInputType.streetAddress),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            const Text('Pincode:',
+                                style: TextStyle(fontSize: 15)),
+                            addressTextField(context,
+                                icon: Icons.location_pin,
+                                hint: 'Pincode',
+                                text: pincode,
+                                type: TextInputType.number),
                           ],
                         ),
                       ),
@@ -227,39 +227,39 @@ class _ManageAddressState extends State<ManageAddress> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                        Stack(
-                          children: <Widget>[
-                            Container(
-                              width:
-                                  MediaQuery.of(context).size.width * 0.65 +
-                                      3,
-                              height: 180,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.black),
-                            ),
-                            Container(
-                              width:
-                                  MediaQuery.of(context).size.width * 0.65,
-                              height: 180,
-                              decoration: BoxDecoration(
-                                  border: Border.all(),
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.white),
-                              child: Center(
-                                  child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  loc.text,
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                            Stack(
+                              children: <Widget>[
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.65 +
+                                          3,
+                                  height: 180,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.black),
                                 ),
-                              )),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.65,
+                                  height: 180,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(),
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.white),
+                                  child: Center(
+                                      child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      loc.text,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  )),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
                           ],
                         ),
                       ),
@@ -353,12 +353,7 @@ class _ManageAddressState extends State<ManageAddress> {
                           });
                         }
                         address = finalAddress;
-                        Navigator.pushAndRemoveUntil(context,
-                            MaterialPageRoute<dynamic>(
-                          builder: (BuildContext context) {
-                            return AddressScreen();
-                          },
-                        ), (Route<dynamic> route) => false);
+                        Navigator.of(context).pop();
                       },
                       child: const Text(
                         'Yes',

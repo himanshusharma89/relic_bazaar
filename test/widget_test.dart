@@ -49,14 +49,7 @@ void main() {
         data: const MediaQueryData(),
         child: Directionality(
           textDirection: TextDirection.ltr,
-          child: ProductPage(
-            text: 'text',
-            image: 'assets/items/3.png',
-            owner: 'owner',
-            amount: 'amount',
-            prodHeight: 10,
-            seller: 'seller',
-          ),
+          child: ProductPage(),
         ),
       ));
 

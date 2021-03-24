@@ -1,31 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/helpers/slide_route.dart';
 import 'package:retro_shopping/model/product_model.dart';
-import 'package:retro_shopping/widgets/product/product_page.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard(
-      {Key key,
-      this.product})
-      : super(key: key);
+  const ProductCard({Key key, this.product}) : super(key: key);
   final Product product;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            SlideBottomRoute(
-                page: ProductPage(
-              text: product.text,
-              owner: product.owner,
-              image: product.image,
-              prodHeight: product.height,
-              seller: product.seller,
-              amount: product.amount,
-            )));
+        Navigator.of(context).pushNamed(
+          RouteConstant.PRODUCTS_SCREEN,
+          arguments: product,
+        );
       },
       child: Container(
         width: 155.0,
