@@ -18,6 +18,7 @@ import 'package:retro_shopping/views/profile/settings/manage_address.dart';
 import 'package:retro_shopping/views/profile/settings/settings_view.dart';
 import 'package:retro_shopping/views/profile/wishlist.dart';
 import 'package:retro_shopping/views/search_view.dart';
+import 'package:retro_shopping/views/terms_conditions_view.dart';
 import 'package:retro_shopping/widgets/payment/payment_successful.dart';
 import 'package:retro_shopping/widgets/product/product_page.dart';
 
@@ -98,6 +99,10 @@ class RoutePage {
       case RouteConstant.SIGN_UP_SCREEN:
         return SlideLeftRoute(
           page: SignUpScreen(),
+        );
+      case RouteConstant.TERMS_CONDITIONS:
+        return SlideLeftRoute(
+          page: TermsConditionsView(),
         );
       //TODO: Needs to have a separate screen for this
       default:
