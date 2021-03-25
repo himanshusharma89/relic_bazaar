@@ -1,13 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/views/login.dart';
-import 'package:retro_shopping/views/signup.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
-import 'package:retro_shopping/dashboard.dart';
-import 'package:retro_shopping/services/google_auth.dart';
+import 'package:retro_shopping/services/auth_service.dart';
 
-class SignUpScreen extends StatefulWidget{
+class SignUpScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return SignUpScreenState();
@@ -17,7 +14,7 @@ class SignUpScreen extends StatefulWidget{
 TextEditingController _emailController = TextEditingController();
 TextEditingController _passwordController = TextEditingController();
 
-class SignUpScreenState extends State<SignUpScreen>{
+class SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -31,7 +28,7 @@ class SignUpScreenState extends State<SignUpScreen>{
               // ignore: always_specify_types
               children: [
                 Transform.translate(
-                  offset: const Offset(5,5),
+                  offset: const Offset(5, 5),
                   child: Container(
                     width: width * 0.88,
                     height: height * 0.705,
@@ -42,54 +39,60 @@ class SignUpScreenState extends State<SignUpScreen>{
                     height: height * 0.70,
                     //height: 458,
                     width: width * 0.87,
-                    decoration: const BoxDecoration(color: RelicColors.primaryColor),
+                    decoration:
+                        const BoxDecoration(color: RelicColors.primaryColor),
                     child: Center(
                       child: SingleChildScrollView(
                         child: Column(
                           // ignore: always_specify_types
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
                               child: Row(
                                 // ignore: always_specify_types, prefer_const_literals_to_create_immutables
                                 children: [
                                   // ignore: prefer_const_literals_to_create_immutables,
-                                  const Text('SignUp',
+                                  const Text(
+                                    'SignUp',
                                     style: TextStyle(
                                         fontSize: 40,
                                         color: Colors.white,
                                         fontFamily: 'pix M 8pt',
-                                        fontWeight: FontWeight.bold
-                                    ),),
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ],
                               ),
                             ),
                             SizedBox(
-                              height: height*0.011,
+                              height: height * 0.011,
                             ),
                             Row(
                               // ignore: always_specify_types, prefer_const_literals_to_create_immutables
                               children: [
                                 const Padding(
-                                  padding: EdgeInsets.only(left:20.0, right: 20.0),
-                                  child: Text('Get Started,\nCreate a new account',
+                                  padding:
+                                      EdgeInsets.only(left: 20.0, right: 20.0),
+                                  child: Text(
+                                    'Get Started,\nCreate a new account',
                                     style: TextStyle(
                                       fontSize: 20,
                                       color: Colors.white,
                                       fontFamily: 'pix M 8pt',
                                       //fontWeight: FontWeight.bold
-                                    ),),
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
                             SizedBox(
-                              height: height*0.020,
+                              height: height * 0.020,
                             ),
                             Stack(
-                              // ignore: always_specify_types
-                                children:[
+                                // ignore: always_specify_types
+                                children: [
                                   Transform.translate(
-                                    offset: const Offset(25,10),
+                                    offset: const Offset(25, 10),
                                     child: Container(
                                       color: Colors.black,
                                       width: width * 0.77,
@@ -97,38 +100,34 @@ class SignUpScreenState extends State<SignUpScreen>{
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left:20.0, right: 20.0),
+                                    padding: const EdgeInsets.only(
+                                        left: 20.0, right: 20.0),
                                     // ignore: sized_box_for_whitespace
                                     child: Container(
-                                      height: height*0.07,
+                                      height: height * 0.07,
                                       child: TextField(
                                           controller: _emailController,
                                           decoration: const InputDecoration(
                                               labelText: 'Email Address',
                                               labelStyle: TextStyle(
                                                   fontSize: 20.0,
-                                                  color: Colors.black
-                                              ),
+                                                  color: Colors.black),
                                               filled: true,
                                               fillColor: Colors.white,
                                               border: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.zero
-                                              )
-                                          )
-                                      ),
+                                                  borderRadius:
+                                                      BorderRadius.zero))),
                                     ),
                                   ),
-                                ]
-                            ),
-
+                                ]),
                             SizedBox(
-                              height: height*0.030,
+                              height: height * 0.030,
                             ),
                             Stack(
-                              // ignore: always_specify_types
-                                children:[
+                                // ignore: always_specify_types
+                                children: [
                                   Transform.translate(
-                                    offset: const Offset(25,10),
+                                    offset: const Offset(25, 10),
                                     child: Container(
                                       color: Colors.black,
                                       width: width * 0.77,
@@ -136,37 +135,34 @@ class SignUpScreenState extends State<SignUpScreen>{
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left:20.0, right: 20.0),
+                                    padding: const EdgeInsets.only(
+                                        left: 20.0, right: 20.0),
                                     // ignore: sized_box_for_whitespace
                                     child: Container(
-                                      height: height*0.07,
+                                      height: height * 0.07,
                                       child: TextField(
                                           controller: _passwordController,
                                           decoration: const InputDecoration(
                                               labelText: 'Password',
                                               labelStyle: TextStyle(
                                                   fontSize: 20.0,
-                                                  color: Colors.black
-                                              ),
+                                                  color: Colors.black),
                                               filled: true,
                                               fillColor: Colors.white,
                                               border: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.zero
-                                              )
-                                          )
-                                      ),
+                                                  borderRadius:
+                                                      BorderRadius.zero))),
                                     ),
                                   ),
-                                ]
-                            ),
+                                ]),
                             SizedBox(
-                              height: height*0.030,
+                              height: height * 0.030,
                             ),
                             Stack(
-                              // ignore: always_specify_types
-                                children:[
+                                // ignore: always_specify_types
+                                children: [
                                   Transform.translate(
-                                    offset: const Offset(25,10),
+                                    offset: const Offset(25, 10),
                                     child: Container(
                                       color: Colors.black,
                                       width: width * 0.77,
@@ -174,45 +170,41 @@ class SignUpScreenState extends State<SignUpScreen>{
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left:20.0, right: 20.0),
+                                    padding: const EdgeInsets.only(
+                                        left: 20.0, right: 20.0),
                                     // ignore: sized_box_for_whitespace
                                     child: Container(
-                                      height: height*0.07,
+                                      height: height * 0.07,
                                       child: TextField(
                                           controller: _passwordController,
                                           decoration: const InputDecoration(
                                               labelText: 'Confirm Password',
                                               labelStyle: TextStyle(
                                                   fontSize: 20.0,
-                                                  color: Colors.black
-                                              ),
+                                                  color: Colors.black),
                                               filled: true,
                                               fillColor: Colors.white,
                                               border: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.zero
-                                              )
-                                          )
-                                      ),
+                                                  borderRadius:
+                                                      BorderRadius.zero))),
                                     ),
                                   ),
-                                ]
-                            ),
+                                ]),
                             SizedBox(
-                              height: height*0.030,
+                              height: height * 0.030,
                             ),
                             Row(
                               // ignore: always_specify_types
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left:20.0, right: 20.0),
+                                  padding: const EdgeInsets.only(
+                                      left: 20.0, right: 20.0),
                                   child: InkWell(
-                                    onTap: (){
+                                    onTap: () {
                                       debugPrint('SignUp!!');
                                       // ignore: always_specify_types
-                                      Navigator.push(context, MaterialPageRoute(
-                                          builder: (BuildContext context){
-                                            return LoginScreen();
-                                          }));
+                                      Navigator.of(context).pushNamed(
+                                          RouteConstant.LOGIN_SCREEN);
                                     },
                                     child: RetroButton(
                                       upperColor: Colors.black,
@@ -236,26 +228,25 @@ class SignUpScreenState extends State<SignUpScreen>{
                               ],
                             ),
                             SizedBox(
-                              height: height*0.040,
+                              height: height * 0.040,
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 115),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 115),
                               child: Row(
-                                // ignore: always_specify_types
-                                  children:[
+                                  // ignore: always_specify_types
+                                  children: [
                                     InkWell(
-                                      onTap: (){
+                                      onTap: () {
                                         debugPrint('Navigate to google!');
-                                        signInWithGoogle().then(
-                                              (String result) {
+                                        AuthenticationService.signInWithGoogle()
+                                            .then(
+                                          (String result) {
                                             if (result != null) {
-                                              Navigator.of(context).pushReplacement(
-                                                // ignore: always_specify_types
-                                                MaterialPageRoute(
-                                                  builder: (BuildContext context) {
-                                                    return Dashboard();
-                                                  },
-                                                ),
+                                              Navigator.of(context)
+                                                  .pushNamedAndRemoveUntil(
+                                                RouteConstant.DASHBOARD_SCREEN,
+                                                (Route<dynamic> route) => false,
                                               );
                                             }
                                           },
@@ -265,31 +256,30 @@ class SignUpScreenState extends State<SignUpScreen>{
                                       child: Container(
                                           width: 45,
                                           height: 45,
-                                          child: Image.asset('assets/items/google.png',)
-                                      ),
+                                          child: Image.asset(
+                                            'assets/items/google.png',
+                                          )),
                                     ),
                                     SizedBox(
-                                      width: width*0.05,
+                                      width: width * 0.05,
                                     ),
                                     InkWell(
-                                      onTap: (){
+                                      onTap: () {
                                         debugPrint('Navigate to facebook!');
                                       },
                                       // ignore: sized_box_for_whitespace
                                       child: Container(
                                           width: 45,
                                           height: 45,
-                                          child: Image.asset('assets/items/fb.png')
-                                      ),
+                                          child: Image.asset(
+                                              'assets/items/fb.png')),
                                     ),
-                                  ]
-                              ),
+                                  ]),
                             ),
                           ],
                         ),
                       ),
-                    )
-                ),
+                    )),
               ],
             ),
           ),

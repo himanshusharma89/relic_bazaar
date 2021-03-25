@@ -64,7 +64,7 @@ class AboutScreen extends StatelessWidget {
                   ),
 
                   Image.asset(
-                    'images/promo.png',
+                    'assets/promo.png',
                   ),
 
                   SizedBox(

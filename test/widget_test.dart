@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:retro_shopping/helpers/app_icons.dart';
 
-import 'package:retro_shopping/model/product.dart';
+import 'package:retro_shopping/model/product_model.dart';
 import 'package:retro_shopping/widgets/payment/cart_item.dart';
 import 'package:retro_shopping/widgets/payment/order_item.dart';
 import 'package:retro_shopping/widgets/product/product_card.dart';
@@ -49,14 +49,7 @@ void main() {
         data: const MediaQueryData(),
         child: Directionality(
           textDirection: TextDirection.ltr,
-          child: ProductPage(
-            text: 'text',
-            image: 'assets/items/3.png',
-            owner: 'owner',
-            amount: 'amount',
-            prodHeight: 10,
-            seller: 'seller',
-          ),
+          child: ProductPage(),
         ),
       ));
 

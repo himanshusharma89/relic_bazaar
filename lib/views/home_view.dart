@@ -1,14 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/app_icons.dart';
 import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/views/drawer.dart';
+import 'package:retro_shopping/views/drawer_view.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
+import 'package:retro_shopping/widgets/stacked_container.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  final PageController pageController;
+  Home({this.pageController});
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
   void _openDrawer() {
     _drawerKey.currentState.openDrawer();
+  }
+
+  void _goToCart() {
+    setState(() {
+      widget.pageController.jumpToPage(2);
+    });
   }
 
   @override
@@ -17,7 +32,9 @@ class Home extends StatelessWidget {
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       key: _drawerKey,
-      drawer: const DrawerWidget(),
+      drawer: DrawerWidget(
+        pageController: widget.pageController,
+      ),
       body: SingleChildScrollView(
           primary: true,
           child: SizedBox(
@@ -30,11 +47,11 @@ class Home extends StatelessWidget {
                   SizedBox(
                     height: height * 0.01,
                   ),
-                  sizedBox(context),
+                  topBar(context),
                   SizedBox(
                     height: height * 0.03,
                   ),
-                  textRead(),
+                  greetingUserText(),
                   SizedBox(
                     height: height * 0.02,
                   ),
@@ -42,7 +59,7 @@ class Home extends StatelessWidget {
                   SizedBox(
                     height: height * 0.02,
                   ),
-                  sized(height, width),
+                  products(height, width),
                   SizedBox(
                     height: height * 0.1,
                   ),
@@ -53,49 +70,33 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget sized(double height, double width) {
+  Widget products(double height, double width) {
     return SizedBox(
       height: height * 1.08,
       width: width,
-      child: Stack(
-        children: <Widget>[
-          Container(
-            width: width * 0.9,
-            // height: 729.0,
-            decoration: const BoxDecoration(
-              color: RelicColors.primaryBlack,
-            ),
+      child: StackedContainer(
+        width: width * 0.9,
+        // height: 729.0,
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GridView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            primary: false,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+                childAspectRatio: 1 / 1.6),
+            itemCount: productsList.length,
+            itemBuilder: (_, int index) => productsList[index],
           ),
-          Transform.translate(
-            offset: const Offset(10, 10),
-            child: Container(
-              width: width * 0.9,
-              // height: 729.0,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GridView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  primary: false,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 8,
-                      mainAxisSpacing: 8,
-                      childAspectRatio: 1 / 1.6),
-                  itemCount: productsList.length,
-                  itemBuilder: (_, int index) => productsList[index],
-                ),
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
 
-  Widget sizedBox(BuildContext context) {
+  Widget topBar(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Row(
@@ -114,17 +115,20 @@ class Home extends StatelessWidget {
               child: const Icon(Icons.menu),
             ),
           ),
-          RetroButton(
-            upperColor: Colors.white,
-            lowerColor: Colors.black,
-            width: 35,
-            height: 35,
-            borderColor: Colors.white,
-            child: const Padding(
-              padding: EdgeInsets.only(top: 7, left: 6),
-              child: Icon(
-                RelicIcons.cart,
-                size: 32,
+          GestureDetector(
+            onTap: _goToCart,
+            child: RetroButton(
+              upperColor: Colors.white,
+              lowerColor: Colors.black,
+              width: 35,
+              height: 35,
+              borderColor: Colors.white,
+              child: const Padding(
+                padding: EdgeInsets.only(top: 7, left: 6),
+                child: Icon(
+                  RelicIcons.cart,
+                  size: 32,
+                ),
               ),
             ),
           ),
@@ -133,7 +137,7 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget textRead() {
+  Widget greetingUserText() {
     return const Text.rich(
       TextSpan(
         style: TextStyle(

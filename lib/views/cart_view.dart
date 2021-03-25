@@ -5,7 +5,9 @@ import 'package:retro_shopping/widgets/payment/payment_window.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 
 class Cart extends StatefulWidget {
-  const Cart({
+  final PageController pageController;
+  Cart({
+    this.pageController,
     Key key,
   }) : super(key: key);
 
@@ -43,30 +45,37 @@ class _CartState extends State<Cart> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  RetroButton(
-                    upperColor: Colors.white,
-                    lowerColor: Colors.black,
-                    height: height * 0.045,
-                    width: width * 0.4,
-                    borderColor: Colors.white,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const <Widget>[
-                        Icon(
-                          Icons.arrow_back,
-                          size: 20,
-                        ),
-                        Text(
-                          ' back to shop',
-                          style: TextStyle(
-                            fontFamily: 'pix M 8pt',
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: RelicColors.primaryBlack,
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        widget.pageController.jumpTo(0);
+                      });
+                    },
+                    child: RetroButton(
+                      upperColor: Colors.white,
+                      lowerColor: Colors.black,
+                      height: height * 0.045,
+                      width: width * 0.4,
+                      borderColor: Colors.white,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const <Widget>[
+                          Icon(
+                            Icons.arrow_back,
+                            size: 20,
                           ),
-                          // textAlign: TextAlign.left,
-                        ),
-                      ],
+                          Text(
+                            ' back to shop',
+                            style: TextStyle(
+                              fontFamily: 'pix M 8pt',
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: RelicColors.primaryBlack,
+                            ),
+                            // textAlign: TextAlign.left,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   RetroButton(

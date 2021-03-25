@@ -2,11 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:retro_shopping/dashboard.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/helpers/slide_route.dart';
+import 'package:retro_shopping/model/product_model.dart';
+import 'package:retro_shopping/views/auth/signup_view.dart';
+import 'package:retro_shopping/views/profile/orders.dart';
 
-import 'package:retro_shopping/views/cart.dart';
-import 'package:retro_shopping/views/home.dart';
-import 'package:retro_shopping/views/profile.dart';
-import 'package:retro_shopping/views/search.dart';
+import 'package:retro_shopping/views/auth/login_view.dart';
+
+import 'package:retro_shopping/views/cart_view.dart';
+import 'package:retro_shopping/views/home_view.dart';
+import 'package:retro_shopping/views/profile/profile_view.dart';
+import 'package:retro_shopping/views/profile/settings/about.dart';
+import 'package:retro_shopping/views/profile/settings/address_screen.dart';
+import 'package:retro_shopping/views/profile/settings/faqs_screen.dart';
+import 'package:retro_shopping/views/profile/settings/manage_address.dart';
+import 'package:retro_shopping/views/profile/settings/settings_view.dart';
+import 'package:retro_shopping/views/profile/wishlist.dart';
+import 'package:retro_shopping/views/search_view.dart';
+import 'package:retro_shopping/widgets/payment/payment_successful.dart';
 import 'package:retro_shopping/widgets/product/product_page.dart';
 
 class RoutePage {
@@ -14,63 +26,85 @@ class RoutePage {
     switch (settings.name) {
       case RouteConstant.CART_SCREEN:
         return SlideLeftRoute(
-          page: const Cart(),
+          page: Cart(),
         );
-
       case RouteConstant.HOME_SCREEN:
         return SlideLeftRoute(
           page: Home(),
         );
+
       case RouteConstant.LOGIN_SCREEN:
         return SlideLeftRoute(
-          page: const SizedBox(
-            child: Text('Login Screen'),
-          ),
+          page: LoginScreen(),
         );
+
       case RouteConstant.PROFILE_SCREEN:
         return SlideLeftRoute(
           page: ProfilePage(),
         );
+
       case RouteConstant.SEARCH_SCREEN:
         return SlideLeftRoute(
           page: Search(),
         );
+
       case RouteConstant.ABOUT_SCREEN:
         return SlideLeftRoute(
-          page: const SizedBox(
-            child: Text('About'),
-          ),
+          page: AboutScreen(),
         );
+
       case RouteConstant.DASHBOARD_SCREEN:
         return SlideLeftRoute(
           page: Dashboard(),
         );
       case RouteConstant.PRODUCTS_SCREEN:
+        Product product = settings.arguments as Product;
         return SlideBottomRoute(
-          page: ProductPage(),
+          page: ProductPage(
+            product: product,
+          ),
         );
+
       case RouteConstant.WISHLIST_SCREEN:
         return SlideLeftRoute(
-          page: const SizedBox(
-            child: Text('Wishlist Screen'),
-          ),
+          page: const Wishlist(),
         );
+      case RouteConstant.MANAGE_ADDRESS_SCREEN:
+        return SlideLeftRoute(
+          page: ManageAddress(),
+        );
+
       case RouteConstant.ORDERS_SCREEN:
         return SlideLeftRoute(
-          page: const SizedBox(
-            child: Text('Orders Screen'),
-          ),
+          page: Order(),
         );
+
       case RouteConstant.SETTINGS_SCREEN:
         return SlideLeftRoute(
-          page: const SizedBox(
-            child: Text('Settings Screen'),
-          ),
+          page: Settings(),
+        );
+      case RouteConstant.PAYMENT_SUCCESSFULL:
+        return SlideLeftRoute(
+          page: const PaymentSuccessful(),
+        );
+      case RouteConstant.FAQs_SCREEN:
+        return SlideLeftRoute(
+          page: FaqsScreen(),
+        );
+      case RouteConstant.ADDRESS_SCREEN:
+        return SlideLeftRoute(
+          page: AddressScreen(),
+        );
+      case RouteConstant.SIGN_UP_SCREEN:
+        return SlideLeftRoute(
+          page: SignUpScreen(),
         );
       //TODO: Needs to have a separate screen for this
       default:
         return PageRouteBuilder<dynamic>(
-          pageBuilder: (_, Animation<double> firstAni, Animation<double> secondAni) => const SizedBox(
+          pageBuilder:
+              (_, Animation<double> firstAni, Animation<double> secondAni) =>
+                  const SizedBox(
             child: Text('Nothing'),
           ),
         );
