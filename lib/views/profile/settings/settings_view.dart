@@ -109,7 +109,13 @@ class _SettingsState extends State<Settings> {
                         padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                         child: divider(),
                       ),
-                      settingsItem(context, 'T&C', Icons.quick_contacts_dialer),
+                      settingsItem(
+                        context,
+                        'T&C',
+                        Icons.quick_contacts_dialer,
+                        routeName: RouteConstant.TERMS_CONDITIONS,
+                        push: true,
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                         child: divider(),

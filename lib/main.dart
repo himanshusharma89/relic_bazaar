@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
             textTheme:
                 GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
         onGenerateRoute: RoutePage.generateRoute,
-        initialRoute: RouteConstant.DASHBOARD_SCREEN,
+        initialRoute: RouteConstant.LOGIN_SCREEN,
       ),
     );
   }
