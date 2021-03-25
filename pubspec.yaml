@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
 
   fluttertoast: ^7.1.8
+  firebase_remote_config: ^0.6.0
   firebase_core: 0.7.0
   google_fonts: ^1.1.0
   razorpay_flutter: 1.1.0
