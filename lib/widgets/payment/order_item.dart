@@ -51,6 +51,7 @@ class OrderItem extends StatelessWidget {
                 this.title,
                 overflow: TextOverflow.fade,
                 style: TextStyle(
+                    decoration: TextDecoration.none,
                     color: Colors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.w700),
@@ -62,6 +63,7 @@ class OrderItem extends StatelessWidget {
               Text(
                 this.ordered,
                 style: TextStyle(
+                    decoration: TextDecoration.none,
                     color: Colors.white,
                     fontSize: 13,
                     fontWeight: FontWeight.w700),
@@ -86,8 +88,10 @@ class OrderItem extends StatelessWidget {
                     child: Center(
                         child: Text(
                       this.status,
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          decoration: TextDecoration.none,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold),
                     )),
                   ),
                 ],
@@ -102,7 +106,10 @@ class OrderItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                         color: RelicColors.backgroundColor),
                     child: Text("DETAILS",
-                        style: TextStyle(fontSize: 13, color: Colors.white)),
+                        style: TextStyle(
+                            decoration: TextDecoration.none,
+                            fontSize: 13,
+                            color: Colors.white)),
                   ),
                   SizedBox(width: 10),
                   delivered
@@ -116,8 +123,10 @@ class OrderItem extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8),
                               color: RelicColors.warningColor),
                           child: Text("CANCEL",
-                              style:
-                                  TextStyle(fontSize: 13, color: Colors.white)),
+                              style: TextStyle(
+                                  decoration: TextDecoration.none,
+                                  fontSize: 13,
+                                  color: Colors.white)),
                         ),
                 ],
               )
