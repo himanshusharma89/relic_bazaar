@@ -80,6 +80,8 @@ class _SettingsState extends State<Settings> {
                         context,
                         'Change Username/\nPassword',
                         Icons.person,
+                        routeName: RouteConstant.CHANGE_USERNAME_SCREEN,
+                        push: true,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 16.0, right: 16.0),

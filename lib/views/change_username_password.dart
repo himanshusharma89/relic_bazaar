@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/views/settings.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 
 
@@ -17,9 +16,9 @@ TextEditingController _passwordController = TextEditingController();
 TextEditingController _confirmPasswordController = TextEditingController();
 
 
-String _username = "";
-String _password = "";
-String _confirmPassword = "";
+String _username = '';
+String _password = '';
+String _confirmPassword = '';
 
 class ChangeUsernameState extends State<ChangeUsername>{
   @override
@@ -52,15 +51,13 @@ class ChangeUsernameState extends State<ChangeUsername>{
         elevation: 0.0,
       ),
       body: Stack(
-        // ignore: always_specify_types
-        children: [
+        children: <Widget>[
           Positioned(
             top: 70,
             right: 20,
             child: Center(
               child: Stack(
-                // ignore: always_specify_types
-                children: [
+                children:<Widget>[
                   Transform.translate(
                     offset: const Offset(5,5),
                     child: Container(
@@ -77,15 +74,12 @@ class ChangeUsernameState extends State<ChangeUsername>{
                       child: Center(
                         child: SingleChildScrollView(
                           child: Column(
-                            // ignore: always_specify_types
-                            children: [
+                            children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10.0),
                                 child: Row(
-                                  // ignore: always_specify_types, prefer_const_literals_to_create_immutables
-                                  children: [
-                                    // ignore: prefer_const_literals_to_create_immutables,
-                                    const Expanded(
+                                  children:const <Widget>[
+                                     Expanded(
                                       child: Text('Change Username or Password',
                                         style: TextStyle(
                                             fontSize: 35,
@@ -101,39 +95,34 @@ class ChangeUsernameState extends State<ChangeUsername>{
                                 height: height*0.011,
                               ),
                               Stack(
-                                // ignore: always_specify_types
-                                  children:[
+                                  children:<Widget>[
                                     Transform.translate(
                                       offset: const Offset(25,10),
                                       child: Container(
                                         color: Colors.black,
                                         width: width * 0.77,
-                                        height: height * 0.065,
+                                        height: height * 0.08,
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left:20.0, right: 20.0),
-                                      // ignore: sized_box_for_whitespace
-                                      child: Container(
-                                        height: height*0.07,
-                                        child: TextFormField(
-                                            controller: _userNameController,
-                                            onChanged: (String value){
-                                              _username = value;
-                                            },
-                                            decoration: const InputDecoration(
-                                                labelText: 'Username',
-                                                labelStyle: TextStyle(
-                                                    fontSize: 20.0,
-                                                    color: Colors.black
-                                                ),
-                                                filled: true,
-                                                fillColor: Colors.white,
-                                                border: OutlineInputBorder(
-                                                    borderRadius: BorderRadius.zero
-                                                )
-                                            )
-                                        ),
+                                      child: TextFormField(
+                                          controller: _userNameController,
+                                          onChanged: (String value){
+                                            _username = value;
+                                          },
+                                          decoration: const InputDecoration(
+                                              labelText: 'Username',
+                                              labelStyle: TextStyle(
+                                                  fontSize: 20.0,
+                                                  color: Colors.black
+                                              ),
+                                              filled: true,
+                                              fillColor: Colors.white,
+                                              border: OutlineInputBorder(
+                                                  borderRadius: BorderRadius.zero
+                                              )
+                                          )
                                       ),
                                     ),
                                   ]
@@ -143,40 +132,35 @@ class ChangeUsernameState extends State<ChangeUsername>{
                                 height: height*0.030,
                               ),
                               Stack(
-                                // ignore: always_specify_types
-                                  children:[
+                                  children:<Widget>[
                                     Transform.translate(
                                       offset: const Offset(25,10),
                                       child: Container(
                                         color: Colors.black,
                                         width: width * 0.77,
-                                        height: height * 0.065,
+                                        height: height * 0.08,
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left:20.0, right: 20.0),
-                                      // ignore: sized_box_for_whitespace
-                                      child: Container(
-                                        height: height*0.07,
-                                        child: TextFormField(
-                                            controller: _passwordController,
-                                            onChanged: (String value){
-                                              _password = value;
-                                            },
+                                      child: TextFormField(
+                                          controller: _passwordController,
+                                          onChanged: (String value){
+                                            _password = value;
+                                          },
 
-                                            decoration: const InputDecoration(
-                                                labelText: 'Password',
-                                                labelStyle: TextStyle(
-                                                    fontSize: 20.0,
-                                                    color: Colors.black
-                                                ),
-                                                filled: true,
-                                                fillColor: Colors.white,
-                                                border: OutlineInputBorder(
-                                                    borderRadius: BorderRadius.zero
-                                                )
-                                            )
-                                        ),
+                                          decoration: const InputDecoration(
+                                              labelText: 'Password',
+                                              labelStyle: TextStyle(
+                                                  fontSize: 20.0,
+                                                  color: Colors.black
+                                              ),
+                                              filled: true,
+                                              fillColor: Colors.white,
+                                              border: OutlineInputBorder(
+                                                  borderRadius: BorderRadius.zero
+                                              )
+                                          )
                                       ),
                                     ),
                                   ]
@@ -185,40 +169,34 @@ class ChangeUsernameState extends State<ChangeUsername>{
                                 height: height*0.030,
                               ),
                               Stack(
-                                // ignore: always_specify_types
-                                  children:[
+                                  children:<Widget>[
                                     Transform.translate(
                                       offset: const Offset(25,10),
                                       child: Container(
                                         color: Colors.black,
                                         width: width * 0.77,
-                                        height: height * 0.065,
+                                        height: height * 0.08,
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left:20.0, right: 20.0),
-                                      // ignore: sized_box_for_whitespace
-                                      child: Container(
-                                        height: height*0.07,
-                                        child: TextFormField(
-                                            controller: _confirmPasswordController,
-                                            onChanged: (String value){
-                                              _confirmPassword = value;
-                                            },
-                                            // ignore: missing_return
-                                            decoration: const InputDecoration(
-                                                labelText: 'Confirm Password',
-                                                labelStyle: TextStyle(
-                                                    fontSize: 20.0,
-                                                    color: Colors.black
-                                                ),
-                                                filled: true,
-                                                fillColor: Colors.white,
-                                                border: OutlineInputBorder(
-                                                    borderRadius: BorderRadius.zero
-                                                )
-                                            )
-                                        ),
+                                      child: TextFormField(
+                                          controller: _confirmPasswordController,
+                                          onChanged: (String value){
+                                            _confirmPassword = value;
+                                          },
+                                          decoration: const InputDecoration(
+                                              labelText: 'Confirm Password',
+                                              labelStyle: TextStyle(
+                                                  fontSize: 20.0,
+                                                  color: Colors.black
+                                              ),
+                                              filled: true,
+                                              fillColor: Colors.white,
+                                              border: OutlineInputBorder(
+                                                  borderRadius: BorderRadius.zero
+                                              )
+                                          )
                                       ),
                                     ),
                                   ]
@@ -227,21 +205,12 @@ class ChangeUsernameState extends State<ChangeUsername>{
                                 height: height*0.030,
                               ),
                               Row(
-                                // ignore: always_specify_types
-                                children: [
+                                children: <Widget>[
                                   Padding(
                                     padding: const EdgeInsets.only(left:20.0, right: 20.0),
                                     child: InkWell(
                                       onTap: (){
                                         debugPrint('Save!!');
-                                        // ignore: always_specify_types
-                                        // ignore: always_specify_types
-                                        Navigator.push(context, MaterialPageRoute(
-                                            builder: (BuildContext context){
-                                              return Settings();
-                                            })
-                                        )
-                                        ;
                                       },
                                       child: RetroButton(
                                         upperColor: Colors.black,

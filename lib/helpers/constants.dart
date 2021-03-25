@@ -20,7 +20,8 @@ class RouteConstant {
   static const String ADDRESS_SCREEN = '/address-screen';
   static const String SIGN_UP_SCREEN = '/sign-up-screen';
   static const String MANAGE_ADDRESS_SCREEN = '/manage-address-screen';
-  static const String PAYMENT_SUCCESSFULL = '/payment-successfull';
+  static const String PAYMENT_SUCCESSFULL = '/payment-successful';
+  static const String CHANGE_USERNAME_SCREEN = '/change_username';
 }
 
 class RelicColors {

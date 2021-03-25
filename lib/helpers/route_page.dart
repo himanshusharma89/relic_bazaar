@@ -5,7 +5,7 @@ import 'package:retro_shopping/helpers/slide_route.dart';
 import 'package:retro_shopping/model/product_model.dart';
 import 'package:retro_shopping/views/auth/signup_view.dart';
 import 'package:retro_shopping/views/profile/orders.dart';
-
+import 'package:retro_shopping/views/change_username_password.dart';
 import 'package:retro_shopping/views/auth/login_view.dart';
 
 import 'package:retro_shopping/views/cart_view.dart';
@@ -90,6 +90,10 @@ class RoutePage {
       case RouteConstant.FAQs_SCREEN:
         return SlideLeftRoute(
           page: FaqsScreen(),
+        );
+      case RouteConstant.CHANGE_USERNAME_SCREEN:
+        return SlideLeftRoute(
+          page: ChangeUsername(),
         );
       case RouteConstant.ADDRESS_SCREEN:
         return SlideLeftRoute(
