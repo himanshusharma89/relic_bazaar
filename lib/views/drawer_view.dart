@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/services/auth_service.dart';
 import '../widgets/drawer_item.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DrawerWidget extends StatefulWidget {
   final PageController pageController;
@@ -15,6 +16,9 @@ class DrawerWidget extends StatefulWidget {
 }
 
 class _DrawerWidgetState extends State<DrawerWidget> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  AuthenticationService _authenticationService = AuthenticationService();
+
   void goToScreen(int index) {
     if (widget.pageController.initialPage == index) {
       Navigator.of(context).pop();
@@ -70,7 +74,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           DrawerItem(
             icon: Icons.logout,
             title: 'LOG OUT',
-            onTap: () {
+            onTap: () async {
+              await _authenticationService.userSignOut(context);
               AuthenticationService.signOutGoogle().then(
                 (void res) {
                   Navigator.of(context).pushNamedAndRemoveUntil(
