@@ -19,6 +19,7 @@ import 'package:retro_shopping/views/profile/settings/settings_view.dart';
 import 'package:retro_shopping/views/profile/wishlist.dart';
 import 'package:retro_shopping/views/search_view.dart';
 import 'package:retro_shopping/views/terms_conditions_view.dart';
+import 'package:retro_shopping/views/unknown_view.dart';
 import 'package:retro_shopping/widgets/payment/payment_successful.dart';
 import 'package:retro_shopping/widgets/product/product_page.dart';
 
@@ -108,15 +109,9 @@ class RoutePage {
         return SlideLeftRoute(
           page: TermsConditionsView(),
         );
-      //TODO: Needs to have a separate screen for this
+      
       default:
-        return PageRouteBuilder<dynamic>(
-          pageBuilder:
-              (_, Animation<double> firstAni, Animation<double> secondAni) =>
-                  const SizedBox(
-            child: Text('Nothing'),
-          ),
-        );
+        return SlideLeftRoute(page: UnknownView(),);
     }
   }
 }
