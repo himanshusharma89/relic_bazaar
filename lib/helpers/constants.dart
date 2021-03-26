@@ -23,7 +23,6 @@ class RouteConstant {
   static const String TERMS_CONDITIONS = '/terms-conditions';
   static const String PAYMENT_SUCCESSFULL = '/payment-successful';
   static const String CHANGE_USERNAME_SCREEN = '/change_username';
-  static const String UNKNOWN_VIEW = '/unknown-view';
 }
 
 class RelicColors {
