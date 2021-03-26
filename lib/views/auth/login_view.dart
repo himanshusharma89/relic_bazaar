@@ -44,27 +44,32 @@ class LoginScreenState extends State<LoginScreen> {
                 width: width * 0.87,
                 child: Center(
                   child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
                     child: Form(
                       key: _formKey,
                       child: Column(
                         // ignore: always_specify_types
                         children: [
+
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 10),
-                            child: Row(
-                              // ignore: always_specify_types, prefer_const_literals_to_create_immutables
-                              children: [
-                                // ignore: prefer_const_literals_to_create_immutables,
-                                const Text(
-                                  'Login',
-                                  style: TextStyle(
-                                      fontSize: 40,
-                                      color: Colors.white,
-                                      fontFamily: 'pix M 8pt',
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
+
+                            child: Flexible(
+                              child: Row(
+                                // ignore: always_specify_types, prefer_const_literals_to_create_immutables
+                                children: [
+                                  // ignore: prefer_const_literals_to_create_immutables,
+                                  const Text(
+                                    'Login',
+                                    style: TextStyle(
+                                        fontSize: 40,
+                                        color: Colors.white,
+                                        fontFamily: 'pix M 8pt',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -75,31 +80,35 @@ class LoginScreenState extends State<LoginScreen> {
                             children: [
                               const Padding(
                                 padding:
-                                    EdgeInsets.only(left: 20.0, right: 20.0),
-                                child: Text(
-                                  'Welcome back,\nPlease login to your account',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontFamily: 'pix M 8pt',
-                                    //fontWeight: FontWeight.bold
+                                    EdgeInsets.only(left: 20.0, right: 10.0),
+                                child: Flexible(
+                                  child: Text(
+                                    'Welcome back,\nPlease login to your account',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontFamily: 'pix M 8pt',
+                                      //fontWeight: FontWeight.bold
+                                    ),
                                   ),
                                 ),
                               ),
                             ],
                           ),
                           SizedBox(
-                            height: height * 0.020,
+                            height: height * 0.010,
                           ),
                           Stack(
                             // ignore: always_specify_types
                             children: [
                               Transform.translate(
                                 offset: const Offset(25, 10),
-                                child: Container(
-                                  color: Colors.black,
-                                  width: width * 0.77,
-                                  height: height * 0.065,
+                                child: Flexible(
+                                  child: Container(
+                                    color: Colors.black,
+                                    width: width * 0.77,
+                                    height: height * 0.065,
+                                  ),
                                 ),
                               ),
                               Padding(
@@ -133,7 +142,7 @@ class LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                           SizedBox(
-                            height: height * 0.030,
+                            height: height * 0.010,
                           ),
                           Stack(
                               // ignore: always_specify_types
@@ -179,7 +188,7 @@ class LoginScreenState extends State<LoginScreen> {
                                 ),
                               ]),
                           SizedBox(
-                            height: height * 0.030,
+                            height: height * 0.010,
                           ),
                           Row(
                             // ignore: always_specify_types
@@ -223,7 +232,7 @@ class LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                           SizedBox(
-                            height: height * 0.040,
+                            height: height * 0.010,
                           ),
                           Padding(
                             padding:
