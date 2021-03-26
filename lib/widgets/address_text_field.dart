@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
+import 'package:retro_shopping/widgets/stacked_container.dart';
 
 Widget addressTextField(BuildContext context,
     {IconData icon,
@@ -9,9 +10,8 @@ Widget addressTextField(BuildContext context,
   final double height = MediaQuery.of(context).size.height;
   final double width = MediaQuery.of(context).size.width;
   return Stack(
-    children: <Widget>[
-      Transform.translate(
-        offset: const Offset(5, 5),
+    children: [
+      StackedContainer(
         child: Container(
           height: height * 0.06,
           width: width * 0.9,

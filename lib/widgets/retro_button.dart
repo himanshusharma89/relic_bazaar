@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:retro_shopping/widgets/stacked_container.dart';
 
 // ignore: must_be_immutable
 class RetroButton extends StatefulWidget {
@@ -23,9 +24,8 @@ class _RetroButtonState extends State<RetroButton> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: <Widget>[
-        Transform.translate(
-          offset: const Offset(4.0, 4.0),
+      children: [
+        StackedContainer(
           child: Container(
             width: widget.width,
             height: widget.height,
