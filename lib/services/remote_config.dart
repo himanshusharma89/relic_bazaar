@@ -25,8 +25,8 @@ class RemoteConfigService {
   }
 
   bool get getBoolValue=>_remoteConfig.getBool(_BOOLEAN_VALUE);
-  bool get getIntValue=>_remoteConfig.getBool(_INT_VALUE);
-  bool get getStringValue=>_remoteConfig.getBool(_STRING_VALUE);
+  int get getIntValue=>_remoteConfig.getInt(_INT_VALUE);
+  String get getStringValue=>_remoteConfig.getString(_STRING_VALUE);
 
   Future initialize() async {
     try {
