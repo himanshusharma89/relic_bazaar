@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
           // primarySwatch: Colors.blue,
           scaffoldBackgroundColor: RelicColors.backgroundColor,
           visualDensity: VisualDensity.adaptivePlatformDensity,
+          
           textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
       routes: <String, WidgetBuilder>{
         '/dashboard': (BuildContext context) => Dashboard(),
