@@ -92,6 +92,7 @@ class OrderItem extends StatelessWidget {
                           decoration: TextDecoration.none,
                           fontSize: 12,
                           fontWeight: FontWeight.bold),
+                          
                     )),
                   ),
                 ],

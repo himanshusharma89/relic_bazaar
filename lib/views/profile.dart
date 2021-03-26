@@ -18,9 +18,6 @@ class ProfilePage extends StatelessWidget {
               height: height * 0.02,
             ),
             TopSection(),
-            SizedBox(
-              height: height * 0.01,
-            ),
             Divider(
               thickness: 2,
               color: Colors.white,
@@ -121,7 +118,7 @@ class WishlistSection extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(color: RelicColors.backgroundColor),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18.0),
+          padding: const EdgeInsets.symmetric(horizontal: 18),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -207,6 +204,9 @@ class WishlistSection extends StatelessWidget {
                               ordered: "by Tony Stark",
                               status: "OUT OF STOCK",
                               image: 'assets/items/4.png'),
+                           
+                          
+
                           // Divider(color: Clors.w,),
                         ],
                       ),
