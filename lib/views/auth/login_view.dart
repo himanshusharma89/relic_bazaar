@@ -92,7 +92,7 @@ class LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                           SizedBox(
-                            height: height * 0.010,
+                            height: height * 0.011,
                           ),
                           Stack(
                             // ignore: always_specify_types
@@ -137,7 +137,7 @@ class LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                           SizedBox(
-                            height: height * 0.010,
+                            height: height * 0.020,
                           ),
                           Stack(
                               // ignore: always_specify_types
@@ -184,7 +184,7 @@ class LoginScreenState extends State<LoginScreen> {
                                 ),
                               ]),
                           SizedBox(
-                            height: height * 0.010,
+                            height: height * 0.020,
                           ),
                           Row(
                             // ignore: always_specify_types
@@ -228,7 +228,7 @@ class LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                           SizedBox(
-                            height: height * 0.010,
+                            height: height * 0.020,
                           ),
                           Padding(
                             padding:
