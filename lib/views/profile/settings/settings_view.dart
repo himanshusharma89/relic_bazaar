@@ -173,8 +173,13 @@ class _SettingsState extends State<Settings> {
                         padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                         child: divider(),
                       ),
-                      settingsItem(context, 'GitHub Repo Link',
-                          Icons.verified_user_outlined),
+                      settingsItem(
+                        context,
+                        'GitHub Repo Link',
+                        Icons.verified_user_outlined,
+                        routeName: RouteConstant.GITHUB_REPO_LINK,
+                        push: true
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                         child: divider(),
