@@ -131,7 +131,7 @@ Distributed under the CC0-1.0 License. See [LICENSE](https://github.com/himanshu
 
 <p align="center">
  <a>
- <img  width="150" height="120" src="https://raw.githubusercontent.com/GirlScriptSummerOfCode/MentorshipProgram/master/GSsoc%20Type%20Logo%20Black.png">
+ <img  width="70%" height="30%" src="https://raw.githubusercontent.com/GirlScriptSummerOfCode/MentorshipProgram/master/GSsoc%20Type%20Logo%20Black.png">
 
  
 </p>
