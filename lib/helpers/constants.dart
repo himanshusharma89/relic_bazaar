@@ -16,6 +16,13 @@ class RouteConstant {
   static const String ORDERS_SCREEN = '/orders';
   static const String SETTINGS_SCREEN = '/settings';
   static const String ABOUT_SCREEN = '/about';
+  static const String FAQs_SCREEN = '/faqs-screen';
+  static const String ADDRESS_SCREEN = '/address-screen';
+  static const String SIGN_UP_SCREEN = '/sign-up-screen';
+  static const String MANAGE_ADDRESS_SCREEN = '/manage-address-screen';
+  static const String TERMS_CONDITIONS = '/terms-conditions';
+  static const String PAYMENT_SUCCESSFULL = '/payment-successful';
+  static const String CHANGE_USERNAME_SCREEN = '/change_username';
 }
 
 class RelicColors {
@@ -37,44 +44,49 @@ List<ProductCard> productsList = <ProductCard>[
       height: 51,
     ),
   ),
-   ProductCard(
+  ProductCard(
     product: Product(
         text: 'EDISON TURNTABLE',
         owner: 'by Tony Stark',
         amount: '₹ 5035',
         image: 'assets/items/4.png',
         seller: 'SciPedia',
-        height: 43),),
-   ProductCard(
+        height: 43),
+  ),
+  ProductCard(
     product: Product(
         text: 'TATUNG EINSTEIN',
         owner: 'by Lloyd Duran',
         amount: '₹ 4035',
         image: 'assets/items/1.png',
         seller: 'Diz Arts',
-        height: 48),),
-   ProductCard(
+        height: 48),
+  ),
+  ProductCard(
     product: Product(
         text: 'MYRON DISC THROWER',
         owner: 'by Lloyd Duran',
         amount: '₹ 4035',
         image: 'assets/items/2.png',
         seller: 'AB Retial',
-        height: 32),),
-   ProductCard(
-      product: Product(
-      text: 'GUARDIAN CLOCK',
-      owner: 'by Claudia Davies',
-      amount: '₹ 4035',
-      image: 'assets/items/5.png',
-      seller: 'Electrica',
-      height: 19),),
-   ProductCard(
+        height: 32),
+  ),
+  ProductCard(
+    product: Product(
+        text: 'GUARDIAN CLOCK',
+        owner: 'by Claudia Davies',
+        amount: '₹ 4035',
+        image: 'assets/items/5.png',
+        seller: 'Electrica',
+        height: 19),
+  ),
+  ProductCard(
     product: Product(
         text: 'ROTATORY DIALER',
         owner: 'by Lloyd Duran',
         amount: '₹ 4035',
         image: 'assets/items/6.png',
         seller: 'RS Telecom',
-        height: 29),),
+        height: 29),
+  ),
 ];

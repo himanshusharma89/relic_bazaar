@@ -1,46 +1,38 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Widget settingsItem(BuildContext context, String text, IconData ic,
-    {Widget tags}) {
+    {String routeName, bool push}) {
   return InkWell(
     onTap: () {
-      if (tags != null) {
-        Navigator.push(
-            context,
-            MaterialPageRoute<dynamic>(
-                builder: (BuildContext context) => tags));
+      if (routeName != null) {
+        if (push) {
+          Navigator.of(context).pushNamed(routeName);
+        } else {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              routeName, (Route<dynamic> route) => false);
+        }
       }
     },
-    child: Row(
-      children: <Widget>[
-        const SizedBox(
-          height: 70,
+    child: Padding(
+      padding: const EdgeInsets.only(left: 15,right: 5, top: 10,bottom: 5),
+      child: ListTile(
+        contentPadding: EdgeInsets.zero,
+        dense: true,
+        leading: Icon(
+          ic,
+          size: 20,
+          color: Colors.white,
         ),
-        Expanded(
-          child: Row(
-            children: <Widget>[
-              const SizedBox(
-                width: 5,
-              ),
-              Icon(
-                ic,
-                size: 30,
-                color: Colors.white,
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              Text(text,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.normal, fontSize: 20))
-            ],
-          ),
+        title: Text(
+          text, style: const TextStyle(
+            fontWeight: FontWeight.normal, fontSize: 16) ,
         ),
-        IconButton(
-          onPressed: () {},
+        trailing: IconButton(
+          onPressed: (){},
           icon: const Icon(Icons.keyboard_arrow_right),
-        )
-      ],
+        ),
+      ),
     ),
   );
 }

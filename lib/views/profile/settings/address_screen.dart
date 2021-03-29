@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/model/address_model.dart';
-import 'package:retro_shopping/views/profile/settings/manage_address.dart';
-import 'package:retro_shopping/views/profile/settings/settings_view.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 
 class AddressScreen extends StatefulWidget {
@@ -22,11 +20,7 @@ class _AddressScreenState extends State<AddressScreen> {
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
             onTap: () {
-              Navigator.pushAndRemoveUntil(context, MaterialPageRoute<dynamic>(
-                builder: (BuildContext context) {
-                  return Settings();
-                },
-              ), (Route<dynamic> route) => false);
+              Navigator.of(context).pop();
             },
             child: RetroButton(
               upperColor: Colors.white,
@@ -66,41 +60,41 @@ class _AddressScreenState extends State<AddressScreen> {
                           const BoxDecoration(color: RelicColors.primaryColor),
                       child: Column(
                         children: <Widget>[
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Stack(
-                        children: <Widget>[
-                          Container(
-                            width:
-                                MediaQuery.of(context).size.width * 0.65 +
-                                    3,
-                            height: 220,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.black),
+                          const SizedBox(
+                            height: 10,
                           ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.65,
-                            height: 220,
-                            decoration: BoxDecoration(
-                                border: Border.all(),
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white),
-                            child: Center(
-                                child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                address.toString(),
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                          Stack(
+                            children: <Widget>[
+                              Container(
+                                width:
+                                    MediaQuery.of(context).size.width * 0.65 +
+                                        3,
+                                height: 220,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.black),
                               ),
-                            )),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.65,
+                                height: 220,
+                                decoration: BoxDecoration(
+                                    border: Border.all(),
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.white),
+                                child: Center(
+                                    child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    address.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                )),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
                         ],
                       ),
                     ),
@@ -111,11 +105,8 @@ class _AddressScreenState extends State<AddressScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute<dynamic>(
-                            builder: (BuildContext context) =>
-                                ManageAddress()));
+                    Navigator.of(context)
+                        .pushNamed(RouteConstant.MANAGE_ADDRESS_SCREEN);
                   },
                   child: RetroButton(
                     upperColor: Colors.white,
