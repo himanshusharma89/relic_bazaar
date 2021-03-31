@@ -59,67 +59,70 @@ class Order extends StatelessWidget {
         backgroundColor: RelicColors.backgroundColor,
       ),
       backgroundColor: RelicColors.backgroundColor,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: height * 0.08,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Center(
-                    child: Stack(
-                      children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.88 + 5,
-                          height: 590,
-                          decoration: const BoxDecoration(color: Colors.black),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 12),
-                          width: MediaQuery.of(context).size.width * 0.87,
-                          decoration: const BoxDecoration(
-                              color: RelicColors.primaryColor),
-                          child: ListView(
-                            shrinkWrap: true,
-                            primary: false,
-                            children: const <Widget>[
-                              OrderItem(
-                                  title: 'ANTIQUE VASE',
-                                  ordered: 'ORDERED 3 DAYS AGO',
-                                  status: 'STATUS : ON THE WAY',
-                                  image: 'assets/items/3.png'),
-                              Divider(
-                                color: Colors.white,
-                              ),
-                              OrderItem(
-                                  title: 'TATUNG EINSTEIN',
-                                  ordered: 'ORDERED 3 WEEKS AGO',
-                                  status: 'ANTIQUE DELIVERED',
-                                  image: 'assets/items/1.png',
-                                  delivered: true),
-                              Divider(
-                                color: Colors.white,
-                              ),
-                              OrderItem(
-                                  title: 'M.DISC THROWER',
-                                  ordered: 'ORDERED 5 DAYS AGO',
-                                  status: 'STATUS : SHIPPED',
-                                  image: 'assets/items/2.png')
-                            ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: height * 0.08,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Center(
+                      child: Stack(
+                        children: <Widget>[
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.88 + 5,
+                            height: 590,
+                            decoration:
+                                const BoxDecoration(color: Colors.black),
                           ),
-                        ),
-                      ],
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 16, horizontal: 12),
+                            width: MediaQuery.of(context).size.width * 0.87,
+                            decoration: const BoxDecoration(
+                                color: RelicColors.primaryColor),
+                            child: ListView(
+                              shrinkWrap: true,
+                              primary: false,
+                              children: const <Widget>[
+                                OrderItem(
+                                    title: 'ANTIQUE VASE',
+                                    ordered: 'ORDERED 3 DAYS AGO',
+                                    status: 'STATUS : ON THE WAY',
+                                    image: 'assets/items/3.png'),
+                                Divider(
+                                  color: Colors.white,
+                                ),
+                                OrderItem(
+                                    title: 'TATUNG EINSTEIN',
+                                    ordered: 'ORDERED 3 WEEKS AGO',
+                                    status: 'ANTIQUE DELIVERED',
+                                    image: 'assets/items/1.png',
+                                    delivered: true),
+                                Divider(
+                                  color: Colors.white,
+                                ),
+                                OrderItem(
+                                    title: 'M.DISC THROWER',
+                                    ordered: 'ORDERED 5 DAYS AGO',
+                                    status: 'STATUS : SHIPPED',
+                                    image: 'assets/items/2.png')
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

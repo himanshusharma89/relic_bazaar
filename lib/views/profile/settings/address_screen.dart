@@ -38,106 +38,109 @@ class _AddressScreenState extends State<AddressScreen> {
         title: const Text('Manage Address'),
         elevation: 0.0,
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: <Widget>[
-                Stack(
-                  children: <Widget>[
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.89 + 15,
-                      height: MediaQuery.of(context).size.height * 0.45 + 9,
-                      decoration: const BoxDecoration(color: Colors.black),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 16, horizontal: 12),
-                      width: MediaQuery.of(context).size.width * 0.90 - 2,
-                      height: MediaQuery.of(context).size.height * 0.45 + 5,
-                      decoration:
-                          const BoxDecoration(color: RelicColors.primaryColor),
-                      child: Column(
-                        children: <Widget>[
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Stack(
-                            children: <Widget>[
-                              Container(
-                                width:
-                                    MediaQuery.of(context).size.width * 0.65 +
-                                        3,
-                                height: 220,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.black),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.65,
-                                height: 220,
-                                decoration: BoxDecoration(
-                                    border: Border.all(),
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.white),
-                                child: Center(
-                                    child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    address.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                )),
-                              ),
-                            ],
-                          ),
-                        ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: <Widget>[
+                  Stack(
+                    children: <Widget>[
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.89 + 15,
+                        height: MediaQuery.of(context).size.height * 0.45 + 9,
+                        decoration: const BoxDecoration(color: Colors.black),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context)
-                        .pushNamed(RouteConstant.MANAGE_ADDRESS_SCREEN);
-                  },
-                  child: RetroButton(
-                    upperColor: Colors.white,
-                    lowerColor: Colors.black,
-                    height: height * 0.066,
-                    width: width * 0.65,
-                    borderColor: Colors.white,
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const <Widget>[
-                          Icon(
-                            Icons.add,
-                            color: Colors.black,
-                          ),
-                          Text(
-                            'Add Address',
-                            style: TextStyle(
-                              fontFamily: 'pix M 8pt',
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: RelicColors.backgroundColor,
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 16, horizontal: 12),
+                        width: MediaQuery.of(context).size.width * 0.90 - 2,
+                        height: MediaQuery.of(context).size.height * 0.45 + 5,
+                        decoration: const BoxDecoration(
+                            color: RelicColors.primaryColor),
+                        child: Column(
+                          children: <Widget>[
+                            const SizedBox(
+                              height: 10,
                             ),
-                            // textAlign: TextAlign.left,
-                          ),
-                        ],
+                            Stack(
+                              children: <Widget>[
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.65 +
+                                          3,
+                                  height: 220,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.black),
+                                ),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.65,
+                                  height: 220,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(),
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.white),
+                                  child: Center(
+                                      child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      address.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  )),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context)
+                          .pushNamed(RouteConstant.MANAGE_ADDRESS_SCREEN);
+                    },
+                    child: RetroButton(
+                      upperColor: Colors.white,
+                      lowerColor: Colors.black,
+                      height: height * 0.066,
+                      width: width * 0.65,
+                      borderColor: Colors.white,
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            Icon(
+                              Icons.add,
+                              color: Colors.black,
+                            ),
+                            Text(
+                              'Add Address',
+                              style: TextStyle(
+                                fontFamily: 'pix M 8pt',
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: RelicColors.backgroundColor,
+                              ),
+                              // textAlign: TextAlign.left,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

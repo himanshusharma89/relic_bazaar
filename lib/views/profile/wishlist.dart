@@ -66,63 +66,66 @@ class _WishlistState extends State<Wishlist> {
         backgroundColor: RelicColors.backgroundColor,
       ),
       backgroundColor: RelicColors.backgroundColor,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: height * 0.01,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const SizedBox(height: 20),
-                  Center(
-                    child: Stack(
-                      children: <Widget>[
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.88 + 5,
-                          height: 431,
-                          decoration: const BoxDecoration(color: Colors.black),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 12),
-                          width: MediaQuery.of(context).size.width * 0.87,
-                          height: 420,
-                          decoration: const BoxDecoration(
-                              color: RelicColors.primaryColor),
-                          child: ListView(
-                            shrinkWrap: true,
-                            primary: false,
-                            children: const <Widget>[
-                              OrderItem(
-                                  title: 'EDI TURNTABLE',
-                                  ordered: 'by Tony Stark',
-                                  status: 'OUT OF STOCK',
-                                  image: 'assets/items/4.png'),
-
-                              Divider(
-                                color: Colors.white,
-                              ),
-                              OrderItem(
-                                title: 'TATUNG EINSTEIN',
-                                ordered: 'by Chris Evans',
-                                status: 'OUT OF STOCK',
-                                image: 'assets/items/1.png',
-                              ),
-                              // Divider(color: Clors.w,),
-                            ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    const SizedBox(height: 20),
+                    Center(
+                      child: Stack(
+                        children: <Widget>[
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.88 + 5,
+                            height: 431,
+                            decoration:
+                                const BoxDecoration(color: Colors.black),
                           ),
-                        ),
-                      ],
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 16, horizontal: 12),
+                            width: MediaQuery.of(context).size.width * 0.87,
+                            height: 420,
+                            decoration: const BoxDecoration(
+                                color: RelicColors.primaryColor),
+                            child: ListView(
+                              shrinkWrap: true,
+                              primary: false,
+                              children: const <Widget>[
+                                OrderItem(
+                                    title: 'EDI TURNTABLE',
+                                    ordered: 'by Tony Stark',
+                                    status: 'OUT OF STOCK',
+                                    image: 'assets/items/4.png'),
+
+                                Divider(
+                                  color: Colors.white,
+                                ),
+                                OrderItem(
+                                  title: 'TATUNG EINSTEIN',
+                                  ordered: 'by Chris Evans',
+                                  status: 'OUT OF STOCK',
+                                  image: 'assets/items/1.png',
+                                ),
+                                // Divider(color: Clors.w,),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

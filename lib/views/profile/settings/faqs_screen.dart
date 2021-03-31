@@ -9,8 +9,7 @@ class FaqsScreen extends StatefulWidget {
 }
 
 class _FaqsScreenState extends State<FaqsScreen> {
-
-  bool _loading=true;
+  bool _loading = true;
   PDFDocument _doc;
 
   @override
@@ -40,7 +39,6 @@ class _FaqsScreenState extends State<FaqsScreen> {
     setState(() => _loading = false);
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,13 +66,15 @@ class _FaqsScreenState extends State<FaqsScreen> {
         title: const Text('FAQs'),
         elevation: 0.0,
       ),
-      body: Center(
-        child: _loading
-            ? const Center(child: CircularProgressIndicator())
-            : PDFViewer(
-          document: _doc,
-          zoomSteps: 1,
-          scrollDirection: Axis.vertical,
+      body: SafeArea(
+        child: Center(
+          child: _loading
+              ? const Center(child: CircularProgressIndicator())
+              : PDFViewer(
+                  document: _doc,
+                  zoomSteps: 1,
+                  scrollDirection: Axis.vertical,
+                ),
         ),
       ),
     );
