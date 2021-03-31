@@ -24,6 +24,7 @@ class _RetroButtonState extends State<RetroButton> {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      // ignore: always_specify_types
       children: [
         StackedContainer(
           child: Container(

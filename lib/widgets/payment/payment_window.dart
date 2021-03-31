@@ -3,6 +3,7 @@ import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:retro_shopping/widgets/stacked_container.dart';
 
 class PaymentWindow extends StatefulWidget {
   @override
@@ -146,9 +147,8 @@ class _PaymentWindowState extends State<PaymentWindow> {
                                         border: Border.all(color: Colors.grey)),
                                   ),
                                   if (cnt2 == 1)
-                                    Transform.translate(
-                                      offset: const Offset(2, -10),
-                                      child: const Icon(
+                                    const StackedContainer(
+                                      child: Icon(
                                         Icons.check,
                                         color: Colors.black,
                                         size: 40,
@@ -234,9 +234,8 @@ class _PaymentWindowState extends State<PaymentWindow> {
                                         border: Border.all(color: Colors.grey)),
                                   ),
                                   if (cnt1 == 1)
-                                    Transform.translate(
-                                      offset: const Offset(2, -10),
-                                      child: const Icon(
+                                    const StackedContainer(
+                                      child: Icon(
                                         Icons.check,
                                         color: Colors.black,
                                         size: 40,

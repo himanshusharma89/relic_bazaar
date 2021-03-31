@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:retro_shopping/helpers/ad_state.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/model/product_model.dart';
+import 'package:retro_shopping/widgets/stacked_container.dart';
 import '../../helpers/app_icons.dart';
 import '../retro_button.dart';
 
@@ -224,19 +225,20 @@ class _ProductPageState extends State<ProductPage> {
                         width: width,
                         child: Stack(
                           children: <Widget>[
-                            Transform.translate(
-                              offset: const Offset(10, 10),
-                              child: Container(
+                            // Transform.translate(
+                            //   offset: const Offset(10, 10),
+                            //   child: Container(
+                            //     width: width * 0.9,
+                            //     height: height * 0.54,
+                            //     decoration: const BoxDecoration(
+                            //       color: RelicColors.primaryBlack,
+                            //     ),
+                            //   ),
+                            // ),
+                            StackedContainer(
                                 width: width * 0.9,
                                 height: height * 0.54,
-                                decoration: const BoxDecoration(
-                                  color: RelicColors.primaryBlack,
-                                ),
-                              ),
-                            ),
-                            Container(
-                                width: width * 0.9,
-                                height: height * 0.54,
+                                child:Container(
                                 decoration: const BoxDecoration(
                                   color: RelicColors.primaryColor,
                                 ),
@@ -291,7 +293,7 @@ class _ProductPageState extends State<ProductPage> {
                                             color: Colors.white),
                                       ),
                                     ],
-                                  ),
+                                  ),)
                                 )),
                             Transform.translate(
                               offset: const Offset(120, -180),

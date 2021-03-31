@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/app_icons.dart';
 import 'package:retro_shopping/helpers/constants.dart';
+import 'package:retro_shopping/widgets/stacked_container.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -20,15 +21,7 @@ class _SearchState extends State<Search> {
             SizedBox(height: height * 0.01),
             Stack(
               children: <Widget>[
-                Transform.translate(
-                  offset: const Offset(5, 5),
-                  child: Container(
-                    height: height * 0.06,
-                    width: width * 0.9,
-                    color: Colors.black,
-                  ),
-                ),
-                Container(
+                StackedContainer(
                   height: height * 0.06,
                   width: width * 0.9,
                   color: Colors.white,
