@@ -44,14 +44,17 @@ class LoginScreenState extends State<LoginScreen> {
                 width: width * 0.87,
                 child: Center(
                   child: SingleChildScrollView(
+                   // scrollDirection: Axis.horizontal,
                     child: Form(
                       key: _formKey,
                       child: Column(
                         // ignore: always_specify_types
                         children: [
+
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
+                                horizontal: 10, vertical: 10),
+
                             child: Row(
                               // ignore: always_specify_types, prefer_const_literals_to_create_immutables
                               children: [
@@ -75,7 +78,7 @@ class LoginScreenState extends State<LoginScreen> {
                             children: [
                               const Padding(
                                 padding:
-                                    EdgeInsets.only(left: 20.0, right: 20.0),
+                                    EdgeInsets.only(left: 10.0, right: 10.0),
                                 child: Text(
                                   'Welcome back,\nPlease login to your account',
                                   style: TextStyle(
@@ -89,7 +92,7 @@ class LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                           SizedBox(
-                            height: height * 0.020,
+                            height: height * 0.011,
                           ),
                           Stack(
                             // ignore: always_specify_types
@@ -98,16 +101,17 @@ class LoginScreenState extends State<LoginScreen> {
                                 offset: const Offset(25, 10),
                                 child: Container(
                                   color: Colors.black,
-                                  width: width * 0.77,
+                                  width: width * 0.67,
                                   height: height * 0.065,
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 20.0, right: 20.0),
+                                    left: 10.0, right: 50.0),
                                 // ignore: sized_box_for_whitespace
                                 child: Container(
                                   height: height * 0.07,
+                                  width: width * 0.7,
                                   child: TextFormField(
                                     onChanged: (String value) {
                                       email = value;
@@ -133,7 +137,7 @@ class LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                           SizedBox(
-                            height: height * 0.030,
+                            height: height * 0.020,
                           ),
                           Stack(
                               // ignore: always_specify_types
@@ -142,16 +146,17 @@ class LoginScreenState extends State<LoginScreen> {
                                   offset: const Offset(25, 10),
                                   child: Container(
                                     color: Colors.black,
-                                    width: width * 0.77,
+                                    width: width * 0.67,
                                     height: height * 0.065,
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 20.0, right: 20.0),
+                                      left: 10.0, right: 50.0),
                                   // ignore: sized_box_for_whitespace
                                   child: Container(
                                     height: height * 0.07,
+                                    width: width * 0.7,
                                     child: TextFormField(
                                         onChanged: (String value) {
                                           password = value;
@@ -179,14 +184,14 @@ class LoginScreenState extends State<LoginScreen> {
                                 ),
                               ]),
                           SizedBox(
-                            height: height * 0.030,
+                            height: height * 0.020,
                           ),
                           Row(
                             // ignore: always_specify_types
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 20.0, right: 20.0),
+                                    left: 10.0, right: 50.0),
                                 child: InkWell(
                                   onTap: () async {
                                     debugPrint('Login!');
@@ -223,11 +228,11 @@ class LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                           SizedBox(
-                            height: height * 0.040,
+                            height: height * 0.020,
                           ),
                           Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 115),
+                                const EdgeInsets.symmetric(horizontal: 100),
                             child: Row(
                                 // ignore: always_specify_types
                                 children: [
