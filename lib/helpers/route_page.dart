@@ -16,6 +16,7 @@ import 'package:retro_shopping/views/profile/settings/address_screen.dart';
 import 'package:retro_shopping/views/profile/settings/faqs_screen.dart';
 import 'package:retro_shopping/views/profile/settings/manage_address.dart';
 import 'package:retro_shopping/views/profile/settings/settings_view.dart';
+import 'package:retro_shopping/views/profile/settings/github_webview.dart';
 import 'package:retro_shopping/views/profile/wishlist.dart';
 import 'package:retro_shopping/views/search_view.dart';
 import 'package:retro_shopping/views/terms_conditions_view.dart';
@@ -119,10 +120,13 @@ class RoutePage {
           page: TermsConditionsView(),
         );
 
-      default:
+      case RouteConstant.GITHUB_REPO_LINK:
         return SlideLeftRoute(
-          page: UnknownView(),
+          page: GithubWebView(),
         );
+
+      default:
+        return SlideLeftRoute(page: UnknownView());
     }
   }
 }
