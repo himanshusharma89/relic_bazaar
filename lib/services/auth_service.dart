@@ -119,14 +119,21 @@ class AuthenticationService {
     return null;
   }
 
-  Future<void> userSignOut(BuildContext context) async {
+  Future<void> userSignOut() async {
     final User user = _auth.currentUser;
     if (user != null) {
       await _auth.signOut();
-      Navigator.of(context).pushNamedAndRemoveUntil(
+      
+    }
+  }
+
+  void logout(BuildContext context) {
+  userSignOut();
+  signOutGoogle();
+  Navigator.of(context).pushNamedAndRemoveUntil(
         RouteConstant.LOGIN_SCREEN,
         (Route<dynamic> route) => false,
       );
-    }
-  }
 }
+}
+

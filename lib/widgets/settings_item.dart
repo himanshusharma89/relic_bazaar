@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:retro_shopping/services/auth_service.dart';
 
 Widget settingsItem(BuildContext context, String text, IconData ic,
     {String routeName, bool push}) {
+      final AuthenticationService _authenticationService = AuthenticationService();
   return InkWell(
     onTap: () {
       if (routeName != null) {
         if (push) {
           Navigator.of(context).pushNamed(routeName);
         } else {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              routeName, (Route<dynamic> route) => false);
+          _authenticationService.logout(context);
         }
       }
     },

@@ -17,7 +17,7 @@ class DrawerWidget extends StatefulWidget {
 
 class _DrawerWidgetState extends State<DrawerWidget> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  AuthenticationService _authenticationService = AuthenticationService();
+final  AuthenticationService _authenticationService = AuthenticationService();
 
   void goToScreen(int index) {
     if (widget.pageController.initialPage == index) {
@@ -74,16 +74,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           DrawerItem(
             icon: Icons.logout,
             title: 'LOG OUT',
-            onTap: () async {
-              await _authenticationService.userSignOut(context);
-              AuthenticationService.signOutGoogle().then(
-                (void res) {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                    RouteConstant.LOGIN_SCREEN,
-                    (Route<dynamic> route) => false,
-                  );
-                },
-              );
+            onTap: () {
+              _authenticationService.logout(context);
             },
           ),
         ],
