@@ -7,7 +7,6 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -22,26 +21,22 @@ class AboutScreen extends StatelessWidget {
                   SizedBox(
                     height: height * 0.01,
                   ),
-
                   // Back button
                   GestureDetector(
                     onTap: () {
                       Navigator.of(context).pop();
                     },
-                    child: RetroButton(
+                    child: const RelicBazaarStackedView(
                       upperColor: Colors.white,
-                      lowerColor: Colors.black,
                       width: 35,
                       height: 35,
                       borderColor: Colors.white,
-                      child: const Icon(Icons.arrow_back),
+                      child: Icon(Icons.arrow_back),
                     ),
                   ),
-
                   SizedBox(
                     height: height * 0.01,
                   ),
-
                   const Text(
                     'RELIC BAZAAR',
                     style: TextStyle(
@@ -58,21 +53,17 @@ class AboutScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-
                   SizedBox(
                     height: height * 0.02,
                   ),
-
                   Image.asset(
                     'assets/promo.png',
                   ),
-
                   SizedBox(
                     height: height * 0.02,
                   ),
-
                   const Text(
-                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.',
+                    '''Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.''',
                     style: TextStyle(
                       fontFamily: 'pixer',
                       fontSize: 20,
@@ -87,20 +78,16 @@ class AboutScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-
                   SizedBox(
                     height: height * 0.02,
                   ),
-
                   const Divider(
                     color: Colors.white,
                     thickness: 1,
                   ),
-
                   SizedBox(
                     height: height * 0.01,
                   ),
-
                   const Text(
                     'version: 1.0.1',
                     style: TextStyle(
@@ -118,20 +105,16 @@ class AboutScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-
                   SizedBox(
                     height: height * 0.01,
                   ),
-
                   const Divider(
                     color: Colors.white,
                     thickness: 1,
                   ),
-
                   SizedBox(
                     height: height * 0.01,
                   ),
-
                   const Text(
                     'Connect with us',
                     style: TextStyle(
@@ -149,15 +132,12 @@ class AboutScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-
                   SizedBox(
                     height: height * 0.02,
                   ),
-
                   // Instagram button
-                  RetroButton(
+                  RelicBazaarStackedView(
                     upperColor: Colors.white,
-                    lowerColor: Colors.black,
                     height: height * 0.046,
                     width: width * 0.4,
                     borderColor: Colors.white,
@@ -173,15 +153,12 @@ class AboutScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   SizedBox(
                     height: height * 0.03,
                   ),
-
                   // Facebook button
-                  RetroButton(
+                  RelicBazaarStackedView(
                     upperColor: Colors.white,
-                    lowerColor: Colors.black,
                     height: height * 0.046,
                     width: width * 0.4,
                     borderColor: Colors.white,
@@ -197,15 +174,12 @@ class AboutScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   SizedBox(
                     height: height * 0.03,
                   ),
-
                   // Github button
-                  RetroButton(
+                  RelicBazaarStackedView(
                     upperColor: Colors.white,
-                    lowerColor: Colors.black,
                     height: height * 0.046,
                     width: width * 0.4,
                     borderColor: Colors.white,
@@ -221,7 +195,6 @@ class AboutScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   SizedBox(
                     height: height * 0.04,
                   ),

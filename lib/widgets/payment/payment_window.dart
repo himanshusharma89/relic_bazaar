@@ -315,12 +315,10 @@ class _PaymentWindowState extends State<PaymentWindow> {
                   onTap: () {
                     _openCheckout();
                   },
-                  child: RetroButton(
+                  child: RelicBazaarStackedView(
                     upperColor: Colors.white,
-                    lowerColor: Colors.black,
                     height: height * 0.052,
                     width: width * 0.8,
-                    borderColor: Colors.black,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       child: Row(

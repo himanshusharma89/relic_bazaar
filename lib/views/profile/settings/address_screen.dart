@@ -15,6 +15,7 @@ class _AddressScreenState extends State<AddressScreen> {
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: RelicColors.backgroundColor,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -22,13 +23,12 @@ class _AddressScreenState extends State<AddressScreen> {
             onTap: () {
               Navigator.of(context).pop();
             },
-            child: RetroButton(
+            child: const RelicBazaarStackedView(
               upperColor: Colors.white,
-              lowerColor: Colors.black,
               width: 35,
               height: 35,
               borderColor: Colors.white,
-              child: const Icon(
+              child: Icon(
                 Icons.arrow_back,
                 color: Colors.black,
               ),
@@ -44,61 +44,21 @@ class _AddressScreenState extends State<AddressScreen> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: <Widget>[
-                Stack(
-                  children: <Widget>[
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.89 + 15,
-                      height: MediaQuery.of(context).size.height * 0.45 + 9,
-                      decoration: const BoxDecoration(color: Colors.black),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 16, horizontal: 12),
-                      width: MediaQuery.of(context).size.width * 0.90 - 2,
-                      height: MediaQuery.of(context).size.height * 0.45 + 5,
-                      decoration:
-                          const BoxDecoration(color: RelicColors.primaryColor),
-                      child: Column(
-                        children: <Widget>[
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Stack(
-                            children: <Widget>[
-                              Container(
-                                width:
-                                    MediaQuery.of(context).size.width * 0.65 +
-                                        3,
-                                height: 220,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.black),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.65,
-                                height: 220,
-                                decoration: BoxDecoration(
-                                    border: Border.all(),
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.white),
-                                child: Center(
-                                    child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    address.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                )),
-                              ),
-                            ],
-                          ),
-                        ],
+                RelicBazaarStackedView(
+                  upperColor: Colors.white,
+                  width: width * 0.9,
+                  height: height * 0.1,
+                  child: Center(
+                      child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      address.toString() ?? 'User Address',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
+                  )),
                 ),
                 const SizedBox(
                   height: 20,
@@ -108,9 +68,8 @@ class _AddressScreenState extends State<AddressScreen> {
                     Navigator.of(context)
                         .pushNamed(RouteConstant.MANAGE_ADDRESS_SCREEN);
                   },
-                  child: RetroButton(
+                  child: RelicBazaarStackedView(
                     upperColor: Colors.white,
-                    lowerColor: Colors.black,
                     height: height * 0.066,
                     width: width * 0.65,
                     borderColor: Colors.white,

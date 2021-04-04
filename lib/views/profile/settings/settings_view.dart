@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 import 'package:retro_shopping/widgets/settings_item.dart';
-import 'package:retro_shopping/widgets/stacked_container.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -21,7 +20,7 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    final view = ListView(children: <Widget>[
+    final ListView view = ListView(children: <Widget>[
       Column(mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           settingsItem(context, 'Your Orders', Icons.bookmark_border_sharp,
@@ -81,13 +80,12 @@ class _SettingsState extends State<Settings> {
               onTap: () {
                 Navigator.pop(context);
               },
-              child: RetroButton(
+              child: const RelicBazaarStackedView(
                 upperColor: Colors.white,
-                lowerColor: Colors.black,
                 width: 25,
                 height: 25,
                 borderColor: Colors.white,
-                child: const Icon(
+                child: Icon(
                   Icons.arrow_back,
                   color: Colors.black,
                 ),
@@ -100,7 +98,7 @@ class _SettingsState extends State<Settings> {
         body: Padding(
           padding: const EdgeInsets.only(left: 20,right: 15,top: 10),
           child: SingleChildScrollView(
-              child: StackedContainer( height: MediaQuery.of(context).size.height * 0.82 + 10,
+              child: RelicBazaarStackedView( height: MediaQuery.of(context).size.height * 0.82 + 10,
                   width: MediaQuery.of(context).size.width * 0.92 + 10, child: view,)
           ),
         ));

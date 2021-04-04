@@ -7,11 +7,10 @@ import 'package:retro_shopping/model/product_model.dart';
 import '../../helpers/app_icons.dart';
 import '../retro_button.dart';
 
-// ignore: must_be_immutable
 class ProductPage extends StatefulWidget {
-  final Product product;
+  const ProductPage({this.product});
 
-const  ProductPage({this.product});
+  final Product product;
 
   @override
   _ProductPageState createState() => _ProductPageState();
@@ -40,7 +39,6 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
-  
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -66,9 +64,8 @@ class _ProductPageState extends State<ProductPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            RetroButton(
+                            RelicBazaarStackedView(
                               upperColor: Colors.white,
-                              lowerColor: Colors.black,
                               width: 35,
                               height: 35,
                               borderColor: Colors.white,
@@ -79,13 +76,12 @@ class _ProductPageState extends State<ProductPage> {
                                 child: const Icon(Icons.arrow_back),
                               ),
                             ),
-                            RetroButton(
+                            const RelicBazaarStackedView(
                               upperColor: Colors.white,
-                              lowerColor: Colors.black,
                               width: 35,
                               height: 35,
                               borderColor: Colors.white,
-                              child: const Padding(
+                              child: Padding(
                                 padding: EdgeInsets.only(top: 7, left: 6),
                                 child: Icon(
                                   RelicIcons.cart,
@@ -200,9 +196,8 @@ class _ProductPageState extends State<ProductPage> {
                       SizedBox(
                         height: height * 0.02,
                       ),
-                      RetroButton(
+                      RelicBazaarStackedView(
                         upperColor: Colors.white,
-                        lowerColor: Colors.black,
                         width: width * 0.32,
                         height: 35,
                         borderColor: Colors.white,
@@ -305,9 +300,8 @@ class _ProductPageState extends State<ProductPage> {
                               offset: const Offset(210, 375),
                               child: Row(
                                 children: <Widget>[
-                                  RetroButton(
+                                  RelicBazaarStackedView(
                                     upperColor: Colors.white,
-                                    lowerColor: Colors.black,
                                     width: width * 0.35,
                                     height: height * 0.05,
                                     borderColor: Colors.white,
@@ -338,9 +332,8 @@ class _ProductPageState extends State<ProductPage> {
                               offset: const Offset(145, 375),
                               child: Row(
                                 children: <Widget>[
-                                  RetroButton(
+                                  RelicBazaarStackedView(
                                     upperColor: Colors.white,
-                                    lowerColor: Colors.black,
                                     width: width * 0.12,
                                     height: height * 0.05,
                                     borderColor: Colors.white,

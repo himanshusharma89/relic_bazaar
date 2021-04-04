@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:retro_shopping/helpers/constants.dart';
 
-// ignore: must_be_immutable
-class RetroButton extends StatefulWidget {
-  RetroButton(
+class RelicBazaarStackedView extends StatefulWidget {
+  const RelicBazaarStackedView(
       {this.child,
-      this.upperColor,
-      this.lowerColor,
+      this.upperColor = RelicColors.primaryColor,
+      this.lowerColor = Colors.black,
       this.width,
       this.height,
-      this.borderColor});
-  Widget child;
-  Color upperColor;
-  Color lowerColor;
-  double width;
-  double height;
-  Color borderColor;
+      this.borderColor = Colors.black});
+  final Widget child;
+  final Color upperColor;
+  final Color lowerColor;
+  final double width;
+  final double height;
+  final Color borderColor;
   @override
-  _RetroButtonState createState() => _RetroButtonState();
+  _RelicBazaarStackedViewState createState() => _RelicBazaarStackedViewState();
 }
 
-class _RetroButtonState extends State<RetroButton> {
+class _RelicBazaarStackedViewState extends State<RelicBazaarStackedView> {
   @override
   Widget build(BuildContext context) {
     return Stack(

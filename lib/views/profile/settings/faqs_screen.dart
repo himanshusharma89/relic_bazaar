@@ -52,13 +52,12 @@ class _FaqsScreenState extends State<FaqsScreen> {
             onTap: () {
               Navigator.pop(context);
             },
-            child: RetroButton(
+            child: const RelicBazaarStackedView(
               upperColor: Colors.white,
-              lowerColor: Colors.black,
               width: 35,
               height: 35,
               borderColor: Colors.white,
-              child: const Icon(
+              child: Icon(
                 Icons.arrow_back,
                 color: Colors.black,
               ),

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/services/auth_service.dart';
+
 import '../widgets/drawer_item.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class DrawerWidget extends StatefulWidget {
-  final PageController pageController;
   const DrawerWidget({
     this.pageController,
     Key key,
   }) : super(key: key);
+
+  final PageController pageController;
 
   @override
   _DrawerWidgetState createState() => _DrawerWidgetState();
 }
 
 class _DrawerWidgetState extends State<DrawerWidget> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  AuthenticationService _authenticationService = AuthenticationService();
+  final AuthenticationService _authenticationService = AuthenticationService();
 
   void goToScreen(int index) {
     if (widget.pageController.initialPage == index) {

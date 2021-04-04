@@ -3,11 +3,11 @@ import 'package:retro_shopping/helpers/app_icons.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/views/drawer_view.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
-import 'package:retro_shopping/widgets/stacked_container.dart';
 
 class Home extends StatefulWidget {
+  const Home({this.pageController});
+
   final PageController pageController;
-  Home({this.pageController});
 
   @override
   _HomeState createState() => _HomeState();
@@ -74,10 +74,10 @@ class _HomeState extends State<Home> {
     return SizedBox(
       height: height * 1.08,
       width: width,
-      child: StackedContainer(
+      child: RelicBazaarStackedView(
         width: width * 0.9,
         // height: 729.0,
-        color: Colors.white,
+        upperColor: Colors.white,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: GridView.builder(
@@ -106,24 +106,22 @@ class _HomeState extends State<Home> {
             onTap: () {
               _openDrawer();
             },
-            child: RetroButton(
+            child: const RelicBazaarStackedView(
               upperColor: Colors.white,
-              lowerColor: Colors.black,
               width: 35,
               height: 35,
               borderColor: Colors.white,
-              child: const Icon(Icons.menu),
+              child: Icon(Icons.menu),
             ),
           ),
           GestureDetector(
             onTap: _goToCart,
-            child: RetroButton(
+            child: const RelicBazaarStackedView(
               upperColor: Colors.white,
-              lowerColor: Colors.black,
               width: 35,
               height: 35,
               borderColor: Colors.white,
-              child: const Padding(
+              child: Padding(
                 padding: EdgeInsets.only(top: 7, left: 6),
                 child: Icon(
                   RelicIcons.cart,

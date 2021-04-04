@@ -35,13 +35,12 @@ class ChangeUsernameState extends State<ChangeUsername>{
             onTap: () {
               Navigator.pop(context);
             },
-            child: RetroButton(
+            child: const RelicBazaarStackedView(
               upperColor: Colors.white,
-              lowerColor: Colors.black,
               width: 35,
               height: 35,
               borderColor: Colors.white,
-              child: const Icon(
+              child: Icon(
                 Icons.arrow_back,
                 color: Colors.black,
               ),
@@ -212,7 +211,7 @@ class ChangeUsernameState extends State<ChangeUsername>{
                                       onTap: (){
                                         debugPrint('Save!!');
                                       },
-                                      child: RetroButton(
+                                      child: RelicBazaarStackedView(
                                         upperColor: Colors.black,
                                         lowerColor: Colors.white,
                                         height: height * 0.065,

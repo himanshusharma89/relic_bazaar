@@ -19,9 +19,8 @@ class _WishlistState extends State<Wishlist> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: RetroButton(
+        title: RelicBazaarStackedView(
           upperColor: Colors.white,
-          lowerColor: Colors.black,
           height: height * 0.046,
           width: width * 0.35,
           borderColor: Colors.white,
@@ -44,9 +43,8 @@ class _WishlistState extends State<Wishlist> {
           },
           child: Container(
             padding: const EdgeInsets.only(left: 10, top: 10),
-            child: RetroButton(
+            child: RelicBazaarStackedView(
               upperColor: Colors.white,
-              lowerColor: Colors.black,
               height: height * 0.035,
               width: width * 0.44,
               borderColor: Colors.white,
