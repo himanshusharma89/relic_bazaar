@@ -25,13 +25,12 @@ class UnknownView extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).pop();
                     },
-                    child: RetroButton(
+                    child: const RelicBazaarStackedView(
                       upperColor: Colors.white,
-                      lowerColor: Colors.black,
                       width: 35,
                       height: 35,
                       borderColor: Colors.white,
-                      child: const Icon(Icons.arrow_back),
+                      child: Icon(Icons.arrow_back),
                     ),
                   ),
                   const SizedBox(
@@ -53,13 +52,12 @@ class UnknownView extends StatelessWidget {
                           RouteConstant.DASHBOARD_SCREEN,
                         );
                       },
-                      child: RetroButton(
+                      child: const RelicBazaarStackedView(
                         upperColor: Colors.white,
-                        lowerColor: Colors.black,
                         width: 250,
                         height: 50,
                         borderColor: Colors.white,
-                        child: const Text(
+                        child: Text(
                           'Click here to get back to home.',
                           textAlign: TextAlign.center,
                           style: TextStyle(

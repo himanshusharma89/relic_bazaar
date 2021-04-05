@@ -4,7 +4,8 @@ import 'package:webview_flutter/webview_flutter.dart';
 //Files
 import '../../../helpers/constants.dart';
 import '../../../widgets/retro_button.dart';
-class GithubWebView extends StatelessWidget{
+
+class GithubWebView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,13 +17,12 @@ class GithubWebView extends StatelessWidget{
             onTap: () {
               Navigator.pop(context);
             },
-            child: RetroButton(
+            child: const RelicBazaarStackedView(
               upperColor: Colors.white,
-              lowerColor: Colors.black,
               width: 35,
               height: 35,
               borderColor: Colors.white,
-              child: const Icon(
+              child: Icon(
                 Icons.arrow_back,
                 color: Colors.black,
               ),
@@ -32,11 +32,10 @@ class GithubWebView extends StatelessWidget{
         title: const Text('Github Repository'),
         elevation: 0.0,
       ),
-      body:const WebView(
+      body: const WebView(
         initialUrl: 'https://github.com/himanshusharma89/relic_bazaar',
         javascriptMode: JavascriptMode.unrestricted,
       ),
     );
   }
-
 }

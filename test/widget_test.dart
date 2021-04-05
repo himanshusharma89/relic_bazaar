@@ -45,8 +45,8 @@ void main() {
   testWidgets(
     'ProductPage displays text and image correctly',
     (WidgetTester tester) async {
-      await tester.pumpWidget(MediaQuery(
-        data: const MediaQueryData(),
+      await tester.pumpWidget(const MediaQuery(
+        data: MediaQueryData(),
         child: Directionality(
           textDirection: TextDirection.ltr,
           child: ProductPage(),

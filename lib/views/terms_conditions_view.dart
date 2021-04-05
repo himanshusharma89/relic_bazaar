@@ -27,13 +27,12 @@ class TermsConditionsView extends StatelessWidget {
                         onTap: () {
                           Navigator.of(context).pop();
                         },
-                        child: RetroButton(
+                        child: const RelicBazaarStackedView(
                           upperColor: Colors.white,
-                          lowerColor: Colors.black,
                           width: 35,
                           height: 35,
                           borderColor: Colors.white,
-                          child: const Icon(Icons.arrow_back),
+                          child: Icon(Icons.arrow_back),
                         ),
                       ),
                       const SizedBox(
@@ -115,7 +114,7 @@ Search engines;
 News organizations;
 Online directory distributors may link to our Website in the same manner as they hyperlink to the Websites of other listed businesses; and
 System wide Accredited Businesses except soliciting non-profit organizations, charity shopping malls, and charity fundraising groups which may not hyperlink to our Web site.
-These organizations may link to our home page, to publications or to other Website information so long as the link: (a) is not in any way deceptive; (b) does not falsely imply sponsorship, endorsement or approval of the linking party and its products and/or services; and (c) fits within the context of the linking party\'s site.
+These organizations may link to our home page, to publications or to other Website information so long as the link: (a) is not in any way deceptive; (b) does not falsely imply sponsorship, endorsement or approval of the linking party and its products and/or services; and (c) fits within the context of the linking party's site.
 ''',
                   ),
                   _titleBuilder(

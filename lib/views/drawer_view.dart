@@ -1,15 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/services/auth_service.dart';
+
 import '../widgets/drawer_item.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class DrawerWidget extends StatefulWidget {
-  final PageController pageController;
   const DrawerWidget({
     this.pageController,
     Key key,
   }) : super(key: key);
+
+  final PageController pageController;
 
   @override
   _DrawerWidgetState createState() => _DrawerWidgetState();

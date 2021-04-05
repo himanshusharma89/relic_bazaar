@@ -51,9 +51,8 @@ class _CartState extends State<Cart> {
                     widget.pageController.jumpTo(0);
                   });
                 },
-                child: RetroButton(
+                child: RelicBazaarStackedView(
                   upperColor: Colors.white,
-                  lowerColor: Colors.black,
                   height: height * 0.045,
                   width: width * 0.4,
                   borderColor: Colors.white,
@@ -77,12 +76,11 @@ class _CartState extends State<Cart> {
                   ),
                 ),
               ),
-              RetroButton(
+              RelicBazaarStackedView(
                 upperColor: Colors.black,
                 lowerColor: Colors.white,
                 height: height * 0.045,
                 width: width * 0.22,
-                borderColor: Colors.black,
                 child: const Center(
                   child: Text(
                     '5 items',
