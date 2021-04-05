@@ -25,11 +25,30 @@ class SignUpScreenState extends State<SignUpScreen> {
   String errorMessage;
   String confirmPassword;
 
+  FocusNode _email;
+  FocusNode _password;
+  FocusNode _confirm;
+  FocusNode _signup;
+
+  @override
+  void initState() {
+    super.initState();
+    _email= FocusNode();
+    _password = FocusNode();
+    _confirm = FocusNode();
+    _signup = FocusNode();
+  }
+
   @override
   void dispose() {
     _emailController.clear();
     _passwordController.clear();
     _confirmPasswordController.clear();
+
+    _email.dispose();
+    _password.dispose();
+    _confirm.dispose();
+    _signup.dispose();
     super.dispose();
   }
 
@@ -84,18 +103,21 @@ class SignUpScreenState extends State<SignUpScreen> {
                       height: height * 0.07,
                       width: width * 0.7,
                       child: TextFormField(
-                        onChanged: (String value) {
-                          email = value;
-                        },
-                        validator: (String value) {
-                          return _authenticationService.userEmailValidation(
-                              value, errorMessage);
-                        },
-                        controller: _emailController,
+                        autofocus: true,
+                        focusNode: _email,
                         keyboardType: TextInputType.emailAddress,
+                        enabled: true,
+                        textInputAction: TextInputAction.next,
                         decoration: textFieldDecoration(
-                          hintText: 'Email Address',
+                            hintText: 'Email Address'
                         ),
+                        controller: _emailController,
+                        validator: (String value) =>_authenticationService.userEmailValidation(value, errorMessage),
+                        onFieldSubmitted: (String value){
+                          email = value;
+                          _email.unfocus();
+                          FocusScope.of(context).requestFocus(_password);
+                        },
                       ),
                     ),
                   ),
@@ -108,20 +130,20 @@ class SignUpScreenState extends State<SignUpScreen> {
                         height: height * 0.07,
                         width: width * 0.7,
                         child: TextFormField(
-                          onChanged: (String value) {
-                            password = value;
-                          },
-                          validator: (String value) {
-                            return _authenticationService
-                                .userPasswordValidation(
-                                    value, errorMessage);
-                          },
-                          controller: _passwordController,
+                          focusNode: _password,
                           keyboardType: TextInputType.visiblePassword,
                           obscureText: true,
+                          enabled: true,
+                          textInputAction: TextInputAction.next,
                           decoration: textFieldDecoration(
                             hintText: 'Password',
                           ),
+                          validator: (String value) =>_authenticationService.userPasswordValidation(value, errorMessage),
+                          onFieldSubmitted: (String value){
+                            password = value;
+                            _password.unfocus();
+                            FocusScope.of(context).requestFocus(_confirm);
+                          },
                         )),
                   ),
                   SizedBox(
@@ -133,20 +155,20 @@ class SignUpScreenState extends State<SignUpScreen> {
                       height: height * 0.07,
                       width: width * 0.7,
                       child: TextFormField(
-                        onChanged: (String value) {
-                          confirmPassword = value;
-                        },
-                        validator: (String value) {
-                          return _authenticationService
-                              .userConfirmPasswordValidation(
-                                  value, password, confirmPassword);
-                        },
-                        controller: _confirmPasswordController,
+                        focusNode: _confirm,
                         keyboardType: TextInputType.visiblePassword,
                         obscureText: true,
+                        enabled: true,
+                        textInputAction: TextInputAction.done,
                         decoration: textFieldDecoration(
                           hintText: 'Confirm Password',
                         ),
+                        validator: (String value) =>_authenticationService.userConfirmPasswordValidation(value, password, confirmPassword),
+                        onFieldSubmitted: (String value){
+                          confirmPassword = value;
+                          _confirm.unfocus();
+                          FocusScope.of(context).requestFocus(_signup);
+                        },
                       ),
                     ),
                   ),
@@ -172,6 +194,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                           }
                         }
                       },
+                      focusNode: _signup,
                       child: RelicBazaarStackedView(
                         upperColor: Colors.black,
                         lowerColor: Colors.white,

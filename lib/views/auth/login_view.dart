@@ -23,10 +23,26 @@ class LoginScreenState extends State<LoginScreen> {
   String password;
   String errorMessage;
 
+  FocusNode _email;
+  FocusNode _password;
+  FocusNode _login;
+
+  @override
+  void initState() {
+   super.initState();
+   _email= FocusNode();
+   _password = FocusNode();
+   _login = FocusNode();
+  }
+
   @override
   void dispose() {
     _emailController.clear();
     _passwordController.clear();
+
+    _email.dispose();
+    _password.dispose();
+    _login.dispose();
     super.dispose();
   }
 
@@ -80,16 +96,21 @@ class LoginScreenState extends State<LoginScreen> {
                       height: height * 0.07,
                       width: width * 0.7,
                       child: TextFormField(
-                        onChanged: (String value) {
-                          email = value;
-                        },
-                        validator: (String value) => _authenticationService
-                            .userEmailValidation(value, errorMessage),
-                        controller: _emailController,
+                        autofocus: true,
+                        focusNode: _email,
                         keyboardType: TextInputType.emailAddress,
+                        enabled: true,
+                        textInputAction: TextInputAction.next,
                         decoration: textFieldDecoration(
-                          hintText: 'Email Address',
+                          hintText: 'Email Address'
                         ),
+                        controller: _emailController,
+                        validator: (String value) =>_authenticationService.userEmailValidation(value, errorMessage),
+                        onFieldSubmitted: (String value){
+                          email = value;
+                          _email.unfocus();
+                          FocusScope.of(context).requestFocus(_password);
+                        },
                       ),
                     ),
                   ),
@@ -102,19 +123,20 @@ class LoginScreenState extends State<LoginScreen> {
                       height: height * 0.07,
                       width: width * 0.7,
                       child: TextFormField(
-                        onChanged: (String value) {
-                          password = value;
-                        },
-                        validator: (String value) {
-                          return _authenticationService.userPasswordValidation(
-                              value, errorMessage);
-                        },
-                        controller: _passwordController,
+                        focusNode: _password,
                         keyboardType: TextInputType.visiblePassword,
                         obscureText: true,
+                        enabled: true,
+                        textInputAction: TextInputAction.done,
                         decoration: textFieldDecoration(
-                          hintText: 'Password',
+                            hintText: 'Password',
                         ),
+                        validator: (String value) =>_authenticationService.userPasswordValidation(value, errorMessage),
+                        onFieldSubmitted: (String value){
+                          password = value;
+                          _password.unfocus();
+                          FocusScope.of(context).requestFocus(_login);
+                        },
                       ),
                     ),
                   ),
@@ -135,6 +157,7 @@ class LoginScreenState extends State<LoginScreen> {
                           }
                         }
                       },
+                      focusNode: _login,
                       child: RelicBazaarStackedView(
                         upperColor: Colors.black,
                         lowerColor: Colors.white,
