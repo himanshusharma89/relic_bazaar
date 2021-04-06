@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:retro_shopping/views/auth/login_view.dart';
+import 'package:retro_shopping/views/home_view.dart';
 import 'services/remote_config.dart';
 import 'package:retro_shopping/helpers/ad_state.dart';
 import 'package:retro_shopping/helpers/constants.dart';
@@ -45,26 +48,44 @@ class MyApp extends StatelessWidget {
         }
       },
       child: MaterialApp(
-        builder: (BuildContext context, Widget child) {
-          return ScrollConfiguration(
-            behavior: CustomScrollBehavior(),
-            child: child,
-          );
-        },
-        title: 'Retro Shopping',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            // primarySwatch: Colors.blue,
-            scaffoldBackgroundColor: RelicColors.backgroundColor,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            textTheme:
-                GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
-        onGenerateRoute: RoutePage.generateRoute,
-        initialRoute: RouteConstant.LOGIN_SCREEN,
-      ),
-    );
-  }
+      home: StreamBuilder<User>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.active) {
+            bool isloggedin = snapshot.hasData;
+            if (isloggedin == true) {
+              return Home();
+            }
+            else {
+              //print("here");
+              return LoginScreen();
+            }
+          }
+          else {
+            return Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+        }
+    ),
+
+      title: 'Retro Shopping',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        // primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: RelicColors.backgroundColor,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          textTheme:
+          GoogleFonts.poppinsTextTheme(Theme
+              .of(context)
+              .textTheme)),
+    )
+  );
 }
+}
+
 
 class CustomScrollBehavior extends ScrollBehavior {
   @override
