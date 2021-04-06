@@ -123,17 +123,11 @@ class AuthenticationService {
     final User user = _auth.currentUser;
     if (user != null) {
       await _auth.signOut();
-      
     }
   }
 
-  void logout(BuildContext context) {
-  userSignOut();
-  signOutGoogle();
-  Navigator.of(context).pushNamedAndRemoveUntil(
-        RouteConstant.LOGIN_SCREEN,
-        (Route<dynamic> route) => false,
-      );
+  Future<void> logout() async {
+    await userSignOut();
+    await signOutGoogle();
+  }
 }
-}
-

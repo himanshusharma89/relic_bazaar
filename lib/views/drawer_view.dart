@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/services/auth_service.dart';
@@ -18,9 +17,8 @@ class DrawerWidget extends StatefulWidget {
 }
 
 class _DrawerWidgetState extends State<DrawerWidget> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-final  AuthenticationService _authenticationService = AuthenticationService();
-
+  final AuthenticationService _authenticationService = AuthenticationService();
+  bool _isLoading = false;
   void goToScreen(int index) {
     if (widget.pageController.initialPage == index) {
       Navigator.of(context).pop();
@@ -77,8 +75,25 @@ final  AuthenticationService _authenticationService = AuthenticationService();
             icon: Icons.logout,
             title: 'LOG OUT',
             onTap: () {
-              _authenticationService.logout(context);
+              setState(() {
+                _isLoading = true;
+              });
+
+              _authenticationService.logout().then((_) {
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  RouteConstant.LOGIN_SCREEN,
+                  (Route<dynamic> route) => false,
+                );
+                setState(() {
+                  _isLoading = false;
+                });
+              });
             },
+            child: _isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : null,
           ),
         ],
       ),
