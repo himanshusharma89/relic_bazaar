@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
+import 'package:retro_shopping/services/auth_service.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 import 'package:retro_shopping/widgets/settings_item.dart';
 
@@ -10,7 +11,8 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   bool switchedOn = false;
-
+  bool _isLoading = false;
+  final AuthenticationService _authService = AuthenticationService();
   Widget divider() {
     return const Padding(
       padding: EdgeInsets.symmetric(horizontal: 16),
@@ -19,6 +21,10 @@ class _SettingsState extends State<Settings> {
         color: Colors.white,
       ),
     );
+  }
+
+  void _goToScreen(String routeName) {
+    Navigator.of(context).pushNamed(routeName);
   }
 
   @override
@@ -57,61 +63,76 @@ class _SettingsState extends State<Settings> {
                   context,
                   'Your Orders',
                   Icons.bookmark_border_sharp,
-                  routeName: RouteConstant.ORDERS_SCREEN,
-                  push: true,
+                  onTap: () => _goToScreen(RouteConstant.ORDERS_SCREEN),
                 ),
                 divider(),
                 settingsItem(
                   context,
                   'Change Username/\nPassword',
                   Icons.person,
-                  routeName: RouteConstant.CHANGE_USERNAME_SCREEN,
-                  push: true,
+                  onTap: () =>
+                      _goToScreen(RouteConstant.CHANGE_USERNAME_SCREEN),
                 ),
                 divider(),
                 settingsItem(
                   context,
                   'FAQs',
                   Icons.question_answer,
-                  routeName: RouteConstant.FAQs_SCREEN,
-                  push: true,
+                  onTap: () => _goToScreen(RouteConstant.FAQs_SCREEN),
                 ),
                 divider(),
                 settingsItem(
                   context,
                   'Manage Address',
                   Icons.location_pin,
-                  routeName: RouteConstant.ADDRESS_SCREEN,
-                  push: true,
+                  onTap: () => _goToScreen(RouteConstant.MANAGE_ADDRESS_SCREEN),
                 ),
                 divider(),
                 settingsItem(
                   context,
                   'T&C',
                   Icons.quick_contacts_dialer,
-                  routeName: RouteConstant.TERMS_CONDITIONS,
-                  push: true,
+                  onTap: () => _goToScreen(RouteConstant.TERMS_CONDITIONS),
                 ),
                 divider(),
                 settingsItem(
                   context,
                   'Notifications',
                   Icons.notifications,
-                  routeName: RouteConstant.TERMS_CONDITIONS,
-                  push: true,
                 ),
                 divider(),
                 settingsItem(
                   context,
                   'LogOut',
                   Icons.logout,
-                  routeName: RouteConstant.LOGIN_SCREEN,
-                  push: false,
+                  onTap: () {
+                    setState(() {
+                      _isLoading = true;
+                    });
+
+                    _authService.logout().then((_) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                        RouteConstant.LOGIN_SCREEN,
+                        (Route<dynamic> route) => false,
+                      );
+                      setState(() {
+                        _isLoading = false;
+                      });
+                    });
+                  },
+                  child: _isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : null,
                 ),
                 divider(),
                 settingsItem(
-                    context, 'GitHub Repo Link', Icons.verified_user_outlined,
-                    routeName: RouteConstant.GITHUB_REPO_LINK, push: true),
+                  context,
+                  'GitHub Repo Link',
+                  Icons.verified_user_outlined,
+                  onTap: () => _goToScreen(RouteConstant.GITHUB_REPO_LINK),
+                ),
               ],
             ),
           ),

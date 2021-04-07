@@ -18,7 +18,7 @@ class DrawerWidget extends StatefulWidget {
 
 class _DrawerWidgetState extends State<DrawerWidget> {
   final AuthenticationService _authenticationService = AuthenticationService();
-
+  bool _isLoading = false;
   void goToScreen(int index) {
     if (widget.pageController.initialPage == index) {
       Navigator.of(context).pop();
@@ -74,17 +74,26 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           DrawerItem(
             icon: Icons.logout,
             title: 'LOG OUT',
-            onTap: () async {
-              await _authenticationService.userSignOut(context);
-              AuthenticationService.signOutGoogle().then(
-                (void res) {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                    RouteConstant.LOGIN_SCREEN,
-                    (Route<dynamic> route) => false,
-                  );
-                },
-              );
+            onTap: () {
+              setState(() {
+                _isLoading = true;
+              });
+
+              _authenticationService.logout().then((_) {
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  RouteConstant.LOGIN_SCREEN,
+                  (Route<dynamic> route) => false,
+                );
+                setState(() {
+                  _isLoading = false;
+                });
+              });
             },
+            child: _isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : null,
           ),
         ],
       ),
