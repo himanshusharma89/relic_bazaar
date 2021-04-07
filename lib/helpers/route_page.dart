@@ -16,6 +16,7 @@ import 'package:retro_shopping/views/profile/settings/address_screen.dart';
 import 'package:retro_shopping/views/profile/settings/faqs_screen.dart';
 import 'package:retro_shopping/views/profile/settings/manage_address.dart';
 import 'package:retro_shopping/views/profile/settings/settings_view.dart';
+import 'package:retro_shopping/views/profile/settings/github_webview.dart';
 import 'package:retro_shopping/views/profile/wishlist.dart';
 import 'package:retro_shopping/views/search_view.dart';
 import 'package:retro_shopping/views/terms_conditions_view.dart';
@@ -28,11 +29,12 @@ class RoutePage {
     switch (settings.name) {
       case RouteConstant.CART_SCREEN:
         return SlideLeftRoute(
-          page: Cart(),
+          page: const Cart(),
         );
+
       case RouteConstant.HOME_SCREEN:
         return SlideLeftRoute(
-          page: Home(),
+          page: const Home(),
         );
 
       case RouteConstant.LOGIN_SCREEN:
@@ -59,8 +61,9 @@ class RoutePage {
         return SlideLeftRoute(
           page: Dashboard(),
         );
+
       case RouteConstant.PRODUCTS_SCREEN:
-        Product product = settings.arguments as Product;
+        final Product product = settings.arguments as Product;
         return SlideBottomRoute(
           page: ProductPage(
             product: product,
@@ -71,6 +74,7 @@ class RoutePage {
         return SlideLeftRoute(
           page: const Wishlist(),
         );
+
       case RouteConstant.MANAGE_ADDRESS_SCREEN:
         return SlideLeftRoute(
           page: ManageAddress(),
@@ -85,33 +89,44 @@ class RoutePage {
         return SlideLeftRoute(
           page: Settings(),
         );
+
       case RouteConstant.PAYMENT_SUCCESSFULL:
         return SlideLeftRoute(
           page: const PaymentSuccessful(),
         );
+
       case RouteConstant.FAQs_SCREEN:
         return SlideLeftRoute(
           page: FaqsScreen(),
         );
+
       case RouteConstant.CHANGE_USERNAME_SCREEN:
         return SlideLeftRoute(
           page: ChangeUsername(),
         );
+
       case RouteConstant.ADDRESS_SCREEN:
         return SlideLeftRoute(
           page: AddressScreen(),
         );
+
       case RouteConstant.SIGN_UP_SCREEN:
         return SlideLeftRoute(
           page: SignUpScreen(),
         );
+
       case RouteConstant.TERMS_CONDITIONS:
         return SlideLeftRoute(
           page: TermsConditionsView(),
         );
-      
+
+      case RouteConstant.GITHUB_REPO_LINK:
+        return SlideLeftRoute(
+          page: GithubWebView(),
+        );
+
       default:
-        return SlideLeftRoute(page: UnknownView(),);
+        return SlideLeftRoute(page: UnknownView());
     }
   }
 }

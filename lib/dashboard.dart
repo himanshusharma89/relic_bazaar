@@ -85,13 +85,13 @@ class _DashboardState extends State<Dashboard> {
                       height: 50,
                       child: AdWidget(ad: bannerAd),
                     ),
-                  FloatingNavBar(_currentIndex, _pageController),
                 ],
               ),
             ),
           ],
         ),
       ),
+      bottomNavigationBar: FloatingNavBar(_currentIndex, _pageController),
     );
   }
 }

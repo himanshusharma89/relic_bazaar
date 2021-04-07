@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/services/auth_service.dart';
+
 import '../widgets/drawer_item.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class DrawerWidget extends StatefulWidget {
-  final PageController pageController;
   const DrawerWidget({
     this.pageController,
     Key key,
   }) : super(key: key);
+
+  final PageController pageController;
 
   @override
   _DrawerWidgetState createState() => _DrawerWidgetState();
 }
 
 class _DrawerWidgetState extends State<DrawerWidget> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  AuthenticationService _authenticationService = AuthenticationService();
-
+  final AuthenticationService _authenticationService = AuthenticationService();
+  bool _isLoading = false;
   void goToScreen(int index) {
     if (widget.pageController.initialPage == index) {
       Navigator.of(context).pop();
@@ -74,17 +74,26 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           DrawerItem(
             icon: Icons.logout,
             title: 'LOG OUT',
-            onTap: () async {
-              await _authenticationService.userSignOut(context);
-              AuthenticationService.signOutGoogle().then(
-                (void res) {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                    RouteConstant.LOGIN_SCREEN,
-                    (Route<dynamic> route) => false,
-                  );
-                },
-              );
+            onTap: () {
+              setState(() {
+                _isLoading = true;
+              });
+
+              _authenticationService.logout().then((_) {
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  RouteConstant.LOGIN_SCREEN,
+                  (Route<dynamic> route) => false,
+                );
+                setState(() {
+                  _isLoading = false;
+                });
+              });
             },
+            child: _isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : null,
           ),
         ],
       ),

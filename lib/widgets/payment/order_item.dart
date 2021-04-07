@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
+import 'package:retro_shopping/widgets/retro_button.dart';
 
 class OrderItem extends StatelessWidget {
   const OrderItem(
@@ -16,27 +17,19 @@ class OrderItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Expanded(
-          child: Stack(
-            children: <Widget>[
-              Container(
-                width: 140,
-                height: 170,
-                decoration: const BoxDecoration(color: Colors.black),
-              ),
-              Container(
-                width: 135,
-                height: 165,
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    image: DecorationImage(
-                        image: AssetImage(image), fit: BoxFit.scaleDown)),
-              ),
-            ],
+          child: RelicBazaarStackedView(
+            width: width * 0.35,
+            height: width * 0.35,
+            upperColor: Colors.white,
+            child: Image.asset(
+              image,
+              fit: BoxFit.scaleDown,
+            ),
           ),
         ),
         const SizedBox(
@@ -67,32 +60,22 @@ class OrderItem extends StatelessWidget {
                     fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 10),
-              Stack(
-                children: <Widget>[
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.36 + 3,
-                    height: 38,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.black),
+              RelicBazaarStackedView(
+                width: MediaQuery.of(context).size.width * 0.36,
+                height: 35,
+                upperColor: Colors.white,
+                // decoration: BoxDecoration(
+                //     border: Border.all(),
+                //     borderRadius: BorderRadius.circular(10),
+                //     color: Colors.white),
+                child: Center(
+                    child: Text(
+                  status,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.36,
-                    height: 35,
-                    decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white),
-                    child: Center(
-                        child: Text(
-                      status,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )),
-                  ),
-                ],
+                )),
               ),
               const SizedBox(
                 height: 10,

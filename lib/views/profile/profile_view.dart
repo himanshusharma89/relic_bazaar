@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/widgets/payment/order_item.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
-import 'package:retro_shopping/views/profile/settings/settings_view.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -48,9 +47,8 @@ class WishlistSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        RetroButton(
+        RelicBazaarStackedView(
           upperColor: Colors.white,
-          lowerColor: Colors.black,
           height: height * 0.046,
           width: width * 0.35,
           borderColor: Colors.white,
@@ -116,9 +114,8 @@ class OrdersSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        RetroButton(
+        RelicBazaarStackedView(
           upperColor: Colors.white,
-          lowerColor: Colors.black,
           height: height * 0.046,
           width: width * 0.35,
           borderColor: Colors.white,
@@ -141,7 +138,7 @@ class OrdersSection extends StatelessWidget {
             children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width * 0.88 + 5,
-                height: 395,
+                height: 330,
                 decoration: const BoxDecoration(color: Colors.black),
               ),
               Container(
@@ -251,13 +248,12 @@ class TopSection extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pushNamed(RouteConstant.SETTINGS_SCREEN);
             },
-            child: RetroButton(
+            child: const RelicBazaarStackedView(
               upperColor: Colors.white,
-              lowerColor: Colors.black,
               width: 35,
               height: 35,
               borderColor: Colors.white,
-              child: const Icon(
+              child: Icon(
                 Icons.settings,
                 color: Colors.black,
               ),

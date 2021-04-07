@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
+import 'package:retro_shopping/widgets/back_button.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 
 class AboutScreen extends StatelessWidget {
@@ -7,226 +8,183 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
-
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          primary: true,
-          child: SizedBox(
-            width: width,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(
-                    height: height * 0.01,
-                  ),
-
-                  // Back button
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: RetroButton(
-                      upperColor: Colors.white,
-                      lowerColor: Colors.black,
-                      width: 35,
-                      height: 35,
-                      borderColor: Colors.white,
-                      child: const Icon(Icons.arrow_back),
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: height * 0.01,
-                  ),
-
-                  const Text(
-                    'RELIC BAZAAR',
-                    style: TextStyle(
-                      fontFamily: 'pixer',
-                      fontSize: 47,
-                      color: Colors.white,
-                      height: 1.3829787234042554,
-                      shadows: <Shadow>[
-                        Shadow(
-                          color: RelicColors.secondaryBlack,
-                          offset: Offset(0, 3),
-                          blurRadius: 6,
-                        )
-                      ],
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-
-                  Image.asset(
-                    'assets/promo.png',
-                  ),
-
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-
-                  const Text(
-                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.',
-                    style: TextStyle(
-                      fontFamily: 'pixer',
-                      fontSize: 20,
-                      color: Colors.white,
-                      height: 1.3829787234042554,
-                      shadows: <Shadow>[
-                        Shadow(
-                          color: RelicColors.secondaryBlack,
-                          offset: Offset(0, 3),
-                          blurRadius: 6,
-                        )
-                      ],
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-
-                  const Divider(
+      appBar: AppBar(
+        leading: appBarBackButton(context),
+        backgroundColor: RelicColors.backgroundColor,
+        elevation: 0,
+      ),
+      body: SingleChildScrollView(
+        primary: true,
+        child: SizedBox(
+          width: width,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const Text(
+                  'RELIC BAZAAR',
+                  style: TextStyle(
+                    fontFamily: 'pixer',
+                    fontSize: 47,
                     color: Colors.white,
-                    thickness: 1,
+                    height: 1.3829787234042554,
+                    shadows: <Shadow>[
+                      Shadow(
+                        color: RelicColors.secondaryBlack,
+                        offset: Offset(0, 3),
+                        blurRadius: 6,
+                      )
+                    ],
                   ),
-
-                  SizedBox(
-                    height: height * 0.01,
-                  ),
-
-                  const Text(
-                    'version: 1.0.1',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'pixer',
-                      fontSize: 22,
-                      color: Colors.white,
-                      height: 1.3829787234042554,
-                      shadows: <Shadow>[
-                        Shadow(
-                          color: RelicColors.secondaryBlack,
-                          offset: Offset(0, 3),
-                          blurRadius: 6,
-                        )
-                      ],
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: height * 0.01,
-                  ),
-
-                  const Divider(
+                ),
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                Image.asset(
+                  'assets/promo.png',
+                ),
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                const Text(
+                  '''Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.''',
+                  style: TextStyle(
+                    fontFamily: 'pixer',
+                    fontSize: 20,
                     color: Colors.white,
-                    thickness: 1,
+                    height: 1.3829787234042554,
+                    shadows: <Shadow>[
+                      Shadow(
+                        color: RelicColors.secondaryBlack,
+                        offset: Offset(0, 3),
+                        blurRadius: 6,
+                      )
+                    ],
                   ),
-
-                  SizedBox(
-                    height: height * 0.01,
+                ),
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                const Divider(
+                  color: Colors.white,
+                  thickness: 1,
+                ),
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                const Text(
+                  'version: 1.0.1',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'pixer',
+                    fontSize: 22,
+                    color: Colors.white,
+                    height: 1.3829787234042554,
+                    shadows: <Shadow>[
+                      Shadow(
+                        color: RelicColors.secondaryBlack,
+                        offset: Offset(0, 3),
+                        blurRadius: 6,
+                      )
+                    ],
                   ),
-
-                  const Text(
-                    'Connect with us',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'pixer',
-                      fontSize: 22,
-                      color: Colors.white,
-                      height: 1.3829787234042554,
-                      shadows: <Shadow>[
-                        Shadow(
-                          color: RelicColors.secondaryBlack,
-                          offset: Offset(0, 3),
-                          blurRadius: 6,
-                        )
-                      ],
-                    ),
+                ),
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                const Divider(
+                  color: Colors.white,
+                  thickness: 1,
+                ),
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                const Text(
+                  'Connect with us',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'pixer',
+                    fontSize: 22,
+                    color: Colors.white,
+                    height: 1.3829787234042554,
+                    shadows: <Shadow>[
+                      Shadow(
+                        color: RelicColors.secondaryBlack,
+                        offset: Offset(0, 3),
+                        blurRadius: 6,
+                      )
+                    ],
                   ),
-
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-
-                  // Instagram button
-                  RetroButton(
-                    upperColor: Colors.white,
-                    lowerColor: Colors.black,
-                    height: height * 0.046,
-                    width: width * 0.4,
-                    borderColor: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'INSTAGRAM',
-                        style: TextStyle(
-                          fontFamily: 'pix M 8pt',
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: RelicColors.backgroundColor,
-                        ),
+                ),
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                // Instagram button
+                RelicBazaarStackedView(
+                  upperColor: Colors.white,
+                  height: height * 0.046,
+                  width: width * 0.4,
+                  borderColor: Colors.white,
+                  child: const Center(
+                    child: Text(
+                      'INSTAGRAM',
+                      style: TextStyle(
+                        fontFamily: 'pix M 8pt',
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: RelicColors.backgroundColor,
                       ),
                     ),
                   ),
-
-                  SizedBox(
-                    height: height * 0.03,
-                  ),
-
-                  // Facebook button
-                  RetroButton(
-                    upperColor: Colors.white,
-                    lowerColor: Colors.black,
-                    height: height * 0.046,
-                    width: width * 0.4,
-                    borderColor: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'FACEBOOK',
-                        style: TextStyle(
-                          fontFamily: 'pix M 8pt',
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: RelicColors.backgroundColor,
-                        ),
+                ),
+                SizedBox(
+                  height: height * 0.03,
+                ),
+                // Facebook button
+                RelicBazaarStackedView(
+                  upperColor: Colors.white,
+                  height: height * 0.046,
+                  width: width * 0.4,
+                  borderColor: Colors.white,
+                  child: const Center(
+                    child: Text(
+                      'FACEBOOK',
+                      style: TextStyle(
+                        fontFamily: 'pix M 8pt',
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: RelicColors.backgroundColor,
                       ),
                     ),
                   ),
-
-                  SizedBox(
-                    height: height * 0.03,
-                  ),
-
-                  // Github button
-                  RetroButton(
-                    upperColor: Colors.white,
-                    lowerColor: Colors.black,
-                    height: height * 0.046,
-                    width: width * 0.4,
-                    borderColor: Colors.white,
-                    child: const Center(
-                      child: Text(
-                        'GITHUB',
-                        style: TextStyle(
-                          fontFamily: 'pix M 8pt',
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: RelicColors.backgroundColor,
-                        ),
+                ),
+                SizedBox(
+                  height: height * 0.03,
+                ),
+                // Github button
+                RelicBazaarStackedView(
+                  upperColor: Colors.white,
+                  height: height * 0.046,
+                  width: width * 0.4,
+                  borderColor: Colors.white,
+                  child: const Center(
+                    child: Text(
+                      'GITHUB',
+                      style: TextStyle(
+                        fontFamily: 'pix M 8pt',
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: RelicColors.backgroundColor,
                       ),
                     ),
                   ),
-
-                  SizedBox(
-                    height: height * 0.04,
-                  ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: height * 0.04,
+                ),
+              ],
             ),
           ),
         ),

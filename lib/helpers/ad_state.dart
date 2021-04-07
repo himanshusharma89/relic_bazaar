@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdState {
@@ -10,9 +11,9 @@ class AdState {
   AdListener get adListener => _adListener;
 
   final AdListener _adListener = AdListener(
-    onAdLoaded: (Ad ad) => print('Ad loaded: ${ad.adUnitId}'),
-    onAdClosed: (Ad ad) => print('Ad closed: ${ad.adUnitId}'),
-    onAdFailedToLoad: (Ad ad, LoadAdError error) => print('Ad failed: ${ad.adUnitId}, $error'),
-    onAdOpened: (Ad ad) => print('Ad opener: ${ad.adUnitId}'),
+    onAdLoaded: (Ad ad) => debugPrint('Ad loaded: ${ad.adUnitId}'),
+    onAdClosed: (Ad ad) => debugPrint('Ad closed: ${ad.adUnitId}'),
+    onAdFailedToLoad: (Ad ad, LoadAdError error) => debugPrint('Ad failed: ${ad.adUnitId}, $error'),
+    onAdOpened: (Ad ad) => debugPrint('Ad opener: ${ad.adUnitId}'),
   );
 }
