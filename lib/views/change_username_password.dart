@@ -16,11 +16,37 @@ TextEditingController _passwordController = TextEditingController();
 TextEditingController _confirmPasswordController = TextEditingController();
 
 
-String _username = '';
-String _password = '';
-String _confirmPassword = '';
+
+
 
 class ChangeUsernameState extends State<ChangeUsername>{
+  FocusNode _email;
+  FocusNode _password;
+  FocusNode _confirm;
+  FocusNode _save;
+
+  @override
+  void initState() {
+    super.initState();
+    _email= FocusNode();
+    _password = FocusNode();
+    _confirm = FocusNode();
+    _save = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    _userNameController.clear();
+    _passwordController.clear();
+    _confirmPasswordController.clear();
+
+    _email.dispose();
+    _password.dispose();
+    _confirm.dispose();
+    _save.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -106,22 +132,28 @@ class ChangeUsernameState extends State<ChangeUsername>{
                                     Padding(
                                       padding: const EdgeInsets.only(left:20.0, right: 20.0),
                                       child: TextFormField(
-                                          controller: _userNameController,
-                                          onChanged: (String value){
-                                            _username = value;
-                                          },
-                                          decoration: const InputDecoration(
-                                              labelText: 'Username',
-                                              labelStyle: TextStyle(
-                                                  fontSize: 20.0,
-                                                  color: Colors.black
-                                              ),
-                                              filled: true,
-                                              fillColor: Colors.white,
-                                              border: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.zero
-                                              )
-                                          )
+                                        autofocus: true,
+                                        focusNode: _email,
+                                        keyboardType: TextInputType.emailAddress,
+                                        enabled: true,
+                                        textInputAction: TextInputAction.next,
+                                        decoration: const InputDecoration(
+                                          labelText: 'Username',
+                                          labelStyle: TextStyle(
+                                            fontSize: 20.0,
+                                              color: Colors.black
+                                          ),
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          border: OutlineInputBorder(
+                                                     borderRadius: BorderRadius.zero
+                                                 )
+                                        ),
+                                        controller: _userNameController,
+                                        onFieldSubmitted: (String value){
+                                          _email.unfocus();
+                                          FocusScope.of(context).requestFocus(_password);
+                                        },
                                       ),
                                     ),
                                   ]
@@ -143,23 +175,40 @@ class ChangeUsernameState extends State<ChangeUsername>{
                                     Padding(
                                       padding: const EdgeInsets.only(left:20.0, right: 20.0),
                                       child: TextFormField(
-                                          controller: _passwordController,
-                                          onChanged: (String value){
-                                            _password = value;
-                                          },
-
-                                          decoration: const InputDecoration(
-                                              labelText: 'Password',
-                                              labelStyle: TextStyle(
-                                                  fontSize: 20.0,
-                                                  color: Colors.black
-                                              ),
-                                              filled: true,
-                                              fillColor: Colors.white,
-                                              border: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.zero
-                                              )
-                                          )
+                                          // controller: _passwordController,
+                                          // onChanged: (String value){
+                                          // },
+                                          //
+                                          // decoration: const InputDecoration(
+                                          //     labelText:
+                                          //     labelStyle: TextStyle(
+                                          //         fontSize: 20.0,
+                                          //         color: Colors.black
+                                          //     ),
+                                          //     filled: true,
+                                          //     fillColor: Colors.white,
+                                          //     border: OutlineInputBorder(
+                                          //         borderRadius: BorderRadius.zero
+                                          //     )
+                                          // )
+                                        focusNode: _password,
+                                        keyboardType: TextInputType.visiblePassword,
+                                        obscureText: true,
+                                        enabled: true,
+                                        textInputAction: TextInputAction.next,
+                                        decoration: const InputDecoration(
+                                          labelText: 'Password',
+                                          labelStyle: TextStyle(
+                                            fontSize: 20.0,
+                                            color: Colors.black
+                                          ),
+                                          filled: true,
+                                          fillColor: Colors.white
+                                        ),
+                                        onFieldSubmitted: (String value){
+                                          _password.unfocus();
+                                          FocusScope.of(context).requestFocus(_confirm);
+                                        },
                                       ),
                                     ),
                                   ]
@@ -180,22 +229,27 @@ class ChangeUsernameState extends State<ChangeUsername>{
                                     Padding(
                                       padding: const EdgeInsets.only(left:20.0, right: 20.0),
                                       child: TextFormField(
-                                          controller: _confirmPasswordController,
-                                          onChanged: (String value){
-                                            _confirmPassword = value;
-                                          },
-                                          decoration: const InputDecoration(
-                                              labelText: 'Confirm Password',
-                                              labelStyle: TextStyle(
-                                                  fontSize: 20.0,
-                                                  color: Colors.black
-                                              ),
-                                              filled: true,
-                                              fillColor: Colors.white,
-                                              border: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.zero
-                                              )
+                                        focusNode: _confirm,
+                                        keyboardType: TextInputType.visiblePassword,
+                                        obscureText: true,
+                                        enabled: true,
+                                        textInputAction: TextInputAction.done,
+                                        decoration: const InputDecoration(
+                                          labelText: 'Confirm Password',
+                                          labelStyle: TextStyle(
+                                            fontSize: 20.0,
+                                              color: Colors.black
+                                          ),
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.zero
                                           )
+                                        ),
+                                        onFieldSubmitted: (String value){
+                                          _confirm.unfocus();
+                                          FocusScope.of(context).requestFocus(_save);
+                                        },
                                       ),
                                     ),
                                   ]
@@ -211,6 +265,7 @@ class ChangeUsernameState extends State<ChangeUsername>{
                                       onTap: (){
                                         debugPrint('Save!!');
                                       },
+                                      focusNode: _save,
                                       child: RelicBazaarStackedView(
                                         upperColor: Colors.black,
                                         lowerColor: Colors.white,
