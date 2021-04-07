@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
+import 'package:retro_shopping/widgets/back_button.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 import 'package:retro_shopping/services/auth_service.dart';
 import 'package:retro_shopping/widgets/text_field_decoration.dart';
@@ -12,13 +13,14 @@ class SignUpScreen extends StatefulWidget {
   }
 }
 
-TextEditingController _emailController = TextEditingController();
-TextEditingController _passwordController = TextEditingController();
-TextEditingController _confirmPasswordController = TextEditingController();
-
 class SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final AuthenticationService _authenticationService = AuthenticationService();
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   String email;
   String password;
@@ -33,7 +35,7 @@ class SignUpScreenState extends State<SignUpScreen> {
   @override
   void initState() {
     super.initState();
-    _email= FocusNode();
+    _email = FocusNode();
     _password = FocusNode();
     _confirm = FocusNode();
     _signup = FocusNode();
@@ -57,20 +59,22 @@ class SignUpScreenState extends State<SignUpScreen> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(
+        leading: appBarBackButton(context),
+      ),
       body: Center(
         child: RelicBazaarStackedView(
             height: height * 0.65,
             width: width * 0.87,
             child: Form(
               key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    child: Text(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text(
                       'SignUp',
                       style: TextStyle(
                           fontSize: 40,
@@ -78,13 +82,10 @@ class SignUpScreenState extends State<SignUpScreen> {
                           fontFamily: 'pix M 8pt',
                           fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.011,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: Text(
+                    SizedBox(
+                      height: height * 0.011,
+                    ),
+                    const Text(
                       'Get Started,\nCreate a new account',
                       style: TextStyle(
                         fontSize: 20,
@@ -93,13 +94,10 @@ class SignUpScreenState extends State<SignUpScreen> {
                         //fontWeight: FontWeight.bold
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.020,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: RelicBazaarStackedView(
+                    SizedBox(
+                      height: height * 0.020,
+                    ),
+                    RelicBazaarStackedView(
                       height: height * 0.07,
                       width: width * 0.7,
                       child: TextFormField(
@@ -108,25 +106,22 @@ class SignUpScreenState extends State<SignUpScreen> {
                         keyboardType: TextInputType.emailAddress,
                         enabled: true,
                         textInputAction: TextInputAction.next,
-                        decoration: textFieldDecoration(
-                            hintText: 'Email Address'
-                        ),
+                        decoration:
+                            textFieldDecoration(hintText: 'Email Address'),
                         controller: _emailController,
-                        validator: (String value) =>_authenticationService.userEmailValidation(value, errorMessage),
-                        onFieldSubmitted: (String value){
+                        validator: (String value) => _authenticationService
+                            .userEmailValidation(value, errorMessage),
+                        onFieldSubmitted: (String value) {
                           email = value;
                           _email.unfocus();
                           FocusScope.of(context).requestFocus(_password);
                         },
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.020,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: RelicBazaarStackedView(
+                    SizedBox(
+                      height: height * 0.020,
+                    ),
+                    RelicBazaarStackedView(
                         height: height * 0.07,
                         width: width * 0.7,
                         child: TextFormField(
@@ -138,20 +133,18 @@ class SignUpScreenState extends State<SignUpScreen> {
                           decoration: textFieldDecoration(
                             hintText: 'Password',
                           ),
-                          validator: (String value) =>_authenticationService.userPasswordValidation(value, errorMessage),
-                          onFieldSubmitted: (String value){
+                          validator: (String value) => _authenticationService
+                              .userPasswordValidation(value, errorMessage),
+                          onFieldSubmitted: (String value) {
                             password = value;
                             _password.unfocus();
                             FocusScope.of(context).requestFocus(_confirm);
                           },
                         )),
-                  ),
-                  SizedBox(
-                    height: height * 0.020,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: RelicBazaarStackedView(
+                    SizedBox(
+                      height: height * 0.020,
+                    ),
+                    RelicBazaarStackedView(
                       height: height * 0.07,
                       width: width * 0.7,
                       child: TextFormField(
@@ -163,32 +156,27 @@ class SignUpScreenState extends State<SignUpScreen> {
                         decoration: textFieldDecoration(
                           hintText: 'Confirm Password',
                         ),
-                        validator: (String value) =>_authenticationService.userConfirmPasswordValidation(value, password, confirmPassword),
-                        onFieldSubmitted: (String value){
+                        validator: (String value) => _authenticationService
+                            .userConfirmPasswordValidation(
+                                value, password, confirmPassword),
+                        onFieldSubmitted: (String value) {
                           confirmPassword = value;
                           _confirm.unfocus();
                           FocusScope.of(context).requestFocus(_signup);
                         },
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.020,
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: InkWell(
+                    SizedBox(
+                      height: height * 0.020,
+                    ),
+                    InkWell(
                       onTap: () async {
                         debugPrint('SignUp!!');
                         errorMessage = null;
                         if (_formKey.currentState.validate()) {
                           errorMessage =
                               await _authenticationService.userSignUp(
-                                  errorMessage,
-                                  context,
-                                  email,
-                                  password);
+                                  errorMessage, context, email, password);
                           if (errorMessage != null) {
                             _formKey.currentState.validate();
                           }
@@ -213,50 +201,49 @@ class SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.020,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 115),
-                    child: Row(children: <Widget>[
-                      InkWell(
-                        onTap: () {
-                          debugPrint('Navigate to google!');
-                          AuthenticationService.signInWithGoogle().then(
-                            (String result) {
-                              if (result != null) {
-                                Navigator.of(context)
-                                    .pushNamedAndRemoveUntil(
-                                  RouteConstant.DASHBOARD_SCREEN,
-                                  (Route<dynamic> route) => false,
-                                );
-                              }
+                    SizedBox(
+                      height: height * 0.020,
+                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          InkWell(
+                            onTap: () {
+                              debugPrint('Navigate to google!');
+                              AuthenticationService.signInWithGoogle().then(
+                                (String result) {
+                                  if (result != null) {
+                                    Navigator.of(context)
+                                        .pushNamedAndRemoveUntil(
+                                      RouteConstant.DASHBOARD_SCREEN,
+                                      (Route<dynamic> route) => false,
+                                    );
+                                  }
+                                },
+                              );
                             },
-                          );
-                        },
-                        child: SizedBox(
-                            width: 45,
-                            height: 45,
-                            child: Image.asset(
-                              'assets/items/google.png',
-                            )),
-                      ),
-                      SizedBox(
-                        width: width * 0.05,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          debugPrint('Navigate to facebook!');
-                        },
-                        child: SizedBox(
-                            width: 45,
-                            height: 45,
-                            child: Image.asset('assets/items/fb.png')),
-                      ),
-                    ]),
-                  ),
-                ],
+                            child: SizedBox(
+                                width: 45,
+                                height: 45,
+                                child: Image.asset(
+                                  'assets/items/google.png',
+                                )),
+                          ),
+                          SizedBox(
+                            width: width * 0.05,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              debugPrint('Navigate to facebook!');
+                            },
+                            child: SizedBox(
+                                width: 45,
+                                height: 45,
+                                child: Image.asset('assets/items/fb.png')),
+                          ),
+                        ]),
+                  ],
+                ),
               ),
             )),
       ),

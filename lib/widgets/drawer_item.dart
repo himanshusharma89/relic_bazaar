@@ -18,36 +18,18 @@ class DrawerItem extends StatelessWidget {
     return Container(
       child: child ??
           ListTile(
-            title: Row(
-              children: <Widget>[
-                Icon(
+            leading: Icon(
                   icon,
                   color: RelicColors.backgroundColor,
                   size: 30.0,
                 ),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12.0,
-                      vertical: 20.0,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Text(
-                          title,
-                          style: const TextStyle(
-                            fontFamily: 'Pixer',
-                            color: RelicColors.backgroundColor,
-                            fontSize: 15.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              ],
+            title: Text(
+              title,
+              style: const TextStyle(
+                fontFamily: 'Pixer',
+                color: RelicColors.backgroundColor,
+                fontSize: 15.0,
+              ),
             ),
             onTap: onTap,
           ),

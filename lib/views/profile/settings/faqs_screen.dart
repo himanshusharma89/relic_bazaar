@@ -1,7 +1,7 @@
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/widgets/retro_button.dart';
+import 'package:retro_shopping/widgets/back_button.dart';
 
 class FaqsScreen extends StatefulWidget {
   @override
@@ -9,8 +9,7 @@ class FaqsScreen extends StatefulWidget {
 }
 
 class _FaqsScreenState extends State<FaqsScreen> {
-
-  bool _loading=true;
+  bool _loading = true;
   PDFDocument _doc;
 
   @override
@@ -40,41 +39,24 @@ class _FaqsScreenState extends State<FaqsScreen> {
     setState(() => _loading = false);
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: RelicColors.backgroundColor,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const RelicBazaarStackedView(
-              upperColor: Colors.white,
-              width: 35,
-              height: 35,
-              borderColor: Colors.white,
-              child: Icon(
-                Icons.arrow_back,
-                color: Colors.black,
-              ),
-            ),
-          ),
-        ),
+        leading: appBarBackButton(context),
         title: const Text('FAQs'),
+        centerTitle: true,
         elevation: 0.0,
       ),
       body: Center(
         child: _loading
             ? const Center(child: CircularProgressIndicator())
             : PDFViewer(
-          document: _doc,
-          zoomSteps: 1,
-          scrollDirection: Axis.vertical,
-        ),
+                document: _doc,
+                zoomSteps: 1,
+                scrollDirection: Axis.vertical,
+              ),
       ),
     );
   }

@@ -138,7 +138,7 @@ class OrdersSection extends StatelessWidget {
             children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width * 0.88 + 5,
-                height: 395,
+                height: 330,
                 decoration: const BoxDecoration(color: Colors.black),
               ),
               Container(

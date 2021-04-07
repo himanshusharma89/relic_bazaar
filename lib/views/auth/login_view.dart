@@ -12,12 +12,12 @@ class LoginScreen extends StatefulWidget {
   }
 }
 
-TextEditingController _emailController = TextEditingController();
-TextEditingController _passwordController = TextEditingController();
-
 class LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final AuthenticationService _authenticationService = AuthenticationService();
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   String email;
   String password;
@@ -29,10 +29,10 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-   super.initState();
-   _email= FocusNode();
-   _password = FocusNode();
-   _login = FocusNode();
+    super.initState();
+    _email = FocusNode();
+    _password = FocusNode();
+    _login = FocusNode();
   }
 
   @override
@@ -57,13 +57,13 @@ class LoginScreenState extends State<LoginScreen> {
             width: width * 0.87,
             child: Form(
               key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                    child: Text(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text(
                       'Login',
                       style: TextStyle(
                           fontSize: 40,
@@ -71,13 +71,10 @@ class LoginScreenState extends State<LoginScreen> {
                           fontFamily: 'pix M 8pt',
                           fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.011,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                    child: Text(
+                    SizedBox(
+                      height: height * 0.011,
+                    ),
+                    const Text(
                       'Welcome back,\nPlease login to your account',
                       style: TextStyle(
                         fontSize: 20,
@@ -86,13 +83,10 @@ class LoginScreenState extends State<LoginScreen> {
                         //fontWeight: FontWeight.bold
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 50.0),
-                    child: RelicBazaarStackedView(
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
+                    RelicBazaarStackedView(
                       height: height * 0.07,
                       width: width * 0.7,
                       child: TextFormField(
@@ -101,25 +95,22 @@ class LoginScreenState extends State<LoginScreen> {
                         keyboardType: TextInputType.emailAddress,
                         enabled: true,
                         textInputAction: TextInputAction.next,
-                        decoration: textFieldDecoration(
-                          hintText: 'Email Address'
-                        ),
+                        decoration:
+                            textFieldDecoration(hintText: 'Email Address'),
                         controller: _emailController,
-                        validator: (String value) =>_authenticationService.userEmailValidation(value, errorMessage),
-                        onFieldSubmitted: (String value){
+                        validator: (String value) => _authenticationService
+                            .userEmailValidation(value, errorMessage),
+                        onFieldSubmitted: (String value) {
                           email = value;
                           _email.unfocus();
                           FocusScope.of(context).requestFocus(_password);
                         },
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.020,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 50.0),
-                    child: RelicBazaarStackedView(
+                    SizedBox(
+                      height: height * 0.020,
+                    ),
+                    RelicBazaarStackedView(
                       height: height * 0.07,
                       width: width * 0.7,
                       child: TextFormField(
@@ -129,23 +120,21 @@ class LoginScreenState extends State<LoginScreen> {
                         enabled: true,
                         textInputAction: TextInputAction.done,
                         decoration: textFieldDecoration(
-                            hintText: 'Password',
+                          hintText: 'Password',
                         ),
-                        validator: (String value) =>_authenticationService.userPasswordValidation(value, errorMessage),
-                        onFieldSubmitted: (String value){
+                        validator: (String value) => _authenticationService
+                            .userPasswordValidation(value, errorMessage),
+                        onFieldSubmitted: (String value) {
                           password = value;
                           _password.unfocus();
                           FocusScope.of(context).requestFocus(_login);
                         },
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.020,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 50.0),
-                    child: InkWell(
+                    SizedBox(
+                      height: height * 0.020,
+                    ),
+                    InkWell(
                       onTap: () async {
                         debugPrint('Login!');
                         errorMessage = null;
@@ -176,69 +165,68 @@ class LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.020,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 100),
-                    child: Row(children: <Widget>[
-                      InkWell(
-                        onTap: () {
-                          debugPrint('Navigate to google!');
-                          AuthenticationService.signInWithGoogle().then(
-                            (String result) {
-                              if (result != null) {
-                                Navigator.of(context).pushReplacementNamed(
-                                  RouteConstant.DASHBOARD_SCREEN,
-                                );
-                              }
+                    SizedBox(
+                      height: height * 0.020,
+                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          InkWell(
+                            onTap: () {
+                              debugPrint('Navigate to google!');
+                              AuthenticationService.signInWithGoogle().then(
+                                (String result) {
+                                  if (result != null) {
+                                    Navigator.of(context).pushReplacementNamed(
+                                      RouteConstant.DASHBOARD_SCREEN,
+                                    );
+                                  }
+                                },
+                              );
                             },
-                          );
-                        },
-                        child: SizedBox(
-                            width: 45,
-                            height: 45,
-                            child: Image.asset(
-                              'assets/items/google.png',
-                            )),
-                      ),
-                      SizedBox(
-                        width: width * 0.05,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          debugPrint('Navigate to facebook!');
-                        },
-                        child: SizedBox(
-                            width: 45,
-                            height: 45,
-                            child: Image.asset('assets/items/fb.png')),
-                      ),
-                    ]),
-                  ),
-                  const SizedBox(height: 10.0),
-                  Row(
-                    //LINK TO SIGN UP PAGE
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      const Text("Don't have an account?"),
-                      const SizedBox(width: 5.0),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context)
-                              .pushNamed(RouteConstant.SIGN_UP_SCREEN);
-                        },
-                        child: const Text(
-                          'SignUp',
-                          style: TextStyle(
-                            color: Colors.white,
+                            child: SizedBox(
+                                width: 45,
+                                height: 45,
+                                child: Image.asset(
+                                  'assets/items/google.png',
+                                )),
                           ),
-                        ),
-                      )
-                    ],
-                  ),
-                ],
+                          SizedBox(
+                            width: width * 0.05,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              debugPrint('Navigate to facebook!');
+                            },
+                            child: SizedBox(
+                                width: 45,
+                                height: 45,
+                                child: Image.asset('assets/items/fb.png')),
+                          ),
+                        ]),
+                    const SizedBox(height: 10.0),
+                    Row(
+                      //LINK TO SIGN UP PAGE
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Text("Don't have an account?"),
+                        const SizedBox(width: 5.0),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context)
+                                .pushNamed(RouteConstant.SIGN_UP_SCREEN);
+                          },
+                          child: const Text(
+                            'SignUp',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
             )),
       ),

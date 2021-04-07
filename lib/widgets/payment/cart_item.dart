@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:retro_shopping/widgets/retro_button.dart';
 
 class CartItem extends StatefulWidget {
   @override
@@ -23,32 +24,10 @@ class _CartItemState extends State<CartItem> {
       padding: const EdgeInsets.only(bottom: 10.0),
       child: Row(
         children: <Widget>[
-          Stack(
-            children: <Widget>[
-              Transform.translate(
-                offset: const Offset(3.5, 4),
-                child: Container(
-                  height: height*0.18,
-                  width: width*0.3,
-                  // height: 75,
-                  // width: 75,
-                  decoration: const BoxDecoration(
-                    color: Colors.black,
-                    // image: DecorationImage(image: null)
-                  ),
-                ),
-              ),
-              Container(
-                height: height*0.18,
-                width: width*0.3,
-                // height: 75,
-                // width: 75,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  // image: DecorationImage(image: null)
-                ),
-              ),
-            ],
+          RelicBazaarStackedView(
+            height: width * 0.3,
+            width: width * 0.3,
+            upperColor: Colors.white,
           ),
           Expanded(
             child: Padding(
@@ -73,8 +52,8 @@ class _CartItemState extends State<CartItem> {
                   Container(
                     // width: 75,
                     // height: 25,
-                    height: height*0.04,
-                    width: width*0.25,
+                    height: height * 0.04,
+                    width: width * 0.25,
                     decoration: const BoxDecoration(
                         color: Colors.white,
                         boxShadow: <BoxShadow>[

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/services/auth_service.dart';
+import 'package:retro_shopping/widgets/back_button.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 import 'package:retro_shopping/widgets/settings_item.dart';
 
@@ -32,24 +33,8 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: RelicColors.backgroundColor,
-          leading: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: const RelicBazaarStackedView(
-                upperColor: Colors.white,
-                width: 35,
-                height: 35,
-                borderColor: Colors.white,
-                child: Icon(
-                  Icons.arrow_back,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-          ),
+          leading: appBarBackButton(context),
+          centerTitle: true,
           title: const Text('Settings'),
           elevation: 0.0,
         ),
@@ -85,7 +70,7 @@ class _SettingsState extends State<Settings> {
                   context,
                   'Manage Address',
                   Icons.location_pin,
-                  onTap: () => _goToScreen(RouteConstant.MANAGE_ADDRESS_SCREEN),
+                  onTap: () => _goToScreen(RouteConstant.ADDRESS_SCREEN),
                 ),
                 divider(),
                 settingsItem(
@@ -129,7 +114,7 @@ class _SettingsState extends State<Settings> {
                 divider(),
                 settingsItem(
                   context,
-                  'GitHub Repo Link',
+                  'GitHub Repository',
                   Icons.verified_user_outlined,
                   onTap: () => _goToScreen(RouteConstant.GITHUB_REPO_LINK),
                 ),

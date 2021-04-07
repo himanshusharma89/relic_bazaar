@@ -1,9 +1,9 @@
 //Packages
 import 'package:flutter/material.dart';
+import 'package:retro_shopping/widgets/back_button.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 //Files
 import '../../../helpers/constants.dart';
-import '../../../widgets/retro_button.dart';
 
 class GithubWebView extends StatelessWidget {
   @override
@@ -11,24 +11,8 @@ class GithubWebView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: RelicColors.backgroundColor,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const RelicBazaarStackedView(
-              upperColor: Colors.white,
-              width: 35,
-              height: 35,
-              borderColor: Colors.white,
-              child: Icon(
-                Icons.arrow_back,
-                color: Colors.black,
-              ),
-            ),
-          ),
-        ),
+        leading: appBarBackButton(context),
+        centerTitle: true,
         title: const Text('Github Repository'),
         elevation: 0.0,
       ),

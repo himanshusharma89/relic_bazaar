@@ -4,6 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/model/address_model.dart';
 import 'package:retro_shopping/widgets/address_text_field.dart';
+import 'package:retro_shopping/widgets/back_button.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 
 class ManageAddress extends StatefulWidget {
@@ -25,19 +26,19 @@ class _ManageAddressState extends State<ManageAddress> {
   String finalAddress = 'Address is not Set Yet';
 
   Future<void> getLocation() async {
-      final Position position = await Geolocator()
-          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-      final Coordinates coordinates =
-          Coordinates(position.latitude, position.longitude);
-      final List<Address> addresses =
-          await Geocoder.local.findAddressesFromCoordinates(coordinates);
-      final Address first = addresses.first;
-      debugPrint('$addresses : ${first.addressLine}');
-      setState(() {
-        loc.text = first.addressLine;
-      });
-      debugPrint(loc.text);
-    }
+    final Position position = await Geolocator()
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    final Coordinates coordinates =
+        Coordinates(position.latitude, position.longitude);
+    final List<Address> addresses =
+        await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    final Address first = addresses.first;
+    debugPrint('$addresses : ${first.addressLine}');
+    setState(() {
+      loc.text = first.addressLine;
+    });
+    debugPrint(loc.text);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -215,24 +216,7 @@ class _ManageAddressState extends State<ManageAddress> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: RelicColors.backgroundColor,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const RelicBazaarStackedView(
-              upperColor: Colors.white,
-              width: 35,
-              height: 35,
-              borderColor: Colors.white,
-              child: Icon(
-                Icons.arrow_back,
-                color: Colors.black,
-              ),
-            ),
-          ),
-        ),
+        leading: appBarBackButton(context),
         title: const Text('Manage Address'),
         elevation: 0.0,
       ),

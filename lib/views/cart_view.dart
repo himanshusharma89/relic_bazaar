@@ -23,7 +23,7 @@ class _CartState extends State<Cart> {
     final double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 18,
+        horizontal: 12,
       ),
       child: ListView(
         children: <Widget>[
