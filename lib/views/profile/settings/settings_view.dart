@@ -114,6 +114,15 @@ class _SettingsState extends State<Settings> {
                 divider(),
                 settingsItem(
                   context,
+                  'Privacy Policy',
+                  Icons.privacy_tip,
+                  onTap: () => _goToScreen(
+                    RouteConstant.privacyPolicyScreen,
+                  ),
+                ),
+                divider(),
+                settingsItem(
+                  context,
                   'GitHub Repository',
                   Icons.verified_user_outlined,
                   onTap: () => _goToScreen(RouteConstant.GITHUB_REPO_LINK),
