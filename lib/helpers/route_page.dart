@@ -15,6 +15,7 @@ import 'package:retro_shopping/views/profile/settings/about.dart';
 import 'package:retro_shopping/views/profile/settings/address_screen.dart';
 import 'package:retro_shopping/views/profile/settings/faqs_screen.dart';
 import 'package:retro_shopping/views/profile/settings/manage_address.dart';
+import 'package:retro_shopping/views/profile/settings/privacy_policy_screen.dart';
 import 'package:retro_shopping/views/profile/settings/settings_view.dart';
 import 'package:retro_shopping/views/profile/settings/github_webview.dart';
 import 'package:retro_shopping/views/profile/wishlist.dart';
@@ -123,6 +124,10 @@ class RoutePage {
       case RouteConstant.GITHUB_REPO_LINK:
         return SlideLeftRoute(
           page: GithubWebView(),
+        );
+      case RouteConstant.privacyPolicyScreen:
+        return SlideLeftRoute(
+          page: PrivacyPolicyScreen(),
         );
 
       default:
