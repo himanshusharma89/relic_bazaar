@@ -24,7 +24,10 @@ class RouteConstant {
   static const String PAYMENT_SUCCESSFULL = '/payment-successful';
   static const String CHANGE_USERNAME_SCREEN = '/change_username';
   static const String GITHUB_REPO_LINK = '/github-webview';
+<<<<<<< HEAD
   static const String NOTIFICATIONS_TOGGLE_SCREEN = '/notifications_toggle';
+=======
+>>>>>>> b436a00bc4b4407d82a25a6731b3691587ec3a2b
   static const String privacyPolicyScreen = '/privacy-policy-screen';
 }
 
