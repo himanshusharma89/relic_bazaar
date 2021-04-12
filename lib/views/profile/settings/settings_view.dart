@@ -84,6 +84,7 @@ class _SettingsState extends State<Settings> {
                   context,
                   'Notifications',
                   Icons.notifications,
+                  onTap: ()=> _goToScreen(RouteConstant.NOTIFICATIONS_TOGGLE_SCREEN),
                 ),
                 divider(),
                 settingsItem(
@@ -110,6 +111,15 @@ class _SettingsState extends State<Settings> {
                           child: CircularProgressIndicator(),
                         )
                       : null,
+                ),
+                divider(),
+                settingsItem(
+                  context,
+                  'Privacy Policy',
+                  Icons.privacy_tip,
+                  onTap: () => _goToScreen(
+                    RouteConstant.privacyPolicyScreen,
+                  ),
                 ),
                 divider(),
                 settingsItem(
