@@ -22,6 +22,7 @@ class SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
+  bool isValidEmail=true;
   String email;
   String password;
   String errorMessage;
@@ -109,8 +110,8 @@ class SignUpScreenState extends State<SignUpScreen> {
                         decoration:
                             textFieldDecoration(hintText: 'Email Address'),
                         controller: _emailController,
-                        validator: (String value) => _authenticationService
-                            .userEmailValidation(value, errorMessage),
+                        // validator: (String value) => _authenticationService
+                        //     .userEmailValidation(value, errorMessage),
                         onFieldSubmitted: (String value) {
                           email = value;
                           _email.unfocus();
@@ -172,6 +173,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                     InkWell(
                       onTap: () async {
                         debugPrint('SignUp!!');
+                        emailValidation();
                         errorMessage = null;
                         if (_formKey.currentState.validate()) {
                           errorMessage =
@@ -248,5 +250,31 @@ class SignUpScreenState extends State<SignUpScreen> {
             )),
       ),
     );
+  }
+  void emailValidation() {
+    const String pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    final RegExp regExp = RegExp(pattern);
+    if (_emailController.text.isEmpty) {
+      setState(() {
+        const SnackBar snackBar = SnackBar(
+          content:  Text('Please enter a Email-id'),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        isValidEmail = false;
+      });
+    } else if (!regExp.hasMatch(_emailController.text)) {
+      setState(() {
+        const SnackBar snackBar = SnackBar(
+          content:  Text('Please enter a valid Email Address'),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        isValidEmail = false;
+      });
+    } else{
+      setState(() {
+        isValidEmail = true;
+      });
+    }
   }
 }

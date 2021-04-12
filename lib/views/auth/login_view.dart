@@ -19,6 +19,8 @@ class LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  bool isValidEmail=true;
+
   String email;
   String password;
   String errorMessage;
@@ -96,10 +98,11 @@ class LoginScreenState extends State<LoginScreen> {
                         enabled: true,
                         textInputAction: TextInputAction.next,
                         decoration:
-                            textFieldDecoration(hintText: 'Email Address'),
+                            textFieldDecoration(
+                              hintText: 'Email Address',),
                         controller: _emailController,
-                        validator: (String value) => _authenticationService
-                            .userEmailValidation(value, errorMessage),
+                        // validator: (String value) => _authenticationService
+                        //     .userEmailValidation(value, errorMessage),
                         onFieldSubmitted: (String value) {
                           email = value;
                           _email.unfocus();
@@ -137,6 +140,7 @@ class LoginScreenState extends State<LoginScreen> {
                     InkWell(
                       onTap: () async {
                         debugPrint('Login!');
+                        emailValidation();
                         errorMessage = null;
                         if (_formKey.currentState.validate()) {
                           errorMessage = await _authenticationService.userLogin(
@@ -231,5 +235,32 @@ class LoginScreenState extends State<LoginScreen> {
             )),
       ),
     );
+  }
+
+  void emailValidation() {
+    const String pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    final RegExp regExp = RegExp(pattern);
+    if (_emailController.text.isEmpty) {
+      setState(() {
+        const SnackBar snackBar = SnackBar(
+          content:  Text('Please enter a Email-id'),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        isValidEmail = false;
+      });
+    } else if (!regExp.hasMatch(_emailController.text)) {
+      setState(() {
+        const SnackBar snackBar = SnackBar(
+          content:  Text('Please enter a valid Email Address'),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        isValidEmail = false;
+      });
+    } else{
+      setState(() {
+        isValidEmail = true;
+      });
+    }
   }
 }

@@ -1,3 +1,4 @@
+
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:retro_shopping/helpers/constants.dart';
@@ -32,18 +33,19 @@ class AuthenticationService {
     await GoogleSignIn().signOut();
   }
 
-  String userEmailValidation(String value, String errorMessage) {
-    if (value.isEmpty) {
-      return 'Required';
-    } else if (errorMessage != null) {
-      if (!errorMessage.contains('Password') ||
-          errorMessage.contains('Invalid Request')) {
-        return errorMessage;
-      }
-      return null;
-    }
-    return null;
-  }
+
+  // String userEmailValidation(String value, String errorMessage) {
+  //   if (value.isEmpty) {
+  //     return 'Required';
+  //   } else if (errorMessage != null) {
+  //     if (!errorMessage.contains('Password') ||
+  //         errorMessage.contains('Invalid Request')) {
+  //       return errorMessage;
+  //     }
+  //     return null;
+  //   }
+  //   return null;
+  // }
 
   String userPasswordValidation(String value, String errorMessage) {
     if (value.isEmpty) {
@@ -72,18 +74,13 @@ class AuthenticationService {
       String email, String password) async {
     String errorTemp = errorText;
     try {
-      final UserCredential newUser = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      final UserCredential newUser = await _auth.createUserWithEmailAndPassword(email: email,password: password);
       if (newUser != null) {
         Navigator.of(context)
             .pushReplacementNamed(RouteConstant.DASHBOARD_SCREEN);
       }
     } catch (e) {
-      if (e.toString().contains('invalid-email')) {
-        errorTemp = 'Invalid Email';
-      } else if (e.toString().contains('email-already-in-use')) {
-        errorTemp = 'User Already Exists';
-      } else if (e.toString().contains('weak-password')) {
+      if (e.toString().contains('weak-password')) {
         errorTemp = 'Password Too Short';
       } else {
         errorTemp = 'Invalid Request';
@@ -105,11 +102,7 @@ class AuthenticationService {
         );
       }
     } catch (e) {
-      if (e.toString().contains('invalid-email')) {
-        errorTemp = 'Invalid Email';
-      } else if (e.toString().contains('user-not-found')) {
-        errorTemp = 'User Not Found';
-      } else if (e.toString().contains('wrong-password')) {
+      if (e.toString().contains('wrong-password')) {
         errorTemp = 'Incorrect Password';
       } else {
         errorTemp = 'Invalid Request';
