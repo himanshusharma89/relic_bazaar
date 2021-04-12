@@ -26,8 +26,8 @@ class _NotificationToggleState extends State<NotificationToggle> {
         children: [
           const SizedBox(height: 20),
           const Padding(
-            padding:  EdgeInsets.only(left: 8.0, right: 8.0),
-            child:  Text(
+            padding: EdgeInsets.only(left: 8.0, right: 8.0),
+            child: Text(
               'Get Notifications from Relic Bazaar on your mobile!!',
               style: TextStyle(
                   fontSize: 20,
@@ -49,27 +49,27 @@ class _NotificationToggleState extends State<NotificationToggle> {
             width: MediaQuery.of(context).size.width * 0.92,
             height: MediaQuery.of(context).size.height * 0.14,
             child: ListTile(
-                  contentPadding: const EdgeInsets.all(8.0),
-                  dense: true,
-                  leading: const Icon(
-                    Icons.notifications_active,
-                    size: 30,
-                    color: Colors.white,
-                  ),
-                  title: const Text('Notifications(on/off)',
-                      style: TextStyle(
-                          fontWeight: FontWeight.normal, fontSize: 20)),
-                  trailing: Switch(
-                    value: switchedOn,
-                    onChanged: (bool value) {
-                      setState(() {
-                        switchedOn = value;
-                      });
-                    },
-                    activeColor: Colors.white,
-                    activeTrackColor: Colors.black,
-                  ),
-                ),
+              contentPadding: const EdgeInsets.all(8.0),
+              dense: true,
+              leading: const Icon(
+                Icons.notifications_active,
+                size: 30,
+                color: Colors.white,
+              ),
+              title: const Text('Notifications(on/off)',
+                  style:
+                      TextStyle(fontWeight: FontWeight.normal, fontSize: 20)),
+              trailing: Switch(
+                value: switchedOn,
+                onChanged: (bool value) {
+                  setState(() {
+                    switchedOn = value;
+                  });
+                },
+                activeColor: Colors.white,
+                activeTrackColor: Colors.black,
+              ),
+            ),
           ),
         ],
       ),
