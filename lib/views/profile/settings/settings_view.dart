@@ -84,6 +84,7 @@ class _SettingsState extends State<Settings> {
                   context,
                   'Notifications',
                   Icons.notifications,
+                  onTap: ()=> _goToScreen(RouteConstant.NOTIFICATIONS_TOGGLE_SCREEN),
                 ),
                 divider(),
                 settingsItem(

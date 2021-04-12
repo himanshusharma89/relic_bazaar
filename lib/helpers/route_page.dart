@@ -15,6 +15,7 @@ import 'package:retro_shopping/views/profile/settings/about.dart';
 import 'package:retro_shopping/views/profile/settings/address_screen.dart';
 import 'package:retro_shopping/views/profile/settings/faqs_screen.dart';
 import 'package:retro_shopping/views/profile/settings/manage_address.dart';
+import 'package:retro_shopping/views/profile/settings/notifications_toggle.dart';
 import 'package:retro_shopping/views/profile/settings/privacy_policy_screen.dart';
 import 'package:retro_shopping/views/profile/settings/settings_view.dart';
 import 'package:retro_shopping/views/profile/settings/github_webview.dart';
@@ -129,6 +130,11 @@ class RoutePage {
         return SlideLeftRoute(
           page: PrivacyPolicyScreen(),
         );
+
+      case RouteConstant.NOTIFICATIONS_TOGGLE_SCREEN:
+        return SlideLeftRoute(
+          page: NotificationToggle(),
+        );  
 
       default:
         return SlideLeftRoute(page: UnknownView());
