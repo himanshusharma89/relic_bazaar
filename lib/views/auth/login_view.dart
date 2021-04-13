@@ -72,7 +72,7 @@ class LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
-                      height: height * 0.011,
+                      height: height * 0.0004,
                     ),
                     const Text(
                       'Welcome back,\nPlease login to your account',
@@ -84,7 +84,7 @@ class LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: height * 0.02,
+                      height: height * 0.015,
                     ),
                     RelicBazaarStackedView(
                       height: height * 0.07,
@@ -108,7 +108,7 @@ class LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: height * 0.020,
+                      height: height * 0.019,
                     ),
                     RelicBazaarStackedView(
                       height: height * 0.07,
