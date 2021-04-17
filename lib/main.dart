@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
+import 'package:retro_shopping/dashboard.dart';
 import 'package:retro_shopping/helpers/ad_state.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/helpers/route_page.dart';
@@ -14,7 +15,6 @@ import 'services/remote_config.dart';
 
 RemoteConfigService _remoteConfigService;
 Future<void> main() async {
-
   //firebase Initialization
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -22,11 +22,11 @@ Future<void> main() async {
   final Future<InitializationStatus> initFuture =
       MobileAds.instance.initialize();
 
-  //Initialize remote config
-  _remoteConfigService= await RemoteConfigService.getInstance();
-  await _remoteConfigService.initialize();
-
   final AdState adState = AdState(initFuture);
+
+  //Initialize remote config
+  _remoteConfigService = await RemoteConfigService.getInstance();
+  await _remoteConfigService.initialize();
 
   runApp(
     Provider<AdState>.value(
@@ -40,14 +40,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        final FocusScopeNode currentFocus = FocusScope.of(context);
-        if (!currentFocus.hasPrimaryFocus &&
-            currentFocus.focusedChild != null) {
-          FocusManager.instance.primaryFocus.unfocus();
-        }
-      },
-      child: MaterialApp(
+        onTap: () {
+          final FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus &&
+              currentFocus.focusedChild != null) {
+            FocusManager.instance.primaryFocus.unfocus();
+          }
+        },
+        child: MaterialApp(
           builder: (BuildContext context, Widget child) {
             return ScrollConfiguration(
               behavior: CustomScrollBehavior(),
@@ -55,44 +55,36 @@ class MyApp extends StatelessWidget {
             );
           },
           home: StreamBuilder<User>(
-            stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.active) {
-                bool isloggedin = snapshot.hasData;
-                if (isloggedin == true) {
-                  return Home();
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
+                if (snapshot.connectionState == ConnectionState.active) {
+                  final bool isloggedin = snapshot.hasData;
+                  if (isloggedin == true) {
+                    return Dashboard();
+                  } else {
+                    //print("here");
+                    return LoginScreen();
+                  }
+                } else {
+                  return const Scaffold(
+                    body: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
                 }
-                else {
-                  //print("here");
-                  return LoginScreen();
-                }
-              }
-              else {
-                return Scaffold(
-                  body: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
-              }
-            }
-        ),
-
-        title: 'Retro Shopping',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          // primarySwatch: Colors.blue,
-            scaffoldBackgroundColor: RelicColors.backgroundColor,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            textTheme:
-            GoogleFonts.poppinsTextTheme(Theme
-                .of(context)
-                .textTheme)),
-        onGenerateRoute: RoutePage.generateRoute,
-    )
-  );
+              }),
+          title: 'Retro Shopping',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+              // primarySwatch: Colors.blue,
+              scaffoldBackgroundColor: RelicColors.backgroundColor,
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+              textTheme:
+                  GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
+          onGenerateRoute: RoutePage.generateRoute,
+        ));
+  }
 }
-}
-
 
 class CustomScrollBehavior extends ScrollBehavior {
   @override

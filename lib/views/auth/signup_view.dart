@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/widgets/back_button.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 import 'package:retro_shopping/services/auth_service.dart';
 import 'package:retro_shopping/widgets/text_field_decoration.dart';
@@ -98,7 +96,6 @@ class SignUpScreenState extends State<SignUpScreen> {
                       height: height * 0.07,
                       width: width * 0.7,
                       child: TextFormField(
-                        autofocus: true,
                         focusNode: _email,
                         keyboardType: TextInputType.emailAddress,
                         enabled: true,
@@ -207,17 +204,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                           InkWell(
                             onTap: () {
                               debugPrint('Navigate to google!');
-                              AuthenticationService.signInWithGoogle().then(
-                                (String result) {
-                                  if (result != null) {
-                                    Navigator.of(context)
-                                        .pushNamedAndRemoveUntil(
-                                      RouteConstant.DASHBOARD_SCREEN,
-                                      (Route<dynamic> route) => false,
-                                    );
-                                  }
-                                },
-                              );
+                              AuthenticationService.signInWithGoogle();
                             },
                             child: SizedBox(
                                 width: 45,

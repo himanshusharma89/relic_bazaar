@@ -90,7 +90,6 @@ class LoginScreenState extends State<LoginScreen> {
                       height: height * 0.07,
                       width: width * 0.7,
                       child: TextFormField(
-                        autofocus: true,
                         focusNode: _email,
                         keyboardType: TextInputType.emailAddress,
                         enabled: true,
@@ -174,15 +173,7 @@ class LoginScreenState extends State<LoginScreen> {
                           InkWell(
                             onTap: () {
                               debugPrint('Navigate to google!');
-                              AuthenticationService.signInWithGoogle().then(
-                                (String result) {
-                                  if (result != null) {
-                                    Navigator.of(context).pushReplacementNamed(
-                                      RouteConstant.DASHBOARD_SCREEN,
-                                    );
-                                  }
-                                },
-                              );
+                              AuthenticationService.signInWithGoogle();
                             },
                             child: SizedBox(
                                 width: 45,
