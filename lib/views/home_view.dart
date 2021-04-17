@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/app_icons.dart';
 import 'package:retro_shopping/helpers/constants.dart';
+import 'package:retro_shopping/services/product_service.dart';
 import 'package:retro_shopping/views/drawer_view.dart';
+import 'package:retro_shopping/widgets/product/product_card.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 
 class Home extends StatefulWidget {
@@ -71,27 +73,38 @@ class _HomeState extends State<Home> {
   }
 
   Widget products(double height, double width) {
+    final ProductService productService = ProductService();
     return SizedBox(
       height: height * 1.08,
       width: width,
-      child: RelicBazaarStackedView(
-        width: width * 0.9,
-        // height: 729.0,
-        upperColor: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GridView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            primary: false,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-                childAspectRatio: 1 / 1.6),
-            itemCount: productsList.length,
-            itemBuilder: (_, int index) => productsList[index],
-          ),
-        ),
+      child: FutureBuilder<List<ProductCard>>(
+        future: productService.getProducts(),
+        builder: (_, AsyncSnapshot<List<ProductCard>> snapshot) {
+          if (snapshot.data != null) {
+            return RelicBazaarStackedView(
+              width: width * 0.9,
+              // height: 729.0,
+              upperColor: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  primary: false,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
+                      childAspectRatio: 1 / 1.6),
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (_, int index) => snapshot.data[index],
+                ),
+              ),
+            );
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }
