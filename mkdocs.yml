@@ -1,0 +1,25 @@
+site_name: Relic Bazaar Docs
+repo_url: https://github.com/himanshusharma89/relic_bazaar
+edit_uri: ""
+
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+  favicon: images/promo.png
+  logo: images/promo.png
+  palette:
+      scheme: slate
+      primary: cyan
+      accent: yellow
+
+  features:
+      - navigation.expand
+      - searcn.highlight
+      - navigation.sections
+      - navigation.top
+      - toc.integrate
+
+plugins:
+  - git-revision-date
+  - search
