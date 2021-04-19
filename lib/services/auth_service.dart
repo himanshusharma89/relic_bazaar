@@ -1,3 +1,4 @@
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:retro_shopping/helpers/constants.dart';
@@ -5,6 +6,42 @@ import 'package:flutter/material.dart';
 
 class AuthenticationService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  static Future<String> appleSignIn() async {
+    try {
+      final AuthorizationCredentialAppleID appleResult =
+          await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+        // webAuthenticationOptions: WebAuthenticationOptions(
+        //   clientId: <CLIENT_ID>,
+        //   redirectUri: Uri.parse(
+        //     <REDIRECT_URI>,
+        //   ),
+        // ),
+      );
+
+      final AuthCredential credential = OAuthProvider('apple.com').credential(
+        idToken: appleResult.identityToken,
+        accessToken: appleResult.authorizationCode,
+      );
+
+      final UserCredential firebaseResult =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      final User user = firebaseResult.user;
+      assert(!user.isAnonymous);
+
+      final User currentUser = FirebaseAuth.instance.currentUser;
+      assert(user.uid == currentUser.uid);
+
+      return '$user';
+    } catch (e) {
+      e.toString();
+      return null;
+    }
+  }
 
   static Future<String> signInWithGoogle() async {
     final GoogleSignInAccount googleSignInAccount =

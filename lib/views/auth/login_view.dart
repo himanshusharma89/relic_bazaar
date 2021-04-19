@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
@@ -50,6 +51,7 @@ class LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Center(
         child: RelicBazaarStackedView(
@@ -168,42 +170,81 @@ class LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: height * 0.020,
                     ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          InkWell(
-                            onTap: () {
-                              debugPrint('Navigate to google!');
-                              AuthenticationService.signInWithGoogle().then(
-                                (String result) {
-                                  if (result != null) {
-                                    Navigator.of(context).pushReplacementNamed(
-                                      RouteConstant.DASHBOARD_SCREEN,
-                                    );
-                                  }
-                                },
-                              );
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: <
+                        Widget>[
+                      InkWell(
+                        onTap: () {
+                          debugPrint('Navigate to google!');
+                          AuthenticationService.signInWithGoogle().then(
+                            (String result) {
+                              if (result != null) {
+                                Navigator.of(context).pushReplacementNamed(
+                                  RouteConstant.DASHBOARD_SCREEN,
+                                );
+                              }
                             },
-                            child: SizedBox(
-                                width: 45,
-                                height: 45,
-                                child: Image.asset(
-                                  'assets/items/google.png',
-                                )),
-                          ),
-                          SizedBox(
-                            width: width * 0.05,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              debugPrint('Navigate to facebook!');
-                            },
-                            child: SizedBox(
-                                width: 45,
-                                height: 45,
-                                child: Image.asset('assets/items/fb.png')),
-                          ),
-                        ]),
+                          );
+                        },
+                        child: SizedBox(
+                            width: 45,
+                            height: 45,
+                            child: Image.asset(
+                              'assets/items/google.png',
+                            )),
+                      ),
+                      SizedBox(
+                        width: width * 0.05,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          debugPrint('Navigate to facebook!');
+                        },
+                        child: SizedBox(
+                            width: 45,
+                            height: 45,
+                            child: Image.asset('assets/items/fb.png')),
+                      ),
+                      SizedBox(
+                        width: width * 0.05,
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          if (Platform.isIOS) {
+                            debugPrint('Navigate to apple!');
+
+                            AuthenticationService.appleSignIn()
+                                .then((String result) {
+                              if (result != null) {
+                                Navigator.of(context).pushReplacementNamed(
+                                  RouteConstant.DASHBOARD_SCREEN,
+                                );
+                              }
+                            });
+                          } else {
+                            final AlertDialog alertDialog = AlertDialog(
+                                actions: <Widget>[
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('Ok'))
+                                ],
+                                title: const Text('Error'),
+                                content:
+                                    const Text('You are not an Apple User'));
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return alertDialog;
+                                });
+                          }
+                        },
+                        child: SizedBox(
+                            width: 51,
+                            height: 51,
+                            child: Image.asset('assets/items/apple_logo.png')),
+                      ),
+                    ]),
                     const SizedBox(height: 10.0),
                     Row(
                       //LINK TO SIGN UP PAGE

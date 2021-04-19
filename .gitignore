@@ -120,3 +120,8 @@ app.*.symbols
 !/dev/ci/**/Gemfile.lock
 
 .fvm
+pubspec.yaml
+assets/items/apple_logo.png
+lib/main.dart
+lib/services/auth_service.dart
+lib/views/auth/login_view.dart

@@ -34,11 +34,13 @@ dependencies:
   geolocator: 5.3.2+2
   geocoder: 0.2.1
   flutter_svg: ^0.20.0-nullsafety.3
-  provider:
+  provider: ^5.0.0
   advance_pdf_viewer:
   firebase_auth: 0.20.1
   google_sign_in: 4.5.9
   webview_flutter: ^1.0.7
+  apple_sign_in: ^0.1.0
+  sign_in_with_apple: ^3.0.0
 
 dev_dependencies:
   flutter_test:
