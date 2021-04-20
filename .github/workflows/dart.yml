@@ -1,0 +1,90 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Dart
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Note: This workflow uses the latest stable version of the Dart SDK.
+      # You can specify other versions if desired, see documentation here:
+      # https://github.com/dart-lang/setup-dart/blob/main/README.md
+      # - uses: dart-lang/setup-dart@v1
+      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+
+      - name: Install dependencies
+        run: dart pub get
+
+      # Uncomment this step to verify the use of 'dart format' on each commit.
+      # - name: Verify formatting
+      #   run: dart format --output=none --set-exit-if-changed .
+
+      # Consider passing '--fatal-infos' for slightly stricter analysis.
+      - name: Analyze project source
+        run: dart analyze
+
+      # Your project will need to have tests in test/ and a dependency on
+      # package:test for this step to succeed. Note that Flutter projects will
+      # want to change this to 'flutter test'.
+      - name: Run tests
+        run: dart test
+
+- name: iOS Build Action
+  # You may pin to the exact commit or the version.
+  # uses: yukiarrr/ios-build-action@ed58ef62f757eb6789675b7ed70ab21255eb80a7
+  uses: yukiarrr/ios-build-action@v1.4.0
+  with:
+    # Base64 encoded p12 key
+    p12-key-base64: # optional
+    # Base64 encoded certificate for the p12 key
+    p12-cer-base64: # optional
+    # Base64 encoded p12 file (key + cert)
+    p12-base64: # optional
+    # Base64 encoded mobileprovision file
+    mobileprovision-base64: # optional
+    # p12 key path
+    p12-key-path: # optional
+    # Certificate path for the p12 key
+    p12-cer-path: # optional
+    # p12 path (key + cert)
+    p12-path: # optional
+    # mobileprovision path
+    mobileprovision-path: # optional
+    # Project path
+    project-path: 
+    # For example, iOS Distribution
+    code-signing-identity: 
+    # Team id
+    team-id: 
+    # Workspace path
+    workspace-path: # optional, default is 
+    # Choose app-store, ad-hoc, package, enterprise, development, or developer-id
+    export-method: # optional, default is app-store
+    # For example, Debug, Release
+    configuration: # optional, default is Release
+    # Certificate password
+    certificate-password: # optional, default is 
+    # Output path of ipa
+    output-path: # optional, default is output.ipa
+    # Scheme
+    scheme: # optional, default is 
+    # Targets to be updated with mobileprovision, code signing identity, etc
+    update-targets: # optional, default is 
+    # Deprecated, use update-targets instead
+    disable-targets: # optional, default is 
+    # Path to an export options plist
+    export-options: # optional, default is 
+    # Path for Swift Package Manager dependencies
+    cloned-source-packages-path: # optional, default is 
