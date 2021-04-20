@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
+import 'package:retro_shopping/dashboard.dart';
 import 'package:retro_shopping/helpers/ad_state.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/helpers/route_page.dart';
@@ -21,11 +22,11 @@ Future<void> main() async {
   final Future<InitializationStatus> initFuture =
       MobileAds.instance.initialize();
 
+  final AdState adState = AdState(initFuture);
+
   //Initialize remote config
   _remoteConfigService = await RemoteConfigService.getInstance();
   await _remoteConfigService.initialize();
-
-  final AdState adState = AdState(initFuture);
 
   runApp(
     Provider<AdState>.value(
@@ -55,11 +56,13 @@ class MyApp extends StatelessWidget {
           },
           home: StreamBuilder<User>(
               stream: FirebaseAuth.instance.authStateChanges(),
-              builder: (context, snapshot) {
+
+              builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
                 if (snapshot.connectionState == ConnectionState.active) {
-                  bool isloggedin = snapshot.hasData;
+                  final bool isloggedin = snapshot.hasData;
                   if (isloggedin == true) {
-                    return Home();
+                    return Dashboard();
+
                   } else {
                     //print("here");
                     return LoginScreen();

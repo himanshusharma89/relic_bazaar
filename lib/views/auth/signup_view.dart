@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/widgets/back_button.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 import 'package:retro_shopping/services/auth_service.dart';
 import 'package:retro_shopping/widgets/text_field_decoration.dart';
@@ -59,9 +57,6 @@ class SignUpScreenState extends State<SignUpScreen> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        leading: appBarBackButton(context),
-      ),
       body: Center(
         child: RelicBazaarStackedView(
             height: height * 0.65,
@@ -77,31 +72,30 @@ class SignUpScreenState extends State<SignUpScreen> {
                     const Text(
                       'SignUp',
                       style: TextStyle(
-                          fontSize: 40,
+                          fontSize: 35,
                           color: Colors.white,
                           fontFamily: 'pix M 8pt',
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
-                      height: height * 0.011,
+                      height: height * 0.002,
                     ),
                     const Text(
                       'Get Started,\nCreate a new account',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 18,
                         color: Colors.white,
                         fontFamily: 'pix M 8pt',
                         //fontWeight: FontWeight.bold
                       ),
                     ),
                     SizedBox(
-                      height: height * 0.020,
+                      height: height * 0.010,
                     ),
                     RelicBazaarStackedView(
                       height: height * 0.07,
                       width: width * 0.7,
                       child: TextFormField(
-                        autofocus: true,
                         focusNode: _email,
                         keyboardType: TextInputType.emailAddress,
                         enabled: true,
@@ -119,7 +113,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: height * 0.020,
+                      height: height * 0.012,
                     ),
                     RelicBazaarStackedView(
                         height: height * 0.07,
@@ -142,7 +136,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                           },
                         )),
                     SizedBox(
-                      height: height * 0.020,
+                      height: height * 0.012,
                     ),
                     RelicBazaarStackedView(
                       height: height * 0.07,
@@ -167,7 +161,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: height * 0.020,
+                      height: height * 0.015,
                     ),
                     InkWell(
                       onTap: () async {
@@ -202,7 +196,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: height * 0.020,
+                      height: height * 0.015,
                     ),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -210,17 +204,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                           InkWell(
                             onTap: () {
                               debugPrint('Navigate to google!');
-                              AuthenticationService.signInWithGoogle().then(
-                                (String result) {
-                                  if (result != null) {
-                                    Navigator.of(context)
-                                        .pushNamedAndRemoveUntil(
-                                      RouteConstant.DASHBOARD_SCREEN,
-                                      (Route<dynamic> route) => false,
-                                    );
-                                  }
-                                },
-                              );
+                              AuthenticationService.signInWithGoogle();
                             },
                             child: SizedBox(
                                 width: 45,

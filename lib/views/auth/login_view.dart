@@ -74,7 +74,7 @@ class LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
-                      height: height * 0.011,
+                      height: height * 0.0004,
                     ),
                     const Text(
                       'Welcome back,\nPlease login to your account',
@@ -86,13 +86,12 @@ class LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: height * 0.02,
+                      height: height * 0.015,
                     ),
                     RelicBazaarStackedView(
                       height: height * 0.07,
                       width: width * 0.7,
                       child: TextFormField(
-                        autofocus: true,
                         focusNode: _email,
                         keyboardType: TextInputType.emailAddress,
                         enabled: true,
@@ -110,7 +109,7 @@ class LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: height * 0.020,
+                      height: height * 0.019,
                     ),
                     RelicBazaarStackedView(
                       height: height * 0.07,
@@ -170,18 +169,28 @@ class LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: height * 0.020,
                     ),
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: <
-                        Widget>[
-                      InkWell(
-                        onTap: () {
-                          debugPrint('Navigate to google!');
-                          AuthenticationService.signInWithGoogle().then(
-                            (String result) {
-                              if (result != null) {
-                                Navigator.of(context).pushReplacementNamed(
-                                  RouteConstant.DASHBOARD_SCREEN,
-                                );
-                              }
+
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          InkWell(
+                            onTap: () {
+                              debugPrint('Navigate to google!');
+                              AuthenticationService.signInWithGoogle();
+                            },
+                            child: SizedBox(
+                                width: 45,
+                                height: 45,
+                                child: Image.asset(
+                                  'assets/items/google.png',
+                                )),
+                          ),
+                          SizedBox(
+                            width: width * 0.05,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              debugPrint('Navigate to facebook!');
                             },
                           );
                         },
