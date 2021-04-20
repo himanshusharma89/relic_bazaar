@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
 
@@ -24,9 +25,8 @@ class PaymentSuccessful extends StatelessWidget {
                 SizedBox(
                   height: _height / 28,
                 ),
-                Image.asset(
-                  'images/glowing_bulb.png',
-                  fit: BoxFit.cover,
+                SvgPicture.string(
+                  svgIv5cq2,
                   height: _height / 8.43,
                 ),
                 SizedBox(
