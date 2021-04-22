@@ -5,6 +5,7 @@ import 'package:retro_shopping/services/product_service.dart';
 import 'package:retro_shopping/views/drawer_view.dart';
 import 'package:retro_shopping/widgets/product/product_card.dart';
 import 'package:retro_shopping/widgets/retro_button.dart';
+import 'package:retro_shopping/widgets/search_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({this.pageController});
@@ -178,62 +179,6 @@ class _HomeState extends State<Home> {
         ],
       ),
       textAlign: TextAlign.left,
-    );
-  }
-
-  Widget searchBar(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
-    final double width = MediaQuery.of(context).size.width;
-    return Stack(
-      children: <Widget>[
-        Transform.translate(
-          offset: const Offset(5, 5),
-          child: Container(
-            height: height * 0.06,
-            width: width * 0.9,
-            color: Colors.black,
-          ),
-        ),
-        Container(
-          height: height * 0.06,
-          width: width * 0.9,
-          color: RelicColors.primaryColor,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                // const Icon(RelicIcons.search),
-                Expanded(
-                    child: TextFormField(
-                  style: const TextStyle(
-                    fontFamily: 'pix M 8pt',
-                    fontSize: 16,
-                    color: RelicColors.primaryBlack,
-                  ),
-                  decoration: const InputDecoration(
-                      hintText: 'search for categories, items and more...',
-                      border: InputBorder.none,
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(
-                        horizontal: 10,
-                      )),
-                )),
-                // Text(
-                //   'search for categories, items and more...',
-                //   style: TextStyle(
-                //     fontFamily: 'pix M 8pt',
-                //     fontSize: 15,
-                //     color: RelicColors.primaryBlack,
-                //   ),
-                //   textAlign: TextAlign.left,
-                // ),
-                const Icon(RelicIcons.search),
-              ],
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

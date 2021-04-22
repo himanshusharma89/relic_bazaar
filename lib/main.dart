@@ -9,7 +9,6 @@ import 'package:retro_shopping/helpers/ad_state.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/helpers/route_page.dart';
 import 'package:retro_shopping/views/auth/login_view.dart';
-import 'package:retro_shopping/views/home_view.dart';
 
 import 'services/remote_config.dart';
 
