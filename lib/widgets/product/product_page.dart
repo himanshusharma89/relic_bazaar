@@ -85,23 +85,16 @@ class _ProductPageState extends State<ProductPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          
-                            SizedBox(
-                              width: width / 1.84,
-                            height: height / 8.43,
-                              child: Text(
-                                widget.product.text,
-                                style: const TextStyle(
-                                    fontSize: 30,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,),
-                              ),
-                            ),
-                        ],
+                      SizedBox(
+                        width: width / 1.84,
+                      height: height / 8.43,
+                        child: Text(
+                          widget.product.text,
+                          style: const TextStyle(
+                              fontSize: 30,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,),
+                        ),
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
