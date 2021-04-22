@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:retro_shopping/helpers/constants.dart';
 import 'package:retro_shopping/model/product_model.dart';
+import 'package:retro_shopping/services/product_service.dart';
 import 'package:retro_shopping/widgets/product/product_card.dart';
 
 class ProductSearchDelegate extends SearchDelegate<ProductCard> {
@@ -43,62 +44,62 @@ class ProductSearchDelegate extends SearchDelegate<ProductCard> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final List<ProductCard> productList = query.isEmpty
-        ? productsList
-        : productsList
-            .where(
-              (ProductCard element) =>
-                  element.product.text.toLowerCase().contains(query),
-            )
-            .toList();
+    final ProductService productService = ProductService();
+    return FutureBuilder<List<ProductCard>>(
+      future: productService.getProducts(),
+      builder: (_, AsyncSnapshot<List<ProductCard>> snapshot) {
+        if (!snapshot.hasData) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          final List<ProductCard> productList = snapshot.data
+              .where(
+                (ProductCard element) =>
+                    element.product.text.toLowerCase().contains(query),
+              )
+              .toList();
 
-    return productList.isEmpty
-        ? const Center(
-            child: Text(
-              'This product is not available !!',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
-          )
-        : ListView.separated(
-            itemBuilder: (_, int index) {
-              final Product product = productList[index].product;
-              return InkWell(
-                onTap: () {
-                  Navigator.of(context).pushNamed(
-                    RouteConstant.PRODUCTS_SCREEN,
-                    arguments: Product(
-                      amount: product.amount,
-                      height: product.height,
-                      image: product.image,
-                      owner: product.owner,
-                      seller: product.seller,
-                      text: product.text,
-                    ),
-                  );
-                },
-                child: ListTile(
-                  title: Text(
-                    productList[index].product.text,
-                    style: const TextStyle(
+          return productList.isEmpty
+              ? const Center(
+                  child: Text(
+                    'This product is not available !!',
+                    style: TextStyle(
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    backgroundImage: AssetImage(
-                      productList[index].product.image,
-                    ),
-                  ),
-                ),
-              );
-            },
-            separatorBuilder: (_, __) => const Divider(
-              endIndent: 20,
-            ),
-            itemCount: productList.length,
-          );
+                )
+              : ListView.separated(
+                  itemBuilder: (_, int i) {
+                    final Product product = productList[i].product;
+                    return InkWell(
+                      onTap: () => Navigator.of(context).pushNamed(
+                        RouteConstant.PRODUCTS_SCREEN,
+                        arguments: Product(
+                          amount: product.amount,
+                          height: product.height,
+                          image: product.image,
+                          owner: product.owner,
+                          seller: product.seller,
+                          text: product.text,
+                        ),
+                      ),
+                      child: ListTile(
+                        title: Text(productList[i].product.text),
+                        leading: CircleAvatar(
+                          backgroundColor: Colors.white,
+                          backgroundImage:
+                              AssetImage(productList[i].product.image),
+                        ),
+                      ),
+                    );
+                  },
+                  separatorBuilder: (_, int i) => const Divider(),
+                  itemCount: productList.length,
+                );
+        }
+      },
+    );
   }
 }
