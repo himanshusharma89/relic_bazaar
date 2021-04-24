@@ -1,4 +1,5 @@
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
@@ -61,6 +62,7 @@ class AuthenticationService {
 
     final User currentUser = FirebaseAuth.instance.currentUser;
     assert(user.uid == currentUser.uid);
+    await addUserToFirebase(user.uid, user.displayName, user.email);
 
     return '$user';
   }
@@ -111,6 +113,8 @@ class AuthenticationService {
     try {
       final UserCredential newUser = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
+      final User user = newUser.user;
+      await addUserToFirebase(user.uid, user.displayName, user.email);
       if (newUser != null) {
         Navigator.of(context)
             .pushReplacementNamed(RouteConstant.DASHBOARD_SCREEN);
@@ -166,5 +170,13 @@ class AuthenticationService {
   Future<void> logout() async {
     await userSignOut();
     await signOutGoogle();
+  }
+
+  static Future<void> addUserToFirebase(
+      String uid, String name, String email) async {
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .set({'uid': uid, 'username': name, 'email': email});
   }
 }

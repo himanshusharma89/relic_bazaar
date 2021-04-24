@@ -28,6 +28,8 @@ class LoginScreenState extends State<LoginScreen> {
   FocusNode _password;
   FocusNode _login;
 
+  bool _loading = false;
+
   @override
   void initState() {
     super.initState();
@@ -68,18 +70,7 @@ class LoginScreenState extends State<LoginScreen> {
                     const Text(
                       'Login',
                       style: TextStyle(
-                          fontSize: 40,
-                          color: Colors.white,
-                          fontFamily: 'pix M 8pt',
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: height * 0.0004,
-                    ),
-                    const Text(
-                      'Welcome back,\nPlease login to your account',
-                      style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 40,
                         color: Colors.white,
                         fontFamily: 'pix M 8pt',
                         //fontWeight: FontWeight.bold
@@ -140,8 +131,14 @@ class LoginScreenState extends State<LoginScreen> {
                         debugPrint('Login!');
                         errorMessage = null;
                         if (_formKey.currentState.validate()) {
+                          setState(() {
+                            _loading = true;
+                          });
                           errorMessage = await _authenticationService.userLogin(
                               errorMessage, context, email, password);
+                          setState(() {
+                            _loading = false;
+                          });
                           if (errorMessage != null) {
                             _formKey.currentState.validate();
                           }
@@ -244,17 +241,16 @@ class LoginScreenState extends State<LoginScreen> {
                         const Text("Don't have an account?"),
                         const SizedBox(width: 5.0),
                         InkWell(
-                          onTap: () {
-                            Navigator.of(context)
-                                .pushNamed(RouteConstant.SIGN_UP_SCREEN);
-                          },
-                          child: const Text(
-                            'SignUp',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        )
+                            onTap: () {
+                              Navigator.of(context)
+                                  .pushNamed(RouteConstant.SIGN_UP_SCREEN);
+                            },
+                            child: const Text(
+                              'SignUp',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ))
                       ],
                     ),
                   ],
