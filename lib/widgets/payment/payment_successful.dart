@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:retro_shopping/helpers/constants.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
 
 class PaymentSuccessful extends StatelessWidget {
   const PaymentSuccessful({
@@ -116,4 +116,3 @@ class PaymentSuccessful extends StatelessWidget {
     );
   }
 }
-

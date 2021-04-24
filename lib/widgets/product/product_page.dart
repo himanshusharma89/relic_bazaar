@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
-import 'package:retro_shopping/helpers/ad_state.dart';
-import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/model/product_model.dart';
-import 'package:retro_shopping/widgets/back_button.dart';
+import 'package:relic_bazaar/helpers/ad_state.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/model/product_model.dart';
+import 'package:relic_bazaar/widgets/back_button.dart';
 import '../../helpers/app_icons.dart';
 import '../retro_button.dart';
 
@@ -209,11 +209,10 @@ class _ProductPageState extends State<ProductPage> {
                             width: width * 0.9,
                             height: height * 0.54,
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
                               child: Column(
-                                crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   SizedBox(
                                     height: height * 0.05,
@@ -287,16 +286,14 @@ class _ProductPageState extends State<ProductPage> {
                                           children: const <Widget>[
                                             Icon(
                                               Icons.add,
-                                              color:
-                                                  RelicColors.primaryColor,
+                                              color: RelicColors.primaryColor,
                                             ),
                                             Text(
                                               'ADD TO CART',
                                               style: TextStyle(
-                                                  color: RelicColors
-                                                      .primaryColor,
-                                                  fontWeight:
-                                                      FontWeight.bold,
+                                                  color:
+                                                      RelicColors.primaryColor,
+                                                  fontWeight: FontWeight.bold,
                                                   fontSize: 15),
                                             ),
                                           ],

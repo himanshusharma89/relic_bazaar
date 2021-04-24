@@ -1,30 +1,30 @@
 import 'package:flutter/cupertino.dart';
-import 'package:retro_shopping/dashboard.dart';
-import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/helpers/slide_route.dart';
-import 'package:retro_shopping/model/product_model.dart';
-import 'package:retro_shopping/views/auth/signup_view.dart';
-import 'package:retro_shopping/views/profile/orders.dart';
-import 'package:retro_shopping/views/change_username_password.dart';
-import 'package:retro_shopping/views/auth/login_view.dart';
+import 'package:relic_bazaar/dashboard.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/helpers/slide_route.dart';
+import 'package:relic_bazaar/model/product_model.dart';
+import 'package:relic_bazaar/views/auth/signup_view.dart';
+import 'package:relic_bazaar/views/profile/orders.dart';
+import 'package:relic_bazaar/views/change_username_password.dart';
+import 'package:relic_bazaar/views/auth/login_view.dart';
 
-import 'package:retro_shopping/views/cart_view.dart';
-import 'package:retro_shopping/views/home_view.dart';
-import 'package:retro_shopping/views/profile/profile_view.dart';
-import 'package:retro_shopping/views/profile/settings/about.dart';
-import 'package:retro_shopping/views/profile/settings/address_screen.dart';
-import 'package:retro_shopping/views/profile/settings/faqs_screen.dart';
-import 'package:retro_shopping/views/profile/settings/manage_address.dart';
-import 'package:retro_shopping/views/profile/settings/notifications_toggle.dart';
-import 'package:retro_shopping/views/profile/settings/privacy_policy_screen.dart';
-import 'package:retro_shopping/views/profile/settings/settings_view.dart';
-import 'package:retro_shopping/views/profile/settings/github_webview.dart';
-import 'package:retro_shopping/views/profile/wishlist.dart';
-import 'package:retro_shopping/views/search_view.dart';
-import 'package:retro_shopping/views/terms_conditions_view.dart';
-import 'package:retro_shopping/views/unknown_view.dart';
-import 'package:retro_shopping/widgets/payment/payment_successful.dart';
-import 'package:retro_shopping/widgets/product/product_page.dart';
+import 'package:relic_bazaar/views/cart_view.dart';
+import 'package:relic_bazaar/views/home_view.dart';
+import 'package:relic_bazaar/views/profile/profile_view.dart';
+import 'package:relic_bazaar/views/profile/settings/about.dart';
+import 'package:relic_bazaar/views/profile/settings/address_screen.dart';
+import 'package:relic_bazaar/views/profile/settings/faqs_screen.dart';
+import 'package:relic_bazaar/views/profile/settings/manage_address.dart';
+import 'package:relic_bazaar/views/profile/settings/notifications_toggle.dart';
+import 'package:relic_bazaar/views/profile/settings/privacy_policy_screen.dart';
+import 'package:relic_bazaar/views/profile/settings/settings_view.dart';
+import 'package:relic_bazaar/views/profile/settings/github_webview.dart';
+import 'package:relic_bazaar/views/profile/wishlist.dart';
+import 'package:relic_bazaar/views/search_view.dart';
+import 'package:relic_bazaar/views/terms_conditions_view.dart';
+import 'package:relic_bazaar/views/unknown_view.dart';
+import 'package:relic_bazaar/widgets/payment/payment_successful.dart';
+import 'package:relic_bazaar/widgets/product/product_page.dart';
 
 class RoutePage {
   static Route<dynamic> generateRoute(RouteSettings settings) {

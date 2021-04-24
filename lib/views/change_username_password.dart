@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/widgets/retro_button.dart';
-import 'package:retro_shopping/widgets/text_field_decoration.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/widgets/retro_button.dart';
+import 'package:relic_bazaar/widgets/text_field_decoration.dart';
 
 class ChangeUsername extends StatefulWidget {
   @override

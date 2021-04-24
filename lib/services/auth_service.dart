@@ -1,7 +1,7 @@
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:retro_shopping/helpers/constants.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:flutter/material.dart';
 
 class AuthenticationService {

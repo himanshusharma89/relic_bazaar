@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/helpers/app_icons.dart';
-import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/services/product_service.dart';
-import 'package:retro_shopping/views/drawer_view.dart';
-import 'package:retro_shopping/widgets/product/product_card.dart';
-import 'package:retro_shopping/widgets/retro_button.dart';
+import 'package:relic_bazaar/helpers/app_icons.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/services/product_service.dart';
+import 'package:relic_bazaar/views/drawer_view.dart';
+import 'package:relic_bazaar/widgets/product/product_card.dart';
+import 'package:relic_bazaar/widgets/retro_button.dart';
 
 class Home extends StatefulWidget {
   const Home({this.pageController});

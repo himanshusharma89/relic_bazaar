@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/services/auth_service.dart';
-import 'package:retro_shopping/widgets/retro_button.dart';
-import 'package:retro_shopping/widgets/text_field_decoration.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/services/auth_service.dart';
+import 'package:relic_bazaar/widgets/retro_button.dart';
+import 'package:relic_bazaar/widgets/text_field_decoration.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -169,30 +169,12 @@ class LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: height * 0.020,
                     ),
-
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          InkWell(
-                            onTap: () {
-                              debugPrint('Navigate to google!');
-                              AuthenticationService.signInWithGoogle();
-                            },
-                            child: SizedBox(
-                                width: 45,
-                                height: 45,
-                                child: Image.asset(
-                                  'assets/items/google.png',
-                                )),
-                          ),
-                          SizedBox(
-                            width: width * 0.05,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              debugPrint('Navigate to facebook!');
-                            },
-                          );
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: <
+                        Widget>[
+                      InkWell(
+                        onTap: () {
+                          debugPrint('Navigate to google!');
+                          AuthenticationService.signInWithGoogle();
                         },
                         child: SizedBox(
                             width: 45,

@@ -1,6 +1,6 @@
 //Packages
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/widgets/back_button.dart';
+import 'package:relic_bazaar/widgets/back_button.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 //Files
 import '../../../helpers/constants.dart';
