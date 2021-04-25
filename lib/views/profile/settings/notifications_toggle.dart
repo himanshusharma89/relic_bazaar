@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/widgets/back_button.dart';
-import 'package:retro_shopping/widgets/retro_button.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/widgets/back_button.dart';
+import 'package:relic_bazaar/widgets/retro_button.dart';
 
 class NotificationToggle extends StatefulWidget {
   @override

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:retro_shopping/widgets/retro_button.dart';
-import 'package:retro_shopping/services/auth_service.dart';
-import 'package:retro_shopping/widgets/text_field_decoration.dart';
+import 'package:relic_bazaar/widgets/retro_button.dart';
+import 'package:relic_bazaar/services/auth_service.dart';
+import 'package:relic_bazaar/widgets/text_field_decoration.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -219,11 +219,11 @@ class SignUpScreenState extends State<SignUpScreen> {
                               onTap: () async {
                                 debugPrint('Navigate to google!');
                                 setState(() {
-                                  _loading=true;
+                                  _loading = true;
                                 });
                                 await AuthenticationService.signInWithGoogle();
                                 setState(() {
-                                  _loading=false;
+                                  _loading = false;
                                 });
                               },
                               child: SizedBox(

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/services/auth_service.dart';
-import 'package:retro_shopping/widgets/retro_button.dart';
-import 'package:retro_shopping/widgets/text_field_decoration.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/services/auth_service.dart';
+import 'package:relic_bazaar/widgets/retro_button.dart';
+import 'package:relic_bazaar/widgets/text_field_decoration.dart';
 
 class LoginScreen extends StatefulWidget {
   @override

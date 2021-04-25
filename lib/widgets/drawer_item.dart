@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/helpers/constants.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
 
 class DrawerItem extends StatelessWidget {
   const DrawerItem({
@@ -19,10 +19,10 @@ class DrawerItem extends StatelessWidget {
       child: child ??
           ListTile(
             leading: Icon(
-                  icon,
-                  color: RelicColors.backgroundColor,
-                  size: 30.0,
-                ),
+              icon,
+              color: RelicColors.backgroundColor,
+              size: 30.0,
+            ),
             title: Text(
               title,
               style: const TextStyle(

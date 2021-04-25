@@ -7,13 +7,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:retro_shopping/helpers/app_icons.dart';
+import 'package:relic_bazaar/helpers/app_icons.dart';
 
-import 'package:retro_shopping/model/product_model.dart';
-import 'package:retro_shopping/widgets/payment/cart_item.dart';
-import 'package:retro_shopping/widgets/payment/order_item.dart';
-import 'package:retro_shopping/widgets/product/product_card.dart';
-import 'package:retro_shopping/widgets/product/product_page.dart';
+import 'package:relic_bazaar/model/product_model.dart';
+import 'package:relic_bazaar/widgets/payment/cart_item.dart';
+import 'package:relic_bazaar/widgets/payment/order_item.dart';
+import 'package:relic_bazaar/widgets/product/product_card.dart';
+import 'package:relic_bazaar/widgets/product/product_page.dart';
 
 void main() {
   //test for ProductCard widget

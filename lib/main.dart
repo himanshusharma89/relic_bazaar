@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
-import 'package:retro_shopping/dashboard.dart';
-import 'package:retro_shopping/helpers/ad_state.dart';
-import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/helpers/route_page.dart';
-import 'package:retro_shopping/views/auth/login_view.dart';
-import 'package:retro_shopping/views/home_view.dart';
+import 'package:relic_bazaar/dashboard.dart';
+import 'package:relic_bazaar/helpers/ad_state.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/helpers/route_page.dart';
+import 'package:relic_bazaar/views/auth/login_view.dart';
+import 'package:relic_bazaar/views/home_view.dart';
 
 import 'services/remote_config.dart';
 

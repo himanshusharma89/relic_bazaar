@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/widgets/retro_button.dart';
-import 'package:retro_shopping/widgets/text_field_decoration.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/widgets/retro_button.dart';
+import 'package:relic_bazaar/widgets/text_field_decoration.dart';
 
 Widget addressTextField(BuildContext context,
     {IconData icon,
@@ -22,7 +22,6 @@ Widget addressTextField(BuildContext context,
             ),
             keyboardType: type,
             controller: text,
-            decoration:
-                textFieldDecoration(hintText: hint, icon: Icon(icon)))),
+            decoration: textFieldDecoration(hintText: hint, icon: Icon(icon)))),
   );
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/model/product_model.dart';
-import 'package:retro_shopping/services/product_service.dart';
-import 'package:retro_shopping/widgets/product/product_card.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/model/product_model.dart';
+import 'package:relic_bazaar/services/product_service.dart';
+import 'package:relic_bazaar/widgets/product/product_card.dart';
 
 class ProductSearchDelegate extends SearchDelegate<ProductCard> {
   @override

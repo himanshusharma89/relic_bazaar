@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/services/auth_service.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/services/auth_service.dart';
 
 import '../widgets/drawer_item.dart';
 
