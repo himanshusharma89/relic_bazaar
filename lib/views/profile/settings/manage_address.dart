@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/model/address_model.dart';
-import 'package:retro_shopping/widgets/address_text_field.dart';
-import 'package:retro_shopping/widgets/back_button.dart';
-import 'package:retro_shopping/widgets/retro_button.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/model/address_model.dart';
+import 'package:relic_bazaar/widgets/address_text_field.dart';
+import 'package:relic_bazaar/widgets/back_button.dart';
+import 'package:relic_bazaar/widgets/retro_button.dart';
 
 class ManageAddress extends StatefulWidget {
   @override

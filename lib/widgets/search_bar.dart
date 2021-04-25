@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/helpers/app_icons.dart';
-import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/helpers/product_search_delegate.dart';
-import 'package:retro_shopping/widgets/retro_button.dart';
+import 'package:relic_bazaar/helpers/app_icons.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/helpers/product_search_delegate.dart';
+import 'package:relic_bazaar/widgets/retro_button.dart';
 
 Widget searchBar(BuildContext context) {
   final double height = MediaQuery.of(context).size.height;

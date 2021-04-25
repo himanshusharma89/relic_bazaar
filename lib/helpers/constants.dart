@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/model/product_model.dart';
-import 'package:retro_shopping/widgets/product/product_card.dart';
+import 'package:relic_bazaar/model/product_model.dart';
+import 'package:relic_bazaar/widgets/product/product_card.dart';
 
 // Route Names
 

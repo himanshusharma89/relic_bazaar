@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/helpers/constants.dart';
-import 'package:retro_shopping/model/product_model.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/model/product_model.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({Key key, this.product}) : super(key: key);

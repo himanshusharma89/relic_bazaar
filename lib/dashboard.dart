@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
-import 'package:retro_shopping/views/cart_view.dart';
-import 'package:retro_shopping/views/home_view.dart';
-import 'package:retro_shopping/views/search_view.dart';
+import 'package:relic_bazaar/views/cart_view.dart';
+import 'package:relic_bazaar/views/home_view.dart';
+import 'package:relic_bazaar/views/search_view.dart';
 import 'helpers/ad_state.dart';
 import 'views/profile/profile_view.dart';
 import 'widgets/bottom_nav_bar.dart';

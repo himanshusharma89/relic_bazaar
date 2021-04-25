@@ -7,43 +7,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:284562138050:android:6169fadfe936aaab432c5b",
-        "android_client_info": {
-          "package_name": "com.example.retro_shopping"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "284562138050-5n24qtnibubmv443073qmeeipd324te4.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.retro_shopping",
-            "certificate_hash": "2a12d2939154d680c5c9cc73036c740d4a459d3e"
-          }
-        },
-        {
-          "client_id": "284562138050-jd4sm4hg7cs3qc34h5ud2b9gq6hua8cf.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCOr5OgT_NBoA0_v14PdgI0A8dmPZYpiBM"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "284562138050-jd4sm4hg7cs3qc34h5ud2b9gq6hua8cf.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:284562138050:android:4dd18f27c903c50f432c5b",
         "android_client_info": {
           "package_name": "tech.himanshusharma.relicbazaar"
@@ -59,6 +22,38 @@
           }
         },
         {
+          "client_id": "284562138050-4l092ps2j10uojq4tsma8n9velt4n8l3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tech.himanshusharma.relicbazaar",
+            "certificate_hash": "2a12d2939154d680c5c9cc73036c740d4a459d3e"
+          }
+        },
+        {
+          "client_id": "284562138050-ctub8nvgiv3q5vt1hkhlkaml7kgiblqn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tech.himanshusharma.relicbazaar",
+            "certificate_hash": "026591a5ef09087a8f36e0991636e4bd40bfd9f2"
+          }
+        },
+        {
+          "client_id": "284562138050-glc1id42m7trjlr06ndmb0pmvv249u7j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tech.himanshusharma.relicbazaar",
+            "certificate_hash": "0a73355f21b08c1d58e3a2d4dd52400b1793f920"
+          }
+        },
+        {
+          "client_id": "284562138050-sos9f7ohrpktmc9t6o86vnt77vq6n29k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tech.himanshusharma.relicbazaar",
+            "certificate_hash": "1cc63aed40b207db68825c78bd3c392da4994fef"
+          }
+        },
+        {
           "client_id": "284562138050-jd4sm4hg7cs3qc34h5ud2b9gq6hua8cf.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -77,7 +72,8 @@
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-1408860275796619~7877036507"
     }
   ],
   "configuration_version": "1"

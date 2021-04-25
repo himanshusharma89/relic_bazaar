@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/widgets/search_bar.dart';
+import 'package:relic_bazaar/widgets/search_bar.dart';
 
 class Search extends StatefulWidget {
   @override

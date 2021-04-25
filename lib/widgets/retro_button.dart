@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:retro_shopping/helpers/constants.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
 
 class RelicBazaarStackedView extends StatefulWidget {
   const RelicBazaarStackedView(
