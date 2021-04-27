@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/model/user_model.dart';
 import 'package:relic_bazaar/widgets/payment/order_item.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({this.user});
+
+  final User user;
+
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -16,7 +21,7 @@ class ProfilePage extends StatelessWidget {
             SizedBox(
               height: height * 0.02,
             ),
-            const TopSection(),
+            TopSection(user:User(name: user.name,email: user.email),),
             SizedBox(
               height: height * 0.02,
             ),
@@ -195,9 +200,9 @@ class OrdersSection extends StatelessWidget {
 }
 
 class TopSection extends StatelessWidget {
-  const TopSection({
-    Key key,
-  }) : super(key: key);
+  const TopSection({Key key, this.user}) : super(key: key);
+
+  final User user;
 
   @override
   Widget build(BuildContext context) {
@@ -216,16 +221,16 @@ class TopSection extends StatelessWidget {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const <Widget>[
+              children:  <Widget>[
                 Text(
-                  'Linus',
+                  user.name,
                   style: TextStyle(
-                      fontSize: 48, fontFamily: 'Pixer', color: Colors.white),
+                      fontSize: 25, fontFamily: 'Pixer', color: Colors.white),
                 ),
                 Text(
-                  'Torvalds',
+                  user.email,
                   style: TextStyle(
-                      fontSize: 36, fontFamily: 'Pixer', color: Colors.white),
+                      fontSize: 10, fontFamily: 'Pixer', color: Colors.white),
                 ),
                 SizedBox(
                   height: 10,

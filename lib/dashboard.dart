@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
+import 'package:relic_bazaar/model/user_model.dart';
+import 'package:relic_bazaar/services/db_userdata.dart';
 import 'package:relic_bazaar/views/cart_view.dart';
 import 'package:relic_bazaar/views/home_view.dart';
 import 'package:relic_bazaar/views/search_view.dart';
@@ -16,6 +18,8 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   PageController _pageController;
   int _currentIndex = 0;
+  final userdata = DbUserData.instance;
+  String name,email;
 
   BannerAd bannerAd;
 
@@ -41,6 +45,17 @@ class _DashboardState extends State<Dashboard> {
   void initState() {
     super.initState();
     _pageController = PageController();
+    try {
+      //As soon as the homescreen loads firstly all the user info is fetched from firbase
+      userdata.fetchData().then((value) {
+          this.name = userdata.name;
+          this.email = userdata.email;
+          print(this.name);
+          print(this.email);
+      });
+    } catch (e) {
+      print("Caught some error fetching data ");
+    }
   }
 
   @override
@@ -67,12 +82,13 @@ class _DashboardState extends State<Dashboard> {
               children: <Widget>[
                 Home(
                   pageController: _pageController,
+                  user: User(name: name, email: email),
                 ),
                 Search(),
                 Cart(
                   pageController: _pageController,
                 ),
-                ProfilePage(),
+                ProfilePage(user: User(name: name, email: email),),
               ],
             ),
             Align(
