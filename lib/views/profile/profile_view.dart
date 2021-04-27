@@ -1,195 +1,92 @@
 import 'package:flutter/material.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
-import 'package:relic_bazaar/widgets/payment/order_item.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 
 class ProfilePage extends StatelessWidget {
+  Divider dividerBuilder() => const Divider(
+        color: Colors.white,
+        endIndent: 20,
+        indent: 20,
+        thickness: 4.0,
+      );
+
+  InkWell buttonBuilder({
+    double height,
+    String text,
+    double width,
+    String routeName,
+    BuildContext context,
+  }) =>
+      InkWell(
+        onTap: () => Navigator.of(context).pushNamed(routeName),
+        child: RelicBazaarStackedView(
+          upperColor: Colors.white,
+          height: height * 0.046,
+          width: width * 0.35,
+          borderColor: Colors.white,
+          child: Center(
+            child: Text(
+              text,
+              style: const TextStyle(
+                fontFamily: 'pix M 8pt',
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: RelicColors.backgroundColor,
+              ),
+            ),
+          ),
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
+    final double _height = MediaQuery.of(context).size.height;
+    final double _width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 18,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SizedBox(
-              height: height * 0.02,
+              height: _height * 0.02,
             ),
             const TopSection(),
             SizedBox(
-              height: height * 0.02,
+              height: _height * 0.02,
             ),
-            const OrdersSection(),
+            dividerBuilder(),
             SizedBox(
-              height: height * 0.02,
+              height: _height * 0.02,
             ),
-            const WishlistSection(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                buttonBuilder(
+                  text: '🛍️ ORDERS',
+                  height: _height,
+                  width: _width,
+                  context: context,
+                  routeName: RouteConstant.ORDERS_SCREEN,
+                ),
+                buttonBuilder(
+                  text: '♥ WISHLIST',
+                  height: _height,
+                  width: _width,
+                  context: context,
+                  routeName: RouteConstant.WISHLIST_SCREEN,
+                ),
+              ],
+            ),
             SizedBox(
-              height: height * 0.1,
+              height: _height * 0.02,
             ),
+            dividerBuilder(),
           ],
         ),
       ),
-    );
-  }
-}
-
-class WishlistSection extends StatelessWidget {
-  const WishlistSection({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
-    final double width = MediaQuery.of(context).size.width;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        RelicBazaarStackedView(
-          upperColor: Colors.white,
-          height: height * 0.046,
-          width: width * 0.35,
-          borderColor: Colors.white,
-          child: const Center(
-            child: Text(
-              '♥ WISHLIST',
-              style: TextStyle(
-                fontFamily: 'pix M 8pt',
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: RelicColors.backgroundColor,
-              ),
-              // textAlign: TextAlign.left,
-            ),
-          ),
-        ),
-        // SectionHeader(title: "♥ WISHLIST"),
-        const SizedBox(height: 20),
-        Center(
-          child: Stack(
-            children: <Widget>[
-              Container(
-                width: MediaQuery.of(context).size.width * 0.88 + 5,
-                height: 216,
-                decoration: const BoxDecoration(color: Colors.black),
-              ),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                width: MediaQuery.of(context).size.width * 0.87,
-                height: 210,
-                decoration:
-                    const BoxDecoration(color: RelicColors.primaryColor),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const <Widget>[
-                    OrderItem(
-                        title: 'EDI TURNTABLE',
-                        ordered: 'by Tony Stark',
-                        status: 'OUT OF STOCK',
-                        image: 'assets/items/4.png'),
-                    // Divider(color: Clors.w,),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class OrdersSection extends StatelessWidget {
-  const OrdersSection({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
-    final double width = MediaQuery.of(context).size.width;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        RelicBazaarStackedView(
-          upperColor: Colors.white,
-          height: height * 0.046,
-          width: width * 0.35,
-          borderColor: Colors.white,
-          child: const Center(
-            child: Text(
-              'ORDERS',
-              style: TextStyle(
-                fontFamily: 'pix M 8pt',
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: RelicColors.backgroundColor,
-              ),
-              // textAlign: TextAlign.left,
-            ),
-          ),
-        ),
-        const SizedBox(height: 20),
-        Center(
-          child: Stack(
-            children: <Widget>[
-              Container(
-                width: MediaQuery.of(context).size.width * 0.88 + 5,
-                height: 330,
-                decoration: const BoxDecoration(color: Colors.black),
-              ),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                width: MediaQuery.of(context).size.width * 0.87,
-                decoration:
-                    const BoxDecoration(color: RelicColors.primaryColor),
-                child: ListView(
-                  shrinkWrap: true,
-                  primary: false,
-                  children: const <Widget>[
-                    OrderItem(
-                        title: 'ANTIQUE VASE',
-                        ordered: 'ORDERED 3 DAYS AGO',
-                        status: 'STATUS : ON THE WAY',
-                        image: 'assets/items/3.png'),
-                    Divider(
-                      color: Colors.white,
-                    ),
-                    OrderItem(
-                        title: 'TATUNG EINSTEIN',
-                        ordered: 'ORDERED 3 WEEKS AGO',
-                        status: 'ANTIQUE DELIVERED',
-                        image: 'assets/items/1.png',
-                        delivered: true),
-                  ],
-                ),
-                // child: Column(
-                //   children: [
-                //     OrderItem(
-                //         title: "ANTIQUE VASE",
-                //         ordered: "ORDERED 3 DAYS AGO",
-                //         status: "STATUS : ON THE WAY",
-                //         image: 'assets/items/3.png'),
-                //     Divider(
-                //       color: Colors.white,
-                //     ),
-                //     OrderItem(
-                //         title: "TATUNG EINSTEIN",
-                //         ordered: "ORDERED 3 WEEKS AGO",
-                //         status: "ANTIQUE DELIVERED",
-                //         image: 'assets/items/1.png',
-                //         delivered: true),
-                //   ],
-                // ),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }
@@ -201,18 +98,21 @@ class TopSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double _height = MediaQuery.of(context).size.height;
     return Stack(
       children: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Container(
-              height: 140,
-              width: 140,
+              height: _height / 6,
+              width: _height / 6,
               decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/person.png'),
-                      fit: BoxFit.cover)),
+                image: DecorationImage(
+                  image: AssetImage('assets/person.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -233,9 +133,10 @@ class TopSection extends StatelessWidget {
                 Text(
                   'SHOPPER SINCE MAY 2020',
                   style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
                 ),
               ],
             ),
@@ -246,14 +147,16 @@ class TopSection extends StatelessWidget {
           right: 0,
           child: GestureDetector(
             onTap: () {
-              Navigator.of(context).pushNamed(RouteConstant.SETTINGS_SCREEN);
+              Navigator.of(context).pushNamed(
+                RouteConstant.SETTINGS_SCREEN,
+              );
             },
-            child: const RelicBazaarStackedView(
+            child: RelicBazaarStackedView(
               upperColor: Colors.white,
-              width: 35,
-              height: 35,
+              width: _height / 24,
+              height: _height / 24,
               borderColor: Colors.white,
-              child: Icon(
+              child: const Icon(
                 Icons.settings,
                 color: Colors.black,
               ),
