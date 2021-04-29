@@ -1,26 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:relic_bazaar/model/user_model.dart';
 
 class DbUserData {
   static final DbUserData _singleton = new DbUserData._internal();
   DbUserData._internal();
   static DbUserData get instance => _singleton;
 
-  String name, email, profileimg;
+  UserModel user ;
   
   //used to fetch user information from firebase
-  Future<void> fetchData() async {
+  Future<UserModel> fetchData(String uid) async {
     try {
       await FirebaseFirestore.instance
           .collection('users')
-          .doc(FirebaseAuth.instance.currentUser.uid)
+          .doc(uid)
           .get()
           .then((value) {
-        name = value.get('username').toString();
-        email = value.get('email').toString();
+        user = UserModel(name: value.get('username').toString(), email: value.get('email').toString());
+        print("hii "+user.name);
       });
     } catch (e) {
       print(e);
     }
+    return user;
   }
 }

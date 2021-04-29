@@ -11,6 +11,9 @@ import 'views/profile/profile_view.dart';
 import 'widgets/bottom_nav_bar.dart';
 
 class Dashboard extends StatefulWidget {
+  const Dashboard({this.uid});
+
+  final String uid;
   @override
   _DashboardState createState() => _DashboardState();
 }
@@ -19,7 +22,7 @@ class _DashboardState extends State<Dashboard> {
   PageController _pageController;
   int _currentIndex = 0;
   final userdata = DbUserData.instance;
-  String name,email;
+  UserModel userinfo;
 
   BannerAd bannerAd;
 
@@ -45,17 +48,11 @@ class _DashboardState extends State<Dashboard> {
   void initState() {
     super.initState();
     _pageController = PageController();
-    try {
-      //As soon as the homescreen loads firstly all the user info is fetched from firbase
-      userdata.fetchData().then((value) {
-          this.name = userdata.name;
-          this.email = userdata.email;
-          print(this.name);
-          print(this.email);
-      });
-    } catch (e) {
-      print("Caught some error fetching data ");
-    }
+    getUser();
+  }
+
+   Future<void> getUser() async {
+    userinfo = await userdata.fetchData(widget.uid);
   }
 
   @override
@@ -82,13 +79,13 @@ class _DashboardState extends State<Dashboard> {
               children: <Widget>[
                 Home(
                   pageController: _pageController,
-                  user: User(name: name, email: email),
+                  user: userinfo,
                 ),
                 Search(),
                 Cart(
                   pageController: _pageController,
                 ),
-                ProfilePage(user: User(name: name, email: email),),
+                ProfilePage(user: userinfo,)
               ],
             ),
             Align(

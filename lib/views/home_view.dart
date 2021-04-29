@@ -12,7 +12,7 @@ class Home extends StatefulWidget {
   const Home({this.pageController,this.user});
 
   final PageController pageController;
-  final User user;
+  final UserModel user;
 
   @override
   _HomeState createState() => _HomeState();
@@ -172,7 +172,7 @@ class _HomeState extends State<Home> {
             text: 'GOOD EVENING,\n',
           ),
           TextSpan(
-            text: widget.user.name,
+            text: widget.user.name.toString(),
             style: TextStyle(
               fontFamily: 'Pixer',
               fontSize: 47,
