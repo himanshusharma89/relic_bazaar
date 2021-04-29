@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/model/user_model.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({this.user});
+
+  final UserModel user;
+
   Divider dividerBuilder() => const Divider(
         color: Colors.white,
         endIndent: 20,
@@ -53,7 +58,7 @@ class ProfilePage extends StatelessWidget {
             SizedBox(
               height: _height * 0.02,
             ),
-            const TopSection(),
+            TopSection(user: user,),
             SizedBox(
               height: _height * 0.02,
             ),
@@ -92,9 +97,9 @@ class ProfilePage extends StatelessWidget {
 }
 
 class TopSection extends StatelessWidget {
-  const TopSection({
-    Key key,
-  }) : super(key: key);
+  const TopSection({Key key, this.user}) : super(key: key);
+
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
@@ -116,16 +121,16 @@ class TopSection extends StatelessWidget {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const <Widget>[
+              children:  <Widget>[
                 Text(
-                  'Linus',
+                  user.name.toString(),
                   style: TextStyle(
-                      fontSize: 48, fontFamily: 'Pixer', color: Colors.white),
+                      fontSize: 25, fontFamily: 'Pixer', color: Colors.white),
                 ),
                 Text(
-                  'Torvalds',
+                  user.email.toString(),
                   style: TextStyle(
-                      fontSize: 36, fontFamily: 'Pixer', color: Colors.white),
+                      fontSize: 10, fontFamily: 'Pixer', color: Colors.white),
                 ),
                 SizedBox(
                   height: 10,

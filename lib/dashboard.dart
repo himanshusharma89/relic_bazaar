@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
+import 'package:relic_bazaar/model/user_model.dart';
+import 'package:relic_bazaar/services/db_userdata.dart';
 import 'package:relic_bazaar/views/cart_view.dart';
 import 'package:relic_bazaar/views/home_view.dart';
 import 'package:relic_bazaar/views/search_view.dart';
@@ -9,6 +11,9 @@ import 'views/profile/profile_view.dart';
 import 'widgets/bottom_nav_bar.dart';
 
 class Dashboard extends StatefulWidget {
+  const Dashboard({this.uid});
+
+  final String uid;
   @override
   _DashboardState createState() => _DashboardState();
 }
@@ -16,6 +21,8 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   PageController _pageController;
   int _currentIndex = 0;
+  final userdata = DbUserData.instance;
+  UserModel userinfo;
 
   BannerAd bannerAd;
 
@@ -41,6 +48,11 @@ class _DashboardState extends State<Dashboard> {
   void initState() {
     super.initState();
     _pageController = PageController();
+    getUser();
+  }
+
+   Future<void> getUser() async {
+    userinfo = await userdata.fetchData(widget.uid);
   }
 
   @override
@@ -67,12 +79,13 @@ class _DashboardState extends State<Dashboard> {
               children: <Widget>[
                 Home(
                   pageController: _pageController,
+                  user: userinfo,
                 ),
                 Search(),
                 Cart(
                   pageController: _pageController,
                 ),
-                ProfilePage(),
+                ProfilePage(user: userinfo,)
               ],
             ),
             Align(
