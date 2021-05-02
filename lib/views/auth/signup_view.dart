@@ -200,7 +200,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                           borderColor: Colors.white,
                           child: const Center(
                             child: Text(
-                              'Sign Up',
+                              'SignUp',
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
