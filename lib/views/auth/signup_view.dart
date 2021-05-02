@@ -32,6 +32,7 @@ class SignUpScreenState extends State<SignUpScreen> {
   FocusNode _signup;
 
   bool _loading = false;
+  bool isEmailValid = true;
 
   @override
   void initState() {
@@ -199,7 +200,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                           borderColor: Colors.white,
                           child: const Center(
                             child: Text(
-                              'SignUp',
+                              'Sign Up',
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
