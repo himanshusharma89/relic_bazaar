@@ -17,12 +17,10 @@ class GithubWebView extends StatelessWidget {
         title: const Text('Github Repository'),
         elevation: 0.0,
       ),
-      body: SafeArea(
-        child: const WebView(
+      body: const WebView(
           initialUrl: 'https://github.com/himanshusharma89/relic_bazaar',
           javascriptMode: JavascriptMode.unrestricted,
         ),
-      ),
     );
   }
 }

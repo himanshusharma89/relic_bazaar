@@ -14,8 +14,7 @@ class AboutScreen extends StatelessWidget {
         backgroundColor: RelicColors.backgroundColor,
         elevation: 0,
       ),
-      body: SafeArea(
-      child:  SingleChildScrollView(
+      body: SingleChildScrollView(
         primary: true,
         child: SizedBox(
           width: width,
@@ -189,7 +188,6 @@ class AboutScreen extends StatelessWidget {
             ),
           ),
         ),
-      ),
       ),
     );
   }

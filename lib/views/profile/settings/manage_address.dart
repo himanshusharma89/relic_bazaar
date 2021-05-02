@@ -220,8 +220,7 @@ class _ManageAddressState extends State<ManageAddress> {
         title: const Text('Manage Address'),
         elevation: 0.0,
       ),
-      body: SafeArea(
-        child: Stepper(
+      body:  Stepper(
           steps: steps,
           physics: const BouncingScrollPhysics(),
           type: StepperType.horizontal,
@@ -320,7 +319,6 @@ class _ManageAddressState extends State<ManageAddress> {
             });
           },
         ),
-      ),
     );
   }
 }
