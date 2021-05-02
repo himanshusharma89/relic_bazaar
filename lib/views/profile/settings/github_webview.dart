@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:relic_bazaar/widgets/back_button.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
 //Files
 import '../../../helpers/constants.dart';
 
@@ -16,9 +17,11 @@ class GithubWebView extends StatelessWidget {
         title: const Text('Github Repository'),
         elevation: 0.0,
       ),
-      body: const WebView(
-        initialUrl: 'https://github.com/himanshusharma89/relic_bazaar',
-        javascriptMode: JavascriptMode.unrestricted,
+      body: SafeArea(
+        child: const WebView(
+          initialUrl: 'https://github.com/himanshusharma89/relic_bazaar',
+          javascriptMode: JavascriptMode.unrestricted,
+        ),
       ),
     );
   }

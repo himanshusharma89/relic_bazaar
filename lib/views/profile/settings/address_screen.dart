@@ -22,7 +22,8 @@ class _AddressScreenState extends State<AddressScreen> {
         title: const Text('Manage Address'),
         elevation: 0.0,
       ),
-      body: SingleChildScrollView(
+      body: SafeArea(
+    child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -82,6 +83,7 @@ class _AddressScreenState extends State<AddressScreen> {
             ],
           ),
         ),
+      ),
       ),
     );
   }

@@ -49,7 +49,8 @@ class _FaqsScreenState extends State<FaqsScreen> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: Center(
+      body: SafeArea(
+      child: Center(
         child: _loading
             ? const Center(child: CircularProgressIndicator())
             : PDFViewer(
@@ -57,6 +58,7 @@ class _FaqsScreenState extends State<FaqsScreen> {
                 zoomSteps: 1,
                 scrollDirection: Axis.vertical,
               ),
+      ),
       ),
     );
   }

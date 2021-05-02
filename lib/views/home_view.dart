@@ -9,7 +9,7 @@ import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:relic_bazaar/widgets/search_bar.dart';
 
 class Home extends StatefulWidget {
-  const Home({this.pageController,this.user});
+  const Home({this.pageController, this.user});
 
   final PageController pageController;
   final UserModel user;
@@ -40,38 +40,40 @@ class _HomeState extends State<Home> {
       drawer: DrawerWidget(
         pageController: widget.pageController,
       ),
-      body: SingleChildScrollView(
-          primary: true,
-          child: SizedBox(
-            width: width,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(
-                    height: height * 0.01,
-                  ),
-                  topBar(context),
-                  SizedBox(
-                    height: height * 0.03,
-                  ),
-                  greetingUserText(),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  searchBar(context),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  products(height, width),
-                  SizedBox(
-                    height: height * 0.1,
-                  ),
-                ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+            primary: true,
+            child: SizedBox(
+              width: width,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      height: height * 0.01,
+                    ),
+                    topBar(context),
+                    SizedBox(
+                      height: height * 0.03,
+                    ),
+                    greetingUserText(),
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
+                    searchBar(context),
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
+                    products(height, width),
+                    SizedBox(
+                      height: height * 0.1,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          )),
+            )),
+      ),
     );
   }
 
