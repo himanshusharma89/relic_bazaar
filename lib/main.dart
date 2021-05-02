@@ -67,10 +67,8 @@ class MyApp extends StatelessWidget {
                   }
                 } else {
                   return const Scaffold(
-                    body: SafeArea(
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      ),
+                    body: Center(
+                      child: CircularProgressIndicator(),
                     ),
                   );
                 }
