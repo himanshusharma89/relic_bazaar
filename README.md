@@ -60,7 +60,7 @@ We propose an app with the vision to put back the traditional market of vintage 
 5. If your code is being repetitive then refactor it to create a new widget for future use.
 6. Make the code as modular as possible, separating the UI from the logic.
 
-Contributions are always welcome! You can also visit our [contributing guidelines](https://github.com/himanshusharma89/relic_bazaar/blob/master/CONTRIBUTING.md) beforing making any contributions. 
+Contributions are always welcome! You can also visit our [contributing guidelines](https://github.com/himanshusharma89/relic_bazaar/blob/master/CONTRIBUTING.md) before making any contributions. 
 
 <h2 align= "left"><b>Steps</b></h2>
 
@@ -110,12 +110,12 @@ git push -u origin <your_branch_name>
 **8.** Create a Pull Request!
 
 
-Finally, go to your repository in the browser and click on `compare and pull requests`.
+Finally, go to your repository in the browser and click on `compare and pull requests.
 Then add a title and description to your pull request that explains your precious effort.
 
 <img src="https://user-images.githubusercontent.com/41269164/70219707-47194780-176b-11ea-96c2-d0c401ddb1e0.png" width=600>
 		
-click on `Compare and Pull Request`
+Click on `Compare and Pull Request`
 		
 <img src="https://user-images.githubusercontent.com/41269164/70219836-8d6ea680-176b-11ea-81d5-549093bf0954.png" width=600>
 
@@ -145,6 +145,7 @@ Distributed under the CC0-1.0 License. See [LICENSE](https://github.com/himanshu
 </p>
 
 </br>
+
 
 
 
