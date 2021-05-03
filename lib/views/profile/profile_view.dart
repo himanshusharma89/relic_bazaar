@@ -58,7 +58,9 @@ class ProfilePage extends StatelessWidget {
             SizedBox(
               height: _height * 0.02,
             ),
-            TopSection(user: user,),
+            TopSection(
+              user: user,
+            ),
             SizedBox(
               height: _height * 0.02,
             ),
@@ -121,21 +123,21 @@ class TopSection extends StatelessWidget {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children:  <Widget>[
+              children: <Widget>[
                 Text(
                   user.name.toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 25, fontFamily: 'Pixer', color: Colors.white),
                 ),
                 Text(
                   user.email.toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 10, fontFamily: 'Pixer', color: Colors.white),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                   'SHOPPER SINCE MAY 2020',
                   style: TextStyle(
                     fontSize: 13,

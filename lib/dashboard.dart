@@ -21,7 +21,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   PageController _pageController;
   int _currentIndex = 0;
-  final userdata = DbUserData.instance;
+  final DbUserData userdata = DbUserData.instance;
 
   BannerAd bannerAd;
 

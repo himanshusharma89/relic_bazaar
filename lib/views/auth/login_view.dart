@@ -57,7 +57,6 @@ class LoginScreenState extends State<LoginScreen> {
       inAsyncCall: _loading,
       color: Colors.black54,
       opacity: 0.7,
-      progressIndicator: const CircularProgressIndicator(),
       child: Scaffold(
         body: Center(
           child: RelicBazaarStackedView(
@@ -191,12 +190,10 @@ class LoginScreenState extends State<LoginScreen> {
                                 setState(() {
                                   _loading = true;
                                 });
-                                print(_loading);
                                 await AuthenticationService.signInWithGoogle();
                                 setState(() {
                                   _loading = false;
                                 });
-                                print(_loading);
                               },
                               child: SizedBox(
                                   width: 45,
