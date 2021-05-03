@@ -30,6 +30,8 @@ class LoginScreenState extends State<LoginScreen> {
 
   bool _loading = false;
 
+  bool showPassword = true;
+
   @override
   void initState() {
     super.initState();
@@ -102,7 +104,7 @@ class LoginScreenState extends State<LoginScreen> {
                           enabled: true,
                           textInputAction: TextInputAction.next,
                           decoration:
-                              textFieldDecoration(hintText: 'Email Address'),
+                              textFieldDecoration(hintText: 'Email Address',),
                           controller: _emailController,
                           validator: (String value) => _authenticationService
                               .userEmailValidation(value, errorMessage),
@@ -122,11 +124,19 @@ class LoginScreenState extends State<LoginScreen> {
                         child: TextFormField(
                           focusNode: _password,
                           keyboardType: TextInputType.visiblePassword,
-                          obscureText: true,
+                          obscureText: showPassword,
                           enabled: true,
                           textInputAction: TextInputAction.done,
                           decoration: textFieldDecoration(
                             hintText: 'Password',
+                            suffixIcon: IconButton(
+                              icon: showPassword ?  const Icon(Icons.visibility) :  const Icon(Icons.visibility_off),
+                              onPressed: () {
+                                setState(() {
+                                  showPassword = !showPassword ;
+                                });
+                              },//for show and hide password
+                            ),
                           ),
                           validator: (String value) => _authenticationService
                               .userPasswordValidation(value, errorMessage),
