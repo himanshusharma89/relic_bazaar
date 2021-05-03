@@ -22,8 +22,7 @@ class _NotificationToggleState extends State<NotificationToggle> {
         elevation: 0.0,
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
+        children: <Widget>[
           const SizedBox(height: 20),
           const Padding(
             padding: EdgeInsets.only(left: 8.0, right: 8.0),

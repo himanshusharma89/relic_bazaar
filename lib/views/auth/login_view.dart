@@ -62,7 +62,6 @@ class LoginScreenState extends State<LoginScreen> {
       inAsyncCall: _loading,
       color: Colors.black54,
       opacity: 0.7,
-      progressIndicator: const CircularProgressIndicator(),
       child: Scaffold(
         body: Center(
           child: Column(
@@ -248,6 +247,27 @@ class LoginScreenState extends State<LoginScreen> {
                           children: <Widget>[
                             const Text("Don't have an account?"),
                             const SizedBox(width: 5.0),
+                            InkWell(
+                              onTap: () async {
+                                debugPrint('Navigate to google!');
+                                setState(() {
+                                  _loading = true;
+                                });
+                                await AuthenticationService.signInWithGoogle();
+                                setState(() {
+                                  _loading = false;
+                                });
+                              },
+                              child: SizedBox(
+                                  width: 45,
+                                  height: 45,
+                                  child: Image.asset(
+                                    'assets/items/google.png',
+                                  )),
+                            ),
+                            SizedBox(
+                              width: width * 0.05,
+                            ),
                             InkWell(
                               onTap: () {
                                 Navigator.of(context)

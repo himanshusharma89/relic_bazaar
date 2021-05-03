@@ -68,7 +68,6 @@ class SignUpScreenState extends State<SignUpScreen> {
       inAsyncCall: _loading,
       color: Colors.black54,
       opacity: 0.7,
-      progressIndicator: const CircularProgressIndicator(),
       child: Scaffold(
         body: Center(
           child: Column(

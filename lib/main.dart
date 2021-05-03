@@ -9,7 +9,6 @@ import 'package:relic_bazaar/helpers/ad_state.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/helpers/route_page.dart';
 import 'package:relic_bazaar/views/auth/login_view.dart';
-import 'package:relic_bazaar/views/home_view.dart';
 
 import 'services/remote_config.dart';
 
@@ -60,7 +59,7 @@ class MyApp extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.active) {
                   final bool isloggedin = snapshot.hasData;
                   if (isloggedin == true) {
-                    return Dashboard();
+                    return Dashboard(uid: snapshot.data.uid);
                   } else {
                     //print("here");
                     return LoginScreen();

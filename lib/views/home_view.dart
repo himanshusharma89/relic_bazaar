@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:relic_bazaar/helpers/app_icons.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/model/user_model.dart';
 import 'package:relic_bazaar/services/product_service.dart';
 import 'package:relic_bazaar/views/drawer_view.dart';
 import 'package:relic_bazaar/widgets/product/product_card.dart';
@@ -8,9 +9,10 @@ import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:relic_bazaar/widgets/search_bar.dart';
 
 class Home extends StatefulWidget {
-  const Home({this.pageController});
+  const Home({this.pageController, this.user});
 
   final PageController pageController;
+  final UserModel user;
 
   @override
   _HomeState createState() => _HomeState();
@@ -150,9 +152,9 @@ class _HomeState extends State<Home> {
   }
 
   Widget greetingUserText() {
-    return const Text.rich(
+    return Text.rich(
       TextSpan(
-        style: TextStyle(
+        style: const TextStyle(
           fontFamily: 'pixer',
           fontSize: 16,
           color: Colors.white,
@@ -166,12 +168,12 @@ class _HomeState extends State<Home> {
           ],
         ),
         children: <TextSpan>[
-          TextSpan(
+          const TextSpan(
             text: 'GOOD EVENING,\n',
           ),
           TextSpan(
-            text: 'LINUS!',
-            style: TextStyle(
+            text: widget.user.name.toString(),
+            style: const TextStyle(
               fontFamily: 'Pixer',
               fontSize: 47,
             ),
