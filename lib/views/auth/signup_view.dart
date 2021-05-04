@@ -21,6 +21,9 @@ class SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
+  bool showPassword = true;
+  bool showConfirmPassword = true;
+
   String email;
   String password;
   String errorMessage;
@@ -108,7 +111,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                           enabled: true,
                           textInputAction: TextInputAction.next,
                           decoration:
-                              textFieldDecoration(hintText: 'Email Address'),
+                              textFieldDecoration(hintText: 'Email Address',),
                           controller: _emailController,
                           validator: (String value) => _authenticationService
                               .userEmailValidation(value, errorMessage),
@@ -128,11 +131,17 @@ class SignUpScreenState extends State<SignUpScreen> {
                           child: TextFormField(
                             focusNode: _password,
                             keyboardType: TextInputType.visiblePassword,
-                            obscureText: true,
+                            obscureText: showPassword,
                             enabled: true,
                             textInputAction: TextInputAction.next,
                             decoration: textFieldDecoration(
                               hintText: 'Password',
+                              suffixIcon: IconButton(
+                                icon: showPassword ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
+                                onPressed: () {
+                                  setState(() {showPassword = !showPassword;});
+                                },//for show and hide password
+                              ),
                             ),
                             validator: (String value) => _authenticationService
                                 .userPasswordValidation(value, errorMessage),
@@ -151,11 +160,17 @@ class SignUpScreenState extends State<SignUpScreen> {
                         child: TextFormField(
                           focusNode: _confirm,
                           keyboardType: TextInputType.visiblePassword,
-                          obscureText: true,
+                          obscureText: showConfirmPassword,
                           enabled: true,
                           textInputAction: TextInputAction.done,
                           decoration: textFieldDecoration(
                             hintText: 'Confirm Password',
+                            suffixIcon: IconButton(
+                              icon: showConfirmPassword ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
+                              onPressed: () {
+                                setState(() {showConfirmPassword = !showConfirmPassword;});
+                              },//for show and hide password
+                            ),
                           ),
                           validator: (String value) => _authenticationService
                               .userConfirmPasswordValidation(
