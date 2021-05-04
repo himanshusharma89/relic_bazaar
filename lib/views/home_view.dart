@@ -40,38 +40,40 @@ class _HomeState extends State<Home> {
       drawer: DrawerWidget(
         pageController: widget.pageController,
       ),
-      body: SingleChildScrollView(
-          primary: true,
-          child: SizedBox(
-            width: width,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(
-                    height: height * 0.01,
-                  ),
-                  topBar(context),
-                  SizedBox(
-                    height: height * 0.03,
-                  ),
-                  greetingUserText(),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  searchBar(context),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  products(height, width),
-                  SizedBox(
-                    height: height * 0.1,
-                  ),
-                ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+            primary: true,
+            child: SizedBox(
+              width: width,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      height: height * 0.01,
+                    ),
+                    topBar(context),
+                    SizedBox(
+                      height: height * 0.03,
+                    ),
+                    greetingUserText(),
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
+                    searchBar(context),
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
+                    products(height, width),
+                    SizedBox(
+                      height: height * 0.1,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          )),
+            )),
+      ),
     );
   }
 

@@ -220,105 +220,105 @@ class _ManageAddressState extends State<ManageAddress> {
         title: const Text('Manage Address'),
         elevation: 0.0,
       ),
-      body: Stepper(
-        steps: steps,
-        physics: const BouncingScrollPhysics(),
-        type: StepperType.horizontal,
-        currentStep: currStep,
-        controlsBuilder: (BuildContext context,
-            {VoidCallback onStepContinue, VoidCallback onStepCancel}) {
-          return Row(
-            children: <Widget>[
-              TextButton(
-                onPressed: onStepContinue,
-                child: const Text(
-                  'CONTINUE',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              TextButton(
-                onPressed: onStepCancel,
-                child: const Text(
-                  'CANCEL',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ],
-          );
-        },
-        onStepContinue: () {
-          setState(() {
-            if (currStep < steps.length - 1) {
-              currStep = currStep + 1;
-            } else {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                  backgroundColor: Colors.white,
-                  title: const Text('Confirmation',
-                      style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold)),
-                  content: const Text(
-                    'Are you sure you Save the Address?',
-                    style: TextStyle(color: Colors.black),
+      body:  Stepper(
+          steps: steps,
+          physics: const BouncingScrollPhysics(),
+          type: StepperType.horizontal,
+          currentStep: currStep,
+          controlsBuilder: (BuildContext context,
+              {VoidCallback onStepContinue, VoidCallback onStepCancel}) {
+            return Row(
+              children: <Widget>[
+                TextButton(
+                  onPressed: onStepContinue,
+                  child: const Text(
+                    'CONTINUE',
+                    style: TextStyle(color: Colors.white),
                   ),
-                  actions: <TextButton>[
-                    TextButton(
-                      onPressed: () async {
-                        if (loc.text != '') {
-                          setState(() {
-                            finalAddress =
-                                '${name.text}\n${phone.text}\n${loc.text}';
-                          });
-                        } else {
-                          setState(() {
-                            finalAddress =
-                                '${name.text}\n${phone.text}\n${line1.text},\n${line2.text},\n${city.text}, ${state.text}-${pincode.text},\nIndia';
-                          });
-                        }
-                        address = finalAddress;
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text(
-                        'Yes',
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                TextButton(
+                  onPressed: onStepCancel,
+                  child: const Text(
+                    'CANCEL',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            );
+          },
+          onStepContinue: () {
+            setState(() {
+              if (currStep < steps.length - 1) {
+                currStep = currStep + 1;
+              } else {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    backgroundColor: Colors.white,
+                    title: const Text('Confirmation',
                         style: TextStyle(
-                          color: Colors.blue,
-                        ),
-                      ),
+                            color: Colors.black, fontWeight: FontWeight.bold)),
+                    content: const Text(
+                      'Are you sure you Save the Address?',
+                      style: TextStyle(color: Colors.black),
                     ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text('No',
+                    actions: <TextButton>[
+                      TextButton(
+                        onPressed: () async {
+                          if (loc.text != '') {
+                            setState(() {
+                              finalAddress =
+                                  '${name.text}\n${phone.text}\n${loc.text}';
+                            });
+                          } else {
+                            setState(() {
+                              finalAddress =
+                                  '${name.text}\n${phone.text}\n${line1.text},\n${line2.text},\n${city.text}, ${state.text}-${pincode.text},\nIndia';
+                            });
+                          }
+                          address = finalAddress;
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text(
+                          'Yes',
                           style: TextStyle(
                             color: Colors.blue,
-                          )),
-                    ),
-                  ],
-                ),
-              );
-            }
-          });
-        },
-        onStepCancel: () {
-          setState(() {
-            if (currStep > 0) {
-              currStep = currStep - 1;
-            } else {
-              currStep = 0;
-            }
-          });
-        },
-        onStepTapped: (int step) {
-          setState(() {
-            currStep = step;
-          });
-        },
-      ),
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('No',
+                            style: TextStyle(
+                              color: Colors.blue,
+                            )),
+                      ),
+                    ],
+                  ),
+                );
+              }
+            });
+          },
+          onStepCancel: () {
+            setState(() {
+              if (currStep > 0) {
+                currStep = currStep - 1;
+              } else {
+                currStep = 0;
+              }
+            });
+          },
+          onStepTapped: (int step) {
+            setState(() {
+              currStep = step;
+            });
+          },
+        ),
     );
   }
 }

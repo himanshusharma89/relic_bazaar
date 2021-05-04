@@ -49,7 +49,7 @@ class _FaqsScreenState extends State<FaqsScreen> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: Center(
+      body:  Center(
         child: _loading
             ? const Center(child: CircularProgressIndicator())
             : PDFViewer(

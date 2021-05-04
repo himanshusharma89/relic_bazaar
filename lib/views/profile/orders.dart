@@ -34,46 +34,48 @@ class Order extends StatelessWidget {
         leading: appBarBackButton(context),
         backgroundColor: RelicColors.backgroundColor,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              RelicBazaarStackedView(
-                width: width * 0.87,
-                height: height * 0.75,
-                child: ListView(
-                  shrinkWrap: true,
-                  primary: false,
-                  children: const <Widget>[
-                    OrderItem(
-                        title: 'ANTIQUE VASE',
-                        ordered: 'ORDERED 3 DAYS AGO',
-                        status: 'STATUS : ON THE WAY',
-                        image: 'assets/items/3.png'),
-                    Divider(
-                      color: Colors.white,
-                    ),
-                    OrderItem(
-                        title: 'TATUNG EINSTEIN',
-                        ordered: 'ORDERED 3 WEEKS AGO',
-                        status: 'ANTIQUE DELIVERED',
-                        image: 'assets/items/1.png',
-                        delivered: true),
-                    Divider(
-                      color: Colors.white,
-                    ),
-                    OrderItem(
-                        title: 'M.DISC THROWER',
-                        ordered: 'ORDERED 5 DAYS AGO',
-                        status: 'STATUS : SHIPPED',
-                        image: 'assets/items/2.png')
-                  ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                RelicBazaarStackedView(
+                  width: width * 0.87,
+                  height: height * 0.75,
+                  child: ListView(
+                    shrinkWrap: true,
+                    primary: false,
+                    children: const <Widget>[
+                      OrderItem(
+                          title: 'ANTIQUE VASE',
+                          ordered: 'ORDERED 3 DAYS AGO',
+                          status: 'STATUS : ON THE WAY',
+                          image: 'assets/items/3.png'),
+                      Divider(
+                        color: Colors.white,
+                      ),
+                      OrderItem(
+                          title: 'TATUNG EINSTEIN',
+                          ordered: 'ORDERED 3 WEEKS AGO',
+                          status: 'ANTIQUE DELIVERED',
+                          image: 'assets/items/1.png',
+                          delivered: true),
+                      Divider(
+                        color: Colors.white,
+                      ),
+                      OrderItem(
+                          title: 'M.DISC THROWER',
+                          ordered: 'ORDERED 5 DAYS AGO',
+                          status: 'STATUS : SHIPPED',
+                          image: 'assets/items/2.png')
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

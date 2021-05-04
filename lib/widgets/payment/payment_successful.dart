@@ -12,7 +12,8 @@ class PaymentSuccessful extends StatelessWidget {
     final double _height = MediaQuery.of(context).size.height;
     final double _width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Center(
+      body: SafeArea(
+        child: Center(
         child: RelicBazaarStackedView(
           height: _height / 2.05,
           width: _width * 0.73,
@@ -76,6 +77,7 @@ class PaymentSuccessful extends StatelessWidget {
             ),
           ),
         ),
+      ),
       ),
     );
   }

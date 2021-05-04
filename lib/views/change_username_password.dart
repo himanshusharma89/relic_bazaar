@@ -71,113 +71,115 @@ class ChangeUsernameState extends State<ChangeUsername> {
         ),
         elevation: 0.0,
       ),
-      body: Center(
-        child: RelicBazaarStackedView(
-            height: height * 0.55,
-            width: width * 0.87,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Text(
-                    'Change Username or Password',
-                    style: TextStyle(
-                        fontSize: 25,
-                        color: Colors.white,
-                        fontFamily: 'pix M 8pt',
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: height * 0.011,
-                  ),
-                  RelicBazaarStackedView(
-                    height: height * 0.07,
-                    width: width * 0.7,
-                    child: TextFormField(
-                      autofocus: true,
-                      focusNode: _email,
-                      keyboardType: TextInputType.emailAddress,
-                      enabled: true,
-                      textInputAction: TextInputAction.next,
-                      decoration: textFieldDecoration(hintText: 'Username'),
-                      controller: _userNameController,
-                      onFieldSubmitted: (String value) {
-                        _email.unfocus();
-                        FocusScope.of(context).requestFocus(_password);
-                      },
+      body: SafeArea(
+        child: Center(
+          child: RelicBazaarStackedView(
+              height: height * 0.55,
+              width: width * 0.87,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text(
+                      'Change Username or Password',
+                      style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.white,
+                          fontFamily: 'pix M 8pt',
+                          fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.030,
-                  ),
-                  RelicBazaarStackedView(
-                    height: height * 0.07,
-                    width: width * 0.7,
-                    child: TextFormField(
-                      focusNode: _password,
-                      keyboardType: TextInputType.visiblePassword,
-                      obscureText: true,
-                      enabled: true,
-                      textInputAction: TextInputAction.next,
-                      decoration: textFieldDecoration(hintText: 'Password'),
-                      onFieldSubmitted: (String value) {
-                        _password.unfocus();
-                        FocusScope.of(context).requestFocus(_confirm);
-                      },
+                    SizedBox(
+                      height: height * 0.011,
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.030,
-                  ),
-                  RelicBazaarStackedView(
-                    height: height * 0.07,
-                    width: width * 0.7,
-                    child: TextFormField(
-                      focusNode: _confirm,
-                      keyboardType: TextInputType.visiblePassword,
-                      obscureText: true,
-                      enabled: true,
-                      textInputAction: TextInputAction.done,
-                      decoration:
-                          textFieldDecoration(hintText: 'Confirm Password'),
-                      onFieldSubmitted: (String value) {
-                        _confirm.unfocus();
-                        FocusScope.of(context).requestFocus(_save);
-                      },
+                    RelicBazaarStackedView(
+                      height: height * 0.07,
+                      width: width * 0.7,
+                      child: TextFormField(
+                        autofocus: true,
+                        focusNode: _email,
+                        keyboardType: TextInputType.emailAddress,
+                        enabled: true,
+                        textInputAction: TextInputAction.next,
+                        decoration: textFieldDecoration(hintText: 'Username'),
+                        controller: _userNameController,
+                        onFieldSubmitted: (String value) {
+                          _email.unfocus();
+                          FocusScope.of(context).requestFocus(_password);
+                        },
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.030,
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    focusNode: _save,
-                    child: RelicBazaarStackedView(
-                      upperColor: Colors.black,
-                      lowerColor: Colors.white,
-                      height: height * 0.065,
-                      width: width * 0.40,
-                      borderColor: Colors.white,
-                      child: const Center(
-                        child: Text(
-                          'Save',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                    SizedBox(
+                      height: height * 0.030,
+                    ),
+                    RelicBazaarStackedView(
+                      height: height * 0.07,
+                      width: width * 0.7,
+                      child: TextFormField(
+                        focusNode: _password,
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: true,
+                        enabled: true,
+                        textInputAction: TextInputAction.next,
+                        decoration: textFieldDecoration(hintText: 'Password'),
+                        onFieldSubmitted: (String value) {
+                          _password.unfocus();
+                          FocusScope.of(context).requestFocus(_confirm);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * 0.030,
+                    ),
+                    RelicBazaarStackedView(
+                      height: height * 0.07,
+                      width: width * 0.7,
+                      child: TextFormField(
+                        focusNode: _confirm,
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: true,
+                        enabled: true,
+                        textInputAction: TextInputAction.done,
+                        decoration:
+                            textFieldDecoration(hintText: 'Confirm Password'),
+                        onFieldSubmitted: (String value) {
+                          _confirm.unfocus();
+                          FocusScope.of(context).requestFocus(_save);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * 0.030,
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      focusNode: _save,
+                      child: RelicBazaarStackedView(
+                        upperColor: Colors.black,
+                        lowerColor: Colors.white,
+                        height: height * 0.065,
+                        width: width * 0.40,
+                        borderColor: Colors.white,
+                        child: const Center(
+                          child: Text(
+                            'Save',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.040,
-                  ),
-                ],
-              ),
-            )),
+                    SizedBox(
+                      height: height * 0.040,
+                    ),
+                  ],
+                ),
+              )),
+        ),
       ),
     );
   }

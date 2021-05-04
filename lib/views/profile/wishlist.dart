@@ -41,40 +41,42 @@ class _WishlistState extends State<Wishlist> {
         leading: appBarBackButton(context),
         backgroundColor: RelicColors.backgroundColor,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              RelicBazaarStackedView(
-                width: MediaQuery.of(context).size.width * 0.87,
-                height: 420,
-                child: ListView(
-                  shrinkWrap: true,
-                  primary: false,
-                  children: const <Widget>[
-                    OrderItem(
-                        title: 'EDI TURNTABLE',
-                        ordered: 'by Tony Stark',
-                        status: 'OUT OF STOCK',
-                        image: 'assets/items/4.png'),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                RelicBazaarStackedView(
+                  width: MediaQuery.of(context).size.width * 0.87,
+                  height: 420,
+                  child: ListView(
+                    shrinkWrap: true,
+                    primary: false,
+                    children: const <Widget>[
+                      OrderItem(
+                          title: 'EDI TURNTABLE',
+                          ordered: 'by Tony Stark',
+                          status: 'OUT OF STOCK',
+                          image: 'assets/items/4.png'),
 
-                    Divider(
-                      color: Colors.white,
-                    ),
-                    OrderItem(
-                      title: 'TATUNG EINSTEIN',
-                      ordered: 'by Chris Evans',
-                      status: 'OUT OF STOCK',
-                      image: 'assets/items/1.png',
-                    ),
-                    // Divider(color: Clors.w,),
-                  ],
+                      Divider(
+                        color: Colors.white,
+                      ),
+                      OrderItem(
+                        title: 'TATUNG EINSTEIN',
+                        ordered: 'by Chris Evans',
+                        status: 'OUT OF STOCK',
+                        image: 'assets/items/1.png',
+                      ),
+                      // Divider(color: Clors.w,),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
