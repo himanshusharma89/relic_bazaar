@@ -21,6 +21,9 @@ class SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
+  bool showPassword = true;
+  bool showConfirmPassword = true;
+
   String email;
   String password;
   String errorMessage;
@@ -63,7 +66,6 @@ class SignUpScreenState extends State<SignUpScreen> {
       inAsyncCall: _loading,
       color: Colors.black54,
       opacity: 0.7,
-      progressIndicator: const CircularProgressIndicator(),
       child: Scaffold(
         body: SafeArea(
           child: Center(
@@ -98,8 +100,27 @@ class SignUpScreenState extends State<SignUpScreen> {
                             //fontWeight: FontWeight.bold
                           ),
                         ),
-                        SizedBox(
-                          height: height * 0.010,
+                      SizedBox(
+                        height: height * 0.010,
+                      ),
+                      RelicBazaarStackedView(
+                        height: height * 0.07,
+                        width: width * 0.7,
+                        child: TextFormField(
+                          focusNode: _email,
+                          keyboardType: TextInputType.emailAddress,
+                          enabled: true,
+                          textInputAction: TextInputAction.next,
+                          decoration:
+                              textFieldDecoration(hintText: 'Email Address',),
+                          controller: _emailController,
+                          validator: (String value) => _authenticationService
+                              .userEmailValidation(value, errorMessage),
+                          onFieldSubmitted: (String value) {
+                            email = value;
+                            _email.unfocus();
+                            FocusScope.of(context).requestFocus(_password);
+                          },
                         ),
                         RelicBazaarStackedView(
                           height: height * 0.07,
@@ -154,11 +175,17 @@ class SignUpScreenState extends State<SignUpScreen> {
                           child: TextFormField(
                             focusNode: _confirm,
                             keyboardType: TextInputType.visiblePassword,
-                            obscureText: true,
+                            obscureText: showPassword,
                             enabled: true,
                             textInputAction: TextInputAction.done,
                             decoration: textFieldDecoration(
-                              hintText: 'Confirm Password',
+                              hintText: 'Password',
+                              suffixIcon: IconButton(
+                                icon: showPassword ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
+                                onPressed: () {
+                                  setState(() {showPassword = !showPassword;});
+                                },//for show and hide password
+                              ),
                             ),
                             validator: (String value) => _authenticationService
                                 .userConfirmPasswordValidation(
@@ -168,6 +195,27 @@ class SignUpScreenState extends State<SignUpScreen> {
                               _confirm.unfocus();
                               FocusScope.of(context).requestFocus(_signup);
                             },
+                          )),
+                      SizedBox(
+                        height: height * 0.012,
+                      ),
+                      RelicBazaarStackedView(
+                        height: height * 0.07,
+                        width: width * 0.7,
+                        child: TextFormField(
+                          focusNode: _confirm,
+                          keyboardType: TextInputType.visiblePassword,
+                          obscureText: showConfirmPassword,
+                          enabled: true,
+                          textInputAction: TextInputAction.done,
+                          decoration: textFieldDecoration(
+                            hintText: 'Confirm Password',
+                            suffixIcon: IconButton(
+                              icon: showConfirmPassword ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
+                              onPressed: () {
+                                setState(() {showConfirmPassword = !showConfirmPassword;});
+                              },//for show and hide password
+                            ),
                           ),
                         ),
                         SizedBox(

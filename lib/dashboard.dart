@@ -21,8 +21,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   PageController _pageController;
   int _currentIndex = 0;
-  final userdata = DbUserData.instance;
-  UserModel userinfo;
+  final DbUserData userdata = DbUserData.instance;
 
   BannerAd bannerAd;
 
@@ -51,8 +50,8 @@ class _DashboardState extends State<Dashboard> {
     getUser();
   }
 
-   Future<void> getUser() async {
-    userinfo = await userdata.fetchData(widget.uid);
+  Future<UserModel> getUser() async {
+    return userdata.fetchData(widget.uid);
   }
 
   @override
@@ -69,25 +68,37 @@ class _DashboardState extends State<Dashboard> {
         child: Stack(
           fit: StackFit.expand,
           children: <Widget>[
-            PageView(
-              controller: _pageController,
-              onPageChanged: (int index) {
-                setState(() {
-                  _currentIndex = index;
-                });
-              },
-              children: <Widget>[
-                Home(
-                  pageController: _pageController,
-                  user: userinfo,
-                ),
-                Search(),
-                Cart(
-                  pageController: _pageController,
-                ),
-                ProfilePage(user: userinfo,)
-              ],
-            ),
+            FutureBuilder<UserModel>(
+                future: getUser(),
+                builder: (_, AsyncSnapshot<UserModel> snapshot) {
+                  if (snapshot.hasData) {
+                    return PageView(
+                      controller: _pageController,
+                      onPageChanged: (int index) {
+                        setState(() {
+                          _currentIndex = index;
+                        });
+                      },
+                      children: <Widget>[
+                        Home(
+                          pageController: _pageController,
+                          user: snapshot.data,
+                        ),
+                        Search(),
+                        Cart(
+                          pageController: _pageController,
+                        ),
+                        ProfilePage(
+                          user: snapshot.data,
+                        )
+                      ],
+                    );
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                }),
             Align(
               alignment: Alignment.bottomCenter,
               child: Column(

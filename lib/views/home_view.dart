@@ -156,7 +156,7 @@ class _HomeState extends State<Home> {
   Widget greetingUserText() {
     return Text.rich(
       TextSpan(
-        style: TextStyle(
+        style: const TextStyle(
           fontFamily: 'pixer',
           fontSize: 16,
           color: Colors.white,
@@ -170,12 +170,12 @@ class _HomeState extends State<Home> {
           ],
         ),
         children: <TextSpan>[
-          TextSpan(
+          const TextSpan(
             text: 'GOOD EVENING,\n',
           ),
           TextSpan(
             text: widget.user.name.toString(),
-            style: TextStyle(
+            style: const TextStyle(
               fontFamily: 'Pixer',
               fontSize: 47,
             ),
