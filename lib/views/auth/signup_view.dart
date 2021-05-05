@@ -122,6 +122,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                             FocusScope.of(context).requestFocus(_password);
                           },
                         ),
+                      ),
                         RelicBazaarStackedView(
                           height: height * 0.07,
                           width: width * 0.7,
@@ -218,6 +219,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                             ),
                           ),
                         ),
+                      ),
                         SizedBox(
                           height: height * 0.015,
                         ),
