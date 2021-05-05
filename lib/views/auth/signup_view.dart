@@ -21,6 +21,9 @@ class SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
+  bool showPassword = true;
+  bool showConfirmPassword = true;
+
   String email;
   String password;
   String errorMessage;
@@ -69,219 +72,239 @@ class SignUpScreenState extends State<SignUpScreen> {
       color: Colors.black54,
       opacity: 0.7,
       child: Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              RelicBazaarStackedView(
-                height: height * 0.65,
-                width: width * 0.87,
-                child: Form(
-                  key: _formKey,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        const Text(
-                          'SignUp',
-                          style: TextStyle(
-                              fontSize: 35,
-                              color: Colors.white,
-                              fontFamily: 'pix M 8pt',
-                              fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: height * 0.002,
-                        ),
-                        const Text(
-                          'Get Started,\nCreate a new account',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontFamily: 'pix M 8pt',
-                            //fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * 0.010,
-                        ),
-                        RelicBazaarStackedView(
-                          height: height * 0.07,
-                          width: width * 0.7,
-                          child: TextFormField(
-                            focusNode: _email,
-                            keyboardType: TextInputType.emailAddress,
-                            enabled: true,
-                            textInputAction: TextInputAction.next,
-                            decoration:
-                                textFieldDecoration(hintText: 'Email Address'),
-                            controller: _emailController,
-                            validator: (String value) {
-                              // return _authenticationService.userEmailValidation(value, errorMessage);
-                              return null;
-                            },
-                            onFieldSubmitted: (String value) {
-                              email = value;
-                              _email.unfocus();
-                              FocusScope.of(context).requestFocus(_password);
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * 0.012,
-                        ),
-                        RelicBazaarStackedView(
-                            height: height * 0.07,
-                            width: width * 0.7,
-                            child: TextFormField(
-                              focusNode: _password,
-                              keyboardType: TextInputType.visiblePassword,
-                              obscureText: true,
-                              enabled: true,
-                              textInputAction: TextInputAction.next,
-                              decoration: textFieldDecoration(
-                                hintText: 'Password',
-                              ),
-                              validator: (String value) =>
-                                  _authenticationService.userPasswordValidation(
-                                      value, errorMessage),
-                              onFieldSubmitted: (String value) {
-                                password = value;
-                                _password.unfocus();
-                                FocusScope.of(context).requestFocus(_confirm);
-                              },
-                            )),
-                        SizedBox(
-                          height: height * 0.012,
-                        ),
-                        RelicBazaarStackedView(
-                          height: height * 0.07,
-                          width: width * 0.7,
-                          child: TextFormField(
-                            focusNode: _confirm,
-                            keyboardType: TextInputType.visiblePassword,
-                            obscureText: true,
-                            enabled: true,
-                            textInputAction: TextInputAction.done,
-                            decoration: textFieldDecoration(
-                              hintText: 'Confirm Password',
-                            ),
-                            validator: (String value) => _authenticationService
-                                .userConfirmPasswordValidation(
-                                    value, password, confirmPassword),
-                            onFieldSubmitted: (String value) {
-                              confirmPassword = value;
-                              _confirm.unfocus();
-                              FocusScope.of(context).requestFocus(_signup);
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * 0.015,
-                        ),
-                        InkWell(
-                          onTap: () async {
-                            if (!_authenticationService
-                                .checkEmailValidity(_emailController.text)) {
-                              setState(() {
-                                emailValidatorError =
-                                    'Please enter a valid email';
-                              });
-                            } else {
-                              setState(() {
-                                emailValidatorError = ' ';
-                              });
-                            }
-                            debugPrint('SignUp!!');
-                            errorMessage = null;
-                            if (_formKey.currentState.validate()) {
-                              setState(() {
-                                _loading = true;
-                              });
-                              errorMessage =
-                                  await _authenticationService.userSignUp(
-                                      errorMessage, context, email, password);
-                              setState(() {
-                                _loading = false;
-                              });
-                              if (errorMessage != null) {
-                                _formKey.currentState.validate();
-                              }
-                            }
-                          },
-                          focusNode: _signup,
-                          child: RelicBazaarStackedView(
-                            upperColor: Colors.black,
-                            lowerColor: Colors.white,
-                            height: height * 0.065,
-                            width: width * 0.40,
-                            borderColor: Colors.white,
-                            child: const Center(
-                              child: Text(
-                                'SignUp',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+        body: SafeArea(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                RelicBazaarStackedView(
+                    height: height * 0.65,
+                    width: width * 0.87,
+                    child: Form(
+                      key: _formKey,
+                      //autovalidateMode: AutovalidateMode.onUserInteraction,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            const Text(
+                              'SignUp',
+                              style: TextStyle(
+                                  fontSize: 35,
                                   color: Colors.white,
+                                  fontFamily: 'pix M 8pt',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: height * 0.002,
+                            ),
+                            const Text(
+                              'Get Started,\nCreate a new account',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontFamily: 'pix M 8pt',
+                                //fontWeight: FontWeight.bold
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.010,
+                            ),
+                            RelicBazaarStackedView(
+                              height: height * 0.07,
+                              width: width * 0.7,
+                              child: TextFormField(
+                                focusNode: _email,
+                                keyboardType: TextInputType.emailAddress,
+                                enabled: true,
+                                textInputAction: TextInputAction.next,
+                                decoration: textFieldDecoration(
+                                    hintText: 'Email Address'),
+                                controller: _emailController,
+                                validator: (String value) =>
+                                    _authenticationService.userEmailValidation(
+                                        value, errorMessage),
+                                onFieldSubmitted: (String value) {
+                                  email = value;
+                                  _email.unfocus();
+                                  FocusScope.of(context)
+                                      .requestFocus(_password);
+                                },
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.012,
+                            ),
+                            RelicBazaarStackedView(
+                                height: height * 0.07,
+                                width: width * 0.7,
+                                child: TextFormField(
+                                  focusNode: _confirm,
+                                  keyboardType: TextInputType.visiblePassword,
+                                  obscureText: showPassword,
+                                  enabled: true,
+                                  textInputAction: TextInputAction.done,
+                                  decoration: textFieldDecoration(
+                                    hintText: 'Password',
+                                    suffixIcon: IconButton(
+                                      icon: showPassword
+                                          ? const Icon(Icons.visibility)
+                                          : const Icon(Icons.visibility_off),
+                                      onPressed: () {
+                                        setState(() {
+                                          showPassword = !showPassword;
+                                        });
+                                      }, //for show and hide password
+                                    ),
+                                  ),
+                                  validator: (String value) =>
+                                      _authenticationService
+                                          .userConfirmPasswordValidation(
+                                              value, password, confirmPassword),
+                                  onFieldSubmitted: (String value) {
+                                    confirmPassword = value;
+                                    _confirm.unfocus();
+                                    FocusScope.of(context)
+                                        .requestFocus(_signup);
+                                  },
+                                )),
+                            SizedBox(
+                              height: height * 0.012,
+                            ),
+                            RelicBazaarStackedView(
+                              height: height * 0.07,
+                              width: width * 0.7,
+                              child: TextFormField(
+                                focusNode: _confirm,
+                                keyboardType: TextInputType.visiblePassword,
+                                obscureText: showConfirmPassword,
+                                enabled: true,
+                                textInputAction: TextInputAction.done,
+                                decoration: textFieldDecoration(
+                                  hintText: 'Confirm Password',
+                                  suffixIcon: IconButton(
+                                    icon: showConfirmPassword
+                                        ? const Icon(Icons.visibility)
+                                        : const Icon(Icons.visibility_off),
+                                    onPressed: () {
+                                      setState(() {
+                                        showConfirmPassword =
+                                            !showConfirmPassword;
+                                      });
+                                    }, //for show and hide password
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * 0.015,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
+                            SizedBox(
+                              height: height * 0.015,
+                            ),
                             InkWell(
                               onTap: () async {
-                                debugPrint('Navigate to google!');
-                                setState(() {
-                                  _loading = true;
-                                });
-                                await AuthenticationService.signInWithGoogle();
-                                setState(() {
-                                  _loading = false;
-                                });
+                                if (!_authenticationService.checkEmailValidity(
+                                    _emailController.text)) {
+                                  setState(() {
+                                    emailValidatorError =
+                                        'Please enter a valid email';
+                                  });
+                                } else {
+                                  setState(() {
+                                    emailValidatorError = ' ';
+                                  });
+                                }
+                                debugPrint('SignUp!!');
+                                errorMessage = null;
+                                if (_formKey.currentState.validate()) {
+                                  setState(() {
+                                    _loading = true;
+                                  });
+                                  errorMessage =
+                                      await _authenticationService.userSignUp(
+                                          errorMessage,
+                                          context,
+                                          email,
+                                          password);
+                                  setState(() {
+                                    _loading = false;
+                                  });
+                                  if (errorMessage != null) {
+                                    _formKey.currentState.validate();
+                                  }
+                                }
                               },
-                              child: SizedBox(
-                                  width: 45,
-                                  height: 45,
-                                  child: Image.asset(
-                                    'assets/items/google.png',
-                                  )),
+                              focusNode: _signup,
+                              child: RelicBazaarStackedView(
+                                upperColor: Colors.black,
+                                lowerColor: Colors.white,
+                                height: height * 0.065,
+                                width: width * 0.40,
+                                borderColor: Colors.white,
+                                child: const Center(
+                                  child: Text(
+                                    'SignUp',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                             SizedBox(
-                              width: width * 0.05,
+                              height: height * 0.015,
                             ),
-                            InkWell(
-                              onTap: () {
-                                debugPrint('Navigate to facebook!');
-                              },
-                              child: SizedBox(
-                                  width: 45,
-                                  height: 45,
-                                  child: Image.asset('assets/items/fb.png')),
-                            ),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  InkWell(
+                                    onTap: () async {
+                                      debugPrint('Navigate to google!');
+                                      setState(() {
+                                        _loading = true;
+                                      });
+                                      await AuthenticationService
+                                          .signInWithGoogle();
+                                      setState(() {
+                                        _loading = false;
+                                      });
+                                    },
+                                    child: SizedBox(
+                                        width: 45,
+                                        height: 45,
+                                        child: Image.asset(
+                                          'assets/items/google.png',
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.05,
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      debugPrint('Navigate to facebook!');
+                                    },
+                                    child: SizedBox(
+                                        width: 45,
+                                        height: 45,
+                                        child:
+                                            Image.asset('assets/items/fb.png')),
+                                  ),
+                                ]),
                           ],
                         ),
-                      ],
-                    ),
+                      ),
+                    )),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12.0),
+                  child: Text(
+                    emailValidatorError,
+                    style: const TextStyle(fontSize: 18.0),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 12.0),
-                child: Text(
-                  emailValidatorError,
-                  style: const TextStyle(fontSize: 18.0),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
