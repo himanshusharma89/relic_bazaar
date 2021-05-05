@@ -93,51 +93,54 @@ class LoginScreenState extends State<LoginScreen> {
                             //fontWeight: FontWeight.bold
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: height * 0.015,
-                      ),
-                      RelicBazaarStackedView(
-                        height: height * 0.07,
-                        width: width * 0.7,
-                        child: TextFormField(
-                          focusNode: _email,
-                          keyboardType: TextInputType.emailAddress,
-                          enabled: true,
-                          textInputAction: TextInputAction.next,
-                          decoration:
-                              textFieldDecoration(hintText: 'Email Address',),
-                          controller: _emailController,
-                          validator: (String value) => _authenticationService
-                              .userEmailValidation(value, errorMessage),
-                          onFieldSubmitted: (String value) {
-                            email = value;
-                            _email.unfocus();
-                            FocusScope.of(context).requestFocus(_password);
-                          },
+                        SizedBox(
+                          height: height * 0.015,
                         ),
-                      ),
-                      SizedBox(
-                        height: height * 0.019,
-                      ),
-                      RelicBazaarStackedView(
-                        height: height * 0.07,
-                        width: width * 0.7,
-                        child: TextFormField(
-                          focusNode: _password,
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: showPassword,
-                          enabled: true,
-                          textInputAction: TextInputAction.done,
-                          decoration: textFieldDecoration(
-                            hintText: 'Password',
-                            suffixIcon: IconButton(
-                              icon: showPassword ?  const Icon(Icons.visibility) :  const Icon(Icons.visibility_off),
-                              onPressed: () {
-                                setState(() {
-                                  showPassword = !showPassword ;
-                                });
-                              },//for show and hide password
+                        RelicBazaarStackedView(
+                          height: height * 0.07,
+                          width: width * 0.7,
+                          child: TextFormField(
+                            focusNode: _email,
+                            keyboardType: TextInputType.emailAddress,
+                            enabled: true,
+                            textInputAction: TextInputAction.next,
+                            decoration: textFieldDecoration(
+                              hintText: 'Email Address',
+                            ),
+                            controller: _emailController,
+                            validator: (String value) => _authenticationService
+                                .userEmailValidation(value, errorMessage),
+                            onFieldSubmitted: (String value) {
+                              email = value;
+                              _email.unfocus();
+                              FocusScope.of(context).requestFocus(_password);
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: height * 0.019,
+                        ),
+                        RelicBazaarStackedView(
+                          height: height * 0.07,
+                          width: width * 0.7,
+                          child: TextFormField(
+                            focusNode: _password,
+                            keyboardType: TextInputType.visiblePassword,
+                            obscureText: showPassword,
+                            enabled: true,
+                            textInputAction: TextInputAction.done,
+                            decoration: textFieldDecoration(
+                              hintText: 'Password',
+                              suffixIcon: IconButton(
+                                icon: showPassword
+                                    ? const Icon(Icons.visibility)
+                                    : const Icon(Icons.visibility_off),
+                                onPressed: () {
+                                  setState(() {
+                                    showPassword = !showPassword;
+                                  });
+                                }, //for show and hide password
+                              ),
                             ),
                           ),
                         ),
