@@ -13,6 +13,7 @@ import 'package:relic_bazaar/views/auth/login_view.dart';
 import 'services/remote_config.dart';
 
 RemoteConfigService _remoteConfigService;
+
 Future<void> main() async {
   //firebase Initialization
   WidgetsFlutterBinding.ensureInitialized();
