@@ -1,11 +1,18 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:relic_bazaar/model/product_model.dart';
 
 class ProductService {
-  Future<List<dynamic>> getProducts() async {
+  Future<List<Product>> getProducts() async {
     final http.Response response = await http.get(
       'https://himanshusharma89-api.herokuapp.com/api/relic_bazaar/products',
     );
-    return jsonDecode(response.body) as List<dynamic>;
+    final List<dynamic> fetchedData =
+        json.decode(response.body) as List<dynamic>;
+    return fetchedData
+        .map(
+          (dynamic productData) => Product.fromJson(productData),
+        )
+        .toList();
   }
 }

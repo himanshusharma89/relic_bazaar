@@ -8,7 +8,7 @@ class Product {
     this.height,
   });
 
-  factory Product.fetchedData(dynamic productData) {
+  factory Product.fromJson(dynamic productData) {
     return Product(
       amount: productData['amount'].toString(),
       image: productData['image'].toString() == ''

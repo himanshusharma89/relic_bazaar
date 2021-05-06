@@ -45,17 +45,17 @@ class ProductSearchDelegate extends SearchDelegate<ProductCard> {
   @override
   Widget buildSuggestions(BuildContext context) {
     final ProductService productService = ProductService();
-    return FutureBuilder<List<dynamic>>(
+    return FutureBuilder<List<Product>>(
       future: productService.getProducts(),
-      builder: (_, AsyncSnapshot<List<dynamic>> snapshot) {
+      builder: (_, AsyncSnapshot<List<Product>> snapshot) {
         if (!snapshot.hasData) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         } else {
-          final List<dynamic> productList = snapshot.data
+          final List<Product> productList = snapshot.data
               .where(
-                (dynamic element) => element['name']
+                (Product element) => element.text
                     .toString()
                     .toLowerCase()
                     .contains(query.toLowerCase()),
@@ -74,18 +74,11 @@ class ProductSearchDelegate extends SearchDelegate<ProductCard> {
                 )
               : ListView.separated(
                   itemBuilder: (_, int i) {
-                    final Product product = Product.fetchedData(productList[i]);
+                    final Product product = productList[i];
                     return InkWell(
                       onTap: () => Navigator.of(context).pushNamed(
                         RouteConstant.PRODUCTS_SCREEN,
-                        arguments: Product(
-                          amount: product.amount,
-                          height: product.height,
-                          image: product.image,
-                          owner: product.owner,
-                          seller: product.seller,
-                          text: product.text,
-                        ),
+                        arguments: product,
                       ),
                       child: ListTile(
                         title: Text(product.text),

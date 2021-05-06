@@ -83,9 +83,9 @@ class _HomeState extends State<Home> {
     return SizedBox(
       height: height * 1.08,
       width: width,
-      child: FutureBuilder<List<dynamic>>(
+      child: FutureBuilder<List<Product>>(
         future: productService.getProducts(),
-        builder: (_, AsyncSnapshot<List<dynamic>> snapshot) {
+        builder: (_, AsyncSnapshot<List<Product>> snapshot) {
           if (snapshot.data != null) {
             return RelicBazaarStackedView(
               width: width * 0.9,
@@ -104,7 +104,7 @@ class _HomeState extends State<Home> {
                   itemCount: snapshot.data.length,
                   itemBuilder: (_, int index) {
                     return ProductCard(
-                      product: Product.fetchedData(snapshot.data[index]),
+                      product: snapshot.data[index],
                     );
                   },
                 ),
