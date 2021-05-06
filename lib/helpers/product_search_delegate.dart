@@ -45,18 +45,20 @@ class ProductSearchDelegate extends SearchDelegate<ProductCard> {
   @override
   Widget buildSuggestions(BuildContext context) {
     final ProductService productService = ProductService();
-    return FutureBuilder<List<ProductCard>>(
+    return FutureBuilder<List<Product>>(
       future: productService.getProducts(),
-      builder: (_, AsyncSnapshot<List<ProductCard>> snapshot) {
+      builder: (_, AsyncSnapshot<List<Product>> snapshot) {
         if (!snapshot.hasData) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         } else {
-          final List<ProductCard> productList = snapshot.data
+          final List<Product> productList = snapshot.data
               .where(
-                (ProductCard element) =>
-                    element.product.text.toLowerCase().contains(query),
+                (Product element) => element.text
+                    .toString()
+                    .toLowerCase()
+                    .contains(query.toLowerCase()),
               )
               .toList();
 
@@ -72,25 +74,17 @@ class ProductSearchDelegate extends SearchDelegate<ProductCard> {
                 )
               : ListView.separated(
                   itemBuilder: (_, int i) {
-                    final Product product = productList[i].product;
+                    final Product product = productList[i];
                     return InkWell(
                       onTap: () => Navigator.of(context).pushNamed(
                         RouteConstant.PRODUCTS_SCREEN,
-                        arguments: Product(
-                          amount: product.amount,
-                          height: product.height,
-                          image: product.image,
-                          owner: product.owner,
-                          seller: product.seller,
-                          text: product.text,
-                        ),
+                        arguments: product,
                       ),
                       child: ListTile(
-                        title: Text(productList[i].product.text),
+                        title: Text(product.text),
                         leading: CircleAvatar(
                           backgroundColor: Colors.white,
-                          backgroundImage:
-                              AssetImage(productList[i].product.image),
+                          backgroundImage: AssetImage(product.image),
                         ),
                       ),
                     );
