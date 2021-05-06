@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:relic_bazaar/helpers/app_icons.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/model/product_model.dart';
 import 'package:relic_bazaar/model/user_model.dart';
 import 'package:relic_bazaar/services/product_service.dart';
 import 'package:relic_bazaar/views/drawer_view.dart';
@@ -82,9 +83,9 @@ class _HomeState extends State<Home> {
     return SizedBox(
       height: height * 1.08,
       width: width,
-      child: FutureBuilder<List<ProductCard>>(
+      child: FutureBuilder<List<dynamic>>(
         future: productService.getProducts(),
-        builder: (_, AsyncSnapshot<List<ProductCard>> snapshot) {
+        builder: (_, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.data != null) {
             return RelicBazaarStackedView(
               width: width * 0.9,
@@ -101,7 +102,11 @@ class _HomeState extends State<Home> {
                       mainAxisSpacing: 8,
                       childAspectRatio: 1 / 1.6),
                   itemCount: snapshot.data.length,
-                  itemBuilder: (_, int index) => snapshot.data[index],
+                  itemBuilder: (_, int index) {
+                    return ProductCard(
+                      product: Product.fetchedData(snapshot.data[index]),
+                    );
+                  },
                 ),
               ),
             );
