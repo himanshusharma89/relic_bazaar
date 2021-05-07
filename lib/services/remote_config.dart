@@ -33,7 +33,7 @@ class RemoteConfigService {
     try {
       await _remoteConfig.setDefaults(defaults);
       await _fetchAndActivate();
-    } on FetchThrottledException catch (e) {
+    } on Exception catch (e) {
       debugPrint('Remote config fetch throttled : $e');
     } catch (e) {
       debugPrint('Unable to fecth');
@@ -41,7 +41,7 @@ class RemoteConfigService {
   }
 
   Future<void> _fetchAndActivate() async {
-    await _remoteConfig.fetch(expiration: const Duration(hours: 4));
-    await _remoteConfig.activateFetched();
+    await _remoteConfig.fetch();
+    await _remoteConfig.activate();
   }
 }
