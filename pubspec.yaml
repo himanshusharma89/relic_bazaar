@@ -42,6 +42,8 @@ dependencies:
   cloud_firestore: ^0.16.0+1
   modal_progress_hud: ^0.1.3
   carousel_slider: ^3.0.0
+  firebase_messaging: ^8.0.0-dev.14
+  flutter_local_notifications: ^4.0.0
 
 dev_dependencies:
   flutter_test:

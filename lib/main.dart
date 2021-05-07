@@ -18,6 +18,7 @@ Future<void> main() async {
   //firebase Initialization
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   //AdMob Initialization
   final Future<InitializationStatus> initFuture =
       MobileAds.instance.initialize();
