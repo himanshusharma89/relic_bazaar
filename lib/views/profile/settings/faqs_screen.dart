@@ -1,5 +1,5 @@
-import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'package:flutter/material.dart';
+import 'package:native_pdf_view/native_pdf_view.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/widgets/back_button.dart';
 
@@ -9,55 +9,93 @@ class FaqsScreen extends StatefulWidget {
 }
 
 class _FaqsScreenState extends State<FaqsScreen> {
-  bool _loading = true;
-  PDFDocument _doc;
+  static final int _initialPage = 2;
+  int _actualPageNumber = _initialPage, _allPagesCount = 0;
+  bool isSampleDoc = true;
+  PdfController _pdfController;
 
   @override
   void initState() {
-    // TODO: implement initState
+    _pdfController = PdfController(
+      document: PdfDocument.openAsset('assets/FAQ.pdf'),
+      initialPage: _initialPage,
+    );
     super.initState();
-    loadDocument();
-  }
-
-  Future<void> loadDocument() async {
-    _doc = await PDFDocument.fromAsset('assets/FAQ.pdf');
-
-    setState(() => _loading = false);
-  }
-
-  Future<void> changePDF(int value) async {
-    setState(() => _loading = true);
-    if (value == 1) {
-      _doc = await PDFDocument.fromAsset('assets/FAQ.pdf');
-    } else if (value == 2) {
-      _doc = await PDFDocument.fromURL(
-        'http://conorlastowka.com/book/CitationNeededBook-Sample.pdf',
-      );
-    } else {
-      _doc = await PDFDocument.fromAsset('assets/FAQ.pdf');
-    }
-    setState(() => _loading = false);
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: RelicColors.backgroundColor,
-        leading: appBarBackButton(context),
-        title: const Text('FAQs'),
-        centerTitle: true,
-        elevation: 0.0,
-      ),
-      body:  Center(
-        child: _loading
-            ? const Center(child: CircularProgressIndicator())
-            : PDFViewer(
-                document: _doc,
-                zoomSteps: 1,
-                scrollDirection: Axis.vertical,
-              ),
-      ),
-    );
+  void dispose() {
+    _pdfController.dispose();
+    super.dispose();
   }
+
+  @override
+  Widget build(BuildContext context) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(primaryColor: Colors.white),
+        home: Scaffold(
+          appBar:  AppBar(
+            backgroundColor: RelicColors.backgroundColor,
+            leading: appBarBackButton(context),
+            title: const Text('FAQs'),
+            centerTitle: true,
+            elevation: 0.0,
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.navigate_before),
+                onPressed: () {
+                  _pdfController.previousPage(
+                    curve: Curves.ease,
+                    duration: Duration(milliseconds: 100),
+                  );
+                },
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  '$_actualPageNumber/$_allPagesCount',
+                  style: TextStyle(fontSize: 22),
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.navigate_next),
+                onPressed: () {
+                  _pdfController.nextPage(
+                    curve: Curves.ease,
+                    duration: Duration(milliseconds: 100),
+                  );
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.refresh),
+                onPressed: () {
+                  if (isSampleDoc) {
+                    _pdfController.loadDocument(
+                        PdfDocument.openAsset('assets/dummy.pdf'));
+                  } else {
+                    _pdfController.loadDocument(
+                        PdfDocument.openAsset('assets/sample.pdf'));
+                  }
+                  isSampleDoc = !isSampleDoc;
+                },
+              )
+            ],
+          ),
+          body: PdfView(
+            documentLoader: Center(child: CircularProgressIndicator()),
+            pageLoader: Center(child: CircularProgressIndicator()),
+            controller: _pdfController,
+            onDocumentLoaded: (document) {
+              setState(() {
+                _allPagesCount = document.pagesCount;
+              });
+            },
+            onPageChanged: (page) {
+              setState(() {
+                _actualPageNumber = page;
+              });
+            },
+          ),
+        ),
+      );
 }
