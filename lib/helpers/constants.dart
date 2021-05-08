@@ -24,6 +24,7 @@ class RouteConstant {
   static const String GITHUB_REPO_LINK = '/github-webview';
   static const String NOTIFICATIONS_TOGGLE_SCREEN = '/notifications_toggle';
   static const String privacyPolicyScreen = '/privacy-policy-screen';
+  static const String getUserDetailsView = 'get-user-details-view';
 }
 
 class RelicColors {

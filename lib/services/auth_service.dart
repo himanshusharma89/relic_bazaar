@@ -87,8 +87,9 @@ class AuthenticationService {
       final User user = newUser.user;
       await addUserToFirebase(user.uid, user.displayName, user.email);
       if (newUser != null) {
-        Navigator.of(context)
-            .pushReplacementNamed(RouteConstant.DASHBOARD_SCREEN);
+        Navigator.of(context).pushReplacementNamed(
+          RouteConstant.getUserDetailsView,
+        );
       }
     } catch (e) {
       if (e.toString().contains('invalid-email')) {

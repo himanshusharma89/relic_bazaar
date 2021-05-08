@@ -4,6 +4,7 @@ import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/helpers/slide_route.dart';
 import 'package:relic_bazaar/model/product_model.dart';
 import 'package:relic_bazaar/views/auth/signup_view.dart';
+import 'package:relic_bazaar/views/get_user_details_view.dart';
 import 'package:relic_bazaar/views/profile/orders.dart';
 import 'package:relic_bazaar/views/change_username_password.dart';
 import 'package:relic_bazaar/views/auth/login_view.dart';
@@ -32,6 +33,10 @@ class RoutePage {
       case RouteConstant.CART_SCREEN:
         return SlideLeftRoute(
           page: const Cart(),
+        );
+      case RouteConstant.getUserDetailsView:
+        return SlideLeftRoute(
+          page: GetUserDetailsView(),
         );
 
       case RouteConstant.HOME_SCREEN:
