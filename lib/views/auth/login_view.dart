@@ -62,7 +62,7 @@ class LoginScreenState extends State<LoginScreen> {
         body: SafeArea(
           child: Center(
             child: RelicBazaarStackedView(
-              height: height * 0.65,
+              height: height * 0.60,
               width: width * 0.87,
               child: Form(
                 key: _formKey,
@@ -204,45 +204,40 @@ class LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: height * 0.04,
                       ),
-                      Flexible(
-                        flex: 3,
-                        child: Center(
-                          child: Column(
-                            children: <Widget>[
-                              InkWell(
-                                onTap: () async {
-                                  debugPrint('Navigate to google!');
-                                  setState(() {
-                                    _loading = true;
-                                  });
-                                  await AuthenticationService
-                                      .signInWithGoogle();
-                                  setState(() {
-                                    _loading = false;
-                                  });
-                                },
-                                child: SizedBox(
-                                  width: 45,
-                                  height: 45,
-                                  child: Image.asset(
-                                    'assets/items/google.png',
-                                  ),
+                      Center(
+                        child: Column(
+                          children: <Widget>[
+                            InkWell(
+                              onTap: () async {
+                                debugPrint('Navigate to google!');
+                                setState(() {
+                                  _loading = true;
+                                });
+                                await AuthenticationService.signInWithGoogle();
+                                setState(() {
+                                  _loading = false;
+                                });
+                              },
+                              child: SizedBox(
+                                width: 45,
+                                height: 45,
+                                child: Image.asset(
+                                  'assets/items/google.png',
                                 ),
                               ),
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.of(context).pushNamed(
-                                  RouteConstant.SIGN_UP_SCREEN,
-                                ),
-                                child: const Text(
-                                  'SignUp',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.of(context).pushNamed(
+                                RouteConstant.SIGN_UP_SCREEN,
+                              ),
+                              child: const Text(
+                                'SignUp',
+                                style: TextStyle(
+                                  color: Colors.white,
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
