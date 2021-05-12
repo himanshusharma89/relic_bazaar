@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
@@ -70,28 +69,34 @@ class SignUpScreenState extends State<SignUpScreen> {
         body: SafeArea(
           child: Center(
             child: RelicBazaarStackedView(
-                height: height * 0.65,
-                width: width * 0.87,
-                child: Form(
-                  key: _formKey,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        const Text(
+              height: height * 0.65,
+              width: width * 0.87,
+              child: Form(
+                key: _formKey,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: height / 99),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const Flexible(
+                        flex: 2,
+                        child: Text(
                           'SignUp',
                           style: TextStyle(
-                              fontSize: 35,
-                              color: Colors.white,
-                              fontFamily: 'pix M 8pt',
-                              fontWeight: FontWeight.bold),
+                            fontSize: 40,
+                            color: Colors.white,
+                            fontFamily: 'pix M 8pt',
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        SizedBox(
-                          height: height * 0.002,
-                        ),
-                        const Text(
+                      ),
+                      SizedBox(
+                        height: height * 0.002,
+                      ),
+                      const Flexible(
+                        flex: 2,
+                        child: Text(
                           'Get Started,\nCreate a new account',
                           style: TextStyle(
                             fontSize: 18,
@@ -100,30 +105,13 @@ class SignUpScreenState extends State<SignUpScreen> {
                             //fontWeight: FontWeight.bold
                           ),
                         ),
+                      ),
                       SizedBox(
                         height: height * 0.010,
                       ),
-                      RelicBazaarStackedView(
-                        height: height * 0.07,
-                        width: width * 0.7,
-                        child: TextFormField(
-                          focusNode: _email,
-                          keyboardType: TextInputType.emailAddress,
-                          enabled: true,
-                          textInputAction: TextInputAction.next,
-                          decoration:
-                              textFieldDecoration(hintText: 'Email Address',),
-                          controller: _emailController,
-                          validator: (String value) => _authenticationService
-                              .userEmailValidation(value, errorMessage),
-                          onFieldSubmitted: (String value) {
-                            email = value;
-                            _email.unfocus();
-                            FocusScope.of(context).requestFocus(_password);
-                          },
-                        ),
-                      ),
-                        RelicBazaarStackedView(
+                      Flexible(
+                        flex: 3,
+                        child: RelicBazaarStackedView(
                           height: height * 0.07,
                           width: width * 0.7,
                           child: TextFormField(
@@ -143,34 +131,13 @@ class SignUpScreenState extends State<SignUpScreen> {
                             },
                           ),
                         ),
-                        SizedBox(
-                          height: height * 0.012,
-                        ),
-                        RelicBazaarStackedView(
-                            height: height * 0.07,
-                            width: width * 0.7,
-                            child: TextFormField(
-                              focusNode: _password,
-                              keyboardType: TextInputType.visiblePassword,
-                              obscureText: true,
-                              enabled: true,
-                              textInputAction: TextInputAction.next,
-                              decoration: textFieldDecoration(
-                                hintText: 'Password',
-                              ),
-                              validator: (String value) =>
-                                  _authenticationService.userPasswordValidation(
-                                      value, errorMessage),
-                              onFieldSubmitted: (String value) {
-                                password = value;
-                                _password.unfocus();
-                                FocusScope.of(context).requestFocus(_confirm);
-                              },
-                            )),
-                        SizedBox(
-                          height: height * 0.012,
-                        ),
-                        RelicBazaarStackedView(
+                      ),
+                      SizedBox(
+                        height: height * 0.019,
+                      ),
+                      Flexible(
+                        flex: 3,
+                        child: RelicBazaarStackedView(
                           height: height * 0.07,
                           width: width * 0.7,
                           child: TextFormField(
@@ -182,10 +149,14 @@ class SignUpScreenState extends State<SignUpScreen> {
                             decoration: textFieldDecoration(
                               hintText: 'Password',
                               suffixIcon: IconButton(
-                                icon: showPassword ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
+                                icon: showPassword
+                                    ? const Icon(Icons.visibility)
+                                    : const Icon(Icons.visibility_off),
                                 onPressed: () {
-                                  setState(() {showPassword = !showPassword;});
-                                },//for show and hide password
+                                  setState(() {
+                                    showPassword = !showPassword;
+                                  });
+                                }, //for show and hide password
                               ),
                             ),
                             validator: (String value) => _authenticationService
@@ -196,34 +167,45 @@ class SignUpScreenState extends State<SignUpScreen> {
                               _confirm.unfocus();
                               FocusScope.of(context).requestFocus(_signup);
                             },
-                          )),
-                      SizedBox(
-                        height: height * 0.012,
+                          ),
+                        ),
                       ),
-                      RelicBazaarStackedView(
-                        height: height * 0.07,
-                        width: width * 0.7,
-                        child: TextFormField(
-                          focusNode: _confirm,
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: showConfirmPassword,
-                          enabled: true,
-                          textInputAction: TextInputAction.done,
-                          decoration: textFieldDecoration(
-                            hintText: 'Confirm Password',
-                            suffixIcon: IconButton(
-                              icon: showConfirmPassword ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
-                              onPressed: () {
-                                setState(() {showConfirmPassword = !showConfirmPassword;});
-                              },//for show and hide password
+                      SizedBox(
+                        height: height * 0.019,
+                      ),
+                      Flexible(
+                        flex: 3,
+                        child: RelicBazaarStackedView(
+                          height: height * 0.07,
+                          width: width * 0.7,
+                          child: TextFormField(
+                            focusNode: _confirm,
+                            keyboardType: TextInputType.visiblePassword,
+                            obscureText: showConfirmPassword,
+                            enabled: true,
+                            textInputAction: TextInputAction.done,
+                            decoration: textFieldDecoration(
+                              hintText: 'Confirm Password',
+                              suffixIcon: IconButton(
+                                icon: showConfirmPassword
+                                    ? const Icon(Icons.visibility)
+                                    : const Icon(Icons.visibility_off),
+                                onPressed: () {
+                                  setState(() {
+                                    showConfirmPassword = !showConfirmPassword;
+                                  });
+                                }, //for show and hide password
+                              ),
                             ),
                           ),
                         ),
                       ),
-                        SizedBox(
-                          height: height * 0.015,
-                        ),
-                        InkWell(
+                      SizedBox(
+                        height: height * 0.015,
+                      ),
+                      Flexible(
+                        flex: 2,
+                        child: InkWell(
                           onTap: () async {
                             debugPrint('SignUp!!');
                             errorMessage = null;
@@ -250,59 +232,52 @@ class SignUpScreenState extends State<SignUpScreen> {
                             width: width * 0.40,
                             borderColor: Colors.white,
                             child: const Center(
-                              child: Text(
-                                'SignUp',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
+                              child: Flexible(
+                                child: Text(
+                                  'SignUp',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: height * 0.015,
+                      ),
+                      SizedBox(
+                        height: height * 0.04,
+                      ),
+                      Flexible(
+                        flex: 2,
+                        child: Center(
+                          child: InkWell(
+                            onTap: () async {
+                              debugPrint('Navigate to google!');
+                              setState(() {
+                                _loading = true;
+                              });
+                              await AuthenticationService.signInWithGoogle();
+                              setState(() {
+                                _loading = false;
+                              });
+                            },
+                            child: SizedBox(
+                              width: 45,
+                              height: 45,
+                              child: Image.asset(
+                                'assets/items/google.png',
+                              ),
+                            ),
+                          ),
                         ),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              InkWell(
-                                onTap: () async {
-                                  debugPrint('Navigate to google!');
-                                  setState(() {
-                                    _loading = true;
-                                  });
-                                  await AuthenticationService
-                                      .signInWithGoogle();
-                                  setState(() {
-                                    _loading = false;
-                                  });
-                                },
-                                child: SizedBox(
-                                    width: 45,
-                                    height: 45,
-                                    child: Image.asset(
-                                      'assets/items/google.png',
-                                    )),
-                              ),
-                              SizedBox(
-                                width: width * 0.05,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  debugPrint('Navigate to facebook!');
-                                },
-                                child: SizedBox(
-                                    width: 45,
-                                    height: 45,
-                                    child: Image.asset('assets/items/fb.png')),
-                              ),
-                            ]),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                )),
+                ),
+              ),
+            ),
           ),
         ),
       ),
