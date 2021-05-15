@@ -28,20 +28,20 @@ class SignUpScreenState extends State<SignUpScreen> {
   String errorMessage;
   String confirmPassword;
 
-  FocusNode _email;
-  FocusNode _password;
-  FocusNode _confirm;
-  FocusNode _signup;
+  FocusNode _emailFocusNode;
+  FocusNode _passwordFocusNode;
+  FocusNode _confirmPasswordFocusNode;
+  FocusNode _signupFocusNode;
 
   bool _loading = false;
 
   @override
   void initState() {
     super.initState();
-    _email = FocusNode();
-    _password = FocusNode();
-    _confirm = FocusNode();
-    _signup = FocusNode();
+    _emailFocusNode = FocusNode();
+    _passwordFocusNode = FocusNode();
+    _confirmPasswordFocusNode = FocusNode();
+    _signupFocusNode = FocusNode();
   }
 
   @override
@@ -50,10 +50,10 @@ class SignUpScreenState extends State<SignUpScreen> {
     _passwordController.clear();
     _confirmPasswordController.clear();
 
-    _email.dispose();
-    _password.dispose();
-    _confirm.dispose();
-    _signup.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    _confirmPasswordFocusNode.dispose();
+    _signupFocusNode.dispose();
     super.dispose();
   }
 
@@ -102,7 +102,6 @@ class SignUpScreenState extends State<SignUpScreen> {
                             fontSize: 18,
                             color: Colors.white,
                             fontFamily: 'pix M 8pt',
-                            //fontWeight: FontWeight.bold
                           ),
                         ),
                       ),
@@ -115,7 +114,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                           height: height * 0.07,
                           width: width * 0.7,
                           child: TextFormField(
-                            focusNode: _email,
+                            focusNode: _emailFocusNode,
                             keyboardType: TextInputType.emailAddress,
                             enabled: true,
                             textInputAction: TextInputAction.next,
@@ -126,8 +125,9 @@ class SignUpScreenState extends State<SignUpScreen> {
                                 .userEmailValidation(value, errorMessage),
                             onFieldSubmitted: (String value) {
                               email = value;
-                              _email.unfocus();
-                              FocusScope.of(context).requestFocus(_password);
+                              _emailFocusNode.unfocus();
+                              FocusScope.of(context)
+                                  .requestFocus(_passwordFocusNode);
                             },
                           ),
                         ),
@@ -141,11 +141,11 @@ class SignUpScreenState extends State<SignUpScreen> {
                           height: height * 0.07,
                           width: width * 0.7,
                           child: TextFormField(
-                            focusNode: _confirm,
+                            focusNode: _passwordFocusNode,
                             keyboardType: TextInputType.visiblePassword,
                             obscureText: showPassword,
                             enabled: true,
-                            textInputAction: TextInputAction.done,
+                            textInputAction: TextInputAction.next,
                             decoration: textFieldDecoration(
                               hintText: 'Password',
                               suffixIcon: IconButton(
@@ -164,8 +164,10 @@ class SignUpScreenState extends State<SignUpScreen> {
                                     value, password, confirmPassword),
                             onFieldSubmitted: (String value) {
                               confirmPassword = value;
-                              _confirm.unfocus();
-                              FocusScope.of(context).requestFocus(_signup);
+                              _confirmPasswordFocusNode.unfocus();
+                              FocusScope.of(context).requestFocus(
+                                _confirmPasswordFocusNode,
+                              );
                             },
                           ),
                         ),
@@ -179,7 +181,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                           height: height * 0.07,
                           width: width * 0.7,
                           child: TextFormField(
-                            focusNode: _confirm,
+                            focusNode: _confirmPasswordFocusNode,
                             keyboardType: TextInputType.visiblePassword,
                             obscureText: showConfirmPassword,
                             enabled: true,
@@ -197,6 +199,11 @@ class SignUpScreenState extends State<SignUpScreen> {
                                 }, //for show and hide password
                               ),
                             ),
+                            onFieldSubmitted: (_) {
+                              FocusScope.of(context).requestFocus(
+                                _signupFocusNode,
+                              );
+                            },
                           ),
                         ),
                       ),
@@ -224,7 +231,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                               }
                             }
                           },
-                          focusNode: _signup,
+                          focusNode: _signupFocusNode,
                           child: RelicBazaarStackedView(
                             upperColor: Colors.black,
                             lowerColor: Colors.white,
@@ -232,14 +239,12 @@ class SignUpScreenState extends State<SignUpScreen> {
                             width: width * 0.40,
                             borderColor: Colors.white,
                             child: const Center(
-                              child: Flexible(
-                                child: Text(
-                                  'SignUp',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
+                              child: Text(
+                                'SignUp',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
                               ),
                             ),
