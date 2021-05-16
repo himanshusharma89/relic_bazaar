@@ -42,8 +42,11 @@ class AuthenticationService {
     await GoogleSignIn().signOut();
   }
 
-  String userEmailValidation(String value, String errorMessage) {
-    if (value.isEmpty) {
+  String userEmailValidation({
+    @required String email,
+    @required String errorMessage,
+  }) {
+    if (email.isEmpty) {
       return 'Required';
     } else if (errorMessage != null) {
       if (!errorMessage.contains('Password') ||
@@ -55,8 +58,11 @@ class AuthenticationService {
     return null;
   }
 
-  String userPasswordValidation(String value, String errorMessage) {
-    if (value.isEmpty) {
+  String userPasswordValidation({
+    @required String password,
+    @required String errorMessage,
+  }) {
+    if (password.isEmpty) {
       return 'Required';
     } else if (errorMessage != null) {
       if (errorMessage.contains('Password') ||
@@ -68,8 +74,11 @@ class AuthenticationService {
     return null;
   }
 
-  String userConfirmPasswordValidation(
-      String value, String password, String confirmPassword) {
+  String userConfirmPasswordValidation({
+    @required String value,
+    @required String password,
+    @required String confirmPassword,
+  }) {
     if (value.isEmpty) {
       return 'Required';
     } else if (password != confirmPassword) {
@@ -78,8 +87,12 @@ class AuthenticationService {
     return null;
   }
 
-  Future<String> userSignUp(String errorText, BuildContext context,
-      String email, String password) async {
+  Future<String> userSignUp({
+    @required String errorText,
+    @required BuildContext context,
+    @required String email,
+    @required String password,
+  }) async {
     String errorTemp = errorText;
     try {
       final UserCredential newUser = await _auth.createUserWithEmailAndPassword(
@@ -106,8 +119,12 @@ class AuthenticationService {
     return null;
   }
 
-  Future<String> userLogin(String errorText, BuildContext context, String email,
-      String password) async {
+  Future<String> userLogin({
+    @required String errorText,
+    @required BuildContext context,
+    @required String email,
+    @required String password,
+  }) async {
     String errorTemp = errorText;
     try {
       final UserCredential existingUser = await _auth
