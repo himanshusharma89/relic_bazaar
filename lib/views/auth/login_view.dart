@@ -16,9 +16,6 @@ class LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final AuthenticationService _authenticationService = AuthenticationService();
 
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
   String email;
   String password;
   String errorMessage;
@@ -41,9 +38,6 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    _emailController.clear();
-    _passwordController.clear();
-
     _email.dispose();
     _password.dispose();
     _login.dispose();
@@ -114,10 +108,12 @@ class LoginScreenState extends State<LoginScreen> {
                             decoration: textFieldDecoration(
                               hintText: 'Email Address',
                             ),
-                            controller: _emailController,
-                            validator: (String value) => _authenticationService
-                                .userEmailValidation(value, errorMessage),
-                            onFieldSubmitted: (String value) {
+                            validator: (String value) =>
+                                _authenticationService.userEmailValidation(
+                              email: value,
+                              errorMessage: errorMessage,
+                            ),
+                            onSaved: (String value) {
                               email = value;
                               _email.unfocus();
                               FocusScope.of(context).requestFocus(_password);
@@ -154,6 +150,16 @@ class LoginScreenState extends State<LoginScreen> {
                                 }, //for show and hide password
                               ),
                             ),
+                            validator: (String value) =>
+                                _authenticationService.userPasswordValidation(
+                              password: value,
+                              errorMessage: errorMessage,
+                            ),
+                            onSaved: (String value) {
+                              password = value;
+                              _password.unfocus();
+                              FocusScope.of(context).requestFocus(_login);
+                            },
                           ),
                         ),
                       ),
@@ -170,9 +176,14 @@ class LoginScreenState extends State<LoginScreen> {
                               setState(() {
                                 _loading = true;
                               });
+                              _formKey.currentState.save();
                               errorMessage =
                                   await _authenticationService.userLogin(
-                                      errorMessage, context, email, password);
+                                errorText: errorMessage,
+                                context: context,
+                                email: email,
+                                password: password,
+                              );
                               setState(() {
                                 _loading = false;
                               });

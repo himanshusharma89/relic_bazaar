@@ -15,18 +15,13 @@ class SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final AuthenticationService _authenticationService = AuthenticationService();
 
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
-
   bool showPassword = true;
   bool showConfirmPassword = true;
 
-  String email;
-  String password;
-  String errorMessage;
-  String confirmPassword;
+  String _email;
+  String _password;
+  String _errorMessage;
+  String _confirmPassword;
 
   FocusNode _emailFocusNode;
   FocusNode _passwordFocusNode;
@@ -46,10 +41,6 @@ class SignUpScreenState extends State<SignUpScreen> {
 
   @override
   void dispose() {
-    _emailController.clear();
-    _passwordController.clear();
-    _confirmPasswordController.clear();
-
     _emailFocusNode.dispose();
     _passwordFocusNode.dispose();
     _confirmPasswordFocusNode.dispose();
@@ -120,11 +111,13 @@ class SignUpScreenState extends State<SignUpScreen> {
                             textInputAction: TextInputAction.next,
                             decoration:
                                 textFieldDecoration(hintText: 'Email Address'),
-                            controller: _emailController,
-                            validator: (String value) => _authenticationService
-                                .userEmailValidation(value, errorMessage),
-                            onFieldSubmitted: (String value) {
-                              email = value;
+                            validator: (String value) =>
+                                _authenticationService.userEmailValidation(
+                              email: value,
+                              errorMessage: _errorMessage,
+                            ),
+                            onSaved: (String value) {
+                              _email = value;
                               _emailFocusNode.unfocus();
                               FocusScope.of(context)
                                   .requestFocus(_passwordFocusNode);
@@ -159,12 +152,14 @@ class SignUpScreenState extends State<SignUpScreen> {
                                 }, //for show and hide password
                               ),
                             ),
-                            validator: (String value) => _authenticationService
-                                .userConfirmPasswordValidation(
-                                    value, password, confirmPassword),
-                            onFieldSubmitted: (String value) {
-                              confirmPassword = value;
-                              _confirmPasswordFocusNode.unfocus();
+                            validator: (String value) =>
+                                _authenticationService.userPasswordValidation(
+                              password: value,
+                              errorMessage: _errorMessage,
+                            ),
+                            onSaved: (String value) {
+                              _password = value;
+                              _passwordFocusNode.unfocus();
                               FocusScope.of(context).requestFocus(
                                 _confirmPasswordFocusNode,
                               );
@@ -199,7 +194,15 @@ class SignUpScreenState extends State<SignUpScreen> {
                                 }, //for show and hide password
                               ),
                             ),
-                            onFieldSubmitted: (_) {
+                            validator: (String value) => _authenticationService
+                                .userConfirmPasswordValidation(
+                              value: value,
+                              password: _password,
+                              confirmPassword: _confirmPassword,
+                            ),
+                            onSaved: (String value) {
+                              _confirmPassword = value;
+                              _confirmPasswordFocusNode.unfocus();
                               FocusScope.of(context).requestFocus(
                                 _signupFocusNode,
                               );
@@ -214,19 +217,24 @@ class SignUpScreenState extends State<SignUpScreen> {
                         flex: 2,
                         child: InkWell(
                           onTap: () async {
-                            debugPrint('SignUp!!');
-                            errorMessage = null;
+                            _errorMessage = null;
                             if (_formKey.currentState.validate()) {
                               setState(() {
                                 _loading = true;
                               });
-                              errorMessage =
+                              _formKey.currentState.save();
+                              _errorMessage =
                                   await _authenticationService.userSignUp(
-                                      errorMessage, context, email, password);
+                                errorText: _errorMessage,
+                                context: context,
+                                email: _email,
+                                password: _password,
+                              );
+                              debugPrint('SignUp Success');
                               setState(() {
                                 _loading = false;
                               });
-                              if (errorMessage != null) {
+                              if (_errorMessage != null) {
                                 _formKey.currentState.validate();
                               }
                             }
