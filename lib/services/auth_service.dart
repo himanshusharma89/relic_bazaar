@@ -42,58 +42,11 @@ class AuthenticationService {
     await GoogleSignIn().signOut();
   }
 
-  String userEmailValidation({
-    @required String email,
-    @required String errorMessage,
-  }) {
-    if (email.isEmpty) {
-      return 'Required';
-    } else if (errorMessage != null) {
-      if (!errorMessage.contains('Password') ||
-          errorMessage.contains('Invalid Request')) {
-        return errorMessage;
-      }
-      return null;
-    }
-    return null;
-  }
-
-  String userPasswordValidation({
-    @required String password,
-    @required String errorMessage,
-  }) {
-    if (password.isEmpty) {
-      return 'Required';
-    } else if (errorMessage != null) {
-      if (errorMessage.contains('Password') ||
-          errorMessage.contains('Invalid Request')) {
-        return errorMessage;
-      }
-      return null;
-    }
-    return null;
-  }
-
-  String userConfirmPasswordValidation({
-    @required String value,
-    @required String password,
-    @required String confirmPassword,
-  }) {
-    if (value.isEmpty) {
-      return 'Required';
-    } else if (password != confirmPassword) {
-      return 'Passwords Do Not Match';
-    }
-    return null;
-  }
-
   Future<String> userSignUp({
-    @required String errorText,
     @required BuildContext context,
     @required String email,
     @required String password,
   }) async {
-    String errorTemp = errorText;
     try {
       final UserCredential newUser = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -105,6 +58,7 @@ class AuthenticationService {
         );
       }
     } catch (e) {
+      String errorTemp;
       if (e.toString().contains('invalid-email')) {
         errorTemp = 'Invalid Email';
       } else if (e.toString().contains('email-already-in-use')) {
@@ -120,12 +74,10 @@ class AuthenticationService {
   }
 
   Future<String> userLogin({
-    @required String errorText,
     @required BuildContext context,
     @required String email,
     @required String password,
   }) async {
-    String errorTemp = errorText;
     try {
       final UserCredential existingUser = await _auth
           .signInWithEmailAndPassword(email: email, password: password);
@@ -135,6 +87,7 @@ class AuthenticationService {
         );
       }
     } catch (e) {
+      String errorTemp;
       if (e.toString().contains('invalid-email')) {
         errorTemp = 'Invalid Email';
       } else if (e.toString().contains('user-not-found')) {
