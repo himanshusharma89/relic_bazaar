@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/helpers/input_validators.dart';
 import 'package:relic_bazaar/services/auth_service.dart';
+import 'package:relic_bazaar/widgets/show_error_dialog.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:relic_bazaar/widgets/text_field_decoration.dart';
 
@@ -14,33 +16,24 @@ class LoginScreen extends StatefulWidget {
 
 class LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final AuthenticationService _authenticationService = AuthenticationService();
 
-  String email;
-  String password;
-  String errorMessage;
-
-  FocusNode _email;
-  FocusNode _password;
-  FocusNode _login;
-
-  bool _loading = false;
-
-  bool showPassword = true;
+  String _email, _password;
+  FocusNode _emailFocusNode, _passwordFocusNode, _loginFocusNode;
+  bool _loading = false, _showPassword = true;
 
   @override
   void initState() {
     super.initState();
-    _email = FocusNode();
-    _password = FocusNode();
-    _login = FocusNode();
+    _emailFocusNode = FocusNode();
+    _passwordFocusNode = FocusNode();
+    _loginFocusNode = FocusNode();
   }
 
   @override
   void dispose() {
-    _email.dispose();
-    _password.dispose();
-    _login.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    _loginFocusNode.dispose();
     super.dispose();
   }
 
@@ -101,22 +94,20 @@ class LoginScreenState extends State<LoginScreen> {
                           height: height * 0.07,
                           width: width * 0.7,
                           child: TextFormField(
-                            focusNode: _email,
+                            focusNode: _emailFocusNode,
                             keyboardType: TextInputType.emailAddress,
                             enabled: true,
                             textInputAction: TextInputAction.next,
                             decoration: textFieldDecoration(
                               hintText: 'Email Address',
                             ),
-                            validator: (String value) =>
-                                _authenticationService.userEmailValidation(
-                              email: value,
-                              errorMessage: errorMessage,
-                            ),
+                            onFieldSubmitted: (_) {
+                              _emailFocusNode.unfocus();
+                              FocusScope.of(context)
+                                  .requestFocus(_passwordFocusNode);
+                            },
                             onSaved: (String value) {
-                              email = value;
-                              _email.unfocus();
-                              FocusScope.of(context).requestFocus(_password);
+                              _email = value;
                             },
                           ),
                         ),
@@ -130,35 +121,33 @@ class LoginScreenState extends State<LoginScreen> {
                           height: height * 0.07,
                           width: width * 0.7,
                           child: TextFormField(
-                            focusNode: _password,
+                            focusNode: _passwordFocusNode,
                             keyboardType: TextInputType.visiblePassword,
-                            obscureText: showPassword,
+                            obscureText: _showPassword,
                             enabled: true,
                             textInputAction: TextInputAction.done,
                             decoration: textFieldDecoration(
                               hintText: 'Password',
                               suffixIcon: IconButton(
-                                icon: showPassword
+                                icon: _showPassword
                                     ? const Icon(Icons.visibility)
                                     : const Icon(Icons.visibility_off),
                                 onPressed: () {
                                   setState(
                                     () {
-                                      showPassword = !showPassword;
+                                      _showPassword = !_showPassword;
                                     },
                                   );
                                 }, //for show and hide password
                               ),
                             ),
-                            validator: (String value) =>
-                                _authenticationService.userPasswordValidation(
-                              password: value,
-                              errorMessage: errorMessage,
-                            ),
+                            onFieldSubmitted: (_) {
+                              _passwordFocusNode.unfocus();
+                              FocusScope.of(context)
+                                  .requestFocus(_loginFocusNode);
+                            },
                             onSaved: (String value) {
-                              password = value;
-                              _password.unfocus();
-                              FocusScope.of(context).requestFocus(_login);
+                              _password = value;
                             },
                           ),
                         ),
@@ -169,30 +158,14 @@ class LoginScreenState extends State<LoginScreen> {
                       Flexible(
                         flex: 2,
                         child: InkWell(
-                          onTap: () async {
-                            debugPrint('Login!');
-                            errorMessage = null;
-                            if (_formKey.currentState.validate()) {
-                              setState(() {
-                                _loading = true;
-                              });
-                              _formKey.currentState.save();
-                              errorMessage =
-                                  await _authenticationService.userLogin(
-                                errorText: errorMessage,
-                                context: context,
-                                email: email,
-                                password: password,
-                              );
-                              setState(() {
-                                _loading = false;
-                              });
-                              if (errorMessage != null) {
-                                _formKey.currentState.validate();
-                              }
-                            }
+                          onTap: () {
+                            _formKey.currentState.save();
+                            _inputValidator(
+                              email: _email,
+                              password: _password,
+                            );
                           },
-                          focusNode: _login,
+                          focusNode: _loginFocusNode,
                           child: RelicBazaarStackedView(
                             upperColor: Colors.black,
                             lowerColor: Colors.white,
@@ -260,5 +233,41 @@ class LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _inputValidator({
+    @required String email,
+    @required String password,
+  }) async {
+    final InputValidators _inputValidators = InputValidators();
+    final AuthenticationService _authenticationService =
+        AuthenticationService();
+    if (_inputValidators.emailValidator(
+          email: email,
+          context: context,
+        ) &&
+        _inputValidators.passwordValidator(
+          password: password,
+          context: context,
+        )) {
+      String _errorMessage;
+      setState(() {
+        _loading = true;
+      });
+      _errorMessage = await _authenticationService.userLogin(
+        context: context,
+        email: email,
+        password: password,
+      );
+      setState(() {
+        _loading = false;
+      });
+      if (_errorMessage != null) {
+        showErrorDialog(
+          errorMessage: _errorMessage,
+          context: context,
+        );
+      }
+    }
   }
 }
