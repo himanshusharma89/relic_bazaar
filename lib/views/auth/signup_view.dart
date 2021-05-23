@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/helpers/input_validators.dart';
+import 'package:relic_bazaar/model/user_auth_model.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:relic_bazaar/services/auth_service.dart';
-import 'package:relic_bazaar/widgets/show_error_dialog.dart';
 import 'package:relic_bazaar/widgets/text_field_decoration.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -202,9 +203,9 @@ class SignUpScreenState extends State<SignUpScreen> {
                           onTap: () {
                             _formKey.currentState.save();
                             _inputValidator(
+                              confirmPassword: _confirmPassword,
                               email: _email,
                               password: _password,
-                              confirmPassword: _confirmPassword,
                             );
                           },
                           focusNode: _signupFocusNode,
@@ -265,13 +266,11 @@ class SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Future<void> _inputValidator({
+  void _inputValidator({
     @required String email,
     @required String password,
     @required String confirmPassword,
-  }) async {
-    final AuthenticationService _authenticationService =
-        AuthenticationService();
+  }) {
     final InputValidators _inputValidators = InputValidators();
     if (_inputValidators.emailValidator(
           email: email,
@@ -286,24 +285,13 @@ class SignUpScreenState extends State<SignUpScreen> {
           confirmPassword: confirmPassword,
           context: context,
         )) {
-      String _errorMessage;
-      setState(() {
-        _loading = true;
-      });
-      _errorMessage = await _authenticationService.userSignUp(
-        context: context,
-        email: email,
-        password: password,
+      Navigator.of(context).pushNamed(
+        RouteConstant.getUserDetailsView,
+        arguments: UserAuthModel(
+          email: _email,
+          password: _password,
+        ),
       );
-      setState(() {
-        _loading = false;
-      });
-      if (_errorMessage != null) {
-        showErrorDialog(
-          errorMessage: _errorMessage,
-          context: context,
-        );
-      }
     }
   }
 }

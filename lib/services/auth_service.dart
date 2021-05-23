@@ -1,18 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:flutter/material.dart';
 
 class AuthenticationService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  static Future<void> addUserToFirebase(
-      String uid, String name, String email) async {
+  static Future<void> addUserToFirebase({
+    String uid,
+    String name,
+    String email,
+    String phoneNumber,
+  }) async {
     return FirebaseFirestore.instance
         .collection('users')
         .doc(uid)
-        .set({'uid': uid, 'username': name, 'email': email});
+        .set(<String, String>{
+      'uid': uid,
+      'username': name,
+      'email': email,
+      'phoneNumber': phoneNumber
+    });
   }
 
   static Future<String> signInWithGoogle() async {
@@ -33,7 +41,8 @@ class AuthenticationService {
 
     final User currentUser = FirebaseAuth.instance.currentUser;
     assert(user.uid == currentUser.uid);
-    await addUserToFirebase(user.uid, user.displayName, user.email);
+    await addUserToFirebase(
+        uid: user.uid, name: user.displayName, email: user.email);
 
     return '$user';
   }
@@ -43,59 +52,63 @@ class AuthenticationService {
   }
 
   Future<String> userSignUp({
-    @required BuildContext context,
     @required String email,
     @required String password,
+    @required String name,
+    @required String phoneNumber,
   }) async {
     try {
       final UserCredential newUser = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+        email: email,
+        password: password,
+      );
       final User user = newUser.user;
-      await addUserToFirebase(user.uid, user.displayName, user.email);
-      if (newUser != null) {
-        Navigator.of(context).pushReplacementNamed(
-          RouteConstant.getUserDetailsView,
-        );
+      await addUserToFirebase(
+        uid: user.uid,
+        name: name,
+        email: user.email,
+        phoneNumber: phoneNumber,
+      );
+    } on FirebaseAuthException catch (e) {
+      String errorText;
+      switch (e.code) {
+        case 'email-already-in-use':
+          errorText = 'This email is already in use.';
+          break;
+        case 'invalid-email':
+          errorText = 'This email is invalid';
+          break;
+        case 'weak-password':
+          errorText = 'Please use a strong password';
+          break;
+        default:
+          errorText = 'Invalid request. Please try again later';
       }
-    } catch (e) {
-      String errorTemp;
-      if (e.toString().contains('invalid-email')) {
-        errorTemp = 'Invalid Email';
-      } else if (e.toString().contains('email-already-in-use')) {
-        errorTemp = 'User Already Exists';
-      } else if (e.toString().contains('weak-password')) {
-        errorTemp = 'Password Too Short';
-      } else {
-        errorTemp = 'Invalid Request';
-      }
-      return errorTemp;
+      return errorText;
     }
     return null;
   }
 
   Future<String> userLogin({
-    @required BuildContext context,
     @required String email,
     @required String password,
   }) async {
     try {
-      final UserCredential existingUser = await _auth
-          .signInWithEmailAndPassword(email: email, password: password);
-      if (existingUser != null) {
-        Navigator.of(context).pushReplacementNamed(
-          RouteConstant.DASHBOARD_SCREEN,
-        );
-      }
-    } catch (e) {
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
       String errorTemp;
-      if (e.toString().contains('invalid-email')) {
-        errorTemp = 'Invalid Email';
-      } else if (e.toString().contains('user-not-found')) {
-        errorTemp = 'User Not Found';
-      } else if (e.toString().contains('wrong-password')) {
-        errorTemp = 'Incorrect Password';
-      } else {
-        errorTemp = 'Invalid Request';
+      switch (e.code) {
+        case 'invalid-email':
+          errorTemp = 'Invalid Email';
+          break;
+        case 'user-not-found':
+          errorTemp = 'User Not Found';
+          break;
+        case 'wrong-password':
+          errorTemp = 'Incorrect Password';
+          break;
+        default:
+          errorTemp = 'Invalid request. Please try again later';
       }
       return errorTemp;
     }
