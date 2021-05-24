@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/helpers/input_validators.dart';
-import 'package:relic_bazaar/model/user_auth_model.dart';
+import 'package:relic_bazaar/model/user_model.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:relic_bazaar/services/auth_service.dart';
 import 'package:relic_bazaar/widgets/text_field_decoration.dart';
@@ -287,7 +287,7 @@ class SignUpScreenState extends State<SignUpScreen> {
         )) {
       Navigator.of(context).pushNamed(
         RouteConstant.getUserDetailsView,
-        arguments: UserAuthModel(
+        arguments: UserModel(
           email: _email,
           password: _password,
         ),
