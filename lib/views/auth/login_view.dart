@@ -255,7 +255,6 @@ class LoginScreenState extends State<LoginScreen> {
         _loading = true;
       });
       _errorMessage = await _authenticationService.userLogin(
-        context: context,
         email: email,
         password: password,
       );

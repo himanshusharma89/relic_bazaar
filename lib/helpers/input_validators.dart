@@ -8,7 +8,7 @@ class InputValidators {
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     final RegExp _regExp = RegExp(pattern);
 
-    if (email.isEmpty) {
+    if (email.isEmpty || email == null) {
       showErrorDialog(
         context: context,
         errorMessage: 'Please fill the Email',
@@ -26,7 +26,7 @@ class InputValidators {
 
   bool passwordValidator(
       {@required String password, @required BuildContext context}) {
-    if (password.isEmpty) {
+    if (password.isEmpty || password == null) {
       showErrorDialog(
         context: context,
         errorMessage: 'Please fill the Password',
@@ -47,7 +47,7 @@ class InputValidators {
     @required String confirmPassword,
     @required BuildContext context,
   }) {
-    if (confirmPassword.isEmpty) {
+    if (confirmPassword.isEmpty || confirmPassword == null) {
       showErrorDialog(
         context: context,
         errorMessage: 'Please fill the confirm password',
@@ -67,5 +67,30 @@ class InputValidators {
       return false;
     }
     return true;
+  }
+
+  bool nameValidator(String name, BuildContext context) {
+    if (name.isEmpty || name == null) {
+      showErrorDialog(errorMessage: 'Please fill a name', context: context);
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  bool phoneNumberValidator(String phoneNumber, BuildContext context) {
+    if (phoneNumber.isEmpty || phoneNumber == null) {
+      showErrorDialog(
+          errorMessage: 'Please fill a Phone Number', context: context);
+      return false;
+    } else if (phoneNumber.length != 10) {
+      showErrorDialog(
+        errorMessage: 'Length of phone number must be equal to 10',
+        context: context,
+      );
+      return false;
+    } else {
+      return true;
+    }
   }
 }
