@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/helpers/input_validators.dart';
-import 'package:relic_bazaar/model/user_model.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:relic_bazaar/services/auth_service.dart';
+import 'package:relic_bazaar/widgets/show_error_dialog.dart';
 import 'package:relic_bazaar/widgets/text_field_decoration.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -266,12 +266,17 @@ class SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  void _inputValidator({
+  Future<void> _inputValidator({
     @required String email,
     @required String password,
     @required String confirmPassword,
-  }) {
+  }) async {
+    setState(() {
+      _loading = true;
+    });
     final InputValidators _inputValidators = InputValidators();
+    final AuthenticationService _authenticationService =
+        AuthenticationService();
     if (_inputValidators.emailValidator(
           email: email,
           context: context,
@@ -285,13 +290,27 @@ class SignUpScreenState extends State<SignUpScreen> {
           confirmPassword: confirmPassword,
           context: context,
         )) {
-      Navigator.of(context).pushNamed(
-        RouteConstant.getUserDetailsView,
-        arguments: UserModel(
-          email: _email,
-          password: _password,
-        ),
+      final String _errorMessage = await _authenticationService.userSignUp(
+        email: email,
+        password: password,
       );
+      setState(() {
+        _loading = false;
+      });
+      if (_errorMessage != null) {
+        showErrorDialog(
+          errorMessage: _errorMessage,
+          context: context,
+        );
+      } else {
+        Navigator.of(context).pushReplacementNamed(
+          RouteConstant.getUserDetailsView,
+        );
+      }
+    } else {
+      setState(() {
+        _loading = false;
+      });
     }
   }
 }

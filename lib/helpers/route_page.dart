@@ -3,7 +3,6 @@ import 'package:relic_bazaar/dashboard.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/helpers/slide_route.dart';
 import 'package:relic_bazaar/model/product_model.dart';
-import 'package:relic_bazaar/model/user_model.dart';
 import 'package:relic_bazaar/views/auth/signup_view.dart';
 import 'package:relic_bazaar/views/get_user_details_view.dart';
 import 'package:relic_bazaar/views/profile/orders.dart';
@@ -36,12 +35,8 @@ class RoutePage {
           page: const Cart(),
         );
       case RouteConstant.getUserDetailsView:
-        final UserModel userAuthModel = settings.arguments as UserModel;
         return SlideLeftRoute(
-          page: GetUserDetailsView(
-            email: userAuthModel.email,
-            password: userAuthModel.password,
-          ),
+          page: GetUserDetailsView(),
         );
 
       case RouteConstant.HOME_SCREEN:
@@ -70,8 +65,11 @@ class RoutePage {
         );
 
       case RouteConstant.DASHBOARD_SCREEN:
+        final String uid = settings.arguments as String;
         return SlideLeftRoute(
-          page: const Dashboard(),
+          page: Dashboard(
+            uid: uid,
+          ),
         );
 
       case RouteConstant.PRODUCTS_SCREEN:
