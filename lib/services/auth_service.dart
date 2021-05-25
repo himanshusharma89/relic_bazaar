@@ -8,8 +8,21 @@ class AuthenticationService {
 
   static Future<void> addUserToFirebase({
     String uid,
-    String name,
     String email,
+  }) async {
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .set(<String, String>{
+      'uid': uid,
+      'email': email,
+    });
+  }
+
+  static Future<void> updateUserInFirebase({
+    String uid,
+    String email,
+    String userName,
     String phoneNumber,
   }) async {
     return FirebaseFirestore.instance
@@ -17,9 +30,9 @@ class AuthenticationService {
         .doc(uid)
         .set(<String, String>{
       'uid': uid,
-      'username': name,
       'email': email,
-      'phoneNumber': phoneNumber
+      'userName': userName,
+      'phoneNumber': phoneNumber,
     });
   }
 
@@ -41,9 +54,7 @@ class AuthenticationService {
 
     final User currentUser = FirebaseAuth.instance.currentUser;
     assert(user.uid == currentUser.uid);
-    await addUserToFirebase(
-        uid: user.uid, name: user.displayName, email: user.email);
-
+    await addUserToFirebase(uid: user.uid, email: user.email);
     return '$user';
   }
 
@@ -54,8 +65,6 @@ class AuthenticationService {
   Future<String> userSignUp({
     @required String email,
     @required String password,
-    @required String name,
-    @required String phoneNumber,
   }) async {
     try {
       final UserCredential newUser = await _auth.createUserWithEmailAndPassword(
@@ -65,9 +74,7 @@ class AuthenticationService {
       final User user = newUser.user;
       await addUserToFirebase(
         uid: user.uid,
-        name: name,
         email: user.email,
-        phoneNumber: phoneNumber,
       );
     } on FirebaseAuthException catch (e) {
       String errorText;
