@@ -19,8 +19,11 @@ class DbUserData {
           .get()
           .then((DocumentSnapshot value) {
         user = UserModel(
-            name: value.get('username').toString(),
-            email: value.get('email').toString());
+          name: value.get('userName').toString(),
+          email: value.get('email').toString(),
+          uid: value.get('uid').toString(),
+          imageUrl: value.get('imageUrl').toString(),
+        );
         debugPrint('hii ${user.name}');
       });
     } catch (e) {

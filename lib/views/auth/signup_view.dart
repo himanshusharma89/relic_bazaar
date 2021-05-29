@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/helpers/input_validators.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:relic_bazaar/services/auth_service.dart';
@@ -244,6 +243,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                               setState(() {
                                 _loading = false;
                               });
+                              Navigator.of(context).pop();
                             },
                             child: SizedBox(
                               width: 45,
@@ -303,9 +303,7 @@ class SignUpScreenState extends State<SignUpScreen> {
           context: context,
         );
       } else {
-        Navigator.of(context).pushReplacementNamed(
-          RouteConstant.getUserDetailsView,
-        );
+        Navigator.of(context).pop();
       }
     } else {
       setState(() {

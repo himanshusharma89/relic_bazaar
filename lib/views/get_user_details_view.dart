@@ -1,11 +1,14 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:relic_bazaar/helpers/input_validators.dart';
 import 'package:relic_bazaar/model/user_model.dart';
-import 'package:relic_bazaar/services/auth_service.dart';
-import 'package:relic_bazaar/services/db_userdata.dart';
+import 'package:relic_bazaar/services/cloud_storage_service.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
+import 'package:relic_bazaar/widgets/show_error_dialog.dart';
 import 'package:relic_bazaar/widgets/text_field_decoration.dart';
 
 class GetUserDetailsView extends StatefulWidget {
@@ -18,8 +21,6 @@ class _GetUserDetailsViewState extends State<GetUserDetailsView> {
   final FocusNode _nameFocusNode = FocusNode(),
       _phoneNumberFocusNode = FocusNode();
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
   @override
   void dispose() {
     _nameFocusNode.dispose();
@@ -27,24 +28,26 @@ class _GetUserDetailsViewState extends State<GetUserDetailsView> {
     super.dispose();
   }
 
-  final DbUserData userdata = DbUserData.instance;
-
-  bool checkUsername(String uid) {
-    UserModel user = UserModel();
-    userdata.fetchData(uid).then(
-          (UserModel value) => user = value,
-        );
-    return user.name != null;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    final User user = _auth.currentUser;
-    if (checkUsername(user.uid)) {
-      Navigator.of(context).pushNamedAndRemoveUntil(
-        RouteConstant.DASHBOARD_SCREEN,
-        (Route<dynamic> route) => false,
+  bool _isLoading = false;
+  File _image;
+  Future<void> getImage({@required ImageSource source}) async {
+    setState(() {
+      _isLoading = true;
+    });
+    final ImagePicker _picker = ImagePicker();
+    final PickedFile _pickedFile = await _picker.getImage(source: source);
+    if (_pickedFile != null) {
+      setState(() {
+        _image = File(_pickedFile.path);
+        _isLoading = false;
+      });
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+      showErrorDialog(
+        errorMessage: 'No Image Selected',
+        context: context,
       );
     }
   }
@@ -54,102 +57,135 @@ class _GetUserDetailsViewState extends State<GetUserDetailsView> {
     final double _height = MediaQuery.of(context).size.height;
     final double _width = MediaQuery.of(context).size.width;
     String _name, _phoneNumber;
-
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Center(
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: _height / 28,
-                  ),
-                  const Text(
-                    'Please Enter Your Details',
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+    return ModalProgressHUD(
+      inAsyncCall: _isLoading,
+      color: Colors.black54,
+      opacity: 0.7,
+      child: Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Center(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: _height / 28,
                     ),
-                  ),
-                  SizedBox(
-                    height: _height / 28,
-                  ),
-                  RelicBazaarStackedView(
-                    upperColor: Colors.white,
-                    height: _height * 0.2,
-                    width: _width * 0.4,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.add_a_photo,
-                        size: 40,
+                    const Text(
+                      'Please Enter Your Details',
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: _height / 28,
-                  ),
-                  RelicBazaarStackedView(
-                    height: _height * 0.07,
-                    width: _width * 0.7,
-                    child: TextFormField(
-                      decoration: textFieldDecoration(hintText: 'Name'),
-                      focusNode: _nameFocusNode,
-                      keyboardType: TextInputType.name,
-                      textInputAction: TextInputAction.next,
-                      onFieldSubmitted: (_) {
-                        _nameFocusNode.unfocus();
-                        FocusScope.of(context)
-                            .requestFocus(_phoneNumberFocusNode);
-                      },
-                      onSaved: (String value) {
-                        _name = value;
-                      },
+                    SizedBox(
+                      height: _height / 28,
                     ),
-                  ),
-                  SizedBox(
-                    height: _height / 28,
-                  ),
-                  RelicBazaarStackedView(
-                    height: _height * 0.07,
-                    width: _width * 0.7,
-                    child: TextFormField(
-                      decoration: textFieldDecoration(hintText: 'Phone Number'),
-                      keyboardType: TextInputType.number,
-                      focusNode: _phoneNumberFocusNode,
-                      textInputAction: TextInputAction.done,
-                      onSaved: (String value) {
-                        _phoneNumber = value;
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    height: _height / 10,
-                  ),
-                  RelicBazaarStackedView(
-                    upperColor: Colors.white,
-                    height: _height * 0.07,
-                    width: _width * 0.4,
-                    child: TextButton(
-                      onPressed: () {
-                        _formKey.currentState.save();
-                        _inputValidator(
-                          name: _name,
-                          phoneNumber: _phoneNumber,
+                    InkWell(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (_) => Dialog(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                ListTile(
+                                  onTap: () {
+                                    getImage(source: ImageSource.camera);
+                                    Navigator.of(context).pop();
+                                  },
+                                  title: const Text('Camera'),
+                                ),
+                                const Divider(),
+                                ListTile(
+                                  onTap: () {
+                                    getImage(source: ImageSource.gallery);
+                                    Navigator.of(context).pop();
+                                  },
+                                  title: const Text('Gallery'),
+                                ),
+                              ],
+                            ),
+                          ),
                         );
                       },
-                      child: const Text(
-                        'Submit',
-                        style: TextStyle(
-                          color: Colors.black,
+                      child: RelicBazaarStackedView(
+                        upperColor: Colors.white,
+                        height: _height * 0.2,
+                        width: _height * 0.18,
+                        child: _image == null
+                            ? const Icon(
+                                Icons.add_a_photo,
+                                size: 40,
+                              )
+                            : Image.file(_image),
+                      ),
+                    ),
+                    SizedBox(
+                      height: _height / 28,
+                    ),
+                    RelicBazaarStackedView(
+                      height: _height * 0.07,
+                      width: _width * 0.7,
+                      child: TextFormField(
+                        decoration: textFieldDecoration(hintText: 'Name'),
+                        focusNode: _nameFocusNode,
+                        keyboardType: TextInputType.name,
+                        textInputAction: TextInputAction.next,
+                        onFieldSubmitted: (_) {
+                          _nameFocusNode.unfocus();
+                          FocusScope.of(context)
+                              .requestFocus(_phoneNumberFocusNode);
+                        },
+                        onSaved: (String value) {
+                          _name = value;
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: _height / 28,
+                    ),
+                    RelicBazaarStackedView(
+                      height: _height * 0.07,
+                      width: _width * 0.7,
+                      child: TextFormField(
+                        decoration:
+                            textFieldDecoration(hintText: 'Phone Number'),
+                        keyboardType: TextInputType.number,
+                        focusNode: _phoneNumberFocusNode,
+                        textInputAction: TextInputAction.done,
+                        onSaved: (String value) {
+                          _phoneNumber = value;
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: _height / 10,
+                    ),
+                    RelicBazaarStackedView(
+                      upperColor: Colors.white,
+                      height: _height * 0.07,
+                      width: _width * 0.4,
+                      child: TextButton(
+                        onPressed: () {
+                          _formKey.currentState.save();
+                          _inputValidator(
+                            name: _name,
+                            phoneNumber: _phoneNumber,
+                          );
+                        },
+                        child: const Text(
+                          'Submit',
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -162,21 +198,38 @@ class _GetUserDetailsViewState extends State<GetUserDetailsView> {
     @required String name,
     @required String phoneNumber,
   }) {
+    setState(() {
+      _isLoading = true;
+    });
     final InputValidators _inputValidators = InputValidators();
-    final User user = _auth.currentUser;
+    final User _user = FirebaseAuth.instance.currentUser;
+
     if (_inputValidators.nameValidator(name, context) &&
         _inputValidators.phoneNumberValidator(phoneNumber, context)) {
-      Navigator.of(context).pushNamedAndRemoveUntil(
-        RouteConstant.DASHBOARD_SCREEN,
-        (Route<dynamic> route) => false,
-        arguments: user.uid,
-      );
-      AuthenticationService.updateUserInFirebase(
-        userName: name,
-        phoneNumber: phoneNumber,
-        email: user.email,
-        uid: user.uid,
-      );
+      _user.updateProfile(displayName: name);
+      final CloudStorageService _storageService = CloudStorageService();
+      if (_image != null) {
+        _storageService
+            .uploadFile(
+          _image,
+          UserModel(
+            name: name,
+            phoneNumber: phoneNumber,
+            uid: _user.uid,
+          ),
+        )
+            .then((String errorMessage) {
+          if (errorMessage != null) {
+            showErrorDialog(
+              errorMessage: errorMessage,
+              context: context,
+            );
+          }
+          setState(() {
+            _isLoading = false;
+          });
+        });
+      }
     }
   }
 }

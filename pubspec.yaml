@@ -43,6 +43,8 @@ dependencies:
   modal_progress_hud: ^0.1.3
   carousel_slider: ^3.0.0
   http: any
+  image_picker: any
+  firebase_storage: 7.0.0
 
 dev_dependencies:
   flutter_test:
