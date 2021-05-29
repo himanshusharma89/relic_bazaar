@@ -239,11 +239,26 @@ class SignUpScreenState extends State<SignUpScreen> {
                               setState(() {
                                 _loading = true;
                               });
-                              await AuthenticationService.signInWithGoogle();
-                              setState(() {
-                                _loading = false;
-                              });
-                              Navigator.of(context).pop();
+                              final String errorMessage =
+                                  await AuthenticationService
+                                      .signInWithGoogle();
+                              print(' Error $errorMessage');
+                              if (errorMessage != null &&
+                                  !errorMessage
+                                      .contains('Sign In Cancelled By User')) {
+                                showErrorDialog(
+                                  errorMessage: errorMessage,
+                                  context: context,
+                                );
+                                setState(() {
+                                  _loading = false;
+                                });
+                              } else {
+                                setState(() {
+                                  _loading = false;
+                                });
+                                Navigator.of(context).pop();
+                              }
                             },
                             child: SizedBox(
                               width: 45,

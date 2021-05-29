@@ -197,10 +197,25 @@ class LoginScreenState extends State<LoginScreen> {
                                 setState(() {
                                   _loading = true;
                                 });
-                                await AuthenticationService.signInWithGoogle();
-                                setState(() {
-                                  _loading = false;
-                                });
+                                final String errorMessage =
+                                    await AuthenticationService
+                                        .signInWithGoogle();
+                                print(' Error $errorMessage');
+                                if (errorMessage != null &&
+                                    !errorMessage.contains(
+                                        'Sign In Cancelled By User')) {
+                                  showErrorDialog(
+                                    errorMessage: errorMessage,
+                                    context: context,
+                                  );
+                                  setState(() {
+                                    _loading = false;
+                                  });
+                                } else {
+                                  setState(() {
+                                    _loading = false;
+                                  });
+                                }
                               },
                               child: SizedBox(
                                 width: 45,
