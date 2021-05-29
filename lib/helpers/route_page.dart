@@ -51,7 +51,7 @@ class RoutePage {
 
       case RouteConstant.PROFILE_SCREEN:
         return SlideLeftRoute(
-          page: const ProfilePage(),
+          page: ProfilePage(),
         );
 
       case RouteConstant.SEARCH_SCREEN:
@@ -66,7 +66,7 @@ class RoutePage {
 
       case RouteConstant.DASHBOARD_SCREEN:
         return SlideLeftRoute(
-          page: const Dashboard(),
+          page: Dashboard(),
         );
 
       case RouteConstant.PRODUCTS_SCREEN:

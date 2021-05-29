@@ -243,6 +243,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                               setState(() {
                                 _loading = false;
                               });
+                              Navigator.of(context).pop();
                             },
                             child: SizedBox(
                               width: 45,

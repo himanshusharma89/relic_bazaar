@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
-import 'package:relic_bazaar/model/user_model.dart';
-import 'package:relic_bazaar/services/db_userdata.dart';
 import 'package:relic_bazaar/views/cart_view.dart';
 import 'package:relic_bazaar/views/home_view.dart';
 import 'package:relic_bazaar/views/search_view.dart';
@@ -11,9 +9,6 @@ import 'views/profile/profile_view.dart';
 import 'widgets/bottom_nav_bar.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({this.uid});
-
-  final String uid;
   @override
   _DashboardState createState() => _DashboardState();
 }
@@ -48,11 +43,6 @@ class _DashboardState extends State<Dashboard> {
     _pageController = PageController();
   }
 
-  Future<UserModel> _getUserData() async {
-    final DbUserData _userdata = DbUserData.instance;
-    return _userdata.fetchData(widget.uid);
-  }
-
   @override
   void dispose() {
     super.dispose();
@@ -67,37 +57,24 @@ class _DashboardState extends State<Dashboard> {
         child: Stack(
           fit: StackFit.expand,
           children: <Widget>[
-            FutureBuilder<UserModel>(
-                future: _getUserData(),
-                builder: (_, AsyncSnapshot<UserModel> snapshot) {
-                  if (snapshot.hasData) {
-                    return PageView(
-                      controller: _pageController,
-                      onPageChanged: (int index) {
-                        setState(() {
-                          _currentIndex = index;
-                        });
-                      },
-                      children: <Widget>[
-                        Home(
-                          pageController: _pageController,
-                          user: snapshot.data,
-                        ),
-                        Search(),
-                        Cart(
-                          pageController: _pageController,
-                        ),
-                        ProfilePage(
-                          user: snapshot.data,
-                        )
-                      ],
-                    );
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                }),
+            PageView(
+              controller: _pageController,
+              onPageChanged: (int index) {
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
+              children: <Widget>[
+                Home(
+                  pageController: _pageController,
+                ),
+                Search(),
+                Cart(
+                  pageController: _pageController,
+                ),
+                ProfilePage(),
+              ],
+            ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Column(

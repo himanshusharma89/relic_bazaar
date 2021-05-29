@@ -1,8 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:relic_bazaar/helpers/app_icons.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/model/product_model.dart';
-import 'package:relic_bazaar/model/user_model.dart';
 import 'package:relic_bazaar/services/product_service.dart';
 import 'package:relic_bazaar/views/drawer_view.dart';
 import 'package:relic_bazaar/widgets/product/product_card.dart';
@@ -10,10 +10,9 @@ import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:relic_bazaar/widgets/search_bar.dart';
 
 class Home extends StatefulWidget {
-  const Home({this.pageController, this.user});
+  const Home({this.pageController});
 
   final PageController pageController;
-  final UserModel user;
 
   @override
   _HomeState createState() => _HomeState();
@@ -159,6 +158,7 @@ class _HomeState extends State<Home> {
   }
 
   Widget greetingUserText() {
+    final User user = FirebaseAuth.instance.currentUser;
     return Text.rich(
       TextSpan(
         style: const TextStyle(
@@ -179,7 +179,7 @@ class _HomeState extends State<Home> {
             text: 'GOOD EVENING,\n',
           ),
           TextSpan(
-            text: widget.user.name.toString(),
+            text: user.displayName,
             style: const TextStyle(
               fontFamily: 'Pixer',
               fontSize: 47,

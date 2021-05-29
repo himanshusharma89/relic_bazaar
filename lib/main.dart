@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
                     if (snapshot.data.displayName == null) {
                       return GetUserDetailsView();
                     } else {
-                      return Dashboard(uid: snapshot.data.uid);
+                      return Dashboard();
                     }
                   } else {
                     return LoginScreen();
