@@ -1,7 +1,11 @@
 class UserModel {
-  UserModel({this.name, this.email, this.password});
+  UserModel({
+    this.name,
+    this.email,
+    this.imageUrl,
+    this.phoneNumber,
+    this.uid,
+  });
 
-  String name;
-  String email;
-  String password;
+  final String name, email, imageUrl, uid, phoneNumber;
 }

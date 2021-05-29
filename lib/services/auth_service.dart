@@ -21,18 +21,17 @@ class AuthenticationService {
 
   static Future<void> updateUserInFirebase({
     String uid,
-    String email,
     String userName,
     String phoneNumber,
+    String imageUrl,
   }) async {
     return FirebaseFirestore.instance
         .collection('users')
         .doc(uid)
-        .set(<String, String>{
-      'uid': uid,
-      'email': email,
+        .update(<String, String>{
       'userName': userName,
       'phoneNumber': phoneNumber,
+      'imageUrl': imageUrl
     });
   }
 
@@ -55,6 +54,12 @@ class AuthenticationService {
     final User currentUser = FirebaseAuth.instance.currentUser;
     assert(user.uid == currentUser.uid);
     await addUserToFirebase(uid: user.uid, email: user.email);
+    await updateUserInFirebase(
+      uid: user.uid,
+      imageUrl: user.photoURL,
+      phoneNumber: user.phoneNumber,
+      userName: user.displayName,
+    );
     return '$user';
   }
 

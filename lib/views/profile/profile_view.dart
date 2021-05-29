@@ -111,14 +111,27 @@ class TopSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Container(
+            RelicBazaarStackedView(
               height: _height / 6,
               width: _height / 6,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/person.png'),
-                  fit: BoxFit.cover,
-                ),
+              child: Image.network(
+                user.imageUrl,
+                fit: BoxFit.cover,
+                filterQuality: FilterQuality.high,
+                loadingBuilder:
+                    (_, Widget child, ImageChunkEvent loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes
+                          : null,
+                    ),
+                  );
+                },
               ),
             ),
             Column(

@@ -9,6 +9,7 @@ import 'package:relic_bazaar/helpers/ad_state.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/helpers/route_page.dart';
 import 'package:relic_bazaar/views/auth/login_view.dart';
+import 'package:relic_bazaar/views/get_user_details_view.dart';
 
 import 'services/remote_config.dart';
 
@@ -55,11 +56,15 @@ class MyApp extends StatelessWidget {
             );
           },
           home: StreamBuilder<User>(
-              stream: FirebaseAuth.instance.authStateChanges(),
+              stream: FirebaseAuth.instance.userChanges(),
               builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
                 if (snapshot.connectionState == ConnectionState.active) {
                   if (snapshot.hasData) {
-                    return Dashboard(uid: snapshot.data.uid);
+                    if (snapshot.data.displayName == null) {
+                      return GetUserDetailsView();
+                    } else {
+                      return Dashboard(uid: snapshot.data.uid);
+                    }
                   } else {
                     return LoginScreen();
                   }

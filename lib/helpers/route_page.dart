@@ -65,11 +65,8 @@ class RoutePage {
         );
 
       case RouteConstant.DASHBOARD_SCREEN:
-        final String uid = settings.arguments as String;
         return SlideLeftRoute(
-          page: Dashboard(
-            uid: uid,
-          ),
+          page: const Dashboard(),
         );
 
       case RouteConstant.PRODUCTS_SCREEN:

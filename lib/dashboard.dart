@@ -21,7 +21,6 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   PageController _pageController;
   int _currentIndex = 0;
-  final DbUserData userdata = DbUserData.instance;
 
   BannerAd bannerAd;
 
@@ -47,11 +46,11 @@ class _DashboardState extends State<Dashboard> {
   void initState() {
     super.initState();
     _pageController = PageController();
-    getUser();
   }
 
-  Future<UserModel> getUser() async {
-    return userdata.fetchData(widget.uid);
+  Future<UserModel> _getUserData() async {
+    final DbUserData _userdata = DbUserData.instance;
+    return _userdata.fetchData(widget.uid);
   }
 
   @override
@@ -69,7 +68,7 @@ class _DashboardState extends State<Dashboard> {
           fit: StackFit.expand,
           children: <Widget>[
             FutureBuilder<UserModel>(
-                future: getUser(),
+                future: _getUserData(),
                 builder: (_, AsyncSnapshot<UserModel> snapshot) {
                   if (snapshot.hasData) {
                     return PageView(
