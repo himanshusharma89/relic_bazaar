@@ -200,7 +200,6 @@ class LoginScreenState extends State<LoginScreen> {
                                 final String errorMessage =
                                     await AuthenticationService
                                         .signInWithGoogle();
-                                print(' Error $errorMessage');
                                 if (errorMessage != null &&
                                     !errorMessage.contains(
                                         'Sign In Cancelled By User')) {
