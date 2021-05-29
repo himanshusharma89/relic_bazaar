@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/model/user_model.dart';
 import 'package:relic_bazaar/services/db_userdata.dart';
@@ -118,6 +119,10 @@ class TopSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double _height = MediaQuery.of(context).size.height;
+    final User _currentUser = FirebaseAuth.instance.currentUser;
+    final String joiningDate = DateFormat.yMMMM()
+        .format(_currentUser.metadata.creationTime)
+        .toUpperCase();
     return Stack(
       children: <Widget>[
         Row(
@@ -154,9 +159,9 @@ class TopSection extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                const Text(
-                  'SHOPPER SINCE MAY 2020',
-                  style: TextStyle(
+                Text(
+                  'SHOPPER SINCE $joiningDate',
+                  style: const TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
