@@ -85,7 +85,7 @@ class _HomeState extends State<Home> {
       child: FutureBuilder<List<Product>>(
         future: productService.getProducts(),
         builder: (_, AsyncSnapshot<List<Product>> snapshot) {
-          if (snapshot.data != null) {
+          if (snapshot.hasData) {
             return RelicBazaarStackedView(
               width: width * 0.9,
               // height: 729.0,
@@ -110,8 +110,12 @@ class _HomeState extends State<Home> {
               ),
             );
           }
-          return const Center(
-            child: CircularProgressIndicator(),
+          return Column(
+            children: const <Widget>[
+              CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              ),
+            ],
           );
         },
       ),

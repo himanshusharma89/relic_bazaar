@@ -210,10 +210,6 @@ class LoginScreenState extends State<LoginScreen> {
                                   setState(() {
                                     _loading = false;
                                   });
-                                } else {
-                                  setState(() {
-                                    _loading = false;
-                                  });
                                 }
                               },
                               child: SizedBox(
