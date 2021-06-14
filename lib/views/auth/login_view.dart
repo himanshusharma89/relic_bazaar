@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/helpers/input_validators.dart';
+import 'package:relic_bazaar/services/analytics/analytic_service.dart';
+import 'package:relic_bazaar/services/analytics/locator.dart';
 import 'package:relic_bazaar/services/auth_service.dart';
 import 'package:relic_bazaar/widgets/show_error_dialog.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
@@ -16,6 +19,7 @@ class LoginScreen extends StatefulWidget {
 
 class LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final AnalyticsService analyticsService = locator<AnalyticsService>();
 
   String _email, _password;
   FocusNode _emailFocusNode, _passwordFocusNode, _loginFocusNode;
@@ -158,7 +162,7 @@ class LoginScreenState extends State<LoginScreen> {
                       Flexible(
                         flex: 2,
                         child: InkWell(
-                          onTap: () {
+                          onTap: () async{
                             _formKey.currentState.save();
                             _inputValidator(
                               email: _email,
@@ -271,6 +275,9 @@ class LoginScreenState extends State<LoginScreen> {
       setState(() {
         _loading = false;
       });
+      final FirebaseAuth _auth = FirebaseAuth.instance;
+      UserDetails.uid = await _auth.currentUser.uid;
+      await analyticsService.logLogin(userId: UserDetails.uid);
       if (_errorMessage != null) {
         showErrorDialog(
           errorMessage: _errorMessage,

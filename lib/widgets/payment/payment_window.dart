@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/services/analytics/analytic_service.dart';
+import 'package:relic_bazaar/services/analytics/locator.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -50,7 +52,9 @@ class _PaymentWindowState extends State<PaymentWindow> {
   }
 
   Future<void> _handlePaymentSuccess(PaymentSuccessResponse response) async {
+    final AnalyticsService analyticsService = locator<AnalyticsService>();
     Fluttertoast.showToast(msg: 'SUCCESS: ${response.paymentId}');
+    await analyticsService.successPayment(userId: UserDetails.uid);
     Navigator.of(context).pushNamed(RouteConstant.PAYMENT_SUCCESSFULL);
   }
 

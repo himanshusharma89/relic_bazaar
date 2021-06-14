@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:relic_bazaar/helpers/ad_state.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/model/product_model.dart';
+import 'package:relic_bazaar/services/analytics/analytic_service.dart';
+import 'package:relic_bazaar/services/analytics/locator.dart';
 import 'package:relic_bazaar/widgets/back_button.dart';
 import '../../helpers/app_icons.dart';
 import '../retro_button.dart';
@@ -42,6 +44,7 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
+    analyticsUpdate();
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -331,5 +334,9 @@ class _ProductPageState extends State<ProductPage> {
         ),
       ),
     );
+  }
+  void analyticsUpdate()async{
+    final AnalyticsService analyticsService = locator<AnalyticsService>();
+    await analyticsService.productPage(userId: UserDetails.uid);
   }
 }

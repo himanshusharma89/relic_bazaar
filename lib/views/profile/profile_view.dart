@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/model/user_model.dart';
+import 'package:relic_bazaar/services/analytics/analytic_service.dart';
+import 'package:relic_bazaar/services/analytics/locator.dart';
 import 'package:relic_bazaar/services/db_userdata.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 
@@ -123,6 +125,7 @@ class TopSection extends StatelessWidget {
     final String joiningDate = DateFormat.yMMMM()
         .format(_currentUser.metadata.creationTime)
         .toUpperCase();
+    analyticsUpdate();
     return Stack(
       children: <Widget>[
         Row(
@@ -194,5 +197,9 @@ class TopSection extends StatelessWidget {
         ),
       ],
     );
+  }
+  void analyticsUpdate()async{
+    final AnalyticsService analyticsService = locator<AnalyticsService>();
+    await analyticsService.profilePage(userId: UserDetails.uid);
   }
 }

@@ -8,6 +8,8 @@ import 'package:relic_bazaar/dashboard.dart';
 import 'package:relic_bazaar/helpers/ad_state.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/helpers/route_page.dart';
+import 'package:relic_bazaar/services/analytics/analytic_service.dart';
+import 'package:relic_bazaar/services/analytics/locator.dart';
 import 'package:relic_bazaar/views/auth/login_view.dart';
 import 'package:relic_bazaar/views/get_user_details_view.dart';
 
@@ -29,6 +31,8 @@ Future<void> main() async {
   _remoteConfigService = await RemoteConfigService.getInstance();
   await _remoteConfigService.initialize();
 
+  //locator
+  await setUpLocator();
   runApp(
     Provider<AdState>.value(
       value: adState,
@@ -38,6 +42,7 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+  //initializing firebase analytics
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -49,6 +54,10 @@ class MyApp extends StatelessWidget {
           }
         },
         child: MaterialApp(
+          //observers for the app
+          navigatorObservers: [
+            locator<AnalyticsService>().getAnalyticsObserver(),
+          ],
           builder: (BuildContext context, Widget child) {
             return ScrollConfiguration(
               behavior: CustomScrollBehavior(),

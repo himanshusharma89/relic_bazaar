@@ -4,8 +4,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/helpers/input_validators.dart';
 import 'package:relic_bazaar/model/user_model.dart';
+import 'package:relic_bazaar/services/analytics/analytic_service.dart';
+import 'package:relic_bazaar/services/analytics/locator.dart';
 import 'package:relic_bazaar/services/cloud_storage_service.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:relic_bazaar/widgets/show_error_dialog.dart';
@@ -18,6 +21,7 @@ class GetUserDetailsView extends StatefulWidget {
 
 class _GetUserDetailsViewState extends State<GetUserDetailsView> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final AnalyticsService analyticsService = locator<AnalyticsService>();
   final FocusNode _nameFocusNode = FocusNode(),
       _phoneNumberFocusNode = FocusNode();
 
@@ -169,7 +173,8 @@ class _GetUserDetailsViewState extends State<GetUserDetailsView> {
                       height: _height * 0.07,
                       width: _width * 0.4,
                       child: TextButton(
-                        onPressed: () {
+                        onPressed: () async{
+                          await analyticsService.getUserDetails(userId: UserDetails.uid);
                           _formKey.currentState.save();
                           _inputValidator(
                             name: _name,

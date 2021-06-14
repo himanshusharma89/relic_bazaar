@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/services/analytics/analytic_service.dart';
+import 'package:relic_bazaar/services/analytics/locator.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:relic_bazaar/widgets/text_field_decoration.dart';
 
@@ -48,6 +50,7 @@ class ChangeUsernameState extends State<ChangeUsername> {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
+    analyticsUpdate();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: RelicColors.backgroundColor,
@@ -182,5 +185,9 @@ class ChangeUsernameState extends State<ChangeUsername> {
         ),
       ),
     );
+  }
+  void analyticsUpdate()async{
+    final AnalyticsService analyticsService = locator<AnalyticsService>();
+    await analyticsService.changeUsername(userId: UserDetails.uid);
   }
 }

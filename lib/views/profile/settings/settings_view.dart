@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/services/analytics/analytic_service.dart';
+import 'package:relic_bazaar/services/analytics/locator.dart';
 import 'package:relic_bazaar/services/auth_service.dart';
 import 'package:relic_bazaar/widgets/back_button.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
@@ -30,6 +32,7 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
+    analyticsUpdate();
     return Scaffold(
         appBar: AppBar(
           backgroundColor: RelicColors.backgroundColor,
@@ -133,5 +136,9 @@ class _SettingsState extends State<Settings> {
             ),
           ),
         ));
+  }
+  void analyticsUpdate()async{
+    final AnalyticsService analyticsService = locator<AnalyticsService>();
+    await analyticsService.settings(userId: UserDetails.uid);
   }
 }

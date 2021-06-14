@@ -2,10 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
+
+import 'analytics/analytic_service.dart';
+import 'analytics/locator.dart';
 
 class AuthenticationService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
+  final AnalyticsService analyticsService = locator<AnalyticsService>();
   static Future<void> addUserToFirebase({
     String uid,
     String email,
@@ -55,6 +59,7 @@ class AuthenticationService {
       final User currentUser = FirebaseAuth.instance.currentUser;
       assert(user.uid == currentUser.uid);
       await addUserToFirebase(uid: user.uid, email: user.email);
+      UserDetails.uid = user.uid;
       await updateUserInFirebase(
         uid: user.uid,
         imageUrl: user.photoURL,
@@ -90,6 +95,7 @@ class AuthenticationService {
         password: password,
       );
       final User user = newUser.user;
+      UserDetails.uid = user.uid;
       await addUserToFirebase(
         uid: user.uid,
         email: user.email,
@@ -122,6 +128,7 @@ class AuthenticationService {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       String errorTemp;
+      await analyticsService.loginError(userId: UserDetails.uid);
       switch (e.code) {
         case 'invalid-email':
           errorTemp = 'Invalid Email';
@@ -135,6 +142,7 @@ class AuthenticationService {
         default:
           errorTemp = 'Invalid request. Please try again later';
       }
+
       return errorTemp;
     }
     return null;
@@ -148,6 +156,7 @@ class AuthenticationService {
   }
 
   Future<void> logout() async {
+    await analyticsService.logSignOut(userId: UserDetails.uid);
     await userSignOut();
     await signOutGoogle();
   }
