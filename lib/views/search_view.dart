@@ -1,6 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/services/analytics/analytic_service.dart';
+import 'package:relic_bazaar/services/analytics/locator.dart';
 import 'package:relic_bazaar/services/remote_config.dart';
 import 'package:relic_bazaar/widgets/search_bar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -35,6 +38,7 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
+    analyticsUpdate();
     return SafeArea(
       child: Column(
         children: <Widget>[
@@ -75,5 +79,9 @@ class _SearchState extends State<Search> {
         ],
       ),
     );
+  }
+  void analyticsUpdate()async{
+    final AnalyticsService analyticsService = locator<AnalyticsService>();
+    await analyticsService.search(userId: UserDetails.uid);
   }
 }

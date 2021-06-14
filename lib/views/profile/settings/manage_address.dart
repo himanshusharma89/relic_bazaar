@@ -3,6 +3,8 @@ import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/model/address_model.dart';
+import 'package:relic_bazaar/services/analytics/analytic_service.dart';
+import 'package:relic_bazaar/services/analytics/locator.dart';
 import 'package:relic_bazaar/widgets/address_text_field.dart';
 import 'package:relic_bazaar/widgets/back_button.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
@@ -45,6 +47,7 @@ class _ManageAddressState extends State<ManageAddress> {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
 
+    analyticsUpdate();
     final List<Step> steps = <Step>[
       Step(
         title: const Text('Info'),
@@ -320,5 +323,9 @@ class _ManageAddressState extends State<ManageAddress> {
           },
         ),
     );
+  }
+  void analyticsUpdate()async{
+    final AnalyticsService analyticsService = locator<AnalyticsService>();
+    await analyticsService.wishList(userId: UserDetails.uid);
   }
 }

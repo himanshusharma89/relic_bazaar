@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/model/address_model.dart';
+import 'package:relic_bazaar/services/analytics/analytic_service.dart';
+import 'package:relic_bazaar/services/analytics/locator.dart';
 import 'package:relic_bazaar/widgets/back_button.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 
@@ -14,6 +16,7 @@ class _AddressScreenState extends State<AddressScreen> {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
+    analyticsUpdate();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -84,5 +87,9 @@ class _AddressScreenState extends State<AddressScreen> {
         ),
       ),
     );
+  }
+  void analyticsUpdate()async{
+    final AnalyticsService analyticsService = locator<AnalyticsService>();
+    await analyticsService.manageAddress(userId: UserDetails.uid);
   }
 }

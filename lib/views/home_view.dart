@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:relic_bazaar/helpers/app_icons.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/model/product_model.dart';
+import 'package:relic_bazaar/services/analytics/analytic_service.dart';
+import 'package:relic_bazaar/services/analytics/locator.dart';
 import 'package:relic_bazaar/services/product_service.dart';
 import 'package:relic_bazaar/views/drawer_view.dart';
 import 'package:relic_bazaar/widgets/product/product_card.dart';
@@ -20,6 +22,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+  final AnalyticsService analyticsService = locator<AnalyticsService>();
 
   void _openDrawer() {
     _drawerKey.currentState.openDrawer();
@@ -35,6 +38,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
+    analyticsUpdate();
     return Scaffold(
       key: _drawerKey,
       drawer: DrawerWidget(
@@ -129,7 +133,8 @@ class _HomeState extends State<Home> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           GestureDetector(
-            onTap: () {
+            onTap: () async {
+              await analyticsService.drawer(userId: UserDetails.uid);
               _openDrawer();
             },
             child: const RelicBazaarStackedView(
@@ -141,7 +146,10 @@ class _HomeState extends State<Home> {
             ),
           ),
           GestureDetector(
-            onTap: _goToCart,
+            onTap: () async {
+              await analyticsService.visitCartClicked(userId: UserDetails.uid);
+              _goToCart();
+            },
             child: const RelicBazaarStackedView(
               upperColor: Colors.white,
               width: 35,
@@ -193,5 +201,9 @@ class _HomeState extends State<Home> {
       ),
       textAlign: TextAlign.left,
     );
+  }
+
+  void analyticsUpdate() async {
+    await analyticsService.home(userId: UserDetails.uid);
   }
 }

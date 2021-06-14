@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/services/analytics/analytic_service.dart';
+import 'package:relic_bazaar/services/analytics/locator.dart';
 import 'package:relic_bazaar/widgets/back_button.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:relic_bazaar/widgets/payment/order_item.dart';
@@ -16,6 +18,7 @@ class _WishlistState extends State<Wishlist> {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
+    analyticsUpdate();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -81,5 +84,9 @@ class _WishlistState extends State<Wishlist> {
         ),
       ),
     );
+  }
+  void analyticsUpdate()async{
+    final AnalyticsService analyticsService = locator<AnalyticsService>();
+    await analyticsService.wishList(userId: UserDetails.uid);
   }
 }

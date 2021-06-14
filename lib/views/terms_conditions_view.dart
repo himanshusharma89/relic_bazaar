@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/services/analytics/analytic_service.dart';
+import 'package:relic_bazaar/services/analytics/locator.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 
 class TermsConditionsView extends StatelessWidget {
@@ -7,6 +9,7 @@ class TermsConditionsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
+    analyticsUpdate();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -207,5 +210,9 @@ As long as the website and the information and services on the website are provi
         color: Colors.white,
       ),
     );
+  }
+  void analyticsUpdate()async{
+    final AnalyticsService analyticsService = locator<AnalyticsService>();
+    await analyticsService.termsAndConditions(userId: UserDetails.uid);
   }
 }

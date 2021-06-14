@@ -27,6 +27,7 @@ import 'package:relic_bazaar/views/unknown_view.dart';
 import 'package:relic_bazaar/widgets/payment/payment_successful.dart';
 import 'package:relic_bazaar/widgets/product/product_page.dart';
 
+
 class RoutePage {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -34,6 +35,7 @@ class RoutePage {
         return SlideLeftRoute(
           page: const Cart(),
         );
+
       case RouteConstant.getUserDetailsView:
         return SlideLeftRoute(
           page: GetUserDetailsView(),

@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/helpers/input_validators.dart';
+import 'package:relic_bazaar/services/analytics/analytic_service.dart';
+import 'package:relic_bazaar/services/analytics/locator.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:relic_bazaar/services/auth_service.dart';
 import 'package:relic_bazaar/widgets/show_error_dialog.dart';
@@ -15,6 +19,7 @@ class SignUpScreen extends StatefulWidget {
 
 class SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final AnalyticsService analyticsService = locator<AnalyticsService>();
 
   bool showPassword = true, showConfirmPassword = true, _loading = false;
   String _email, _password, _confirmPassword;
@@ -308,6 +313,11 @@ class SignUpScreenState extends State<SignUpScreen> {
         email: email,
         password: password,
       );
+
+      final FirebaseAuth _auth = FirebaseAuth.instance;
+      UserDetails.uid = await _auth.currentUser.uid;
+      // print(UserDetails.uid);
+      await analyticsService.logSignUp(userId: UserDetails.uid);
       setState(() {
         _loading = false;
       });

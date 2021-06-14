@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/services/analytics/analytic_service.dart';
+import 'package:relic_bazaar/services/analytics/locator.dart';
 import 'package:relic_bazaar/widgets/payment/cart_item.dart';
 import 'package:relic_bazaar/widgets/payment/payment_window.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
@@ -21,6 +23,8 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
+    final AnalyticsService analyticsService = locator<AnalyticsService>();
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 12,
@@ -46,7 +50,8 @@ class _CartState extends State<Cart> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               GestureDetector(
-                onTap: () {
+                onTap: () async{
+                  await analyticsService.backToShop(userId: UserDetails.uid);
                   setState(() {
                     widget.pageController.jumpTo(0);
                   });

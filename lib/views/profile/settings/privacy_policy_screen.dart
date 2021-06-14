@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
+import 'package:relic_bazaar/services/analytics/analytic_service.dart';
+import 'package:relic_bazaar/services/analytics/locator.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    analyticsUpdate();
     final Widget html = Html(data: """
 <p style="color:white;">Last updated: April 09, 2021</p>
 <p style="color:white;">This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
@@ -177,5 +180,9 @@ class PrivacyPolicyScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+  void analyticsUpdate()async{
+    final AnalyticsService analyticsService = locator<AnalyticsService>();
+    await analyticsService.privacyPolicy(userId: UserDetails.uid);
   }
 }
