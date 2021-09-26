@@ -15,6 +15,6 @@ jobs:
       - uses: christianvuerings/add-labels@v1
         with:
           labels: |
-            GSSOC21
+            hacktoberfest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
