@@ -34,7 +34,7 @@ class RemoteConfigService {
     try {
       await _remoteConfig!.setDefaults(defaults);
       await _fetchAndActivate();
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseException catch (e) {
       //FetchThrottledException
       debugPrint('Remote config fetch throttled : $e');
     } catch (e) {
