@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:geocoder/geocoder.dart';
+import 'package:flutter_geocoder/geocoder.dart';
+import 'package:flutter_geocoder/model.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/model/address_model.dart';
@@ -26,8 +27,7 @@ class _ManageAddressState extends State<ManageAddress> {
   String finalAddress = 'Address is not Set Yet';
 
   Future<void> getLocation() async {
-    final Position position = await Geolocator()
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    final Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     final Coordinates coordinates =
         Coordinates(position.latitude, position.longitude);
     final List<Address> addresses =
@@ -35,7 +35,7 @@ class _ManageAddressState extends State<ManageAddress> {
     final Address first = addresses.first;
     debugPrint('$addresses : ${first.addressLine}');
     setState(() {
-      loc.text = first.addressLine;
+      loc.text = first.addressLine!;
     });
     debugPrint(loc.text);
   }
@@ -226,7 +226,7 @@ class _ManageAddressState extends State<ManageAddress> {
           type: StepperType.horizontal,
           currentStep: currStep,
           controlsBuilder: (BuildContext context,
-              {VoidCallback onStepContinue, VoidCallback onStepCancel}) {
+              {VoidCallback? onStepContinue, VoidCallback? onStepCancel}) {
             return Row(
               children: <Widget>[
                 TextButton(

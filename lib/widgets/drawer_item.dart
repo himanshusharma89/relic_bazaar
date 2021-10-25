@@ -9,10 +9,10 @@ class DrawerItem extends StatelessWidget {
     this.child,
   });
 
-  final IconData icon;
-  final String title;
-  final GestureTapCallback onTap;
-  final Widget child;
+  final IconData? icon;
+  final String? title;
+  final GestureTapCallback? onTap;
+  final Widget? child;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +24,7 @@ class DrawerItem extends StatelessWidget {
               size: 30.0,
             ),
             title: Text(
-              title,
+              title!,
               style: const TextStyle(
                 fontFamily: 'Pixer',
                 color: RelicColors.backgroundColor,

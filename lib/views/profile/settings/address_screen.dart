@@ -35,7 +35,7 @@ class _AddressScreenState extends State<AddressScreen> {
                     child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    address.toString() ?? 'User Address',
+                    address ?? 'User Address',
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

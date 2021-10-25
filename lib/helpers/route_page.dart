@@ -70,7 +70,7 @@ class RoutePage {
         );
 
       case RouteConstant.PRODUCTS_SCREEN:
-        final Product product = settings.arguments as Product;
+        final Product? product = settings.arguments as Product?;
         return SlideBottomRoute(
           page: ProductPage(
             product: product,

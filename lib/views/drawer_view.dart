@@ -7,10 +7,10 @@ import '../widgets/drawer_item.dart';
 class DrawerWidget extends StatefulWidget {
   const DrawerWidget({
     this.pageController,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
-  final PageController pageController;
+  final PageController? pageController;
 
   @override
   _DrawerWidgetState createState() => _DrawerWidgetState();
@@ -20,11 +20,11 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   final AuthenticationService _authenticationService = AuthenticationService();
   bool _isLoading = false;
   void goToScreen(int index) {
-    if (widget.pageController.initialPage == index) {
+    if (widget.pageController!.initialPage == index) {
       Navigator.of(context).pop();
     } else {
       setState(() {
-        widget.pageController.jumpToPage(index);
+        widget.pageController!.jumpToPage(index);
       });
     }
   }

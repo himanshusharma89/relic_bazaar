@@ -9,10 +9,10 @@ class OrderItem extends StatelessWidget {
       this.ordered,
       this.status,
       this.delivered = false});
-  final String title;
-  final String image;
-  final String ordered;
-  final String status;
+  final String? title;
+  final String? image;
+  final String? ordered;
+  final String? status;
   final bool delivered;
 
   @override
@@ -27,7 +27,7 @@ class OrderItem extends StatelessWidget {
             height: width * 0.35,
             upperColor: Colors.white,
             child: Image.asset(
-              image,
+              image!,
               fit: BoxFit.scaleDown,
             ),
           ),
@@ -41,7 +41,7 @@ class OrderItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                title,
+                title!,
                 overflow: TextOverflow.fade,
                 style: const TextStyle(
                     color: Colors.white,
@@ -53,7 +53,7 @@ class OrderItem extends StatelessWidget {
                 height: 3,
               ),
               Text(
-                ordered,
+                ordered!,
                 style: const TextStyle(
                     color: Colors.white,
                     fontSize: 13,
@@ -70,7 +70,7 @@ class OrderItem extends StatelessWidget {
                 //     color: Colors.white),
                 child: Center(
                     child: Text(
-                  status,
+                  status!,
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,

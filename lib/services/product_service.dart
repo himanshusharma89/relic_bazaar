@@ -5,7 +5,7 @@ import 'package:relic_bazaar/model/product_model.dart';
 class ProductService {
   Future<List<Product>> getProducts() async {
     final http.Response response = await http.get(
-      'https://himanshusharma89-api.herokuapp.com/relic_bazaar/products',
+      Uri.parse('https://himanshusharma89-api.herokuapp.com/relic_bazaar/products'),
     );
     final List<dynamic> fetchedData =
         json.decode(response.body) as List<dynamic>;

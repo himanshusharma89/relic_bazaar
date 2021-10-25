@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Widget settingsItem(BuildContext context, String text, IconData ic,
-    {Function onTap, Widget child}) {
+    {Function? onTap, Widget? child}) {
   return InkWell(
-    onTap: () => onTap(),
+    onTap: () => onTap!(),
     child: Padding(
       padding: const EdgeInsets.only(left: 15, right: 5, top: 10, bottom: 5),
       child: child ??

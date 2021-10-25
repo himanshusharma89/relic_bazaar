@@ -7,13 +7,13 @@ class CartItem extends StatefulWidget {
 }
 
 class _CartItemState extends State<CartItem> {
-  TextEditingController controller;
+  TextEditingController? controller;
 
   @override
   void initState() {
     super.initState();
     controller = TextEditingController();
-    controller.text = '1';
+    controller!.text = '1';
   }
 
   @override
@@ -105,14 +105,14 @@ class _CartItemState extends State<CartItem> {
   }
 
   void subQuantity() {
-    if (int.parse(controller.text) > 1) {
-      controller.text = (int.parse(controller.text) - 1).toString();
+    if (int.parse(controller!.text) > 1) {
+      controller!.text = (int.parse(controller!.text) - 1).toString();
     }
   }
 
   void addQuantity() {
-    if (int.parse(controller.text) < 50) {
-      controller.text = (int.parse(controller.text) + 1).toString();
+    if (int.parse(controller!.text) < 50) {
+      controller!.text = (int.parse(controller!.text) + 1).toString();
     }
   }
 }

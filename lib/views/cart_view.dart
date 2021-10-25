@@ -7,10 +7,10 @@ import 'package:relic_bazaar/widgets/retro_button.dart';
 class Cart extends StatefulWidget {
   const Cart({
     this.pageController,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
-  final PageController pageController;
+  final PageController? pageController;
 
   @override
   _CartState createState() => _CartState();
@@ -48,7 +48,7 @@ class _CartState extends State<Cart> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    widget.pageController.jumpTo(0);
+                    widget.pageController!.jumpTo(0);
                   });
                 },
                 child: RelicBazaarStackedView(

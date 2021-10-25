@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:relic_bazaar/helpers/input_validators.dart';
 import 'package:relic_bazaar/model/user_model.dart';
 import 'package:relic_bazaar/services/cloud_storage_service.dart';
@@ -29,13 +29,13 @@ class _GetUserDetailsViewState extends State<GetUserDetailsView> {
   }
 
   bool _isLoading = false;
-  File _image;
-  Future<void> getImage({@required ImageSource source}) async {
+  File? _image;
+  Future<void> getImage({required ImageSource source}) async {
     setState(() {
       _isLoading = true;
     });
     final ImagePicker _picker = ImagePicker();
-    final PickedFile _pickedFile = await _picker.getImage(source: source);
+    final XFile? _pickedFile = await _picker.pickImage(source: source);
     if (_pickedFile != null) {
       setState(() {
         _image = File(_pickedFile.path);
@@ -56,7 +56,7 @@ class _GetUserDetailsViewState extends State<GetUserDetailsView> {
   Widget build(BuildContext context) {
     final double _height = MediaQuery.of(context).size.height;
     final double _width = MediaQuery.of(context).size.width;
-    String _name, _phoneNumber;
+    String? _name, _phoneNumber;
     return ModalProgressHUD(
       inAsyncCall: _isLoading,
       color: Colors.black54,
@@ -120,7 +120,7 @@ class _GetUserDetailsViewState extends State<GetUserDetailsView> {
                                 Icons.add_a_photo,
                                 size: 40,
                               )
-                            : Image.file(_image),
+                            : Image.file(_image!),
                       ),
                     ),
                     SizedBox(
@@ -139,7 +139,7 @@ class _GetUserDetailsViewState extends State<GetUserDetailsView> {
                           FocusScope.of(context)
                               .requestFocus(_phoneNumberFocusNode);
                         },
-                        onSaved: (String value) {
+                        onSaved: (String? value) {
                           _name = value;
                         },
                       ),
@@ -156,7 +156,7 @@ class _GetUserDetailsViewState extends State<GetUserDetailsView> {
                         keyboardType: TextInputType.number,
                         focusNode: _phoneNumberFocusNode,
                         textInputAction: TextInputAction.done,
-                        onSaved: (String value) {
+                        onSaved: (String? value) {
                           _phoneNumber = value;
                         },
                       ),
@@ -170,9 +170,9 @@ class _GetUserDetailsViewState extends State<GetUserDetailsView> {
                       width: _width * 0.4,
                       child: TextButton(
                         onPressed: () {
-                          _formKey.currentState.save();
+                          _formKey.currentState!.save();
                           _inputValidator(
-                            name: _name,
+                            name: _name!,
                             phoneNumber: _phoneNumber,
                           );
                         },
@@ -195,30 +195,30 @@ class _GetUserDetailsViewState extends State<GetUserDetailsView> {
   }
 
   void _inputValidator({
-    @required String name,
-    @required String phoneNumber,
+    required String name,
+    required String? phoneNumber,
   }) {
     setState(() {
       _isLoading = true;
     });
     final InputValidators _inputValidators = InputValidators();
-    final User _user = FirebaseAuth.instance.currentUser;
+    final User? _user = FirebaseAuth.instance.currentUser;
 
     if (_inputValidators.nameValidator(name, context) &&
-        _inputValidators.phoneNumberValidator(phoneNumber, context)) {
-      _user.updateProfile(displayName: name);
+        _inputValidators.phoneNumberValidator(phoneNumber!, context)) {
+      _user!.updateDisplayName(name);
       final CloudStorageService _storageService = CloudStorageService();
       if (_image != null) {
         _storageService
             .uploadFile(
-          _image,
+          _image!,
           UserModel(
             name: name,
             phoneNumber: phoneNumber,
             uid: _user.uid,
           ),
         )
-            .then((String errorMessage) {
+            .then((String? errorMessage) {
           if (errorMessage != null) {
             showErrorDialog(
               errorMessage: errorMessage,

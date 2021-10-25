@@ -6,7 +6,7 @@ import 'package:relic_bazaar/services/auth_service.dart';
 
 class CloudStorageService {
   final FirebaseStorage _storage = FirebaseStorage.instance;
-  Future<String> uploadFile(File file, UserModel user) async {
+  Future<String?> uploadFile(File file, UserModel user) async {
     try {
       await _storage
           .ref('user-profile-images/${user.uid}/profile-image/')

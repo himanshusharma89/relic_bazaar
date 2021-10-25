@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:relic_bazaar/helpers/input_validators.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:relic_bazaar/services/auth_service.dart';
@@ -17,8 +17,8 @@ class SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   bool showPassword = true, showConfirmPassword = true, _loading = false;
-  String _email, _password, _confirmPassword;
-  FocusNode _emailFocusNode,
+  String? _email, _password, _confirmPassword;
+  FocusNode? _emailFocusNode,
       _passwordFocusNode,
       _confirmPasswordFocusNode,
       _signupFocusNode;
@@ -34,10 +34,10 @@ class SignUpScreenState extends State<SignUpScreen> {
 
   @override
   void dispose() {
-    _emailFocusNode.dispose();
-    _passwordFocusNode.dispose();
-    _confirmPasswordFocusNode.dispose();
-    _signupFocusNode.dispose();
+    _emailFocusNode!.dispose();
+    _passwordFocusNode!.dispose();
+    _confirmPasswordFocusNode!.dispose();
+    _signupFocusNode!.dispose();
     super.dispose();
   }
 
@@ -105,11 +105,11 @@ class SignUpScreenState extends State<SignUpScreen> {
                             decoration:
                                 textFieldDecoration(hintText: 'Email Address'),
                             onFieldSubmitted: (_) {
-                              _emailFocusNode.unfocus();
+                              _emailFocusNode!.unfocus();
                               FocusScope.of(context)
                                   .requestFocus(_passwordFocusNode);
                             },
-                            onSaved: (String value) {
+                            onSaved: (String? value) {
                               _email = value;
                             },
                           ),
@@ -143,12 +143,12 @@ class SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ),
                             onFieldSubmitted: (_) {
-                              _passwordFocusNode.unfocus();
+                              _passwordFocusNode!.unfocus();
                               FocusScope.of(context).requestFocus(
                                 _confirmPasswordFocusNode,
                               );
                             },
-                            onSaved: (String value) {
+                            onSaved: (String? value) {
                               _password = value;
                             },
                           ),
@@ -182,12 +182,12 @@ class SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ),
                             onFieldSubmitted: (_) {
-                              _confirmPasswordFocusNode.unfocus();
+                              _confirmPasswordFocusNode!.unfocus();
                               FocusScope.of(context).requestFocus(
                                 _signupFocusNode,
                               );
                             },
-                            onSaved: (String value) {
+                            onSaved: (String? value) {
                               _confirmPassword = value;
                             },
                           ),
@@ -200,10 +200,10 @@ class SignUpScreenState extends State<SignUpScreen> {
                         flex: 2,
                         child: InkWell(
                           onTap: () {
-                            _formKey.currentState.save();
+                            _formKey.currentState!.save();
                             _inputValidator(
                               confirmPassword: _confirmPassword,
-                              email: _email,
+                              email: _email!,
                               password: _password,
                             );
                           },
@@ -239,7 +239,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                               setState(() {
                                 _loading = true;
                               });
-                              final String errorMessage =
+                              final String? errorMessage =
                                   await AuthenticationService
                                       .signInWithGoogle();
                               if (errorMessage != null &&
@@ -281,9 +281,9 @@ class SignUpScreenState extends State<SignUpScreen> {
   }
 
   Future<void> _inputValidator({
-    @required String email,
-    @required String password,
-    @required String confirmPassword,
+    required String email,
+    required String? password,
+    required String? confirmPassword,
   }) async {
     setState(() {
       _loading = true;
@@ -296,15 +296,15 @@ class SignUpScreenState extends State<SignUpScreen> {
           context: context,
         ) &&
         _inputValidators.passwordValidator(
-          password: password,
+          password: password!,
           context: context,
         ) &&
         _inputValidators.confirmPasswordValidator(
           password: password,
-          confirmPassword: confirmPassword,
+          confirmPassword: confirmPassword!,
           context: context,
         )) {
-      final String _errorMessage = await _authenticationService.userSignUp(
+      final String? _errorMessage = await _authenticationService.userSignUp(
         email: email,
         password: password,
       );

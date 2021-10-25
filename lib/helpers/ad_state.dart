@@ -8,9 +8,9 @@ class AdState {
   // String get bannerAdUnitId => Platform.isAndroid?'ca-app-pub-1408860275796619~7877036507':'';
   String get bannerAdUnitId => 'ca-app-pub-3940256099942544/6300978111';
 
-  AdListener get adListener => _adListener;
+  BannerAdListener get adListener => _adListener;
 
-  final AdListener _adListener = AdListener(
+  final BannerAdListener _adListener = BannerAdListener(
     onAdLoaded: (Ad ad) => debugPrint('Ad loaded: ${ad.adUnitId}'),
     onAdClosed: (Ad ad) => debugPrint('Ad closed: ${ad.adUnitId}'),
     onAdFailedToLoad: (Ad ad, LoadAdError error) => debugPrint('Ad failed: ${ad.adUnitId}, $error'),

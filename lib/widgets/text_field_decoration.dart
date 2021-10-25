@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-InputDecoration textFieldDecoration({String hintText, Icon icon, IconButton suffixIcon }) {
+InputDecoration textFieldDecoration({String? hintText, Icon? icon, IconButton? suffixIcon }) {
   return InputDecoration(
     prefixIcon: icon,
     hintText: hintText,

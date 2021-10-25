@@ -14,10 +14,10 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  PageController _pageController;
+  PageController? _pageController;
   int _currentIndex = 0;
 
-  BannerAd bannerAd;
+  BannerAd? bannerAd;
 
   @override
   void didChangeDependencies() {
@@ -46,7 +46,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   void dispose() {
     super.dispose();
-    _pageController.dispose();
+    _pageController!.dispose();
   }
 
   @override
@@ -83,7 +83,7 @@ class _DashboardState extends State<Dashboard> {
                   if (bannerAd != null)
                     SizedBox(
                       height: 50,
-                      child: AdWidget(ad: bannerAd),
+                      child: AdWidget(ad: bannerAd!),
                     ),
                 ],
               ),

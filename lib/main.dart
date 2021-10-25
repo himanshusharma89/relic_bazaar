@@ -13,7 +13,7 @@ import 'package:relic_bazaar/views/get_user_details_view.dart';
 
 import 'services/remote_config.dart';
 
-RemoteConfigService _remoteConfigService;
+late RemoteConfigService _remoteConfigService;
 
 Future<void> main() async {
   //firebase Initialization
@@ -45,22 +45,22 @@ class MyApp extends StatelessWidget {
           final FocusScopeNode currentFocus = FocusScope.of(context);
           if (!currentFocus.hasPrimaryFocus &&
               currentFocus.focusedChild != null) {
-            FocusManager.instance.primaryFocus.unfocus();
+            FocusManager.instance.primaryFocus!.unfocus();
           }
         },
         child: MaterialApp(
-          builder: (BuildContext context, Widget child) {
+          builder: (BuildContext context, Widget? child) {
             return ScrollConfiguration(
               behavior: CustomScrollBehavior(),
-              child: child,
+              child: child!,
             );
           },
-          home: StreamBuilder<User>(
+          home: StreamBuilder<User?>(
               stream: FirebaseAuth.instance.userChanges(),
-              builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
+              builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
                 if (snapshot.connectionState == ConnectionState.active) {
                   if (snapshot.hasData) {
-                    if (snapshot.data.displayName == null) {
+                    if (snapshot.data!.displayName == null) {
                       return GetUserDetailsView();
                     } else {
                       return Dashboard();

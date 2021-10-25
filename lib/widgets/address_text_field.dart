@@ -4,10 +4,10 @@ import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:relic_bazaar/widgets/text_field_decoration.dart';
 
 Widget addressTextField(BuildContext context,
-    {IconData icon,
-    String hint,
-    TextEditingController text,
-    TextInputType type}) {
+    {IconData? icon,
+    String? hint,
+    TextEditingController? text,
+    TextInputType? type}) {
   final double height = MediaQuery.of(context).size.height;
   final double width = MediaQuery.of(context).size.width;
   return RelicBazaarStackedView(

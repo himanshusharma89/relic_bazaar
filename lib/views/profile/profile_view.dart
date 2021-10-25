@@ -15,14 +15,14 @@ class ProfilePage extends StatelessWidget {
       );
 
   InkWell buttonBuilder({
-    double height,
-    String text,
-    double width,
-    String routeName,
-    BuildContext context,
+    required double height,
+    required String text,
+    required double width,
+    String? routeName,
+    BuildContext? context,
   }) =>
       InkWell(
-        onTap: () => Navigator.of(context).pushNamed(routeName),
+        onTap: () => Navigator.of(context!).pushNamed(routeName!),
         child: RelicBazaarStackedView(
           upperColor: Colors.white,
           height: height * 0.046,
@@ -42,8 +42,8 @@ class ProfilePage extends StatelessWidget {
         ),
       );
 
-  Future<UserModel> _getUserData() async {
-    final User user = FirebaseAuth.instance.currentUser;
+  Future<UserModel?> _getUserData() async {
+    final User user = FirebaseAuth.instance.currentUser!;
     final DbUserData _userdata = DbUserData.instance;
     return _userdata.fetchData(user.uid);
   }
@@ -52,9 +52,9 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final double _height = MediaQuery.of(context).size.height;
     final double _width = MediaQuery.of(context).size.width;
-    return FutureBuilder<UserModel>(
+    return FutureBuilder<UserModel?>(
       future: _getUserData(),
-      builder: (_, AsyncSnapshot<UserModel> snapshot) {
+      builder: (_, AsyncSnapshot<UserModel?> snapshot) {
         if (snapshot.hasData) {
           return SingleChildScrollView(
             child: Padding(
@@ -114,14 +114,14 @@ class ProfilePage extends StatelessWidget {
 
 class TopSection extends StatelessWidget {
   const TopSection({this.user});
-  final UserModel user;
+  final UserModel? user;
 
   @override
   Widget build(BuildContext context) {
     final double _height = MediaQuery.of(context).size.height;
-    final User _currentUser = FirebaseAuth.instance.currentUser;
+    final User _currentUser = FirebaseAuth.instance.currentUser!;
     final String joiningDate = DateFormat.yMMMM()
-        .format(_currentUser.metadata.creationTime)
+        .format(_currentUser.metadata.creationTime!)
         .toUpperCase();
     return Stack(
       children: <Widget>[
@@ -132,7 +132,7 @@ class TopSection extends StatelessWidget {
               height: _height / 6,
               width: _height / 6,
               child: Image.network(
-                user.imageUrl,
+                user!.imageUrl!,
                 fit: BoxFit.cover,
                 filterQuality: FilterQuality.high,
               ),
@@ -141,7 +141,7 @@ class TopSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  user.name,
+                  user!.name!,
                   style: const TextStyle(
                     fontSize: 25,
                     fontFamily: 'Pixer',
@@ -149,7 +149,7 @@ class TopSection extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  user.email,
+                  user!.email!,
                   style: const TextStyle(
                     fontSize: 10,
                     fontFamily: 'Pixer',

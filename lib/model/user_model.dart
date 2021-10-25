@@ -7,5 +7,5 @@ class UserModel {
     this.uid,
   });
 
-  final String name, email, imageUrl, uid, phoneNumber;
+  final String? name, email, imageUrl, uid, phoneNumber;
 }
