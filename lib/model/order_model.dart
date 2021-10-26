@@ -7,9 +7,9 @@ class Order {
     this.delivered,
   });
 
-  String title;
-  String image;
-  String ordered;
-  String status;
-  bool delivered;
+  String? title;
+  String? image;
+  String? ordered;
+  String? status;
+  bool? delivered;
 }

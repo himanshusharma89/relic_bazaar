@@ -17,10 +17,10 @@ class ChangeUsernameState extends State<ChangeUsername> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
-  FocusNode _email;
-  FocusNode _password;
-  FocusNode _confirm;
-  FocusNode _save;
+  FocusNode? _email;
+  FocusNode? _password;
+  FocusNode? _confirm;
+  FocusNode? _save;
 
   @override
   void initState() {
@@ -37,10 +37,10 @@ class ChangeUsernameState extends State<ChangeUsername> {
     _passwordController.clear();
     _confirmPasswordController.clear();
 
-    _email.dispose();
-    _password.dispose();
-    _confirm.dispose();
-    _save.dispose();
+    _email!.dispose();
+    _password!.dispose();
+    _confirm!.dispose();
+    _save!.dispose();
     super.dispose();
   }
 
@@ -105,7 +105,7 @@ class ChangeUsernameState extends State<ChangeUsername> {
                         decoration: textFieldDecoration(hintText: 'Username'),
                         controller: _userNameController,
                         onFieldSubmitted: (String value) {
-                          _email.unfocus();
+                          _email!.unfocus();
                           FocusScope.of(context).requestFocus(_password);
                         },
                       ),
@@ -124,7 +124,7 @@ class ChangeUsernameState extends State<ChangeUsername> {
                         textInputAction: TextInputAction.next,
                         decoration: textFieldDecoration(hintText: 'Password'),
                         onFieldSubmitted: (String value) {
-                          _password.unfocus();
+                          _password!.unfocus();
                           FocusScope.of(context).requestFocus(_confirm);
                         },
                       ),
@@ -144,7 +144,7 @@ class ChangeUsernameState extends State<ChangeUsername> {
                         decoration:
                             textFieldDecoration(hintText: 'Confirm Password'),
                         onFieldSubmitted: (String value) {
-                          _confirm.unfocus();
+                          _confirm!.unfocus();
                           FocusScope.of(context).requestFocus(_save);
                         },
                       ),

@@ -8,7 +8,7 @@ class SlideRightRoute extends PageRouteBuilder<SlideRightRoute> {
             Animation<double> animation,
             Animation<double> secondaryAnimation,
           ) =>
-              page,
+              page!,
           transitionsBuilder: (
             BuildContext context,
             Animation<double> animation,
@@ -23,7 +23,7 @@ class SlideRightRoute extends PageRouteBuilder<SlideRightRoute> {
             child: child,
           ),
         );
-  final Widget page;
+  final Widget? page;
 }
 
 class SlideLeftRoute extends PageRouteBuilder<SlideLeftRoute> {
@@ -34,7 +34,7 @@ class SlideLeftRoute extends PageRouteBuilder<SlideLeftRoute> {
             Animation<double> animation,
             Animation<double> secondaryAnimation,
           ) =>
-              page,
+              page!,
           transitionsBuilder: (
             BuildContext context,
             Animation<double> animation,
@@ -49,7 +49,7 @@ class SlideLeftRoute extends PageRouteBuilder<SlideLeftRoute> {
             child: child,
           ),
         );
-  final Widget page;
+  final Widget? page;
 }
 
 class SlideTopRoute extends PageRouteBuilder<SlideTopRoute> {
@@ -60,7 +60,7 @@ class SlideTopRoute extends PageRouteBuilder<SlideTopRoute> {
             Animation<double> animation,
             Animation<double> secondaryAnimation,
           ) =>
-              page,
+              page!,
           transitionsBuilder: (
             BuildContext context,
             Animation<double> animation,
@@ -75,7 +75,7 @@ class SlideTopRoute extends PageRouteBuilder<SlideTopRoute> {
             child: child,
           ),
         );
-  final Widget page;
+  final Widget? page;
 }
 
 class SlideBottomRoute extends PageRouteBuilder<SlideBottomRoute> {
@@ -86,7 +86,7 @@ class SlideBottomRoute extends PageRouteBuilder<SlideBottomRoute> {
             Animation<double> animation,
             Animation<double> secondaryAnimation,
           ) =>
-              page,
+              page!,
           transitionsBuilder: (
             BuildContext context,
             Animation<double> animation,
@@ -101,5 +101,5 @@ class SlideBottomRoute extends PageRouteBuilder<SlideBottomRoute> {
             child: child,
           ),
         );
-  final Widget page;
+  final Widget? page;
 }

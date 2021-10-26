@@ -3,8 +3,8 @@ import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/model/product_model.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({Key key, this.product}) : super(key: key);
-  final Product product;
+  const ProductCard({Key? key, this.product}) : super(key: key);
+  final Product? product;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class ProductCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                product.text,
+                product!.text!,
                 style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
@@ -46,7 +46,7 @@ class ProductCard extends StatelessWidget {
                 textAlign: TextAlign.left,
               ),
               Text(
-                product.owner,
+                product!.owner!,
                 style: const TextStyle(
                   fontSize: 11,
                   color: Colors.white,
@@ -59,7 +59,7 @@ class ProductCard extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                product.amount,
+                product!.amount!,
                 style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
@@ -71,7 +71,7 @@ class ProductCard extends StatelessWidget {
               Transform.translate(
                 offset: const Offset(16, 10),
                 child: Image.asset(
-                  product.image,
+                  product!.image!,
                   height: 148,
                   width: 154,
                 ),

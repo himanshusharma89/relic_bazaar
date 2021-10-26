@@ -10,7 +10,7 @@ class FaqsScreen extends StatefulWidget {
 
 class _FaqsScreenState extends State<FaqsScreen> {
   bool _loading = true;
-  PDFDocument _doc;
+  late PDFDocument _doc;
 
   @override
   void initState() {

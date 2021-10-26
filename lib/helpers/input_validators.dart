@@ -3,12 +3,12 @@ import 'package:relic_bazaar/widgets/show_error_dialog.dart';
 
 class InputValidators {
   bool emailValidator(
-      {@required String email, @required BuildContext context}) {
+      {required String email, required BuildContext context}) {
     const String pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     final RegExp _regExp = RegExp(pattern);
 
-    if (email.isEmpty || email == null) {
+    if (email.isEmpty) {
       showErrorDialog(
         context: context,
         errorMessage: 'Please fill the Email',
@@ -25,8 +25,8 @@ class InputValidators {
   }
 
   bool passwordValidator(
-      {@required String password, @required BuildContext context}) {
-    if (password.isEmpty || password == null) {
+      {required String password, required BuildContext context}) {
+    if (password.isEmpty) {
       showErrorDialog(
         context: context,
         errorMessage: 'Please fill the Password',
@@ -43,11 +43,11 @@ class InputValidators {
   }
 
   bool confirmPasswordValidator({
-    @required String password,
-    @required String confirmPassword,
-    @required BuildContext context,
+    required String? password,
+    required String confirmPassword,
+    required BuildContext context,
   }) {
-    if (confirmPassword.isEmpty || confirmPassword == null) {
+    if (confirmPassword.isEmpty) {
       showErrorDialog(
         context: context,
         errorMessage: 'Please fill the confirm password',
@@ -70,7 +70,7 @@ class InputValidators {
   }
 
   bool nameValidator(String name, BuildContext context) {
-    if (name.isEmpty || name == null) {
+    if (name.isEmpty) {
       showErrorDialog(errorMessage: 'Please fill a name', context: context);
       return false;
     } else {
@@ -79,7 +79,7 @@ class InputValidators {
   }
 
   bool phoneNumberValidator(String phoneNumber, BuildContext context) {
-    if (phoneNumber.isEmpty || phoneNumber == null) {
+    if (phoneNumber.isEmpty) {
       showErrorDialog(
           errorMessage: 'Please fill a Phone Number', context: context);
       return false;

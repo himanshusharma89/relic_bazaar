@@ -56,7 +56,7 @@ class _SearchState extends State<Search> {
                         ),
                       ),
                       child: CarouselSlider(
-                        items: snapshot.data as List<Image>,
+                        items: snapshot.data as List<Image>?,
                         options: CarouselOptions(
                           enlargeCenterPage: true,
                           autoPlay: true,

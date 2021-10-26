@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/helpers/input_validators.dart';
 import 'package:relic_bazaar/services/auth_service.dart';
@@ -17,8 +17,8 @@ class LoginScreen extends StatefulWidget {
 class LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  String _email, _password;
-  FocusNode _emailFocusNode, _passwordFocusNode, _loginFocusNode;
+  String? _email, _password;
+  FocusNode? _emailFocusNode, _passwordFocusNode, _loginFocusNode;
   bool _loading = false, _showPassword = true;
 
   @override
@@ -31,9 +31,9 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    _emailFocusNode.dispose();
-    _passwordFocusNode.dispose();
-    _loginFocusNode.dispose();
+    _emailFocusNode!.dispose();
+    _passwordFocusNode!.dispose();
+    _loginFocusNode!.dispose();
     super.dispose();
   }
 
@@ -102,11 +102,11 @@ class LoginScreenState extends State<LoginScreen> {
                               hintText: 'Email Address',
                             ),
                             onFieldSubmitted: (_) {
-                              _emailFocusNode.unfocus();
+                              _emailFocusNode!.unfocus();
                               FocusScope.of(context)
                                   .requestFocus(_passwordFocusNode);
                             },
-                            onSaved: (String value) {
+                            onSaved: (String? value) {
                               _email = value;
                             },
                           ),
@@ -142,11 +142,11 @@ class LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                             onFieldSubmitted: (_) {
-                              _passwordFocusNode.unfocus();
+                              _passwordFocusNode!.unfocus();
                               FocusScope.of(context)
                                   .requestFocus(_loginFocusNode);
                             },
-                            onSaved: (String value) {
+                            onSaved: (String? value) {
                               _password = value;
                             },
                           ),
@@ -159,9 +159,9 @@ class LoginScreenState extends State<LoginScreen> {
                         flex: 2,
                         child: InkWell(
                           onTap: () {
-                            _formKey.currentState.save();
+                            _formKey.currentState!.save();
                             _inputValidator(
-                              email: _email,
+                              email: _email!,
                               password: _password,
                             );
                           },
@@ -197,7 +197,7 @@ class LoginScreenState extends State<LoginScreen> {
                                 setState(() {
                                   _loading = true;
                                 });
-                                final String errorMessage =
+                                final String? errorMessage =
                                     await AuthenticationService
                                         .signInWithGoogle();
                                 if (errorMessage != null &&
@@ -246,8 +246,8 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _inputValidator({
-    @required String email,
-    @required String password,
+    required String email,
+    required String? password,
   }) async {
     final InputValidators _inputValidators = InputValidators();
     final AuthenticationService _authenticationService =
@@ -257,10 +257,10 @@ class LoginScreenState extends State<LoginScreen> {
           context: context,
         ) &&
         _inputValidators.passwordValidator(
-          password: password,
+          password: password!,
           context: context,
         )) {
-      String _errorMessage;
+      String? _errorMessage;
       setState(() {
         _loading = true;
       });

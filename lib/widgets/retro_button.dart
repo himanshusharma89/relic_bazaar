@@ -9,11 +9,11 @@ class RelicBazaarStackedView extends StatefulWidget {
       this.width,
       this.height,
       this.borderColor = Colors.black});
-  final Widget child;
+  final Widget? child;
   final Color upperColor;
   final Color lowerColor;
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
   final Color borderColor;
   @override
   _RelicBazaarStackedViewState createState() => _RelicBazaarStackedViewState();

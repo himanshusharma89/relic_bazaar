@@ -7,9 +7,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
+import 'package:relic_bazaar/helpers/ad_state.dart';
 import 'package:relic_bazaar/helpers/app_icons.dart';
 
 import 'package:relic_bazaar/model/product_model.dart';
+
 import 'package:relic_bazaar/widgets/payment/cart_item.dart';
 import 'package:relic_bazaar/widgets/payment/order_item.dart';
 import 'package:relic_bazaar/widgets/product/product_card.dart';
@@ -32,7 +36,6 @@ void main() {
               height: 10,
             ),
           )));
-
       expect(find.text('lorem'), findsOneWidget);
       expect(find.text('ipsum'), findsOneWidget);
       expect(find.text('dolor'), findsOneWidget);
@@ -45,13 +48,31 @@ void main() {
   testWidgets(
     'ProductPage displays text and image correctly',
     (WidgetTester tester) async {
-      await tester.pumpWidget(const MediaQuery(
-        data: MediaQueryData(),
-        child: Directionality(
-          textDirection: TextDirection.ltr,
-          child: ProductPage(),
-        ),
-      ));
+      //AdMob Initialization
+      final Future<InitializationStatus> initFuture =
+          MobileAds.instance.initialize();
+
+      final AdState adState = AdState(initFuture);
+
+      await tester.pumpWidget(Provider<AdState>.value(
+          value: adState,
+          builder: (_, __) => MediaQuery(
+                data: const MediaQueryData(),
+                child: MaterialApp(
+                  home: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: ProductPage(
+                      product: Product(
+                          owner: 'owner',
+                          amount: 'amount',
+                          seller: 'seller',
+                          height: 10,
+                          text: 'test string',
+                          image: 'assets/items/3.png'),
+                    ),
+                  ),
+                ),
+              )));
 
       expect(find.text('owner'), findsOneWidget);
       expect(find.text('amount'), findsOneWidget);
@@ -64,7 +85,7 @@ void main() {
   testWidgets(
     'BottomNavigationBar works correctly',
     (WidgetTester tester) async {
-      int index;
+      int index = 0;
 
       await tester.pumpWidget(
         MediaQuery(

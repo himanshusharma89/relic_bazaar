@@ -12,7 +12,7 @@ import 'package:relic_bazaar/widgets/search_bar.dart';
 class Home extends StatefulWidget {
   const Home({this.pageController});
 
-  final PageController pageController;
+  final PageController? pageController;
 
   @override
   _HomeState createState() => _HomeState();
@@ -22,12 +22,12 @@ class _HomeState extends State<Home> {
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
   void _openDrawer() {
-    _drawerKey.currentState.openDrawer();
+    _drawerKey.currentState!.openDrawer();
   }
 
   void _goToCart() {
     setState(() {
-      widget.pageController.jumpToPage(2);
+      widget.pageController!.jumpToPage(2);
     });
   }
 
@@ -100,10 +100,10 @@ class _HomeState extends State<Home> {
                       crossAxisSpacing: 8,
                       mainAxisSpacing: 8,
                       childAspectRatio: 1 / 1.6),
-                  itemCount: snapshot.data.length,
+                  itemCount: snapshot.data!.length,
                   itemBuilder: (_, int index) {
                     return ProductCard(
-                      product: snapshot.data[index],
+                      product: snapshot.data![index],
                     );
                   },
                 ),
@@ -162,7 +162,7 @@ class _HomeState extends State<Home> {
   }
 
   Widget greetingUserText() {
-    final User user = FirebaseAuth.instance.currentUser;
+    final User user = FirebaseAuth.instance.currentUser!;
     return Text.rich(
       TextSpan(
         style: const TextStyle(

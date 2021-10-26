@@ -23,10 +23,10 @@ class Product {
     );
   }
 
-  final String text;
-  final String owner;
-  final String amount;
-  final String image;
-  final String seller;
-  final int height;
+  final String? text;
+  final String? owner;
+  final String? amount;
+  final String? image;
+  final String? seller;
+  final int? height;
 }

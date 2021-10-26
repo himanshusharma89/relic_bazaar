@@ -3,8 +3,8 @@ import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 
 void showErrorDialog({
-  @required String errorMessage,
-  @required BuildContext context,
+  required String errorMessage,
+  required BuildContext context,
 }) {
   showDialog(
     context: context,

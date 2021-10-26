@@ -5,7 +5,7 @@ import 'package:relic_bazaar/widgets/retro_button.dart';
 
 class PaymentSuccessful extends StatelessWidget {
   const PaymentSuccessful({
-    Key key,
+    Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {

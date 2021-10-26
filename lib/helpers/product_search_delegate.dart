@@ -33,13 +33,14 @@ class ProductSearchDelegate extends SearchDelegate<ProductCard> {
   }
 
   @override
-  Widget buildLeading(BuildContext context) {
+  Widget? buildLeading(BuildContext context) {
     return null;
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    return null;
+    //return null
+    return const SizedBox.shrink();
   }
 
   @override
@@ -53,7 +54,7 @@ class ProductSearchDelegate extends SearchDelegate<ProductCard> {
             child: CircularProgressIndicator(),
           );
         } else {
-          final List<Product> productList = snapshot.data
+          final List<Product> productList = snapshot.data!
               .where(
                 (Product element) => element.text
                     .toString()
@@ -81,10 +82,10 @@ class ProductSearchDelegate extends SearchDelegate<ProductCard> {
                         arguments: product,
                       ),
                       child: ListTile(
-                        title: Text(product.text),
+                        title: Text(product.text!),
                         leading: CircleAvatar(
                           backgroundColor: Colors.white,
-                          backgroundImage: AssetImage(product.image),
+                          backgroundImage: AssetImage(product.image!),
                         ),
                       ),
                     );

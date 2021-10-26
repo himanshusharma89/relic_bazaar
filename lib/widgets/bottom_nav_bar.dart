@@ -6,14 +6,14 @@ import 'package:relic_bazaar/helpers/constants.dart';
 class FloatingNavBar extends StatefulWidget {
   FloatingNavBar(this.index, this._controller);
   int index;
-  final PageController _controller;
+  final PageController? _controller;
 
   @override
   _FloatingNavBarState createState() => _FloatingNavBarState();
 }
 
 class _FloatingNavBarState extends State<FloatingNavBar> {
-  PageController controller;
+  PageController? controller;
 
   @override
   void initState() {
@@ -44,7 +44,7 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
       onTap: () {
         setState(() {
           widget.index = index;
-          widget._controller.jumpToPage(
+          widget._controller!.jumpToPage(
             index,
           );
         });

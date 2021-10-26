@@ -5,7 +5,7 @@ import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:relic_bazaar/widgets/payment/order_item.dart';
 
 class Wishlist extends StatefulWidget {
-  const Wishlist({Key key}) : super(key: key);
+  const Wishlist({Key? key}) : super(key: key);
 
   @override
   _WishlistState createState() => _WishlistState();

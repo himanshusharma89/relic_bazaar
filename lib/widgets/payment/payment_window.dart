@@ -10,7 +10,7 @@ class PaymentWindow extends StatefulWidget {
 }
 
 class _PaymentWindowState extends State<PaymentWindow> {
-  int cnt1, cnt2;
+  int? cnt1, cnt2;
   final Razorpay _razorpay = Razorpay();
   @override
   void initState() {
@@ -123,7 +123,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
                             child: GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  cnt2 = cnt2 + 1;
+                                  cnt2 = cnt2! + 1;
                                   cnt1 = 0;
                                 });
                                 if (cnt2 == 2) {
@@ -211,7 +211,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
                             child: GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  cnt1 = cnt1 + 1;
+                                  cnt1 = cnt1! + 1;
                                   cnt2 = 0;
                                 });
                                 if (cnt1 == 2) {
