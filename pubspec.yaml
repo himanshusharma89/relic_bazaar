@@ -22,7 +22,7 @@ dependencies:
   geolocator: ^7.6.2
   flutter_geocoder: ^0.2.2-nullsafety
   flutter_svg: ^0.22.0
-  provider:
+  provider: any
   advance_pdf_viewer: any
   firebase_auth: ^3.1.1
   google_sign_in: ^5.1.1
