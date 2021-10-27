@@ -50,8 +50,8 @@ class LoginScreenState extends State<LoginScreen> {
           child: Center(
             child: SingleChildScrollView(
               child: RelicBazaarStackedView(
-                height: MediaQuery.of(context).size.height*0.70,
-                width: MediaQuery.of(context).size.width*0.87,
+                height: height*0.70,
+                width: width*0.87,
                 child: Form(
                   key: _formKey,
                   child: Padding(
