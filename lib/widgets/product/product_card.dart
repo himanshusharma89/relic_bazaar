@@ -2,17 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/model/product_model.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatefulWidget {
   const ProductCard({Key? key, this.product}) : super(key: key);
   final Product? product;
 
   @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
+  @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
         Navigator.of(context).pushNamed(
           RouteConstant.PRODUCTS_SCREEN,
-          arguments: product,
+          arguments: widget.product,
         );
       },
       child: Container(
@@ -22,8 +29,8 @@ class ProductCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(5.0),
           color: RelicColors.primaryColor,
           border: Border.all(color: RelicColors.primaryBlack),
-          boxShadow: const <BoxShadow>[
-            BoxShadow(
+          boxShadow: <BoxShadow>[
+            const BoxShadow(
               color: RelicColors.secondaryBlack,
               offset: Offset(0, 3),
               blurRadius: 6,
@@ -36,7 +43,7 @@ class ProductCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                product!.text!,
+                widget.product!.text!,
                 style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
@@ -46,7 +53,7 @@ class ProductCard extends StatelessWidget {
                 textAlign: TextAlign.left,
               ),
               Text(
-                product!.owner!,
+                widget.product!.owner!,
                 style: const TextStyle(
                   fontSize: 11,
                   color: Colors.white,
@@ -59,7 +66,7 @@ class ProductCard extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                product!.amount!,
+                widget.product!.amount!,
                 style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
@@ -68,12 +75,15 @@ class ProductCard extends StatelessWidget {
                 ),
                 textAlign: TextAlign.left,
               ),
-              Transform.translate(
-                offset: const Offset(16, 10),
-                child: Image.asset(
-                  product!.image!,
-                  height: 148,
-                  width: 154,
+              Container(
+                height: height * 1 / 6,
+                width: width * 1 / 3,
+                child: Transform.translate(
+                  offset: const Offset(16, 10),
+                  child: Image.asset(
+                    widget.product!.image!,
+                    fit: BoxFit.fitHeight,
+                  ),
                 ),
               )
             ],

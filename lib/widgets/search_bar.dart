@@ -27,12 +27,15 @@ Widget searchBar(BuildContext context) {
               child: Row(
                 // ignore: prefer_const_literals_to_create_immutables
                 children: <Widget>[
-                  const Text(
-                    'Search for categories, items ...',
-                    style: TextStyle(
-                      fontFamily: 'pix M 8pt',
-                      fontSize: 18,
-                      color: RelicColors.primaryBlack,
+                  Container(
+                    width: width * 0.7,
+                    child: const Text(
+                      'Search for categories, items ...',
+                      style: TextStyle(
+                          fontFamily: 'pix M 8pt',
+                          fontSize: 15,
+                          color: RelicColors.primaryBlack,
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                 ],
