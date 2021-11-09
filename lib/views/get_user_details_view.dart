@@ -225,11 +225,9 @@ class _GetUserDetailsViewState extends State<GetUserDetailsView> {
               context: context,
             );
           }
-          if(mounted){
-            setState(() {
-              _isLoading = false;
-            });
-          }
+          setState(() {
+            _isLoading = false;
+          });
         });
       }
     }

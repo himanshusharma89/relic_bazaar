@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/helpers/input_validators.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:relic_bazaar/services/auth_service.dart';
@@ -17,7 +16,7 @@ class SignUpScreen extends StatefulWidget {
 class SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  bool isPasswordHidden = true, isConfirmPasswordHidden = true, _loading = false;
+  bool showPassword = true, showConfirmPassword = true, _loading = false;
   String? _email, _password, _confirmPassword;
   FocusNode? _emailFocusNode,
       _passwordFocusNode,
@@ -128,18 +127,18 @@ class SignUpScreenState extends State<SignUpScreen> {
                             child: TextFormField(
                               focusNode: _passwordFocusNode,
                               keyboardType: TextInputType.visiblePassword,
-                              obscureText: isPasswordHidden,
+                              obscureText: showPassword,
                               enabled: true,
                               textInputAction: TextInputAction.next,
                               decoration: textFieldDecoration(
                                 hintText: 'Password',
                                 suffixIcon: IconButton(
-                                  icon: isPasswordHidden
-                                      ? const Icon(Icons.visibility_off, color: RelicColors.backgroundColor,)
-                                      : const Icon(Icons.visibility, color: RelicColors.warningColor,),
+                                  icon: showPassword
+                                      ? const Icon(Icons.visibility)
+                                      : const Icon(Icons.visibility_off),
                                   onPressed: () {
                                     setState(() {
-                                      isPasswordHidden = !isPasswordHidden;
+                                      showPassword = !showPassword;
                                     });
                                   }, //for show and hide password
                                 ),
@@ -167,18 +166,18 @@ class SignUpScreenState extends State<SignUpScreen> {
                             child: TextFormField(
                               focusNode: _confirmPasswordFocusNode,
                               keyboardType: TextInputType.visiblePassword,
-                              obscureText: isConfirmPasswordHidden,
+                              obscureText: showConfirmPassword,
                               enabled: true,
                               textInputAction: TextInputAction.done,
                               decoration: textFieldDecoration(
                                 hintText: 'Confirm Password',
                                 suffixIcon: IconButton(
-                                  icon: isConfirmPasswordHidden
-                                      ? const Icon(Icons.visibility_off, color: RelicColors.backgroundColor,)
-                                      : const Icon(Icons.visibility, color: RelicColors.warningColor,),
+                                  icon: showConfirmPassword
+                                      ? const Icon(Icons.visibility)
+                                      : const Icon(Icons.visibility_off),
                                   onPressed: () {
                                     setState(() {
-                                      isConfirmPasswordHidden = !isConfirmPasswordHidden;
+                                      showConfirmPassword = !showConfirmPassword;
                                     });
                                   }, //for show and hide password
                                 ),
@@ -267,17 +266,6 @@ class SignUpScreenState extends State<SignUpScreen> {
                                 child: Image.asset(
                                   'assets/items/google.png',
                                 ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Center(
-                          child: TextButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: const Text(
-                              'Login',
-                              style: TextStyle(
-                                color: Colors.white,
                               ),
                             ),
                           ),
