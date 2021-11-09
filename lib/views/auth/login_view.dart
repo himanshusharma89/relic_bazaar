@@ -19,7 +19,7 @@ class LoginScreenState extends State<LoginScreen> {
 
   String? _email, _password;
   FocusNode? _emailFocusNode, _passwordFocusNode, _loginFocusNode;
-  bool _loading = false, _showPassword = true;
+  bool _loading = false, _isPasswordHidden = true;
 
   @override
   void initState() {
@@ -124,19 +124,19 @@ class LoginScreenState extends State<LoginScreen> {
                             child: TextFormField(
                               focusNode: _passwordFocusNode,
                               keyboardType: TextInputType.visiblePassword,
-                              obscureText: _showPassword,
+                              obscureText: _isPasswordHidden,
                               enabled: true,
                               textInputAction: TextInputAction.done,
                               decoration: textFieldDecoration(
                                 hintText: 'Password',
                                 suffixIcon: IconButton(
-                                  icon: _showPassword
-                                      ? const Icon(Icons.visibility)
-                                      : const Icon(Icons.visibility_off),
+                                  icon: _isPasswordHidden
+                                      ? const Icon(Icons.visibility_off, color: RelicColors.backgroundColor,)
+                                      : const Icon(Icons.visibility, color: RelicColors.warningColor,),
                                   onPressed: () {
                                     setState(
                                       () {
-                                        _showPassword = !_showPassword;
+                                        _isPasswordHidden = !_isPasswordHidden;
                                       },
                                     );
                                   }, //for show and hide password
