@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/helpers/input_validators.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:relic_bazaar/services/auth_service.dart';
@@ -134,8 +135,8 @@ class SignUpScreenState extends State<SignUpScreen> {
                                 hintText: 'Password',
                                 suffixIcon: IconButton(
                                   icon: showPassword
-                                      ? const Icon(Icons.visibility)
-                                      : const Icon(Icons.visibility_off),
+                                      ? const Icon(Icons.visibility_off , color: RelicColors.backgroundColor,)
+                                      : const Icon(Icons.visibility , color: RelicColors.warningColor,),
                                   onPressed: () {
                                     setState(() {
                                       showPassword = !showPassword;
@@ -173,8 +174,8 @@ class SignUpScreenState extends State<SignUpScreen> {
                                 hintText: 'Confirm Password',
                                 suffixIcon: IconButton(
                                   icon: showConfirmPassword
-                                      ? const Icon(Icons.visibility)
-                                      : const Icon(Icons.visibility_off),
+                                      ? const Icon(Icons.visibility_off , color: RelicColors.backgroundColor,)
+                                      : const Icon(Icons.visibility , color: RelicColors.warningColor,),
                                   onPressed: () {
                                     setState(() {
                                       showConfirmPassword = !showConfirmPassword;
@@ -266,6 +267,18 @@ class SignUpScreenState extends State<SignUpScreen> {
                                 child: Image.asset(
                                   'assets/items/google.png',
                                 ),
+                              ),
+
+                            ),
+                          ),
+                        ),
+                        Center(
+                          child: TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text(
+                              'Login',
+                              style: TextStyle(
+                                color: Colors.white,
                               ),
                             ),
                           ),

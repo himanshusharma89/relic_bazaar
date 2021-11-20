@@ -120,7 +120,7 @@ class _GetUserDetailsViewState extends State<GetUserDetailsView> {
                                 Icons.add_a_photo,
                                 size: 40,
                               )
-                            : Image.file(_image!),
+                            : Image.file(_image! , fit: BoxFit.cover,),
                       ),
                     ),
                     SizedBox(
