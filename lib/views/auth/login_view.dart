@@ -131,8 +131,8 @@ class LoginScreenState extends State<LoginScreen> {
                                 hintText: 'Password',
                                 suffixIcon: IconButton(
                                   icon: _showPassword
-                                      ? const Icon(Icons.visibility)
-                                      : const Icon(Icons.visibility_off),
+                                      ? const Icon(Icons.visibility_off , color: RelicColors.backgroundColor,)
+                                      : const Icon(Icons.visibility , color: RelicColors.warningColor,),
                                   onPressed: () {
                                     setState(
                                       () {
