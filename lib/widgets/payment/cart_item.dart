@@ -18,6 +18,8 @@ class CartItem extends StatefulWidget {
 class _CartItemState extends State<CartItem> {
   TextEditingController? controller;
   Product? product;
+  int quantity = 1;
+  int itemTotal = 0;
   CartTotalController _cartTotalController = Get.find<CartTotalController>();
   @override
   void initState() {
@@ -36,6 +38,7 @@ class _CartItemState extends State<CartItem> {
         if(snapShot.hasData){
           Product product = snapShot.data!;
           _cartTotalController.updateCartTotal(product.amount ?? 0);
+          itemTotal = product.amount! * quantity;
           return Padding(
             padding: const EdgeInsets.only(bottom: 10.0),
             child: Row(
@@ -124,7 +127,7 @@ class _CartItemState extends State<CartItem> {
                       },
                       icon: const Icon(Icons.delete) , color: RelicColors.warningColor,),
                     Text(
-                      '₹ ${product.amount}',
+                      '₹ $itemTotal',
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.white, fontSize: 17),
                     )
@@ -147,13 +150,21 @@ class _CartItemState extends State<CartItem> {
 
   void subQuantity() {
     if (int.parse(controller!.text) > 1) {
-      controller!.text = (int.parse(controller!.text) - 1).toString();
+        controller!.text = (int.parse(controller!.text) - 1).toString();
+        setState(() {
+          quantity = int.parse(controller!.text);
+          print('quantity : $quantity');
+        });
     }
   }
 
   void addQuantity() {
     if (int.parse(controller!.text) < 50) {
-      controller!.text = (int.parse(controller!.text) + 1).toString();
+        controller!.text = (int.parse(controller!.text) + 1).toString();
+        setState(() {
+          quantity = int.parse(controller!.text);
+          print('quantity : $quantity');
+        });
     }
   }
 }

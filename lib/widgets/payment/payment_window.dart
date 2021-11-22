@@ -91,7 +91,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
                         style: TextStyle(fontSize: 17),
                       ),
                       Text(
-                        _cartTotalController.cartTotal.toString() ?? '',
+                        _cartTotalController.cartTotal.toString(),
                         style: const TextStyle(fontSize: 17),
                       ),
                     ],
@@ -309,7 +309,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
                     style: TextStyle(fontSize: 17),
                   ),
                   Text(
-                    _cartTotalController.cartTotal.toString() ?? '',
+                    _cartTotalController.cartTotal.toString(),
                     style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                 ],
