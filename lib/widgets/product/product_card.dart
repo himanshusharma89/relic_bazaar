@@ -59,7 +59,7 @@ class ProductCard extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                product!.amount!,
+                product!.amount!.toString(),
                 style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,

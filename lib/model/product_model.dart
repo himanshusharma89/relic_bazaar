@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 class Product {
   Product({
     this.text,
@@ -6,11 +8,16 @@ class Product {
     this.image,
     this.seller,
     this.height,
+    this.id,
+    this.dbId
   });
 
-  factory Product.fromJson(dynamic productData) {
+  factory Product.fromJson(Map productData) {
+    // log('prodcut id : ${productData['_id'].runtimeType}');
     return Product(
-      amount: productData['amount'].toString(),
+      amount: productData['amount'],
+      id : productData['id'],
+      dbId: productData['_id'],
       image: productData['image'].toString() == ''
           ? 'assets/items/${productData['id']}.png'
           : productData['image'].toString(),
@@ -25,8 +32,10 @@ class Product {
 
   final String? text;
   final String? owner;
-  final String? amount;
+  final int? amount;
   final String? image;
   final String? seller;
   final int? height;
+  final int?  id;
+  final String? dbId;
 }

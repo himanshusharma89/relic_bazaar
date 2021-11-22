@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:relic_bazaar/helpers/cart_total_controller.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 
 class PaymentWindow extends StatefulWidget {
   @override
@@ -12,6 +14,7 @@ class PaymentWindow extends StatefulWidget {
 class _PaymentWindowState extends State<PaymentWindow> {
   int? cnt1, cnt2;
   final Razorpay _razorpay = Razorpay();
+  CartTotalController _cartTotalController = Get.find<CartTotalController>();
   @override
   void initState() {
     super.initState();
@@ -78,19 +81,23 @@ class _PaymentWindowState extends State<PaymentWindow> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Text>[
-                  Text(
-                    'CART TOTAL',
-                    style: TextStyle(fontSize: 17),
+              // Obx(
+              //     () =>
+                      Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children:  <Text>[
+                      const Text(
+                        'CART TOTAL',
+                        style: TextStyle(fontSize: 17),
+                      ),
+                      Text(
+                        _cartTotalController.cartTotal.toString() ?? '',
+                        style: const TextStyle(fontSize: 17),
+                      ),
+                    ],
                   ),
-                  Text(
-                    '₹35465',
-                    style: TextStyle(fontSize: 17),
-                  ),
-                ],
-              ),
+              // ),
+
               SizedBox(
                 height: height * 0.002,
               ),
@@ -296,14 +303,14 @@ class _PaymentWindowState extends State<PaymentWindow> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Text>[
-                  Text(
+                children:  <Text>[
+                  const Text(
                     'TOTAL',
                     style: TextStyle(fontSize: 17),
                   ),
                   Text(
-                    '₹35131',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    _cartTotalController.cartTotal.toString() ?? '',
+                    style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),

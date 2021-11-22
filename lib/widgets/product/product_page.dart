@@ -5,6 +5,7 @@ import 'package:relic_bazaar/helpers/ad_state.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/model/product_model.dart';
 import 'package:relic_bazaar/widgets/back_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../helpers/app_icons.dart';
 import '../retro_button.dart';
 
@@ -19,7 +20,6 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   BannerAd? bannerAd;
-
   @override
   void didChangeDependencies() {
     final AdState adState = Provider.of<AdState>(context);
@@ -46,19 +46,24 @@ class _ProductPageState extends State<ProductPage> {
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         leading: appBarBackButton(context),
-        actions: const <Widget>[
-          Center(
-            child: RelicBazaarStackedView(
-              upperColor: Colors.white,
-              width: 35,
-              height: 35,
-              borderColor: Colors.white,
-              child: Padding(
-                padding: EdgeInsets.only(top: 7, left: 6),
-                child: Icon(
-                  RelicIcons.cart,
-                  size: 32,
-                  color: Colors.black,
+        actions:  <Widget>[
+          InkWell(
+            onTap: (){
+              Navigator.pop(context);
+            },
+            child: const Center(
+              child: RelicBazaarStackedView(
+                upperColor: Colors.white,
+                width: 35,
+                height: 35,
+                borderColor: Colors.white,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 7, left: 6),
+                  child: Icon(
+                    RelicIcons.cart,
+                    size: 32,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),
@@ -187,7 +192,7 @@ class _ProductPageState extends State<ProductPage> {
                       borderColor: Colors.white,
                       child: Center(
                         child: Text(
-                          widget.product!.amount!,
+                          widget.product!.amount!.toString(),
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: RelicColors.primaryColor,
@@ -273,28 +278,39 @@ class _ProductPageState extends State<ProductPage> {
                                         SizedBox(
                                           width: width * 0.02,
                                         ),
-                                        RelicBazaarStackedView(
-                                          upperColor: Colors.white,
-                                          width: width * 0.35,
-                                          height: height * 0.05,
-                                          borderColor: Colors.white,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: const <Widget>[
-                                              Icon(
-                                                Icons.add,
-                                                color: RelicColors.primaryColor,
-                                              ),
-                                              Text(
-                                                'ADD TO CART',
-                                                style: TextStyle(
-                                                    color: RelicColors
-                                                        .primaryColor,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 15),
-                                              ),
-                                            ],
+                                        InkWell(
+                                          onTapDown: (_){
+
+                                          },
+                                          onTap: () async {
+                                            SharedPreferences prefs = await SharedPreferences.getInstance();
+                                            List<String> myCart = prefs.getStringList('myCart') ?? [];
+                                            myCart.add(widget.product!.id!.toString() );
+                                            prefs.setStringList('myCart', myCart);
+                                          },
+                                          child: RelicBazaarStackedView(
+                                            upperColor: Colors.white,
+                                            width: width * 0.35,
+                                            height: height * 0.05,
+                                            borderColor: Colors.white,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: const <Widget>[
+                                                Icon(
+                                                  Icons.add,
+                                                  color: RelicColors.primaryColor,
+                                                ),
+                                                Text(
+                                                  'ADD TO CART',
+                                                  style: TextStyle(
+                                                      color: RelicColors
+                                                          .primaryColor,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 15),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         )
                                       ],
