@@ -118,6 +118,7 @@ class _CartItemState extends State<CartItem> {
                     ),
                   ),
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       IconButton(
                         onPressed: () async {
@@ -165,7 +166,7 @@ class _CartItemState extends State<CartItem> {
                 Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 5),
+                      margin: const EdgeInsets.symmetric(vertical: 5),
                       width: MediaQuery.of(context).size.width * 0.5,
                       height: 20.0,
                       child: Shimmer.fromColors(
@@ -179,7 +180,7 @@ class _CartItemState extends State<CartItem> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(bottom: 5),
+                      margin: const EdgeInsets.only(bottom: 5),
                       width: MediaQuery.of(context).size.width * 0.5,
                       height: 20.0,
                       child: Shimmer.fromColors(
@@ -193,7 +194,7 @@ class _CartItemState extends State<CartItem> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(bottom: 5),
+                      margin: const EdgeInsets.only(bottom: 5),
                       width: MediaQuery.of(context).size.width  * 0.5,
                       height: 20.0,
                       child: Shimmer.fromColors(

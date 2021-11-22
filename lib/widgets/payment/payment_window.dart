@@ -90,8 +90,8 @@ class _PaymentWindowState extends State<PaymentWindow> {
                         'CART TOTAL',
                         style: TextStyle(fontSize: 17),
                       ),
-                      Text(
-                        _cartTotalController.cartTotal.toString(),
+                      const Text(
+                        '1000',
                         style: const TextStyle(fontSize: 17),
                       ),
                     ],
@@ -308,8 +308,8 @@ class _PaymentWindowState extends State<PaymentWindow> {
                     'TOTAL',
                     style: TextStyle(fontSize: 17),
                   ),
-                  Text(
-                    _cartTotalController.cartTotal.toString(),
+                  const Text(
+                    '1000',
                     style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                 ],
