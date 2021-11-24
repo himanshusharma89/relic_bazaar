@@ -68,7 +68,7 @@ class _ProductPageState extends State<ProductPage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           )
         ],
@@ -284,8 +284,8 @@ class _ProductPageState extends State<ProductPage> {
                                           },
                                           onTap: () async {
                                             SharedPreferences prefs = await SharedPreferences.getInstance();
-                                            List<String> myCart = prefs.getStringList('myCart') ?? [];
-                                            myCart.add(widget.product!.id!.toString() );
+                                            List<String> myCart = prefs.getStringList('myCart') ?? <String>[];
+                                            myCart.add(widget.product!.id!.toString());
                                             prefs.setStringList('myCart', myCart);
                                           },
                                           child: RelicBazaarStackedView(

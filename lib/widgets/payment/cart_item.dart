@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:relic_bazaar/helpers/cart_total_controller.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/model/product_model.dart';
 import 'package:relic_bazaar/services/product_service.dart';
@@ -21,7 +19,6 @@ class _CartItemState extends State<CartItem> {
   Product? product;
   int quantity = 1;
   int itemTotal = 0;
-  CartTotalController _cartTotalController = Get.find<CartTotalController>();
   @override
   void initState() {
     super.initState();
@@ -34,13 +31,12 @@ class _CartItemState extends State<CartItem> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       child: FutureBuilder<Product>(
         future: ProductService().getProductDetails(widget.index),
         builder: (_ , AsyncSnapshot<Product> snapShot){
           if(snapShot.hasData){
             Product product = snapShot.data!;
-            _cartTotalController.updateCartTotal(product.amount ?? 0);
             itemTotal = product.amount! * quantity;
             return Padding(
               padding: const EdgeInsets.only(bottom: 10.0),
@@ -73,8 +69,6 @@ class _CartItemState extends State<CartItem> {
                             height: height * 0.005,
                           ),
                           Container(
-                            // width: 75,
-                            // height: 25,
                             height: height * 0.04,
                             width: width * 0.25,
                             decoration: const BoxDecoration(
@@ -84,7 +78,8 @@ class _CartItemState extends State<CartItem> {
                                       offset: Offset(0, 4),
                                       blurRadius: 8,
                                       color: Colors.black26)
-                                ]),
+                                ]
+                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: <Widget>[
@@ -119,15 +114,14 @@ class _CartItemState extends State<CartItem> {
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
+                    children: <Widget>[
                       IconButton(
                         onPressed: () async {
                           SharedPreferences prefs = await SharedPreferences.getInstance();
-                          List<String> myCart = prefs.getStringList('myCart') ?? [];
+                          List<String> myCart = prefs.getStringList('myCart') ?? <String>[];
                           myCart.remove(widget.index);
                           prefs.setStringList('myCart', myCart);
                           widget.pageController!.jumpToPage(0);
-                          // widget.pageController!.jumpToPage(2);
                         },
                         icon: const Icon(Icons.delete) , color: RelicColors.warningColor,),
                       Text(
@@ -146,7 +140,7 @@ class _CartItemState extends State<CartItem> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: <Widget>[
                 SizedBox(
                   width: 120.0,
                   height: 120.0,
@@ -154,8 +148,6 @@ class _CartItemState extends State<CartItem> {
                     baseColor: Colors.grey[300]!,
                     highlightColor: Colors.grey[100]!,
                     child: Container(
-                      // width: 200.0,
-                      // height: 100.0,
                       color: Colors.grey,
                     ),
                   ),
@@ -164,7 +156,7 @@ class _CartItemState extends State<CartItem> {
                   width: 20,
                 ),
                 Column(
-                  children: [
+                  children: <Widget>[
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 5),
                       width: MediaQuery.of(context).size.width * 0.5,
@@ -173,8 +165,6 @@ class _CartItemState extends State<CartItem> {
                         baseColor: Colors.grey[300]!,
                         highlightColor: Colors.grey[100]!,
                         child: Container(
-                          // width: 200.0,
-                          // height: 100.0,
                           color: Colors.grey,
                         ),
                       ),
@@ -187,8 +177,6 @@ class _CartItemState extends State<CartItem> {
                         baseColor: Colors.grey[300]!,
                         highlightColor: Colors.grey[100]!,
                         child: Container(
-                          // width: 200.0,
-                          // height: 100.0,
                           color: Colors.grey,
                         ),
                       ),
@@ -201,8 +189,6 @@ class _CartItemState extends State<CartItem> {
                         baseColor: Colors.grey[300]!,
                         highlightColor: Colors.grey[100]!,
                         child: Container(
-                          // width: 200.0,
-                          // height: 100.0,
                           color: Colors.grey,
                         ),
                       ),
@@ -211,7 +197,7 @@ class _CartItemState extends State<CartItem> {
                 ),
               ],
             ),
-          );;
+          );
 
         },
 

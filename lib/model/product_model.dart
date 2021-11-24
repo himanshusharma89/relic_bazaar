@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 class Product {
   Product({
@@ -12,7 +11,7 @@ class Product {
     this.dbId
   });
 
-  factory Product.fromJson(Map productData) {
+  factory Product.fromJson(Map<String,dynamic> productData) {
     // log('prodcut id : ${productData['_id'].runtimeType}');
     return Product(
       amount: productData['amount'],

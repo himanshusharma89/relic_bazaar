@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:relic_bazaar/helpers/cart_total_controller.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/widgets/retro_button.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
 
 class PaymentWindow extends StatefulWidget {
   @override
@@ -14,7 +12,6 @@ class PaymentWindow extends StatefulWidget {
 class _PaymentWindowState extends State<PaymentWindow> {
   int? cnt1, cnt2;
   final Razorpay _razorpay = Razorpay();
-  CartTotalController _cartTotalController = Get.find<CartTotalController>();
   @override
   void initState() {
     super.initState();
@@ -81,22 +78,19 @@ class _PaymentWindowState extends State<PaymentWindow> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Obx(
-              //     () =>
-                      Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:  <Text>[
-                      const Text(
-                        'CART TOTAL',
-                        style: TextStyle(fontSize: 17),
-                      ),
-                      const Text(
-                        '1000',
-                        style: const TextStyle(fontSize: 17),
-                      ),
-                    ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children:  <Text>[
+                  const Text(
+                    'CART TOTAL',
+                    style: TextStyle(fontSize: 17),
                   ),
-              // ),
+                  const Text(
+                    '1000',
+                    style: const TextStyle(fontSize: 17),
+                  ),
+                ],
+              ),
 
               SizedBox(
                 height: height * 0.002,
@@ -117,7 +111,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                 child: Column(
                   children: <Widget>[
                     SizedBox(
@@ -174,7 +168,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
                               padding: const EdgeInsets.all(4.0),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   FittedBox(
                                     child: Text(
@@ -263,7 +257,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
                               padding: const EdgeInsets.all(4.0),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   FittedBox(
                                     child: Text(

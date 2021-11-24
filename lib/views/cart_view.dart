@@ -1,8 +1,4 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:relic_bazaar/helpers/cart_total_controller.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/widgets/payment/cart_item.dart';
 import 'package:relic_bazaar/widgets/payment/payment_window.dart';
@@ -22,16 +18,10 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
-  CartTotalController _cartTotalController = Get.put(CartTotalController());
-  @override
-  void initState() {
-    // TODO: implement initState
-    // getMyCart();
-  }
   
   Future<List<String>> getMyCart() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getStringList('myCart') ?? [];
+    return prefs.getStringList('myCart') ?? <String>[];
   }
   
   @override
@@ -42,7 +32,7 @@ class _CartState extends State<Cart> {
       future: getMyCart(),
       builder: (_ , AsyncSnapshot<List<String>> snapShot){
         if(snapShot.hasData){
-          List<String> myCart = snapShot.data ?? [];
+          List<String> myCart = snapShot.data ?? <String>[];
           return Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 12,
@@ -105,7 +95,6 @@ class _CartState extends State<Cart> {
                       width: width * 0.22,
                       child:  Center(
                         child: Text(
-                          // '${ myCart.length.toString()} items',
                           myCart.length.toString(),
                           style: const TextStyle(
                             fontFamily: 'pix M 8pt',
