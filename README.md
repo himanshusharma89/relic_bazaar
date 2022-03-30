@@ -129,23 +129,8 @@ We follow certain guidelines in order to maintain this repository. Please find o
 
 Distributed under the CC0-1.0 License. See [LICENSE](https://github.com/himanshusharma89/relic_bazaar/blob/master/LICENSE) for more information.
 
-<h1 align= "left"><b>The Geeks behind RELIC_BAZAAR 🤓</b></h1>
+<h1 align= "left"><b>The Geeks behind Relic Bazaar 🤓</b></h1>
 
 |<img src="https://avatars2.githubusercontent.com/u/44980497?v=4">|<img src="https://avatars2.githubusercontent.com/u/46641503?v=4">|<img src="https://avatars3.githubusercontent.com/u/54989142?v=4">|<img src="https://avatars3.githubusercontent.com/u/40017559?v=4">|
 |----------------------------|--------|----------------------------|--------|
 |<p align="center">[Himanshu Sharma](https://github.com/himanshusharma89)</p>|<p align="center">[Smaranjit Ghose](https://github.com/smaranjitghose)</p>|<p align="center">[Ishan Sharma](https://github.com/ishandeveloper)</p>|<p align="center">[Anush Bhatia](https://github.com/anushbhatia)</p>|
- 
-## RELIC BAZAAR is a part of these open source programs:
-
-<p align="center">
- <a>
- <img  width="70%" height="30%" src="https://raw.githubusercontent.com/GirlScriptSummerOfCode/MentorshipProgram/master/GSsoc%20Type%20Logo%20Black.png">
-
- 
-</p>
-
-</br>
-
-
-
-
