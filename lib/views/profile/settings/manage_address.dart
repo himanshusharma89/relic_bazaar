@@ -225,12 +225,13 @@ class _ManageAddressState extends State<ManageAddress> {
           physics: const BouncingScrollPhysics(),
           type: StepperType.horizontal,
           currentStep: currStep,
-          controlsBuilder: (BuildContext context,
-              {VoidCallback? onStepContinue, VoidCallback? onStepCancel}) {
+          controlsBuilder: (BuildContext context, ControlsDetails controlsDetails) {
+            
+              // {VoidCallback? onStepContinue, VoidCallback? onStepCancel}
             return Row(
               children: <Widget>[
                 TextButton(
-                  onPressed: onStepContinue,
+                  onPressed: controlsDetails.onStepContinue,
                   child: const Text(
                     'CONTINUE',
                     style: TextStyle(color: Colors.white),
@@ -240,7 +241,7 @@ class _ManageAddressState extends State<ManageAddress> {
                   width: 10,
                 ),
                 TextButton(
-                  onPressed: onStepCancel,
+                  onPressed: controlsDetails.onStepCancel,
                   child: const Text(
                     'CANCEL',
                     style: TextStyle(color: Colors.white),
