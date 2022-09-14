@@ -38,6 +38,11 @@ jobs:
         with:
           # Adjust to the flutter version you are working with
           flutter-version: "2.0.3"
+          channel: 'stable'
+          cache: true
+#           cache-key: 'flutter-:os:-:channel:-:version:-:arch:-:hash:' # optional, change this to force refresh cache
+#           cache-path: ${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch: # optional, change this to specify the cache path
+          architecture: x64 # optional, x64 or arm64
       - name: Get version.txt
         uses: actions/download-artifact@v2
         with:
