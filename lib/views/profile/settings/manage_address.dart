@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_geocoder/geocoder.dart';
-import 'package:flutter_geocoder/model.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:relic_bazaar/helpers/constants.dart';
 import 'package:relic_bazaar/model/address_model.dart';
@@ -28,14 +27,14 @@ class _ManageAddressState extends State<ManageAddress> {
 
   Future<void> getLocation() async {
     final Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    final Coordinates coordinates =
-        Coordinates(position.latitude, position.longitude);
-    final List<Address> addresses =
-        await Geocoder.local.findAddressesFromCoordinates(coordinates);
-    final Address first = addresses.first;
-    debugPrint('$addresses : ${first.addressLine}');
+    final Placemark coordinates =
+        (await placemarkFromCoordinates(position.latitude, position.longitude)) as Placemark;
+    // final List<Placemark> addresses =
+    //     await placemarkFromCoordinates(coordinates);
+    // final Address first = addresses.first;
+    debugPrint('addresses : ${coordinates.name}');
     setState(() {
-      loc.text = first.addressLine!;
+      loc.text = coordinates.name!;
     });
     debugPrint(loc.text);
   }
@@ -225,12 +224,13 @@ class _ManageAddressState extends State<ManageAddress> {
           physics: const BouncingScrollPhysics(),
           type: StepperType.horizontal,
           currentStep: currStep,
-          controlsBuilder: (BuildContext context,
-              {VoidCallback? onStepContinue, VoidCallback? onStepCancel}) {
+          controlsBuilder: (BuildContext context, ControlsDetails controlsDetails) {
+            
+              // {VoidCallback? onStepContinue, VoidCallback? onStepCancel}
             return Row(
               children: <Widget>[
                 TextButton(
-                  onPressed: onStepContinue,
+                  onPressed: controlsDetails.onStepContinue,
                   child: const Text(
                     'CONTINUE',
                     style: TextStyle(color: Colors.white),
@@ -240,7 +240,7 @@ class _ManageAddressState extends State<ManageAddress> {
                   width: 10,
                 ),
                 TextButton(
-                  onPressed: onStepCancel,
+                  onPressed: controlsDetails.onStepCancel,
                   child: const Text(
                     'CANCEL',
                     style: TextStyle(color: Colors.white),

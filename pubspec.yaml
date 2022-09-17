@@ -6,7 +6,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.17.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -20,10 +20,10 @@ dependencies:
   razorpay_flutter: ^1.2.7
   google_mobile_ads: ^0.13.4
   geolocator: ^7.6.2
-  flutter_geocoder: ^0.2.2-nullsafety
+  geocoding: ^2.0.5
   flutter_svg: ^0.22.0
   provider:
-  advance_pdf_viewer: any
+  advance_pdf_viewer: ^2.0.1
   firebase_auth: ^3.1.1
   google_sign_in: ^5.1.1
   webview_flutter: ^2.1.0
