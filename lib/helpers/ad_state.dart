@@ -13,7 +13,8 @@ class AdState {
   final BannerAdListener _adListener = BannerAdListener(
     onAdLoaded: (Ad ad) => debugPrint('Ad loaded: ${ad.adUnitId}'),
     onAdClosed: (Ad ad) => debugPrint('Ad closed: ${ad.adUnitId}'),
-    onAdFailedToLoad: (Ad ad, LoadAdError error) => debugPrint('Ad failed: ${ad.adUnitId}, $error'),
+    onAdFailedToLoad: (Ad ad, LoadAdError error) =>
+        debugPrint('Ad failed: ${ad.adUnitId}, $error'),
     onAdOpened: (Ad ad) => debugPrint('Ad opener: ${ad.adUnitId}'),
   );
 }
