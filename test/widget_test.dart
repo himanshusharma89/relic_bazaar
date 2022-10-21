@@ -30,7 +30,7 @@ void main() {
             product: Product(
               text: 'lorem',
               owner: 'ipsum',
-              amount: 'dolor',
+              amount: 0,
               image: 'assets/items/3.png',
               seller: 'seller',
               height: 10,
@@ -64,7 +64,7 @@ void main() {
                     child: ProductPage(
                       product: Product(
                           owner: 'owner',
-                          amount: 'amount',
+                          amount: 0,
                           seller: 'seller',
                           height: 10,
                           text: 'test string',
@@ -136,7 +136,7 @@ void main() {
             textDirection: TextDirection.ltr,
             child: Scaffold(
               body: MaterialApp(
-                home: CartItem(),
+                home: CartItem(index: '1',),
               ),
             ),
           ),

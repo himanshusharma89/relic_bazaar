@@ -80,17 +80,18 @@ class _PaymentWindowState extends State<PaymentWindow> {
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Text>[
-                  Text(
+                children:  <Text>[
+                  const Text(
                     'CART TOTAL',
                     style: TextStyle(fontSize: 17),
                   ),
-                  Text(
-                    '₹35465',
-                    style: TextStyle(fontSize: 17),
+                  const Text(
+                    '1000',
+                    style: const TextStyle(fontSize: 17),
                   ),
                 ],
               ),
+
               SizedBox(
                 height: height * 0.002,
               ),
@@ -110,7 +111,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                 child: Column(
                   children: <Widget>[
                     SizedBox(
@@ -167,7 +168,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
                               padding: const EdgeInsets.all(4.0),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   FittedBox(
                                     child: Text(
@@ -256,7 +257,7 @@ class _PaymentWindowState extends State<PaymentWindow> {
                               padding: const EdgeInsets.all(4.0),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   FittedBox(
                                     child: Text(
@@ -296,14 +297,14 @@ class _PaymentWindowState extends State<PaymentWindow> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const <Text>[
-                  Text(
+                children:  <Text>[
+                  const Text(
                     'TOTAL',
                     style: TextStyle(fontSize: 17),
                   ),
-                  Text(
-                    '₹35131',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  const Text(
+                    '1000',
+                    style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
