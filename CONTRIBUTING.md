@@ -33,7 +33,7 @@ Now tell Git your name and E-mail (used on Github) address.
 
 This is an important step to mark your commits to your name and email.
 
-### Fprk a Project -
+### Fork a Project -
 
 You can use github explore - https://github.com/explore to find a project that interests you and match your skills. Once you find your cool project to workon, you can make a copy of project to your account. This process is called forking a project to your Github account. On Upper right side of project page on Github, you can see -
 
